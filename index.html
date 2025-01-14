@@ -125,9 +125,10 @@
         <h2>Notifications</h2>
         <label for="notification-time">Set Notification:</label>
         <select id="notification-time">
-            <option value="-5">5 minutes before</option>
+            <option value="-10">10 minutes before</option>
+            <option value="-30">30 minutes before</option>
+            <option value="-60">An hour before</option>
             <option value="0">Exactly the time</option>
-            <option value="5">5 minutes after</option>
         </select>
         <button onclick="addNotification()">Add Notification</button>
 
@@ -138,18 +139,20 @@
         <button onclick="addToGoogleCalendar()">Add to Google Calendar</button>
 
         <div class="updates">
-            <h3>What's New in Version 2.1:</h3>
+            <h3>What's New in Version 2.2:</h3>
             <ul>
-                <li>Added a button and a paragraph to display the exact time of the destination time zone.</li>
-                <li>Time format switched to HH:MM for a cleaner display.</li>
-                <li>Font styles updated to reflect a wabi-sabi aesthetic.</li>
+                <li>Introduced more flexible notifications: 10 minutes before, 30 minutes before, and an hour before the event.</li>
+                <li>Refined the logic for calculating the destination time to ensure accuracy based on the current time zone.</li>
+                <li>Streamlined the notification options by removing "5 minutes before" and "5 minutes after" to reduce clutter.</li>
+                <li>Improved layout and enhanced user interface consistency.</li>
+                <li>Updated the footer to reflect the new version (2.2).</li>
             </ul>
         </div>
 
         <footer class="footer">
             <p>Copyright &copy; 2025 Jnln_99</p>
             <p>Goal: To help people easily manage events across time zones with simplicity and mindfulness.</p>
-            <p>Version: 2.1</p>
+            <p>Version: 2.2</p>
         </footer>
     </div>
 
@@ -177,13 +180,19 @@
         }
 
         function showDestinationTime() {
+            const currentTz = document.getElementById('current-timezone').value;
             const destTz = document.getElementById('destination-timezone').value;
-            if (!moment.tz.zone(destTz)) {
-                destinationTimeDisplay.textContent = "Please enter a valid destination time zone.";
+            const eventDate = document.getElementById('event-date').value;
+
+            if (!moment.tz.zone(currentTz) || !moment.tz.zone(destTz) || !eventDate) {
+                destinationTimeDisplay.textContent = "Please select a valid event date, current time zone, and destination time zone.";
                 return;
             }
-            const now = moment().tz(destTz);
-            destinationTimeDisplay.textContent = `Current time in ${destTz}: ${now.format('YYYY/MM/DD HH:mm')}`;
+
+            const eventMoment = moment.tz(eventDate, currentTz); // Convert the event date to the current time zone
+            const destMoment = eventMoment.clone().tz(destTz);   // Convert the event time to the destination time zone
+
+            destinationTimeDisplay.textContent = `Time in ${destTz}: ${destMoment.format('YYYY/MM/DD HH:mm')}`;
         }
 
         function addNotification() {
