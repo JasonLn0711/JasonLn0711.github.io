@@ -1,0 +1,89 @@
+body {
+    font-family: "Yu Mincho", "Yu Gothic", "MS PMincho", serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+    background-color: #f4f1ed;
+    color: #5d5b57;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f5f1;
+    border: 1px solid #e0ddd8;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+h1, h2 {
+    font-family: "Yu Mincho", "Yu Gothic", "MS PMincho", serif;
+    text-align: center;
+    color: #4f4d4a;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+input, button {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 5px 0;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid #d6d2cd;
+    border-radius: 4px;
+    background-color: #f9f8f6;
+}
+button {
+    cursor: pointer;
+    background-color: #e8e4df;
+    border: none;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #d6d2cd;
+}
+.footer {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    background: #f0edea;
+    border-top: 1px solid #e0ddd8;
+}
+.countdown {
+    font-weight: bold;
+    color: #9a6d51;
+    text-align: center;
+}
+.notification-list {
+    list-style: none;
+    padding: 0;
+}
+.notification-item {
+    padding: 10px;
+    background: #fcfbfa;
+    margin: 10px 0;
+    border: 1px solid #ddd9d4;
+    border-radius: 6px;
+}
+.notification-item button {
+    width: auto;
+    margin: 5px 0 0;
+}
+#destination-time-display {
+    margin-top: 20px;
+    font-family: inherit;
+    font-size: 18px;
+    text-align: center;
+    color: #4f4d4a;
+}
+.updates {
+    margin-top: 20px;
+    background-color: #f9f8f6;
+    padding: 10px;
+    border: 1px solid #ddd9d4;
+    border-radius: 6px;
+    font-size: 14px;
+}
