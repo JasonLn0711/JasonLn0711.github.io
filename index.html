@@ -4,99 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Zone Checker</title>
+    <link rel="stylesheet" href="css/index_style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
-    <style>
-        body {
-            font-family: "Yu Mincho", "Yu Gothic", "MS PMincho", serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
-            background-color: #f4f1ed;
-            color: #5d5b57;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #f8f5f1;
-            border: 1px solid #e0ddd8;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1, h2 {
-            font-family: "Yu Mincho", "Yu Gothic", "MS PMincho", serif;
-            text-align: center;
-            color: #4f4d4a;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        input, button {
-            display: block;
-            width: calc(100% - 20px);
-            margin: 5px 0;
-            padding: 8px;
-            font-family: inherit;
-            font-size: 16px;
-            border: 1px solid #d6d2cd;
-            border-radius: 4px;
-            background-color: #f9f8f6;
-        }
-        button {
-            cursor: pointer;
-            background-color: #e8e4df;
-            border: none;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #d6d2cd;
-        }
-        .footer {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            background: #f0edea;
-            border-top: 1px solid #e0ddd8;
-        }
-        .countdown {
-            font-weight: bold;
-            color: #9a6d51;
-            text-align: center;
-        }
-        .notification-list {
-            list-style: none;
-            padding: 0;
-        }
-        .notification-item {
-            padding: 10px;
-            background: #fcfbfa;
-            margin: 10px 0;
-            border: 1px solid #ddd9d4;
-            border-radius: 6px;
-        }
-        .notification-item button {
-            width: auto;
-            margin: 5px 0 0;
-        }
-        #destination-time-display {
-            margin-top: 20px;
-            font-family: inherit;
-            font-size: 18px;
-            text-align: center;
-            color: #4f4d4a;
-        }
-        .updates {
-            margin-top: 20px;
-            background-color: #f9f8f6;
-            padding: 10px;
-            border: 1px solid #ddd9d4;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-    </style>
+    <script src="js/index_script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -107,8 +18,7 @@
 
         <label for="current-timezone">Current Time Zone:</label>
         <input type="text" id="current-timezone" list="timezone-options" placeholder="Start typing...">
-        <datalist id="timezone-options">
-        </datalist><br>
+        <datalist id="timezone-options"></datalist><br>
 
         <label for="event-date">Event Date and Time:</label>
         <input type="datetime-local" id="event-date"><br>
@@ -139,6 +49,14 @@
         <button onclick="addToGoogleCalendar()">Add to Google Calendar</button>
 
         <div class="updates">
+            <h3>What's New in Version 2.3:</h3>
+            <ul>
+                <li>Enhanced accessibility features to ensure better usability for all users.</li>
+                <li>Improved performance for faster loading times and smoother interactions.</li>
+                <li>Fixed minor bugs in the notification system to ensure reliable alerts.</li>
+                <li>Updated visual design for a cleaner and more modern look.</li>
+            </ul>
+
             <h3>What's New in Version 2.2:</h3>
             <ul>
                 <li>Introduced more flexible notifications: 10 minutes before, 30 minutes before, and an hour before the event.</li>
@@ -159,102 +77,8 @@
         <footer class="footer">
             <p>Copyright &copy; 2025 Jnln_99</p>
             <p>Goal: To help people easily manage events across time zones with simplicity and mindfulness.</p>
-            <p>Version: 2.2</p>
+            <p>Version: 2.3</p>
         </footer>
     </div>
-
-    <script>
-        const timezones = moment.tz.names();
-        const timezoneOptions = document.getElementById('timezone-options');
-        const notificationsList = document.getElementById('notifications');
-        const countdownDiv = document.getElementById('countdown');
-        const destinationTimeDisplay = document.getElementById('destination-time-display');
-
-        // Populate datalist for autocomplete
-        timezones.forEach(zone => {
-            const option = document.createElement('option');
-            option.value = zone;
-            timezoneOptions.appendChild(option);
-        });
-
-        function switchTimeZonesAndUpdateTime() {
-            const currentTzInput = document.getElementById('current-timezone');
-            const destTzInput = document.getElementById('destination-timezone');
-            const temp = currentTzInput.value;
-            currentTzInput.value = destTzInput.value;
-            destTzInput.value = temp;
-            showDestinationTime();
-        }
-
-        function showDestinationTime() {
-            const currentTz = document.getElementById('current-timezone').value;
-            const destTz = document.getElementById('destination-timezone').value;
-            const eventDate = document.getElementById('event-date').value;
-
-            if (!moment.tz.zone(currentTz) || !moment.tz.zone(destTz) || !eventDate) {
-                destinationTimeDisplay.textContent = "Please select a valid event date, current time zone, and destination time zone.";
-                return;
-            }
-
-            const eventMoment = moment.tz(eventDate, currentTz); // Convert the event date to the current time zone
-            const destMoment = eventMoment.clone().tz(destTz);   // Convert the event time to the destination time zone
-
-            destinationTimeDisplay.textContent = `Time in ${destTz}: ${destMoment.format('YYYY/MM/DD HH:mm')}`;
-        }
-
-        function addNotification() {
-            const notificationTime = document.getElementById('notification-time').value;
-            const eventDate = document.getElementById('event-date').value;
-            const currentTz = document.getElementById('current-timezone').value;
-
-            if (!eventDate || !currentTz || !moment.tz.zone(currentTz)) {
-                alert('Please select a valid event date and time, and enter a valid current time zone!');
-                return;
-            }
-
-            const eventMoment = moment.tz(eventDate, currentTz);
-            const notificationMoment = eventMoment.clone().add(Number(notificationTime), 'minutes');
-            
-            const listItem = document.createElement('li');
-            listItem.className = 'notification-item';
-            listItem.textContent = `Notification at: ${notificationMoment.format('YYYY-MM-DD HH:mm')} (${currentTz})`;
-
-            const removeButton = document.createElement('button');
-            removeButton.textContent = 'Remove';
-            removeButton.onclick = () => listItem.remove();
-            listItem.appendChild(removeButton);
-
-            notificationsList.appendChild(listItem);
-
-            updateCountdown(notificationMoment);
-        }
-
-        function updateCountdown(notificationMoment) {
-            const interval = setInterval(() => {
-                const diff = notificationMoment.diff(moment());
-                if (diff <= 0) {
-                    countdownDiv.textContent = 'Notification time reached!';
-                    clearInterval(interval);
-                } else {
-                    countdownDiv.textContent = `Countdown: ${moment.duration(diff).humanize()} remaining`;
-                }
-            }, 1000);
-        }
-
-        function addToGoogleCalendar() {
-            const eventName = document.getElementById('event-name').value || 'Unnamed Event';
-            const eventDate = document.getElementById('event-date').value;
-            const currentTz = document.getElementById('current-timezone').value;
-
-            if (!eventDate || !moment.tz.zone(currentTz)) {
-                alert('Please select a valid event date and time, and enter a valid current time zone!');
-                return;
-            }
-
-            const eventMoment = moment.tz(eventDate, currentTz);
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${eventMoment.format('YYYYMMDDTHHmmss')}/${eventMoment.add(1, 'hour').format('YYYYMMDDTHHmmss')}&ctz=${currentTz}`;
-            window.open(googleCalendarUrl, '_blank');
-        }
-    </script>
 </body>
 </html>
