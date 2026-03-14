@@ -35,5 +35,16 @@ export function projectFilters(entry: CollectionEntry<"projects">) {
     filters.add("AI");
   }
 
+  if (
+    entry.data.stack.includes("Whisper") ||
+    /speech|transcript|audio/i.test(`${entry.data.title} ${entry.data.summary}`)
+  ) {
+    filters.add("Speech");
+  }
+
+  if (entry.data.category === "Cybersecurity") {
+    filters.add("Security");
+  }
+
   return [...filters];
 }
