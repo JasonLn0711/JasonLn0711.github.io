@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, PointMaterial, Points } from "@react-three/drei";
+import { PointMaterial } from "@react-three/drei/core/PointMaterial";
 import { useMemo, useRef } from "react";
 import type { Group } from "three";
 
@@ -20,15 +20,16 @@ function MeshCloud() {
 
   return (
     <group ref={group}>
-      <Float speed={1.2} rotationIntensity={0.16} floatIntensity={0.28}>
-        <mesh>
-          <icosahedronGeometry args={[1.35, 1]} />
-          <meshBasicMaterial color="#6ea8ff" transparent opacity={0.24} wireframe />
-        </mesh>
-      </Float>
-      <Points positions={points} stride={3}>
+      <mesh>
+        <icosahedronGeometry args={[1.35, 1]} />
+        <meshBasicMaterial color="#6ea8ff" transparent opacity={0.24} wireframe />
+      </mesh>
+      <points>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" args={[points, 3]} />
+        </bufferGeometry>
         <PointMaterial color="#d8e8ff" transparent size={0.04} sizeAttenuation depthWrite={false} />
-      </Points>
+      </points>
     </group>
   );
 }

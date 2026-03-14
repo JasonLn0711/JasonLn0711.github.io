@@ -15,6 +15,29 @@ export default defineConfig({
     }
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (!id.includes("node_modules")) {
+              return;
+            }
+
+            if (id.includes("/node_modules/three/")) {
+              return "three-core";
+            }
+
+            if (id.includes("/node_modules/@react-three/fiber/")) {
+              return "react-three-fiber";
+            }
+
+            if (id.includes("/node_modules/@react-three/drei/")) {
+              return "react-three-drei";
+            }
+          }
+        }
+      }
+    }
   }
 });
