@@ -1,0 +1,69 @@
+---
+title: Designing Speech Evidence Pipelines with ASR and LLMs
+description: A research note on turning long-form conversational audio into structured, evidence-aware outputs without losing traceability.
+pubDate: 2026-02-18
+tags:
+  - Speech Intelligence
+  - ASR
+  - Research Note
+category: research-note
+draft: false
+featured: true
+cover: /projects/speech-evidence-intelligence-pipeline.svg
+ogImage: /og/default.png
+---
+
+Speech intelligence becomes much more useful when it goes beyond raw transcription. In many real settings, a transcript is only the first step. The harder question is how to recover evidence, preserve context, and support reliable review from long-form conversational audio.
+
+## The core problem
+
+ASR output is noisy, speaker turns are imperfect, and important evidence can be scattered across a long conversation. If we ask an LLM to summarize everything at once, it may sound fluent while losing the exact grounding that makes the result trustworthy.
+
+## A better research framing
+
+Instead of treating the task as transcription plus summarization, I prefer to frame it as **evidence-aware conversational analysis**. That means we ask three questions at the same time:
+
+1. Which transcript segments actually support the output?
+2. Which parts of the pipeline remain inspectable to a human reviewer?
+3. Which evaluation slices reveal failures before the system is trusted too much?
+
+> Good speech intelligence systems should not hide evidence. They should make it easier to recover and inspect it.
+
+## What the pipeline should expose
+
+An investigator-facing speech system benefits from explicit intermediate layers:
+
+1. Time-aligned transcripts and speaker-aware segmentation
+2. Retrieval over evidence-relevant spans
+3. Structured extraction for entities, claims, or suspicious patterns
+4. Final outputs that remain linked to the original supporting passages
+
+That layered design keeps the system grounded and makes it easier to evaluate where errors actually happen.
+
+## Evaluation beyond a single score
+
+For this kind of system, I care less about a single benchmark number and more about whether the pipeline remains useful and inspectable across realistic failure modes. Useful evaluation slices include:
+
+- transcript quality by speaking condition
+- retrieval recall for evidence-bearing segments
+- grounding quality of LLM outputs
+- reviewer confidence in extracted evidence
+
+```ts
+const evaluationSlices = [
+  "speaker_turn_quality",
+  "retrieval_recall",
+  "grounding_strength",
+  "reviewer_confidence"
+];
+```
+
+In practice, the best improvements often come from pipeline design, not just model size. Better segmentation, better retrieval, and better evidence presentation frequently matter more than a more complex prompt.
+
+## Why trustworthy AI matters here
+
+For speech evidence systems, trust is not a visual layer added at the end. It is part of the system contract. If a reviewer cannot see where a generated conclusion came from, the system has not done enough to earn a place in a serious workflow.
+
+## Closing note
+
+The most useful speech intelligence systems are not the ones that sound the smartest. They are the ones that preserve evidence, expose uncertainty, and help people review complex conversations with more confidence.

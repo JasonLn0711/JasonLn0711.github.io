@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Security analysis workbench cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Federated learning leakage study cover">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0a0f1f" />
@@ -19,9 +19,9 @@
     <path d="M1220 410V450" />
   </g>
   <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f8fbff">
-    <text x="150" y="130" font-size="48" letter-spacing="7" opacity="0.6">SECURITY INTELLIGENCE</text>
-    <text x="150" y="300" font-size="112" font-weight="700">Analysis</text>
-    <text x="150" y="395" font-size="112" font-weight="700">Workbench</text>
-    <text x="150" y="470" font-size="34" opacity="0.72">collection, clustering, and review for threat signals</text>
+    <text x="150" y="130" font-size="48" letter-spacing="7" opacity="0.6">AI SECURITY RESEARCH</text>
+    <text x="150" y="300" font-size="112" font-weight="700">Leakage</text>
+    <text x="150" y="395" font-size="112" font-weight="700">Study</text>
+    <text x="150" y="470" font-size="34" opacity="0.72">privacy and exposure risk in federated learning</text>
   </g>
 </svg>

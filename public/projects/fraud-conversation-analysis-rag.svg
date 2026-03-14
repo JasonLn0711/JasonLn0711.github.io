@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Fraud AI system cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Fraud conversation analysis with RAG cover">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0b1020" />
@@ -27,9 +27,9 @@
     <circle cx="1180" cy="520" r="14" />
   </g>
   <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f8fbff">
-    <text x="120" y="180" font-size="48" letter-spacing="7" opacity="0.6">FRAUD AI SYSTEM</text>
-    <text x="120" y="280" font-size="118" font-weight="700">Trustworthy</text>
-    <text x="120" y="390" font-size="118" font-weight="700">Fraud Signals</text>
-    <text x="120" y="470" font-size="34" opacity="0.72">classification, interpretability, and analyst review</text>
+    <text x="120" y="180" font-size="48" letter-spacing="7" opacity="0.6">FRAUD DETECTION AI</text>
+    <text x="120" y="280" font-size="118" font-weight="700">Conversation</text>
+    <text x="120" y="390" font-size="118" font-weight="700">RAG Analysis</text>
+    <text x="120" y="470" font-size="34" opacity="0.72">grounded reasoning for fraud-related dialogue</text>
   </g>
 </svg>

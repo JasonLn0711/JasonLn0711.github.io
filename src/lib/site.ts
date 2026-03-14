@@ -1,9 +1,9 @@
 export const site = {
   name: "Jason Chia-Sheng Lin",
   url: "https://jasonln0711.github.io",
-  defaultTitle: "Jason Chia-Sheng Lin | AI, Cybersecurity, and Digital Forensics Research",
+  defaultTitle: "Jason Chia-Sheng Lin | AI Systems, Speech Intelligence, and Trustworthy AI",
   description:
-    "Professional research portfolio for Jason Chia-Sheng Lin, featuring projects and writing on AI, cybersecurity, fraud detection, and digital forensics.",
+    "Professional research portfolio for Jason Chia-Sheng Lin, featuring work on AI systems, speech intelligence, fraud detection AI, trustworthy AI, and AI security.",
   ogImage: "/og/default.png",
   locale: "en_US",
   nav: [
