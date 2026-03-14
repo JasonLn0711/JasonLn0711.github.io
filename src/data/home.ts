@@ -18,12 +18,12 @@ export const home = {
         value: "Trustworthy AI systems"
       },
       {
-        label: "Systems",
-        value: "LLMs, RAG, ASR"
-      },
-      {
         label: "PhD Since",
         value: "2025"
+      },
+      {
+        label: "Based In",
+        value: "Taipei and Hsinchu, Taiwan"
       }
     ]
   },
