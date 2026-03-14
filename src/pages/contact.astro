@@ -18,6 +18,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
 
+      <section class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
+        <div class="panel overflow-hidden">
+          <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
+        </div>
+
+        <div class="panel flex flex-col justify-center gap-5 p-7 sm:p-8">
+          <span class="eyebrow">Profile</span>
+          <h2 class="text-2xl font-semibold text-white">{profile.name}</h2>
+          <p class="max-w-2xl text-base leading-8 text-slate-300">
+            Doctoral researcher at {profile.institution} working across trustworthy AI, AI systems, speech intelligence, cybersecurity, and real-world deployment.
+          </p>
+        </div>
+      </section>
+
       <div class="grid gap-6 lg:grid-cols-3">
         <article class="panel flex flex-col gap-5 p-7">
           <span class="pill w-fit">Email</span>
