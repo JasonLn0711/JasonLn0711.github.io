@@ -18,12 +18,12 @@ export const home = {
         value: "Trustworthy AI systems"
       },
       {
-        label: "Domains",
-        value: "Speech, security, evidence"
+        label: "Systems",
+        value: "LLMs, RAG, ASR"
       },
       {
-        label: "Priority",
-        value: "Real-world deployment"
+        label: "PhD Since",
+        value: "2025"
       }
     ]
   },
