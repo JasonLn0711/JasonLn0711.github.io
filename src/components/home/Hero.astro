@@ -1,39 +1,33 @@
 ---
-import { profile } from "../../data/profile";
+import { home } from "../../data/home";
 import HeroScene from "../three/HeroScene";
 ---
 
 <section class="section pt-10 sm:pt-16">
   <div class="shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
     <div class="space-y-7">
-      <span class="eyebrow">Doctoral Researcher at NYCU</span>
+      <span class="eyebrow">{home.hero.eyebrow}</span>
       <div class="space-y-5">
         <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-white sm:text-6xl">
-          {profile.tagline}
+          {home.hero.headline}
         </h1>
         <p class="max-w-2xl text-lg leading-8 text-slate-300">
-          {profile.bio}
+          {home.hero.description}
         </p>
       </div>
 
       <div class="flex flex-wrap gap-4">
-        <a href="/projects/" class="button-primary">View Projects</a>
-        <a href="/blog/" class="button-secondary">Read Blog</a>
+        <a href={home.hero.primaryCta.href} class="button-primary">{home.hero.primaryCta.label}</a>
+        <a href={home.hero.secondaryCta.href} class="button-secondary">{home.hero.secondaryCta.label}</a>
       </div>
 
       <dl class="grid max-w-xl gap-4 rounded-4xl border border-white/10 bg-white/[0.03] p-6 sm:grid-cols-3">
-        <div>
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Focus</dt>
-          <dd class="mt-2 text-sm text-slate-200">Speech intelligence</dd>
-        </div>
-        <div>
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Lens</dt>
-          <dd class="mt-2 text-sm text-slate-200">Investigation intelligence</dd>
-        </div>
-        <div>
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">PhD since</dt>
-          <dd class="mt-2 text-sm text-slate-200">2026</dd>
-        </div>
+        {home.hero.metrics.map((metric) => (
+          <div>
+            <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{metric.label}</dt>
+            <dd class="mt-2 text-sm text-slate-200">{metric.value}</dd>
+          </div>
+        ))}
       </dl>
     </div>
 

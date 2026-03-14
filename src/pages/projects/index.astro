@@ -5,12 +5,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projectFilters, sortProjects } from "../../lib/content";
 
 const projects = sortProjects(await getCollection("projects"));
-const filters = ["All", "Speech", "AI", "Fraud", "Cybersecurity"];
+const filters = ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"];
 ---
 
 <BaseLayout
   title="Projects"
-  description="Research case studies spanning speech intelligence, fraud detection AI, trustworthy LLM systems, and AI security."
+  description="Research-led case studies spanning trustworthy AI systems, speech intelligence, fraud analysis, and security-aware deployment."
   pathname="/projects/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -18,10 +18,10 @@ const filters = ["All", "Speech", "AI", "Fraud", "Cybersecurity"];
       <div class="max-w-3xl space-y-5">
         <span class="eyebrow">Projects</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Case studies across speech intelligence, fraud AI, trustworthy systems, and AI security.
+          Research-led case studies in trustworthy AI, speech intelligence, and security-aware systems.
         </h1>
         <p class="text-lg leading-8 text-slate-300">
-          Each project frames a concrete research problem, the system design behind it, and the value it creates for analysis, evaluation, or high-stakes AI use.
+          This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the technical decisions that mattered, and the reason the work is relevant in practice.
         </p>
       </div>
 

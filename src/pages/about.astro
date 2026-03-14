@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="About"
-  description="Background, research interests, and methods behind Jason Chia-Sheng Lin's work in AI systems, speech intelligence, fraud detection, and AI security."
+  description="Professional background, research interests, and working methods behind Jason Chia-Sheng Lin's work in AI systems, trustworthy AI, cybersecurity, and real-world deployment."
   pathname="/about/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -13,25 +13,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="max-w-3xl space-y-5">
         <span class="eyebrow">About</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Researching speech intelligence, trustworthy AI, and investigation-aware AI systems.
+          Researcher, systems builder, and security-minded thinker.
         </h1>
         <p class="text-lg leading-8 text-slate-300">
-          This page expands on the portfolio with a clearer view of my doctoral research, prior investigation background, and the methods behind the projects.
+          This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI systems intended for serious real-world use.
         </p>
       </div>
 
       <dl class="grid gap-4 md:grid-cols-3">
         <div class="panel p-6">
           <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Current Role</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">PhD Student since 2026</dd>
+          <dd class="mt-3 text-base leading-7 text-slate-200">Doctoral Researcher</dd>
         </div>
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Institute</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">Institute of Biophotonics, NYCU</dd>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Institution</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">{profile.institution}</dd>
         </div>
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Background</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">Cybercrime investigation, digital evidence, and fraud intelligence</dd>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Primary Lens</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">Trustworthy AI, security, and deployment realism</dd>
         </div>
       </dl>
 
@@ -41,14 +41,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
 
         <div class="panel space-y-6 p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Summary</h2>
+          <h2 class="text-2xl font-semibold text-white">Professional Narrative</h2>
           {profile.about.map((paragraph) => <p class="text-base leading-8 text-slate-300">{paragraph}</p>)}
         </div>
       </div>
 
       <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Research / Interest Areas</h2>
+          <h2 class="text-2xl font-semibold text-white">Current Areas of Work</h2>
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -59,7 +59,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Experience Snapshot</h2>
+          <h2 class="text-2xl font-semibold text-white">Professional Path</h2>
           <div class="mt-6 space-y-6">
             {profile.experience.map((item) => (
               <div class="border-l border-white/10 pl-5">
@@ -74,14 +74,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <section class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
         <div class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Profile Highlights</h2>
+          <h2 class="text-2xl font-semibold text-white">Selected Signals</h2>
           <ul class="mt-6 space-y-4">
             {profile.achievements.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
           </ul>
         </div>
 
         <div class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Toolkit / Methods</h2>
+          <h2 class="text-2xl font-semibold text-white">Methods / Technical Toolkit</h2>
           <div class="mt-6 grid gap-5 md:grid-cols-2">
             {profile.toolkit.map((group) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -97,12 +97,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-3">
-          <h2 class="text-2xl font-semibold text-white">Let’s connect</h2>
+          <h2 class="text-2xl font-semibold text-white">Work together</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
         </div>
         <div class="flex flex-wrap gap-3">
+          <a href="/research/" class="button-secondary">Research</a>
           <a href={`mailto:${profile.email}`} class="button-primary">Email</a>
-          <a href="/contact/" class="button-secondary">Contact page</a>
         </div>
       </section>
     </div>

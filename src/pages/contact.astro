@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Contact"
-  description="Contact Jason Chia-Sheng Lin for research collaboration, technical discussion, or speaking opportunities in AI systems, speech intelligence, and AI security."
+  description="Contact Jason Chia-Sheng Lin for research collaboration, speaking, or technical discussions related to trustworthy AI, AI systems, speech intelligence, and real-world deployment."
   pathname="/contact/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -13,7 +13,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="max-w-3xl space-y-5">
         <span class="eyebrow">Contact</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Reach out for collaboration, research discussion, or technical opportunities.
+          Start a serious conversation.
         </h1>
         <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
@@ -21,18 +21,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="grid gap-6 lg:grid-cols-3">
         <article class="panel flex flex-col gap-5 p-7">
           <span class="pill w-fit">Email</span>
-          <h2 class="text-2xl font-semibold text-white">Direct conversation</h2>
+          <h2 class="text-2xl font-semibold text-white">Research and collaboration</h2>
           <p class="text-sm leading-7 text-slate-300">
-            The fastest way to discuss collaboration, research ideas, or project fit.
+            The best route for collaboration, speaking invitations, research discussions, and technically specific inquiries.
           </p>
           <a href={`mailto:${profile.email}`} class="button-primary mt-auto">Send an email</a>
         </article>
 
         <article class="panel flex flex-col gap-5 p-7">
           <span class="pill w-fit">GitHub</span>
-          <h2 class="text-2xl font-semibold text-white">Code and experiments</h2>
+          <h2 class="text-2xl font-semibold text-white">Code and technical work</h2>
           <p class="text-sm leading-7 text-slate-300">
-            Browse repositories, prototypes, and the technical side of ongoing work.
+            Browse repositories, prototypes, and the implementation side of ongoing research and engineering work.
           </p>
           <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
             Visit GitHub
@@ -41,9 +41,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <article class="panel flex flex-col gap-5 p-7">
           <span class="pill w-fit">LinkedIn</span>
-          <h2 class="text-2xl font-semibold text-white">Professional profile</h2>
+          <h2 class="text-2xl font-semibold text-white">Professional connection</h2>
           <p class="text-sm leading-7 text-slate-300">
-            Connect for longer-term opportunities, introductions, and professional updates.
+            Connect for longer-term opportunities, introductions, and interdisciplinary or international conversations.
           </p>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
             View LinkedIn

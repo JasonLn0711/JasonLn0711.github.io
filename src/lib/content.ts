@@ -28,11 +28,18 @@ export function formatDate(date: Date) {
   }).format(date);
 }
 
+export function formatLabel(value: string) {
+  return value
+    .split("-")
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join(" ");
+}
+
 export function projectFilters(entry: CollectionEntry<"projects">) {
   const filters = new Set<string>([entry.data.category]);
 
-  if (entry.data.category === "Fraud") {
-    filters.add("AI");
+  if (entry.data.category === "Fraud Analysis") {
+    filters.add("AI Systems");
   }
 
   if (

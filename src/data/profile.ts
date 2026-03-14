@@ -1,96 +1,92 @@
 export const profile = {
   name: "Jason Chia-Sheng Lin",
-  title: "Doctoral Researcher in AI Systems",
-  tagline: "Building speech intelligence and trustworthy AI systems for fraud analysis, evidence extraction, and secure LLM workflows.",
-  bio: "I am a PhD student at the Institute of Biophotonics, National Yang Ming Chiao Tung University, where I study AI systems for speech intelligence, fraud detection conversation analysis, trustworthy LLM pipelines, and AI security. My background in cybercrime investigation shapes how I think about evidence, adversaries, and operational usefulness.",
+  handle: "JasonLn0711",
+  title: "Doctoral Researcher in AI Systems and Trustworthy AI",
+  institution: "National Yang Ming Chiao Tung University",
+  institutionShort: "NYCU",
+  tagline: "Building trustworthy AI systems for real-world, security-critical, and regulated environments.",
+  bio: "Jason Chia-Sheng Lin is a doctoral researcher at National Yang Ming Chiao Tung University working across AI systems, trustworthy AI, ASR, LLM and RAG pipelines, and cybersecurity. His work focuses on making machine intelligence more reliable, inspectable, and deployable in high-stakes environments.",
   shortBio:
-    "I bridge investigation intelligence and AI intelligence systems. My work combines ASR, LLM pipelines, RAG, and security-aware evaluation for speech analysis, fraud detection, and trustworthy AI.",
+    "I bring together research, system building, and investigation-informed thinking to design AI systems that remain useful when evidence, reliability, and deployment constraints matter.",
   email: "cre062400@gmail.com",
   github: "https://github.com/JasonLn0711",
   linkedin: "https://www.linkedin.com/in/jason-lin-1a648813b/",
   location: "Taiwan",
   avatar: "/images/headshot.jpg",
-  keywords: ["Speech Intelligence", "Trustworthy AI", "Fraud Detection AI", "AI Security"],
-  credibility: ["Speech Intelligence", "Trustworthy AI", "Fraud Detection AI", "AI Security"],
-  researchThemes: [
-    {
-      title: "Speech Intelligence & LLM Systems",
-      description:
-        "Building ASR + LLM pipelines for conversational audio, transcript understanding, and evidence-aware language processing.",
-      tags: ["ASR", "Whisper", "RAG"]
-    },
-    {
-      title: "Fraud Detection & Evidence Extraction",
-      description:
-        "Designing AI systems that analyze fraud-related conversations, extract evidence, and support investigator-style review.",
-      tags: ["Conversation Analysis", "Evidence Extraction", "LLM Systems"]
-    },
-    {
-      title: "Trustworthy AI & AI Security",
-      description:
-        "Studying evaluation, model leakage, and federated learning security for AI systems used in high-stakes settings.",
-      tags: ["Model Leakage", "Federated Learning", "Evaluation"]
-    }
+  keywords: [
+    "AI Systems",
+    "Trustworthy AI",
+    "Speech Intelligence",
+    "ASR",
+    "LLM Systems",
+    "RAG Systems",
+    "Cybersecurity",
+    "High-Stakes AI Deployment"
   ],
+  credibility: ["Trustworthy AI", "AI Systems", "Speech Intelligence", "Cybersecurity", "High-Stakes Deployment"],
   about: [
-    "I have been a PhD student since 2026 at the Institute of Biophotonics, National Yang Ming Chiao Tung University, where I work on AI systems for speech intelligence, fraud detection, trustworthy AI, and AI security.",
-    "Before entering doctoral research, I worked in law enforcement as a cybercrime investigator. That experience shaped how I think about evidence, adversarial behavior, digital forensics, and the operational demands of real-world analytical systems.",
-    "Today, I focus on AI systems that are not only capable, but also traceable, reliable, and useful in high-stakes environments where evidence quality and system trust matter."
+    "I am a doctoral researcher at National Yang Ming Chiao Tung University (NYCU), where my work sits at the intersection of AI systems, trustworthy AI, speech and language pipelines, and security-aware evaluation.",
+    "Before doctoral research, I worked in cybercrime investigation. That experience still shapes how I think about evidence, adversarial behavior, failure analysis, and the difference between a model that performs well in isolation and a system that can be trusted in practice.",
+    "Today, I focus on ASR + LLM + RAG workflows, speech intelligence, deployable AI systems, and governance-minded thinking for regulated or security-sensitive environments."
   ],
   interests: [
-    "Speech intelligence systems for conversational analysis and transcript understanding",
-    "ASR + LLM pipelines for evidence extraction and investigator support",
-    "Fraud detection AI for conversation analysis and risk-oriented reasoning",
-    "Trustworthy LLM systems with auditable, retrieval-grounded outputs",
-    "AI security, model leakage, and federated learning privacy"
+    "Trustworthy AI systems for operationally meaningful deployment",
+    "ASR + LLM + RAG pipelines for speech intelligence and evidence-aware analysis",
+    "Security, privacy, and evaluation for AI systems used in high-stakes settings",
+    "Human review, traceability, and decision support in analyst-facing workflows",
+    "Real-world AI design for anti-fraud, healthcare, and other regulated environments"
   ],
   experience: [
     {
-      period: "2026-Present",
-      title: "Doctoral Researcher, NYCU",
-      detail: "Researching speech intelligence, ASR + LLM pipelines, RAG systems, fraud conversation analysis, and AI security at the Institute of Biophotonics."
+      period: "Current",
+      title: "Doctoral Researcher, National Yang Ming Chiao Tung University",
+      detail:
+        "Researching trustworthy AI systems, speech intelligence, grounded LLM workflows, and security-aware evaluation for real-world deployment."
     },
     {
-      period: "Before 2026",
-      title: "Cybercrime Investigator",
-      detail: "Worked in law enforcement on digital forensics, online fraud investigation, OSINT analysis, and financial cybercrime cases."
+      period: "Previous",
+      title: "Cybercrime Investigation",
+      detail:
+        "Worked on digital evidence, online fraud analysis, OSINT, and operational reasoning in high-stakes investigative settings."
     },
     {
-      period: "Before 2026",
-      title: "International Cybercrime Training",
-      detail: "Participated in international investigative training focused on cybercrime methods, evidence handling, and cross-border crime intelligence."
+      period: "Cross-Disciplinary",
+      title: "Investigation-Informed Systems Thinking",
+      detail:
+        "Bringing evidence awareness, adversarial thinking, and operational discipline into the way AI systems are designed and evaluated."
     },
     {
       period: "Ongoing",
-      title: "Investigation Intelligence -> AI Intelligence Systems",
-      detail: "Translating investigative reasoning, evidence awareness, and adversarial thinking into modern AI system design."
+      title: "Research and Technical Communication",
+      detail:
+        "Developing research case studies, technical writing, and speaking material around trustworthy AI, speech systems, and deployment risk."
     }
   ],
   achievements: [
-    "Direct-entry PhD student at NYCU since 2026.",
-    "Brings cybercrime investigation experience into speech intelligence, fraud AI, and trustworthy AI research.",
-    "Current work spans ASR, LLM pipelines, RAG systems, and federated learning security."
+    "Interdisciplinary profile spanning research, systems building, and security-minded reasoning.",
+    "Current work connects ASR, LLM/RAG pipelines, evaluation design, and deployment constraints.",
+    "Open to collaboration with research groups, technical teams, and high-stakes AI stakeholders."
   ],
   toolkit: [
     {
-      title: "ML / NLP / LLM",
+      title: "ML / LLM Systems",
       items: ["PyTorch", "Transformers", "Whisper", "LLM Pipelines", "RAG Systems"]
     },
     {
-      title: "Speech / Audio",
-      items: ["ASR", "Transcript Processing", "Speech Intelligence", "Evidence Extraction", "Conversation Analysis"]
+      title: "Speech / Language",
+      items: ["ASR", "Speech Intelligence", "Transcript Processing", "Evidence Extraction", "Conversation Analysis"]
     },
     {
-      title: "Security / Investigation",
-      items: ["Digital Forensics", "OSINT", "Fraud Investigation", "Cybercrime Intelligence", "Federated Learning Security"]
+      title: "Security / Operations",
+      items: ["Cybersecurity", "Digital Forensics", "OSINT", "Fraud Analysis", "Federated Learning Security"]
     },
     {
-      title: "Research / Engineering",
-      items: ["Python", "Evaluation Design", "Experiment Tracking", "GitHub Actions", "Reproducible Workflows"]
+      title: "Research / Evaluation",
+      items: ["Experiment Design", "Evaluation Frameworks", "Reproducible Workflows", "Python", "GitHub Actions"]
     }
   ],
   contactPrompt:
-    "I’m open to research conversations, collaboration, and technical opportunities related to speech intelligence, trustworthy AI, fraud detection, and AI security."
+    "I welcome thoughtful conversations around research collaboration, trustworthy AI, speech and language systems, and AI deployment in security-sensitive or regulated environments."
 } as const;
 
 export type Profile = typeof profile;

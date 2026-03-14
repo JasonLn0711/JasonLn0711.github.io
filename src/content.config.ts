@@ -23,7 +23,7 @@ const projects = defineCollection({
     summary: z.string(),
     year: z.number(),
     role: z.string().default("Research Engineer"),
-    category: z.enum(["AI", "Cybersecurity", "Forensics", "Fraud"]),
+    category: z.enum(["AI Systems", "Cybersecurity", "Forensics", "Fraud Analysis"]),
     stack: z.array(z.string()).min(1),
     featured: z.boolean().default(false),
     status: z.string().default("Completed"),

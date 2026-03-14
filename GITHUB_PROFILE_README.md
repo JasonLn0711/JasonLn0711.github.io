@@ -1,6 +1,6 @@
 # Jason Chia-Sheng Lin
 
-Doctoral Researcher at the Institute of Biophotonics, National Yang Ming Chiao Tung University (NYCU), working on AI systems for speech intelligence, trustworthy AI, fraud detection, and AI security.
+Doctoral Researcher at National Yang Ming Chiao Tung University (NYCU), working across AI systems, trustworthy AI, speech intelligence, LLM/RAG workflows, and cybersecurity.
 
 My background in cybercrime investigation shapes how I approach AI research: I care about evidence, adversarial behavior, reliability, and systems that remain useful in high-stakes real-world settings.
 

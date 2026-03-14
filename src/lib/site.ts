@@ -1,15 +1,17 @@
 export const site = {
   name: "Jason Chia-Sheng Lin",
   url: "https://jasonln0711.github.io",
-  defaultTitle: "Jason Chia-Sheng Lin | AI Systems, Speech Intelligence, and Trustworthy AI",
+  defaultTitle: "Jason Chia-Sheng Lin | Doctoral Researcher in AI Systems and Trustworthy AI",
   description:
-    "Professional research portfolio for Jason Chia-Sheng Lin, featuring work on AI systems, speech intelligence, fraud detection AI, trustworthy AI, and AI security.",
+    "Professional website of Jason Chia-Sheng Lin, a doctoral researcher at NYCU working on AI systems, trustworthy AI, speech intelligence, cybersecurity, and real-world high-stakes deployment.",
   ogImage: "/og/default.png",
   locale: "en_US",
   nav: [
-    { href: "/about/", label: "About" },
+    { href: "/research/", label: "Research" },
     { href: "/projects/", label: "Projects" },
-    { href: "/blog/", label: "Blog" },
+    { href: "/blog/", label: "Writing" },
+    { href: "/talks/", label: "Talks" },
+    { href: "/about/", label: "About" },
     { href: "/contact/", label: "Contact" }
   ]
 } as const;

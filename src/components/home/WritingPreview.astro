@@ -1,4 +1,5 @@
 ---
+import { home } from "../../data/home";
 import type { CollectionEntry } from "astro:content";
 import BlogCard from "../blog/BlogCard.astro";
 
@@ -13,11 +14,11 @@ const { posts } = Astro.props;
   <div class="shell space-y-8">
     <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <span class="eyebrow">Selected Writing</span>
-        <h2 class="section-title">Recent notes on speech intelligence, trustworthy AI, and investigation-aware systems.</h2>
+        <span class="eyebrow">{home.writing.eyebrow}</span>
+        <h2 class="section-title">{home.writing.title}</h2>
       </div>
       <a href="/blog/" class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
-        View the archive →
+        {home.writing.browseLabel}
       </a>
     </div>
 
@@ -29,7 +30,7 @@ const { posts } = Astro.props;
       <div class="panel p-8">
         <h3 class="text-2xl font-semibold text-white">Writing in progress</h3>
         <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-          New essays and engineering notes will appear here as the research portfolio grows.
+          New essays, research notes, and technical perspectives will appear here as the body of work continues to grow.
         </p>
       </div>
     )}

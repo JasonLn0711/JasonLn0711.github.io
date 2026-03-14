@@ -1,19 +1,20 @@
 ---
-import { profile } from "../../data/profile";
+import { home } from "../../data/home";
+import { research } from "../../data/research";
 ---
 
 <section class="section">
   <div class="shell space-y-8">
     <div>
-      <span class="eyebrow">Research Themes</span>
-      <h2 class="section-title">Three lines of work shaping my doctoral research.</h2>
+      <span class="eyebrow">{home.research.eyebrow}</span>
+      <h2 class="section-title">{home.research.title}</h2>
       <p class="section-copy">
-        The portfolio is organized around a small set of research questions spanning speech intelligence, trustworthy AI, fraud analysis, and AI security.
+        {home.research.description}
       </p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {profile.researchThemes.map((theme) => (
+      {research.pillars.map((theme) => (
         <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
           <h3 class="text-2xl font-semibold tracking-tight text-white">{theme.title}</h3>
           <p class="text-sm leading-7 text-slate-300">{theme.description}</p>

@@ -10,13 +10,22 @@ export function personSchema(profile: Profile): JsonLd {
     "@context": "https://schema.org",
     "@type": "Person",
     name: profile.name,
+    alternateName: profile.handle,
     jobTitle: profile.title,
     description: profile.bio,
     url: site.url,
     image: absoluteUrl(profile.avatar),
     email: `mailto:${profile.email}`,
     sameAs: [profile.github, profile.linkedin],
-    knowsAbout: profile.keywords
+    knowsAbout: profile.keywords,
+    affiliation: {
+      "@type": "CollegeOrUniversity",
+      name: profile.institution
+    },
+    homeLocation: {
+      "@type": "Place",
+      name: profile.location
+    }
   };
 }
 

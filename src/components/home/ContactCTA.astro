@@ -1,4 +1,5 @@
 ---
+import { home } from "../../data/home";
 import { profile } from "../../data/profile";
 ---
 
@@ -6,8 +7,8 @@ import { profile } from "../../data/profile";
   <div class="shell">
     <div class="panel grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div class="space-y-5">
-        <span class="eyebrow">Contact</span>
-        <h2 class="section-title">Open to research collaboration, technical discussion, and speaking opportunities.</h2>
+        <span class="eyebrow">{home.contact.eyebrow}</span>
+        <h2 class="section-title">{home.contact.title}</h2>
         <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
 

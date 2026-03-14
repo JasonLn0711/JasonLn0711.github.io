@@ -1,4 +1,5 @@
 ---
+import { home } from "../../data/home";
 import { profile } from "../../data/profile";
 ---
 
@@ -10,11 +11,11 @@ import { profile } from "../../data/profile";
       </div>
 
       <div class="flex flex-col justify-center gap-5">
-        <span class="eyebrow">About Snapshot</span>
-        <h2 class="section-title">A doctoral researcher building AI systems with an investigator’s perspective.</h2>
+        <span class="eyebrow">{home.about.eyebrow}</span>
+        <h2 class="section-title">{home.about.title}</h2>
         <p class="max-w-3xl text-base leading-8 text-slate-300">{profile.shortBio}</p>
         <div>
-          <a href="/about/" class="button-secondary">More about me</a>
+          <a href="/about/" class="button-secondary">About Jason</a>
         </div>
       </div>
     </div>

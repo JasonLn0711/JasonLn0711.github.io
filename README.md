@@ -38,6 +38,9 @@ npm run build
 - Blog posts live in `src/content/blog/`
 - Projects live in `src/content/projects/`
 - Personal profile data lives in `src/data/profile.ts`
+- Homepage copy lives in `src/data/home.ts`
+- Research page content lives in `src/data/research.ts`
+- Talks and speaking content lives in `src/data/speaking.ts`
 - Site metadata lives in `src/lib/site.ts`
 
 ## Deployment

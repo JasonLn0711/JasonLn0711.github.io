@@ -9,7 +9,7 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: "Jason Chia-Sheng Lin | Research Writing",
-    description: "Research notes, essays, and engineering writing on speech intelligence, trustworthy AI, fraud detection systems, and AI security.",
+    description: "Essays, research notes, and technical writing on trustworthy AI systems, speech intelligence, cybersecurity, and real-world deployment.",
     site: context.site ?? site.url,
     items: posts.map((post) => ({
       title: post.data.title,

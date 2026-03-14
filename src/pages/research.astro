@@ -1,0 +1,104 @@
+---
+import { profile } from "../data/profile";
+import { research } from "../data/research";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Research"
+  description="Research directions and active work from Jason Chia-Sheng Lin on trustworthy AI systems, speech intelligence, cybersecurity, and real-world deployment."
+  pathname="/research/"
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-14">
+      <div class="max-w-4xl space-y-5">
+        <span class="eyebrow">{research.page.eyebrow}</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          {research.page.title}
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">{research.page.description}</p>
+      </div>
+
+      <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {research.pillars.map((pillar) => (
+          <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
+            <h2 class="text-2xl font-semibold tracking-tight text-white">{pillar.title}</h2>
+            <p class="text-sm leading-7 text-slate-300">{pillar.description}</p>
+            <div class="mt-auto flex flex-wrap gap-2">
+              {pillar.tags.map((tag) => <span class="pill">{tag}</span>)}
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+        <article class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Questions I care about</h2>
+          <ul class="mt-6 space-y-4">
+            {research.questions.map((question) => <li class="text-base leading-7 text-slate-300">{question}</li>)}
+          </ul>
+        </article>
+
+        <article class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Working style</h2>
+          <p class="mt-6 text-base leading-8 text-slate-300">
+            I tend to approach AI as a full-system problem rather than a single-model problem. That means thinking about data quality, retrieval, evaluation, security assumptions, failure analysis, and human review as connected parts of the same design task.
+          </p>
+          <p class="mt-4 text-base leading-8 text-slate-300">
+            The common thread across the portfolio is simple: build systems that are not only capable, but also inspectable, evidence-aware, and realistic about deployment conditions.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            {profile.credibility.map((item) => <span class="pill">{item}</span>)}
+          </div>
+        </article>
+      </section>
+
+      <section class="panel p-7 sm:p-8">
+        <div class="max-w-3xl space-y-3">
+          <h2 class="text-2xl font-semibold text-white">Active work and current directions</h2>
+          <p class="text-base leading-8 text-slate-300">
+            Ongoing work is organized around a small number of durable research directions rather than a long list of disconnected experiments.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-6 xl:grid-cols-3">
+          {research.ongoingWork.map((item) => (
+            <article class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.status}</span>
+              </div>
+              <h3 class="mt-4 text-xl font-semibold text-white">{item.title}</h3>
+              <p class="mt-4 text-sm leading-7 text-slate-300">{item.summary}</p>
+              <p class="mt-4 text-sm leading-7 text-slate-300">
+                <span class="text-slate-200">Current next step:</span> {item.nextStep}
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {item.tags.map((tag) => <span class="pill">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
+        <article class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Future directions</h2>
+          <ul class="mt-6 space-y-4">
+            {research.futureDirections.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+          </ul>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7 sm:p-8">
+          <div class="space-y-3">
+            <h2 class="text-2xl font-semibold text-white">{research.collaboration.title}</h2>
+            <p class="text-base leading-8 text-slate-300">{research.collaboration.description}</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="/projects/" class="button-secondary">Selected Projects</a>
+            <a href="/contact/" class="button-primary">Collaborate</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
