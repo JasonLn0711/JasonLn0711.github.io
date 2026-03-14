@@ -40,7 +40,7 @@ I prefer research code that is readable, reproducible, and useful to others. Goo
 
 - Website: https://jasonln0711.github.io
 - GitHub: https://github.com/JasonLn0711
-- LinkedIn: https://www.linkedin.com/in/chia-sheng-lin-1a648813b/
+- LinkedIn: https://www.linkedin.com/in/jason-lin-1a648813b/
 - Email: cre062400@gmail.com
 
 ## Suggested Pinned Repositories

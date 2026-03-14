@@ -7,7 +7,7 @@ export const profile = {
     "I bridge investigation intelligence and AI intelligence systems. My work combines ASR, LLM pipelines, RAG, and security-aware evaluation for speech analysis, fraud detection, and trustworthy AI.",
   email: "cre062400@gmail.com",
   github: "https://github.com/JasonLn0711",
-  linkedin: "https://www.linkedin.com/in/chia-sheng-lin-1a648813b/",
+  linkedin: "https://www.linkedin.com/in/jason-lin-1a648813b/",
   location: "Taiwan",
   avatar: "/images/headshot.jpg",
   keywords: ["Speech Intelligence", "Trustworthy AI", "Fraud Detection AI", "AI Security"],
