@@ -1,0 +1,103 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogSchema } from "../../lib/schema";
+import { formatDate, sortBlogEntries } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const posts = sortBlogEntries(await getCollection("blog"));
+
+  return posts.map((post, index) => ({
+    params: { slug: post.slug },
+    props: {
+      post,
+      previousPost: posts[index + 1] ?? null,
+      nextPost: posts[index - 1] ?? null
+    }
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  previousPost?: CollectionEntry<"blog"> | null;
+  nextPost?: CollectionEntry<"blog"> | null;
+}
+
+const { post, previousPost, nextPost } = Astro.props;
+const { Content, headings } = await post.render();
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.ogImage ?? post.data.cover}
+  pathname={`/writing/${post.slug}/`}
+  type="article"
+  schema={blogSchema(post)}
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-10">
+      <div class="max-w-4xl space-y-5">
+        <a href="/writing/" class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
+          ← Back to writing
+        </a>
+        <span class="eyebrow">{post.data.category.replace("-", " ")}</span>
+        <h1 class="page-title !text-4xl sm:!text-5xl">{post.data.title}</h1>
+        <p class="max-w-3xl text-lg leading-8 text-[var(--color-muted)]">{post.data.description}</p>
+        <div class="flex flex-wrap items-center gap-3 text-sm text-[var(--color-soft)]">
+          <span>{formatDate(post.data.pubDate)}</span>
+          {post.data.tags.map((tag) => <span class="pill">{tag}</span>)}
+        </div>
+      </div>
+
+      <div class="panel overflow-hidden">
+        <img src={post.data.cover} alt={`${post.data.title} cover`} class="aspect-[16/8] w-full object-cover" />
+      </div>
+
+      <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <article class="panel p-6 sm:p-8 lg:p-10">
+          <div class="article-body">
+            <Content />
+          </div>
+        </article>
+
+        {headings.length > 2 && (
+          <aside class="panel h-fit p-6">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]">On this page</h2>
+            <nav class="mt-5">
+              <ul class="space-y-3">
+                {headings.filter((heading) => heading.depth <= 2).map((heading) => (
+                  <li>
+                    <a href={`#${heading.slug}`} class="text-sm leading-6 text-[var(--color-muted)] transition hover:text-[var(--color-ink)]">
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+        )}
+      </div>
+
+      {(previousPost || nextPost) && (
+        <div class="grid gap-4 sm:grid-cols-2">
+          {previousPost ? (
+            <a href={`/writing/${previousPost.slug}/`} class="panel block p-6 transition hover:border-[var(--color-ink)]/15">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Previous article</p>
+              <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{previousPost.data.title}</p>
+            </a>
+          ) : (
+            <div></div>
+          )}
+
+          {nextPost && (
+            <a href={`/writing/${nextPost.slug}/`} class="panel block p-6 text-left transition hover:border-[var(--color-ink)]/15 sm:text-right">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Next article</p>
+              <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{nextPost.data.title}</p>
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

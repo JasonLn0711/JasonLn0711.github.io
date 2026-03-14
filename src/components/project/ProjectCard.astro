@@ -1,47 +1,64 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { projectKindLabel, projectModeLabel } from "../../lib/content";
 
 interface Props {
   project: CollectionEntry<"projects">;
-  filters?: string[];
 }
 
-const { project, filters = [project.data.category] } = Astro.props;
-const tags = Array.from(new Set(filters));
+const { project } = Astro.props;
+const highlights = project.data.tags.length > 0 ? project.data.tags : project.data.stack.slice(0, 4);
 ---
 
-<article
-  data-project-card
-  data-category={tags.join(",")}
-  class="panel group flex h-full flex-col overflow-hidden"
->
-  <img
-    src={project.data.cover}
-    alt={`${project.data.title} cover`}
-    class="aspect-[16/9] w-full object-cover"
-    loading="lazy"
-  />
-  <div class="flex flex-1 flex-col gap-5 p-6 sm:p-7">
-    <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
+<article class="panel group flex h-full flex-col gap-6 p-6 sm:p-7">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <span class="pill">{projectKindLabel(project.data.kind)}</span>
+    <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">
       <span>{project.data.category}</span>
-      <span class="h-1 w-1 rounded-full bg-white/20"></span>
+      <span class="h-1 w-1 rounded-full bg-[var(--color-line)]"></span>
       <span>{project.data.year}</span>
     </div>
-    <div class="space-y-3">
-      <h3 class="text-2xl font-semibold tracking-tight text-white">
-        <a href={`/projects/${project.slug}/`} class="transition group-hover:text-[var(--color-accent-strong)]">
-          {project.data.title}
+  </div>
+
+  <div class="space-y-3">
+    <h3 class="text-2xl font-semibold tracking-tight text-[var(--color-ink)]">
+      <a href={`/projects/${project.slug}/`} class="transition group-hover:text-[var(--color-accent-strong)]">
+        {project.data.title}
+      </a>
+    </h3>
+    <p class="text-sm leading-7 text-[var(--color-muted)]">{project.data.summary}</p>
+  </div>
+
+  <dl class="grid gap-4">
+    <div class="surface-note">
+      <dt class="text-[11px] uppercase tracking-[0.18em] text-[var(--color-soft)]">Problem</dt>
+      <dd class="mt-2 text-sm leading-7 text-[var(--color-muted)]">{project.data.problem}</dd>
+    </div>
+    <div class="surface-note">
+      <dt class="text-[11px] uppercase tracking-[0.18em] text-[var(--color-soft)]">Why it matters</dt>
+      <dd class="mt-2 text-sm leading-7 text-[var(--color-muted)]">{project.data.importance}</dd>
+    </div>
+  </dl>
+
+  <div class="flex flex-wrap gap-2">
+    {highlights.map((item) => <span class="pill">{item}</span>)}
+  </div>
+
+  <div class="mt-auto flex items-center justify-between gap-3">
+    <p class="text-xs uppercase tracking-[0.18em] text-[var(--color-soft)]">{projectModeLabel(project.data.mode)}</p>
+    <div class="flex items-center gap-4">
+      {project.data.repo && (
+        <a
+          href={project.data.repo}
+          target="_blank"
+          rel="noreferrer"
+          class="text-sm font-semibold text-[var(--color-muted)] transition hover:text-[var(--color-ink)]"
+        >
+          GitHub
         </a>
-      </h3>
-      <p class="text-sm leading-7 text-slate-300">{project.data.summary}</p>
-    </div>
-    <div class="flex flex-wrap gap-2">
-      {project.data.stack.slice(0, 5).map((item) => <span class="pill">{item}</span>)}
-    </div>
-    <div class="mt-auto flex items-center justify-between gap-3">
-      <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{project.data.role}</p>
+      )}
       <a href={`/projects/${project.slug}/`} class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
-        View case study →
+        Case study →
       </a>
     </div>
   </div>

@@ -1,0 +1,86 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/blog/BlogCard.astro";
+import PageIntro from "../../components/common/PageIntro.astro";
+import SectionHeader from "../../components/common/SectionHeader.astro";
+import { upcomingNotes, writingThemes } from "../../data/writing";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sortBlogEntries } from "../../lib/content";
+
+const posts = sortBlogEntries(await getCollection("blog"));
+const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
+const remainingPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
+---
+
+<BaseLayout
+  title="Writing"
+  description="Essays, research notes, and technical reflections on trustworthy AI, speech systems, security, and real-world AI deployment."
+  pathname="/writing/"
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-12">
+      <PageIntro
+        eyebrow="Writing"
+        title="A long-term archive of technical notes, essays, and research reflections."
+        description="This section is where I make the reasoning behind the work more visible: what trustworthy deployment should mean, how system choices shape outcomes, and why operational context matters in applied AI."
+      />
+
+      <section class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+        <div class="space-y-6">
+          <SectionHeader
+            eyebrow="Featured Note"
+            title="A starting point into the writing archive."
+            description="The published pieces here are meant to be calm, technically grounded, and useful to future collaborators, reviewers, and builders."
+          />
+          {featuredPost ? (
+            <BlogCard post={featuredPost} featured={true} basePath="/writing" />
+          ) : (
+            <div class="panel p-8">
+              <p class="text-base leading-7 text-[var(--color-muted)]">Writing is in progress.</p>
+            </div>
+          )}
+        </div>
+
+        <div class="space-y-6">
+          <article class="panel p-7 sm:p-8">
+            <span class="eyebrow">Writing Themes</span>
+            <h2 class="mt-5 text-2xl font-semibold text-[var(--color-ink)]">Topics this archive will keep returning to</h2>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {writingThemes.map((theme) => <span class="pill">{theme}</span>)}
+            </div>
+          </article>
+
+          <article class="panel p-7 sm:p-8">
+            <span class="eyebrow">Upcoming Notes</span>
+            <h2 class="mt-5 text-2xl font-semibold text-[var(--color-ink)]">In progress</h2>
+            <div class="mt-6 space-y-5">
+              {upcomingNotes.map((note) => (
+                <div class="border-l border-[var(--color-line)] pl-5">
+                  <h3 class="text-lg font-semibold text-[var(--color-ink)]">{note.title}</h3>
+                  <p class="mt-2 text-sm leading-7 text-[var(--color-muted)]">{note.status}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="space-y-6">
+        <SectionHeader
+          eyebrow="Published Notes"
+          title="Current entries"
+          description="The archive starts small on purpose. It is meant to grow into a serious body of work over time, not a content mill."
+        />
+        {remainingPosts.length > 0 ? (
+          <div class="grid gap-6 lg:grid-cols-2">
+            {remainingPosts.map((post) => <BlogCard post={post} basePath="/writing" />)}
+          </div>
+        ) : (
+          <div class="panel p-8">
+            <p class="text-base leading-7 text-[var(--color-muted)]">More writing is on the way.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  </section>
+</BaseLayout>

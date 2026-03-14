@@ -1,50 +1,28 @@
 ---
-import { getCollection } from "astro:content";
-import BlogCard from "../../components/blog/BlogCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { sortBlogEntries } from "../../lib/content";
-
-const posts = sortBlogEntries(await getCollection("blog"));
-const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
-const remainingPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
 ---
 
 <BaseLayout
-  title="Blog"
-  description="Research notes and essays on speech intelligence, trustworthy AI, fraud detection systems, and AI security."
-  pathname="/blog/"
+  title="Writing"
+  description="Legacy route for writing. The canonical archive now lives under /writing/."
+  pathname="/writing/"
+  noindex={true}
 >
   <section class="section pt-12 sm:pt-16">
-    <div class="shell space-y-10">
-      <div class="max-w-3xl space-y-5">
-        <span class="eyebrow">Blog</span>
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Writing on speech intelligence, trustworthy AI, and investigation-informed system design.
+    <div class="shell">
+      <div class="panel-strong max-w-3xl space-y-5 p-8 sm:p-10">
+        <span class="eyebrow">Legacy route</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-5xl">
+          The writing archive has moved.
         </h1>
-        <p class="text-lg leading-8 text-slate-300">
-          Notes and essays that connect doctoral research, system evaluation, and lessons carried over from cybercrime investigation into AI work.
+        <p class="text-lg leading-8 text-[var(--color-muted)]">
+          The canonical location for essays, research notes, and technical reflections is now <a href="/writing/" class="font-semibold text-[var(--color-accent)]">/writing/</a>.
         </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/writing/" class="button-primary">Go to writing</a>
+          <a href="/rss.xml" class="button-secondary">RSS feed</a>
+        </div>
       </div>
-
-      {featuredPost && (
-        <section class="space-y-5">
-          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Featured post</h2>
-          <BlogCard post={featuredPost} featured={true} />
-        </section>
-      )}
-
-      <section class="space-y-5">
-        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">All posts</h2>
-        {remainingPosts.length > 0 ? (
-          <div class="grid gap-6 lg:grid-cols-2">
-            {remainingPosts.map((post) => <BlogCard post={post} />)}
-          </div>
-        ) : (
-          <div class="panel p-8">
-            <p class="text-base leading-7 text-slate-300">More writing is on the way.</p>
-          </div>
-        )}
-      </section>
     </div>
   </section>
 </BaseLayout>

@@ -35,6 +35,8 @@ const allSchemas: JsonLd[] = [...baseSchemas, ...extraSchemas];
 
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
+<meta name="author" content={profile.name} />
+<meta name="theme-color" content="#f6f2ea" />
 <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 <link rel="canonical" href={canonical} />
 <meta property="og:type" content={type} />
@@ -44,6 +46,7 @@ const allSchemas: JsonLd[] = [...baseSchemas, ...extraSchemas];
 <meta property="og:site_name" content={site.name} />
 <meta property="og:locale" content={site.locale} />
 <meta property="og:image" content={socialImage} />
+<meta property="og:image:alt" content={`${profile.name} professional identity site`} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />

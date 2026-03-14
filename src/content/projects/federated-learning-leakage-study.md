@@ -1,47 +1,38 @@
 ---
 title: Federated Learning Leakage Study
-summary: An AI security research project focused on model leakage and privacy trade-offs in federated learning, with experiment workflows for studying exposure risk in collaborative training.
+summary: An AI security research study focused on privacy leakage, model exposure, and the assumptions embedded in collaborative learning workflows.
 year: 2026
 role: Doctoral Researcher
-category: Cybersecurity
+kind: experiment
+mode: study
+category: Trustworthy AI
+problem: Federated learning is often presented as privacy-preserving by design, but collaborative training can still expose sensitive information through updates, gradients, or weak threat assumptions.
+importance: Systems intended for regulated or sensitive domains need a more rigorous understanding of where leakage risk actually comes from and which defenses meaningfully improve security.
 stack:
   - PyTorch
   - Federated Learning
   - Privacy
   - Security
   - Evaluation
-featured: true
-status: Ongoing Research
+tags:
+  - Leakage Analysis
+  - Privacy Risk
+  - Security Research
+featured: false
+status: Ongoing study
 cover: /projects/federated-learning-leakage-study.svg
 ---
 
-## Problem
+## Focus
 
-Federated learning promises collaborative training without centralizing data, but it does not automatically eliminate privacy or leakage risks. Sensitive information can still be exposed through gradients, updates, or weak aggregation strategies.
+This work studies privacy and exposure risk in distributed learning setups. The goal is not to assume federated learning is safe, but to test how safety claims hold up under more realistic threat models.
 
-## Why It Matters
+## Core questions
 
-AI systems intended for sensitive domains need stronger guarantees around privacy and security. Understanding leakage in federated learning helps clarify where collaborative AI is appropriate and where additional safeguards are required.
+1. What kinds of information can leak through collaborative updates?
+2. Which defenses improve privacy in practice, and which only shift assumptions?
+3. How should utility, privacy, and operational constraints be balanced in real deployments?
 
-## Approach / Method
+## Portfolio relevance
 
-This study focuses on experiment design, attack modeling, and evaluation for privacy exposure in distributed training. The project compares assumptions about federated learning safety against more realistic threat models and leakage scenarios.
-
-## System Design
-
-1. Define collaborative training settings and threat assumptions.
-2. Simulate distributed learning with controlled privacy-sensitive inputs.
-3. Measure leakage behavior under different attack and defense settings.
-4. Compare privacy, utility, and operational trade-offs across configurations.
-
-## Results / Evaluation
-
-The project creates a structured basis for studying leakage risk instead of treating federated learning as privacy-safe by default. It also supports clearer communication about which design decisions meaningfully improve security and which only shift assumptions.
-
-## Gallery or Visuals
-
-![Federated learning leakage study visual](/projects/federated-learning-leakage-study.svg)
-
-## Links
-
-Future iterations can add code, benchmarks, or a paper once the experimental setup is ready for public release.
+This project reflects the security side of my research profile: understanding how trust breaks down when machine learning systems move into collaborative, sensitive, or institutionally constrained settings.
