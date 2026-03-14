@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Security analysis workbench cover">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1f" />
+      <stop offset="100%" stop-color="#10192c" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <g opacity="0.18" fill="#6ea8ff">
+    <rect x="150" y="170" width="430" height="560" rx="32" />
+    <rect x="620" y="170" width="320" height="240" rx="28" />
+    <rect x="980" y="170" width="470" height="240" rx="28" />
+    <rect x="620" y="450" width="830" height="280" rx="28" />
+  </g>
+  <g stroke="#8fb8ff" stroke-width="3" fill="none" opacity="0.65">
+    <path d="M580 290H620" />
+    <path d="M940 290H980" />
+    <path d="M780 410V450" />
+    <path d="M1220 410V450" />
+  </g>
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f8fbff">
+    <text x="150" y="130" font-size="48" letter-spacing="7" opacity="0.6">SECURITY INTELLIGENCE</text>
+    <text x="150" y="300" font-size="112" font-weight="700">Analysis</text>
+    <text x="150" y="395" font-size="112" font-weight="700">Workbench</text>
+    <text x="150" y="470" font-size="34" opacity="0.72">collection, clustering, and review for threat signals</text>
+  </g>
+</svg>

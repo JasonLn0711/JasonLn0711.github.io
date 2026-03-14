@@ -1,0 +1,25 @@
+---
+import { profile } from "../../data/profile";
+---
+
+<section class="section pt-8">
+  <div class="shell">
+    <div class="panel grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div class="space-y-5">
+        <span class="eyebrow">Contact</span>
+        <h2 class="section-title">Open to collaboration, research discussion, and technical partnerships.</h2>
+        <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
+      </div>
+
+      <div class="flex flex-col gap-3 sm:max-w-sm sm:justify-center">
+        <a href={`mailto:${profile.email}`} class="button-primary">Email {profile.name}</a>
+        <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
+          GitHub
+        </a>
+        <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

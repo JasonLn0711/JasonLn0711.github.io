@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/project/ProjectCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projectFilters, sortProjects } from "../../lib/content";
+
+const projects = sortProjects(await getCollection("projects"));
+const filters = ["All", "AI", "Cybersecurity", "Forensics", "Fraud"];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Research case studies spanning AI systems, cybersecurity analytics, digital forensics, and fraud detection."
+  pathname="/projects/"
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-10">
+      <div class="max-w-3xl space-y-5">
+        <span class="eyebrow">Projects</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Research and engineering case studies across fraud, AI, security, and forensics.
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">
+          Each project frames a concrete problem, the approach taken, and the value created for analysts, investigators, or security teams.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3" aria-label="Project filters">
+        {filters.map((filter, index) => (
+          <button
+            type="button"
+            class:list={[
+              "pill transition hover:border-white/20 hover:text-white",
+              index === 0 && "border-white/20 text-white"
+            ]}
+            data-filter={filter}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid gap-6 xl:grid-cols-3">
+        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} />)}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const buttons = Array.from(document.querySelectorAll("[data-filter]"));
+    const cards = Array.from(document.querySelectorAll("[data-project-card]"));
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+
+        buttons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+          item.classList.toggle("text-white", item === button);
+          item.classList.toggle("border-white/20", item === button);
+        });
+
+        cards.forEach((card) => {
+          const categories = (card.dataset.category || "").split(",");
+          const visible = filter === "All" || categories.includes(filter);
+          card.toggleAttribute("hidden", !visible);
+        });
+      });
+    });
+  </script>
+</BaseLayout>

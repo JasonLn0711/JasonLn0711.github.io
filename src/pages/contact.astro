@@ -1,0 +1,55 @@
+---
+import { profile } from "../data/profile";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Jason Chia-Sheng Lin for research collaboration, engineering conversations, or speaking opportunities in AI and cybersecurity."
+  pathname="/contact/"
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-12">
+      <div class="max-w-3xl space-y-5">
+        <span class="eyebrow">Contact</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Reach out for collaboration, research discussion, or technical opportunities.
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-3">
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">Email</span>
+          <h2 class="text-2xl font-semibold text-white">Direct conversation</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            The fastest way to discuss collaboration, research ideas, or project fit.
+          </p>
+          <a href={`mailto:${profile.email}`} class="button-primary mt-auto">Send an email</a>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">GitHub</span>
+          <h2 class="text-2xl font-semibold text-white">Code and experiments</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            Browse repositories, prototypes, and the technical side of ongoing work.
+          </p>
+          <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
+            Visit GitHub
+          </a>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">LinkedIn</span>
+          <h2 class="text-2xl font-semibold text-white">Professional profile</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            Connect for longer-term opportunities, introductions, and professional updates.
+          </p>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
+            View LinkedIn
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

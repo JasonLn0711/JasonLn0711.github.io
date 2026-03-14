@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/blog/BlogCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sortBlogEntries } from "../../lib/content";
+
+const posts = sortBlogEntries(await getCollection("blog"));
+const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
+const remainingPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
+---
+
+<BaseLayout
+  title="Blog"
+  description="Research notes, engineering writing, and essays on AI, digital trust, cybersecurity, and investigative systems."
+  pathname="/blog/"
+>
+  <section class="section pt-12 sm:pt-16">
+    <div class="shell space-y-10">
+      <div class="max-w-3xl space-y-5">
+        <span class="eyebrow">Blog</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Writing on research practice, system design, and security-oriented AI.
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">
+          Notes and essays that connect experiments, product thinking, and operational lessons from technical work.
+        </p>
+      </div>
+
+      {featuredPost && (
+        <section class="space-y-5">
+          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Featured post</h2>
+          <BlogCard post={featuredPost} featured={true} />
+        </section>
+      )}
+
+      <section class="space-y-5">
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">All posts</h2>
+        {remainingPosts.length > 0 ? (
+          <div class="grid gap-6 lg:grid-cols-2">
+            {remainingPosts.map((post) => <BlogCard post={post} />)}
+          </div>
+        ) : (
+          <div class="panel p-8">
+            <p class="text-base leading-7 text-slate-300">More writing is on the way.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested page could not be found."
+  pathname="/404.html"
+  noindex={true}
+>
+  <section class="section pt-16">
+    <div class="shell">
+      <div class="panel max-w-2xl space-y-6 p-8 sm:p-10">
+        <span class="eyebrow">404</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white">Page not found</h1>
+        <p class="text-base leading-8 text-slate-300">
+          The page you were looking for is not available. You can head back to the homepage or continue browsing the portfolio.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/" class="button-primary">Back home</a>
+          <a href="/projects/" class="button-secondary">View projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

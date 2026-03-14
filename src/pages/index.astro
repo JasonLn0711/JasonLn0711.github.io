@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import AboutPreview from "../components/home/AboutPreview.astro";
+import ContactCTA from "../components/home/ContactCTA.astro";
+import CredibilityStrip from "../components/home/CredibilityStrip.astro";
+import FeaturedProjects from "../components/home/FeaturedProjects.astro";
+import Hero from "../components/home/Hero.astro";
+import ResearchThemes from "../components/home/ResearchThemes.astro";
+import WritingPreview from "../components/home/WritingPreview.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortBlogEntries, sortProjects } from "../lib/content";
+import { site } from "../lib/site";
+
+const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
+const posts = sortBlogEntries(await getCollection("blog")).slice(0, 3);
+---
+
+<BaseLayout title={site.defaultTitle} description={site.description} pathname="/">
+  <Hero />
+  <CredibilityStrip />
+  <ResearchThemes />
+  <FeaturedProjects projects={projects} />
+  <WritingPreview posts={posts} />
+  <AboutPreview />
+  <ContactCTA />
+</BaseLayout>

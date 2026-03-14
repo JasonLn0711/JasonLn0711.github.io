@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Digital forensics workbench cover">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1020" />
+      <stop offset="100%" stop-color="#131d33" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <g opacity="0.12" fill="#8fb8ff">
+    <circle cx="370" cy="290" r="210" />
+    <circle cx="1210" cy="580" r="240" />
+  </g>
+  <g stroke="#9fc6ff" stroke-width="2.5" fill="none" opacity="0.58">
+    <path d="M420 610H1230" />
+    <path d="M500 520H1130" />
+    <path d="M580 430H1020" />
+  </g>
+  <g fill="#dce9ff">
+    <circle cx="500" cy="610" r="12" />
+    <circle cx="710" cy="520" r="12" />
+    <circle cx="850" cy="430" r="12" />
+    <circle cx="1080" cy="520" r="12" />
+    <circle cx="1220" cy="610" r="12" />
+  </g>
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f8fbff">
+    <text x="130" y="145" font-size="48" letter-spacing="7" opacity="0.6">DIGITAL FORENSICS</text>
+    <text x="130" y="290" font-size="112" font-weight="700">Signal</text>
+    <text x="130" y="385" font-size="112" font-weight="700">Workbench</text>
+    <text x="130" y="460" font-size="34" opacity="0.72">evidence flow, OCR, and investigation timelines</text>
+  </g>
+</svg>

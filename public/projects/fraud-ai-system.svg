@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Fraud AI system cover">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1020" />
+      <stop offset="100%" stop-color="#131b2f" />
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8d3ff" />
+      <stop offset="100%" stop-color="#4c8dff" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <g opacity="0.4">
+    <circle cx="320" cy="210" r="120" fill="#183767" />
+    <circle cx="1180" cy="620" r="180" fill="#102c58" />
+    <circle cx="1280" cy="220" r="90" fill="#17325a" />
+  </g>
+  <g fill="none" stroke="url(#line)" stroke-width="3">
+    <path d="M240 540C410 360 540 320 720 420S1020 600 1320 420" opacity="0.7" />
+    <path d="M270 630C480 470 720 440 900 550S1200 700 1390 610" opacity="0.45" />
+  </g>
+  <g fill="#dce9ff">
+    <circle cx="360" cy="490" r="16" />
+    <circle cx="520" cy="380" r="12" />
+    <circle cx="700" cy="430" r="20" />
+    <circle cx="930" cy="560" r="16" />
+    <circle cx="1180" cy="520" r="14" />
+  </g>
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f8fbff">
+    <text x="120" y="180" font-size="48" letter-spacing="7" opacity="0.6">FRAUD AI SYSTEM</text>
+    <text x="120" y="280" font-size="118" font-weight="700">Trustworthy</text>
+    <text x="120" y="390" font-size="118" font-weight="700">Fraud Signals</text>
+    <text x="120" y="470" font-size="34" opacity="0.72">classification, interpretability, and analyst review</text>
+  </g>
+</svg>

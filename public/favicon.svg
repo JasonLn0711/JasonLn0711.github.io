@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="JL monogram">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8fb8ff" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0b1020" />
+  <path d="M34 34h24v48c0 7-2 13-6 18-5 6-12 9-21 9h-4V88h2c8 0 12-4 12-12V34Z" fill="url(#g)" />
+  <path d="M70 34h24v55h24v21H70V34Z" fill="#dbeafe" />
+</svg>

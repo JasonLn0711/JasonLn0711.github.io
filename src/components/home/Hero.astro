@@ -1,0 +1,70 @@
+---
+import { profile } from "../../data/profile";
+import HeroScene from "../three/HeroScene";
+---
+
+<section class="section pt-10 sm:pt-16">
+  <div class="shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <div class="space-y-7">
+      <span class="eyebrow">AI x Security x Digital Trust</span>
+      <div class="space-y-5">
+        <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+          {profile.tagline}
+        </h1>
+        <p class="max-w-2xl text-lg leading-8 text-slate-300">
+          {profile.bio}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="/projects/" class="button-primary">View Projects</a>
+        <a href="/blog/" class="button-secondary">Read Blog</a>
+      </div>
+
+      <dl class="grid max-w-xl gap-4 rounded-4xl border border-white/10 bg-white/[0.03] p-6 sm:grid-cols-3">
+        <div>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Focus</dt>
+          <dd class="mt-2 text-sm text-slate-200">Fraud intelligence</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Approach</dt>
+          <dd class="mt-2 text-sm text-slate-200">Evaluation driven</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Based in</dt>
+          <dd class="mt-2 text-sm text-slate-200">{profile.location}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="relative">
+      <div class="panel hidden h-[420px] overflow-hidden md:block motion-reduce:hidden">
+        <HeroScene client:load />
+      </div>
+
+      <div class="panel flex min-h-[280px] flex-col justify-between overflow-hidden p-8 md:hidden">
+        <div class="flex items-center justify-between">
+          <span class="pill">Signal Mesh</span>
+          <span class="text-xs uppercase tracking-[0.18em] text-slate-500">Static fallback</span>
+        </div>
+        <div class="relative mt-8 flex-1">
+          <div class="absolute left-4 top-2 h-20 w-20 rounded-full bg-sky-400/20 blur-3xl"></div>
+          <div class="absolute bottom-4 right-6 h-28 w-28 rounded-full bg-sky-300/10 blur-3xl"></div>
+          <div class="grid h-full grid-cols-4 gap-3">
+            {Array.from({ length: 12 }).map(() => <span class="rounded-full border border-white/[0.12] bg-white/[0.04]"></span>)}
+          </div>
+        </div>
+      </div>
+
+      <div class="panel hidden h-[420px] items-center justify-center p-8 text-center md:flex motion-safe:hidden">
+        <div class="space-y-4">
+          <span class="eyebrow">Reduced Motion</span>
+          <h2 class="text-2xl font-semibold text-white">Signal mesh preview</h2>
+          <p class="mx-auto max-w-md text-sm leading-7 text-slate-300">
+            The interactive network visualization is disabled to respect reduced-motion preferences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import { profile } from "../../data/profile";
+import { personSchema, websiteSchema } from "../../lib/schema";
+import { absoluteUrl, site } from "../../lib/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  pathname?: string;
+  type?: "website" | "article";
+  schema?: JsonLd | JsonLd[];
+  noindex?: boolean;
+}
+
+type JsonLd = Record<string, unknown>;
+
+const {
+  title = site.defaultTitle,
+  description = site.description,
+  image = site.ogImage,
+  pathname = "/",
+  type = "website",
+  schema = [],
+  noindex = false
+} = Astro.props;
+
+const canonical = absoluteUrl(pathname);
+const socialImage = image.startsWith("http") ? image : absoluteUrl(image);
+const pageTitle = title === site.defaultTitle ? title : `${title} | ${profile.name}`;
+const extraSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const baseSchemas: JsonLd[] = pathname === "/" ? [personSchema(profile), websiteSchema(profile)] : [];
+const allSchemas: JsonLd[] = [...baseSchemas, ...extraSchemas];
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:image" content={socialImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+{allSchemas.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}

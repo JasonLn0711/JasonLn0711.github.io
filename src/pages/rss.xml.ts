@@ -1,0 +1,20 @@
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+import { sortBlogEntries } from "../lib/content";
+import { site } from "../lib/site";
+
+export async function GET(context) {
+  const posts = sortBlogEntries(await getCollection("blog"));
+
+  return rss({
+    title: "Jason Chia-Sheng Lin | Research Writing",
+    description: "Research notes, essays, and engineering writing on AI, cybersecurity, fraud, and digital forensics.",
+    site: context.site ?? site.url,
+    items: posts.map((post) => ({
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.pubDate,
+      link: `/blog/${post.slug}/`
+    }))
+  });
+}
