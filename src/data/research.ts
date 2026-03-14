@@ -62,6 +62,13 @@ export const research = {
     "Evaluation frameworks for AI deployment in regulated, security-critical, or operationally complex environments.",
     "Secure, evidence-grounded multimodal systems for real-world decision support."
   ],
+  currentActivity: {
+    label: "Current professional activity",
+    title: "CYBERSEC 2026",
+    description:
+      "Preparing a 30-minute conference talk on AI-driven cybersecurity governance, with a focus on trustworthy AI systems, risk logic, and real-world deployment concerns.",
+    tags: ["Cybersecurity Governance", "AI Systems", "Deployment"]
+  },
   collaboration: {
     title: "Collaboration and research fit",
     description:

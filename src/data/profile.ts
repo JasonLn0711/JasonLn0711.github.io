@@ -27,7 +27,7 @@ export const profile = {
   about: [
     "I am a doctoral researcher at National Yang Ming Chiao Tung University (NYCU), where my work sits at the intersection of AI systems, trustworthy AI, speech and language pipelines, and security-aware evaluation.",
     "Before doctoral research, I worked in cybercrime investigation. That experience still shapes how I think about evidence, adversarial behavior, failure analysis, and the difference between a model that performs well in isolation and a system that can be trusted in practice.",
-    "Today, I focus on ASR + LLM + RAG workflows, speech intelligence, deployable AI systems, and governance-minded thinking for regulated or security-sensitive environments."
+    "Today, I focus on ASR + LLM + RAG workflows, speech intelligence, deployable AI systems, and governance-minded thinking for regulated or security-sensitive environments. My current activities also include preparing a 30-minute conference talk for CYBERSEC 2026 on AI-driven cybersecurity governance."
   ],
   interests: [
     "Trustworthy AI systems for operationally meaningful deployment",

@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Talks"
-  description="Speaking topics and invitation information for Jason Chia-Sheng Lin across trustworthy AI, speech systems, cybersecurity, and real-world AI deployment."
+  description="Speaking topics and upcoming CYBERSEC 2026 activity from Jason Chia-Sheng Lin across trustworthy AI, cybersecurity governance, speech systems, and real-world AI deployment."
   pathname="/talks/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -16,6 +16,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{speaking.page.title}</h1>
         <p class="text-lg leading-8 text-slate-300">{speaking.page.description}</p>
       </div>
+
+      <article class="panel p-7 sm:p-8">
+        <div class="max-w-3xl space-y-3">
+          <span class="pill">{speaking.featuredEngagement.label}</span>
+          <h2 class="text-2xl font-semibold text-white">{speaking.featuredEngagement.title}</h2>
+          <p class="text-base leading-8 text-slate-300">{speaking.featuredEngagement.description}</p>
+        </div>
+      </article>
 
       <section class="grid gap-6 xl:grid-cols-3">
         {speaking.topics.map((topic) => (

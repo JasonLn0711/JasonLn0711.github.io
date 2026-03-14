@@ -3,7 +3,13 @@ export const speaking = {
     eyebrow: "Talks / Speaking",
     title: "Talks on trustworthy AI, speech systems, and serious deployment.",
     description:
-      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter."
+      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an upcoming CYBERSEC 2026 presentation on AI-driven cybersecurity governance."
+  },
+  featuredEngagement: {
+    label: "Upcoming engagement",
+    title: "CYBERSEC 2026",
+    description:
+      "Preparing a 30-minute conference talk on AI-driven cybersecurity governance, with a focus on trustworthy AI systems, risk logic, and real-world deployment concerns."
   },
   topics: [
     {
