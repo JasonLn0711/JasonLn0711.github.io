@@ -1,44 +1,30 @@
 ---
 import { profile } from "../../data/profile";
 import { site } from "../../lib/site";
-
-const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-[var(--color-line)] bg-[rgba(250,247,240,0.88)] backdrop-blur-xl">
-  <div class="shell flex min-h-[80px] items-center justify-between gap-6 py-4">
-    <a href="/" class="min-w-0">
-      <span class="block text-sm font-semibold tracking-[0.18em] text-[var(--color-ink)] uppercase">
-        {profile.name}
-      </span>
-      <span class="hidden pt-1 text-xs text-[var(--color-muted)] sm:block">
-        {profile.role} · {profile.institution}
-      </span>
+<header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.72] backdrop-blur">
+  <div class="shell flex min-h-[72px] items-center justify-between gap-6 py-4">
+    <a href="/" class="min-w-0 text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase">
+      {profile.name}
     </a>
 
     <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
       {site.nav.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            "text-sm transition hover:text-[var(--color-ink)]",
-            pathname === item.href ? "text-[var(--color-ink)]" : "text-[var(--color-muted)]"
-          ]}
-          aria-current={pathname === item.href ? "page" : undefined}
-        >
+        <a href={item.href} class="text-sm text-slate-300 transition hover:text-white">
           {item.label}
         </a>
       ))}
     </nav>
 
     <div class="hidden items-center gap-3 md:flex">
-      <a href={profile.github} class="pill transition hover:border-[var(--color-ink)]/20 hover:text-[var(--color-ink)]" target="_blank" rel="noreferrer">
+      <a href={profile.github} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
         GitHub
       </a>
-      <a href={profile.linkedin} class="pill transition hover:border-[var(--color-ink)]/20 hover:text-[var(--color-ink)]" target="_blank" rel="noreferrer">
+      <a href={profile.linkedin} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
         LinkedIn
       </a>
-      <a href={`mailto:${profile.email}`} class="pill transition hover:border-[var(--color-ink)]/20 hover:text-[var(--color-ink)]">
+      <a href={`mailto:${profile.email}`} class="pill transition hover:border-white/20 hover:text-white">
         Email
       </a>
     </div>
@@ -50,25 +36,18 @@ const pathname = Astro.url.pathname;
       <div class="panel absolute right-0 mt-3 min-w-56 p-4">
         <nav class="flex flex-col gap-3" aria-label="Mobile">
           {site.nav.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                "text-sm transition hover:text-[var(--color-accent)]",
-                pathname === item.href ? "text-[var(--color-accent)]" : "text-[var(--color-ink)]"
-              ]}
-              aria-current={pathname === item.href ? "page" : undefined}
-            >
+            <a href={item.href} class="text-sm text-slate-200 transition hover:text-white">
               {item.label}
             </a>
           ))}
-          <div class="my-1 h-px bg-[var(--color-line)]"></div>
-          <a href={profile.github} class="text-sm text-[var(--color-muted)] transition hover:text-[var(--color-ink)]" target="_blank" rel="noreferrer">
+          <div class="my-1 h-px bg-white/[0.08]"></div>
+          <a href={profile.github} class="text-sm text-slate-300 transition hover:text-white" target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a href={profile.linkedin} class="text-sm text-[var(--color-muted)] transition hover:text-[var(--color-ink)]" target="_blank" rel="noreferrer">
+          <a href={profile.linkedin} class="text-sm text-slate-300 transition hover:text-white" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a href={`mailto:${profile.email}`} class="text-sm text-[var(--color-muted)] transition hover:text-[var(--color-ink)]">
+          <a href={`mailto:${profile.email}`} class="text-sm text-slate-300 transition hover:text-white">
             Email
           </a>
         </nav>

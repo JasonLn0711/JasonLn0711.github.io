@@ -3,43 +3,45 @@ title: Speech Evidence Intelligence Pipeline
 summary: An ASR + LLM workflow for structuring conversational speech, extracting evidence, and supporting traceable review from long-form audio.
 year: 2026
 role: Doctoral Researcher
-kind: flagship
-mode: original
-category: Speech Intelligence
-problem: Long-form conversational audio is hard to review reliably when transcripts are noisy, speaker turns are ambiguous, and relevant evidence is scattered across the interaction.
-importance: High-stakes speech workflows need more than transcription. They need grounded extraction, clear links back to source evidence, and outputs that remain inspectable to a human reviewer.
+category: AI
 stack:
   - Python
   - Whisper
   - Transformers
   - LLM Pipelines
   - RAG
-tags:
-  - ASR
-  - Evidence Traceability
-  - High-Stakes AI
 featured: true
-status: Active research direction
+status: Ongoing Research
 cover: /projects/speech-evidence-intelligence-pipeline.svg
 ---
 
-## Context
+## Problem
 
-This case study captures a research direction at the center of my doctoral work: turning long-form conversational audio into evidence-aware intelligence rather than stopping at transcription.
+Long-form conversational audio is difficult to use in research and investigative settings. Raw transcripts are noisy, speaker turns can be ambiguous, and important evidence is often buried inside lengthy dialogue.
 
-## Architecture Direction
+## Why It Matters
 
-The system design starts with ASR, but the real value comes from the layers built on top of it:
+Speech intelligence systems become much more useful when they move beyond transcription and help researchers or analysts identify evidence, track claims, and summarize conversations without losing grounding in the source audio.
 
-1. Time-aligned transcription and segmentation
-2. Retrieval over evidence-bearing spans
-3. Structured extraction for claims, entities, or suspicious signals
-4. Final outputs that remain linked to the supporting transcript passages
+## Approach / Method
 
-## Why this matters
+The pipeline combines ASR, transcript segmentation, retrieval, and LLM-based extraction to turn long-form conversations into structured, evidence-aware outputs. Each layer is designed to preserve traceability between a generated summary and the supporting transcript evidence.
 
-In operational settings, a fluent summary is not enough. A reviewer needs to know what supports a claim, where uncertainty remains, and how to check the result quickly.
+## System Design
 
-## What this case study represents
+1. Ingest raw audio and generate time-aligned transcripts.
+2. Segment conversations by speaker turns, topics, and evidence-relevant spans.
+3. Retrieve related transcript passages and contextual knowledge for grounded generation.
+4. Extract entities, claims, and evidence snippets into structured outputs for review.
 
-This is a research-led system direction rather than a fully public repository. It reflects how I think about trustworthy AI for speech workflows: keep evidence close, keep assumptions visible, and make inspection easier rather than harder.
+## Results / Evaluation
+
+The project provides a clear research framework for evaluating transcript reliability, retrieval quality, evidence traceability, and summary usefulness in speech-centered AI systems. It also helps formalize how conversational evidence should be surfaced for human review.
+
+## Gallery or Visuals
+
+![Speech evidence intelligence pipeline visual](/projects/speech-evidence-intelligence-pipeline.svg)
+
+## Links
+
+This case study is presented as a research portfolio summary and can later be expanded with code, experiments, and paper artifacts.

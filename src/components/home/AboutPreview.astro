@@ -5,16 +5,14 @@ import { profile } from "../../data/profile";
 <section class="section">
   <div class="shell">
     <div class="panel grid gap-8 overflow-hidden p-6 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:p-10">
-      <div class="overflow-hidden rounded-3xl border border-[var(--color-line)]">
+      <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
         <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] h-full w-full object-cover" />
       </div>
 
       <div class="flex flex-col justify-center gap-5">
-        <span class="eyebrow">Personal Narrative</span>
-        <h2 class="section-title">From operational problem-solving to trustworthy AI systems.</h2>
-        {profile.narrative.slice(0, 2).map((paragraph) => (
-          <p class="max-w-3xl text-base leading-8 text-[var(--color-muted)]">{paragraph}</p>
-        ))}
+        <span class="eyebrow">About Snapshot</span>
+        <h2 class="section-title">A doctoral researcher building AI systems with an investigator’s perspective.</h2>
+        <p class="max-w-3xl text-base leading-8 text-slate-300">{profile.shortBio}</p>
         <div>
           <a href="/about/" class="button-secondary">More about me</a>
         </div>

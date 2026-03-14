@@ -1,11 +1,5 @@
 import type { CollectionEntry } from "astro:content";
 
-const projectKindOrder = {
-  flagship: 0,
-  prototype: 1,
-  experiment: 2
-} as const;
-
 export function sortBlogEntries(entries: CollectionEntry<"blog">[]) {
   return [...entries]
     .filter((entry) => !entry.data.draft)
@@ -16,10 +10,6 @@ export function sortProjects(entries: CollectionEntry<"projects">[]) {
   return [...entries].sort((a, b) => {
     if (a.data.featured !== b.data.featured) {
       return Number(b.data.featured) - Number(a.data.featured);
-    }
-
-    if (a.data.kind !== b.data.kind) {
-      return projectKindOrder[a.data.kind] - projectKindOrder[b.data.kind];
     }
 
     if (a.data.year !== b.data.year) {
@@ -38,34 +28,23 @@ export function formatDate(date: Date) {
   }).format(date);
 }
 
-export function groupProjectsByKind(entries: CollectionEntry<"projects">[]) {
-  return {
-    flagship: entries.filter((entry) => entry.data.kind === "flagship"),
-    prototype: entries.filter((entry) => entry.data.kind === "prototype"),
-    experiment: entries.filter((entry) => entry.data.kind === "experiment")
-  };
-}
+export function projectFilters(entry: CollectionEntry<"projects">) {
+  const filters = new Set<string>([entry.data.category]);
 
-export function projectKindLabel(kind: CollectionEntry<"projects">["data"]["kind"]) {
-  if (kind === "flagship") {
-    return "Flagship";
+  if (entry.data.category === "Fraud") {
+    filters.add("AI");
   }
 
-  if (kind === "prototype") {
-    return "Prototype";
+  if (
+    entry.data.stack.includes("Whisper") ||
+    /speech|transcript|audio/i.test(`${entry.data.title} ${entry.data.summary}`)
+  ) {
+    filters.add("Speech");
   }
 
-  return "Experiment";
-}
-
-export function projectModeLabel(mode: CollectionEntry<"projects">["data"]["mode"]) {
-  if (mode === "adaptation") {
-    return "Adaptation study";
+  if (entry.data.category === "Cybersecurity") {
+    filters.add("Security");
   }
 
-  if (mode === "study") {
-    return "Research study";
-  }
-
-  return "Original build";
+  return [...filters];
 }

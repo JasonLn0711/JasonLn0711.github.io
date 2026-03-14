@@ -5,36 +5,37 @@ import { formatDate } from "../../lib/content";
 interface Props {
   post: CollectionEntry<"blog">;
   featured?: boolean;
-  basePath?: string;
 }
 
-const { post, featured = false, basePath = "/writing" } = Astro.props;
-const href = `${basePath}/${post.slug}/`;
+const { post, featured = false } = Astro.props;
 ---
 
 <article class:list={["panel group overflow-hidden", featured ? "lg:grid lg:grid-cols-[1fr_1.1fr]" : "h-full"]}>
   <img
     src={post.data.cover}
     alt={`${post.data.title} cover`}
-    class:list={["w-full object-cover", featured ? "h-full min-h-[16rem]" : "aspect-[16/9]"]}
+    class:list={[
+      "w-full object-cover",
+      featured ? "h-full min-h-[16rem]" : "aspect-[16/9]"
+    ]}
     loading="lazy"
   />
   <div class="flex h-full flex-col gap-4 p-6 sm:p-7">
-    <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">
+    <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
       <span>{post.data.category.replace("-", " ")}</span>
-      <span class="h-1 w-1 rounded-full bg-[var(--color-line)]"></span>
+      <span class="h-1 w-1 rounded-full bg-white/20"></span>
       <span>{formatDate(post.data.pubDate)}</span>
     </div>
-    <h3 class="text-2xl font-semibold tracking-tight text-[var(--color-ink)]">
-      <a href={href} class="transition group-hover:text-[var(--color-accent-strong)]">
+    <h3 class="text-2xl font-semibold tracking-tight text-white">
+      <a href={`/blog/${post.slug}/`} class="transition group-hover:text-[var(--color-accent-strong)]">
         {post.data.title}
       </a>
     </h3>
-    <p class="text-sm leading-7 text-[var(--color-muted)]">{post.data.description}</p>
+    <p class="text-sm leading-7 text-slate-300">{post.data.description}</p>
     <div class="mt-auto flex flex-wrap gap-2">
       {post.data.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
     </div>
-    <a href={href} class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
+    <a href={`/blog/${post.slug}/`} class="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
       Read article
       <span aria-hidden="true">→</span>
     </a>

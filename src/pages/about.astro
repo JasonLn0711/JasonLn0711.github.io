@@ -1,79 +1,108 @@
 ---
-import PageIntro from "../components/common/PageIntro.astro";
 import { profile } from "../data/profile";
-import { researchApproach } from "../data/research";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
   title="About"
-  description="Background, research interests, and working approach behind Jason Chia-Sheng Lin's work in AI systems, speech intelligence, trustworthy AI, and AI security."
+  description="Background, research interests, and methods behind Jason Chia-Sheng Lin's work in AI systems, speech intelligence, fraud detection, and AI security."
   pathname="/about/"
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-14">
-      <PageIntro
-        eyebrow="About"
-        title="A research profile shaped by AI systems, security, and operational thinking."
-        description="I approach machine intelligence as something that has to survive real workflows, uneven evidence, and institutional constraints, not just perform well in isolation."
-      />
+      <div class="max-w-3xl space-y-5">
+        <span class="eyebrow">About</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Researching speech intelligence, trustworthy AI, and investigation-aware AI systems.
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">
+          This page expands on the portfolio with a clearer view of my doctoral research, prior investigation background, and the methods behind the projects.
+        </p>
+      </div>
 
       <dl class="grid gap-4 md:grid-cols-3">
-        <div class="surface-note">
-          <dt class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Current Role</dt>
-          <dd class="mt-3 text-base leading-7 text-[var(--color-ink)]">PhD student since 2026</dd>
+        <div class="panel p-6">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Current Role</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">PhD Student since 2026</dd>
         </div>
-        <div class="surface-note">
-          <dt class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Institute</dt>
-          <dd class="mt-3 text-base leading-7 text-[var(--color-ink)]">Institute of Biophotonics, NYCU</dd>
+        <div class="panel p-6">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Institute</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">Institute of Biophotonics, NYCU</dd>
         </div>
-        <div class="surface-note">
-          <dt class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Background</dt>
-          <dd class="mt-3 text-base leading-7 text-[var(--color-ink)]">Cybersecurity, investigation logic, and evidence-aware systems</dd>
+        <div class="panel p-6">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Background</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">Cybercrime investigation, digital evidence, and fraud intelligence</dd>
         </div>
       </dl>
 
       <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-        <div class="panel-strong overflow-hidden">
+        <div class="panel overflow-hidden">
           <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
         </div>
 
         <div class="panel space-y-6 p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Professional Summary</h2>
-          {profile.about.map((paragraph) => <p class="text-base leading-8 text-[var(--color-muted)]">{paragraph}</p>)}
+          <h2 class="text-2xl font-semibold text-white">Professional Summary</h2>
+          {profile.about.map((paragraph) => <p class="text-base leading-8 text-slate-300">{paragraph}</p>)}
         </div>
       </div>
 
       <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Narrative</h2>
-          <div class="mt-6 space-y-5">
-            {profile.narrative.map((paragraph) => <p class="text-base leading-8 text-[var(--color-muted)]">{paragraph}</p>)}
+          <h2 class="text-2xl font-semibold text-white">Research / Interest Areas</h2>
+          <div class="mt-6 grid gap-4">
+            {profile.interests.map((item) => (
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                <p class="text-base leading-7 text-slate-300">{item}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Working Principles</h2>
+          <h2 class="text-2xl font-semibold text-white">Experience Snapshot</h2>
           <div class="mt-6 space-y-6">
-            {researchApproach.map((item) => (
-              <div class="border-l border-[var(--color-line)] pl-5">
-                <p class="text-sm leading-7 text-[var(--color-muted)]">{item}</p>
+            {profile.experience.map((item) => (
+              <div class="border-l border-white/10 pl-5">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
+                <h3 class="mt-2 text-lg font-semibold text-white">{item.title}</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-300">{item.detail}</p>
               </div>
             ))}
           </div>
         </section>
       </div>
 
-      <section class="panel-strong flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+      <section class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
+        <div class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Profile Highlights</h2>
+          <ul class="mt-6 space-y-4">
+            {profile.achievements.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+          </ul>
+        </div>
+
+        <div class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Toolkit / Methods</h2>
+          <div class="mt-6 grid gap-5 md:grid-cols-2">
+            {profile.toolkit.map((group) => (
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                <h3 class="text-lg font-semibold text-white">{group.title}</h3>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {group.items.map((item) => <span class="pill">{item}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-3">
-          <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Where this leads</h2>
-          <p class="max-w-2xl text-base leading-8 text-[var(--color-muted)]">
-            I am interested in research and engineering work that treats trust as a systems property: something earned through architecture, evaluation, security posture, and clarity for the people using the system.
-          </p>
+          <h2 class="text-2xl font-semibold text-white">Let’s connect</h2>
+          <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="/research/" class="button-primary">Research overview</a>
-          <a href="/contact/" class="button-secondary">Contact</a>
+          <a href={`mailto:${profile.email}`} class="button-primary">Email</a>
+          <a href="/contact/" class="button-secondary">Contact page</a>
         </div>
       </section>
     </div>

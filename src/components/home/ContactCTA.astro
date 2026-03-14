@@ -1,29 +1,24 @@
 ---
-import { contactLinks } from "../../data/contact";
 import { profile } from "../../data/profile";
 ---
 
 <section class="section pt-8">
   <div class="shell">
-    <div class="panel-strong grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="panel grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div class="space-y-5">
-        <span class="eyebrow">Collaboration</span>
-        <h2 class="section-title">Open to serious research and technical conversations.</h2>
-        <p class="max-w-2xl text-base leading-8 text-[var(--color-muted)]">{profile.collaboration}</p>
+        <span class="eyebrow">Contact</span>
+        <h2 class="section-title">Open to research collaboration, technical discussion, and speaking opportunities.</h2>
+        <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
 
-      <div class="grid gap-3 sm:grid-cols-2">
-        {contactLinks.map((link) => (
-          <a
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            class="surface-note transition hover:border-[var(--color-ink)]/15 hover:bg-white"
-          >
-            <p class="text-sm font-semibold text-[var(--color-ink)]">{link.label}</p>
-            <p class="mt-2 text-sm leading-6 text-[var(--color-muted)]">{link.note}</p>
-          </a>
-        ))}
+      <div class="flex flex-col gap-3 sm:max-w-sm sm:justify-center">
+        <a href={`mailto:${profile.email}`} class="button-primary">Email {profile.name}</a>
+        <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
+          GitHub
+        </a>
+        <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
+          LinkedIn
+        </a>
       </div>
     </div>
   </div>

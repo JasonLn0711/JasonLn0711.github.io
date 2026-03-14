@@ -1,22 +1,25 @@
 ---
-import SectionHeader from "../common/SectionHeader.astro";
-import { signatureThemes } from "../../data/research";
+import { profile } from "../../data/profile";
 ---
 
 <section class="section">
   <div class="shell space-y-8">
-    <SectionHeader
-      eyebrow="Signature Themes"
-      title="A research profile shaped by deployment, trust, and operational reality."
-      description="These themes organize the site and make clear what I build toward: AI systems that remain useful when the setting is complex, constrained, and consequential."
-    />
+    <div>
+      <span class="eyebrow">Research Themes</span>
+      <h2 class="section-title">Three lines of work shaping my doctoral research.</h2>
+      <p class="section-copy">
+        The portfolio is organized around a small set of research questions spanning speech intelligence, trustworthy AI, fraud analysis, and AI security.
+      </p>
+    </div>
 
-    <div class="grid gap-6 md:grid-cols-2">
-      {signatureThemes.map((theme) => (
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {profile.researchThemes.map((theme) => (
         <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
-          <span class="pill w-fit">{theme.title}</span>
-          <h3 class="text-2xl font-semibold tracking-tight text-[var(--color-ink)]">{theme.title}</h3>
-          <p class="text-sm leading-7 text-[var(--color-muted)]">{theme.description}</p>
+          <h3 class="text-2xl font-semibold tracking-tight text-white">{theme.title}</h3>
+          <p class="text-sm leading-7 text-slate-300">{theme.description}</p>
+          <div class="mt-auto flex flex-wrap gap-2">
+            {theme.tags.map((tag) => <span class="pill">{tag}</span>)}
+          </div>
         </article>
       ))}
     </div>

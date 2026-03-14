@@ -1,56 +1,54 @@
 ---
-import PageIntro from "../components/common/PageIntro.astro";
-import { collaborationAreas, contactLinks } from "../data/contact";
+import { profile } from "../data/profile";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
   title="Contact"
-  description="Contact Jason Chia-Sheng Lin for research collaboration, speaking invitations, or technical conversations around AI systems, trustworthy AI, and AI security."
+  description="Contact Jason Chia-Sheng Lin for research collaboration, technical discussion, or speaking opportunities in AI systems, speech intelligence, and AI security."
   pathname="/contact/"
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-12">
-      <PageIntro
-        eyebrow="Contact"
-        title="Open to thoughtful collaboration, speaking, and technically serious conversations."
-        description="The most relevant discussions are usually around trustworthy AI, speech and language systems, AI security, and real-world deployment in environments where reliability matters."
-      />
+      <div class="max-w-3xl space-y-5">
+        <span class="eyebrow">Contact</span>
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Reach out for collaboration, research discussion, or technical opportunities.
+        </h1>
+        <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
+      </div>
 
-      <div class="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-        <article class="panel p-7 sm:p-8">
-          <span class="eyebrow">Best Fit</span>
-          <h2 class="mt-5 text-2xl font-semibold text-[var(--color-ink)]">Reach out for work that benefits from technical depth and cross-domain judgment.</h2>
-          <ul class="mt-6 space-y-4">
-            {collaborationAreas.map((item) => (
-              <li class="flex gap-4">
-                <span class="pill h-fit">+</span>
-                <p class="text-sm leading-7 text-[var(--color-muted)]">{item}</p>
-              </li>
-            ))}
-          </ul>
-          <p class="mt-6 text-sm leading-7 text-[var(--color-muted)]">
-            Email is the best path for substantive conversations. LinkedIn and GitHub are useful for profile context, public work, and longer-term connection.
+      <div class="grid gap-6 lg:grid-cols-3">
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">Email</span>
+          <h2 class="text-2xl font-semibold text-white">Direct conversation</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            The fastest way to discuss collaboration, research ideas, or project fit.
           </p>
+          <a href={`mailto:${profile.email}`} class="button-primary mt-auto">Send an email</a>
         </article>
 
-        <div class="grid gap-4 sm:grid-cols-2">
-          {contactLinks.map((link) => (
-            <article class="panel flex flex-col gap-5 p-7">
-              <span class="pill w-fit">{link.label}</span>
-              <h2 class="text-2xl font-semibold text-[var(--color-ink)]">{link.label}</h2>
-              <p class="text-sm leading-7 text-[var(--color-muted)]">{link.note}</p>
-              <a
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                class="button-secondary mt-auto"
-              >
-                Open {link.label}
-              </a>
-            </article>
-          ))}
-        </div>
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">GitHub</span>
+          <h2 class="text-2xl font-semibold text-white">Code and experiments</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            Browse repositories, prototypes, and the technical side of ongoing work.
+          </p>
+          <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
+            Visit GitHub
+          </a>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">LinkedIn</span>
+          <h2 class="text-2xl font-semibold text-white">Professional profile</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            Connect for longer-term opportunities, introductions, and professional updates.
+          </p>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
+            View LinkedIn
+          </a>
+        </article>
       </div>
     </div>
   </section>

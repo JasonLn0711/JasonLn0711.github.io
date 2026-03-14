@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { projectKindLabel, projectModeLabel } from "../../lib/content";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -15,62 +14,42 @@ const links = [
   project.data.demo ? { label: "Demo", href: project.data.demo } : undefined,
   project.data.paper ? { label: "Paper", href: project.data.paper } : undefined
 ].filter((link): link is { label: string; href: string } => Boolean(link));
-
-const meta = [
-  { label: "Category", value: project.data.category },
-  { label: "Kind", value: projectKindLabel(project.data.kind) },
-  { label: "Mode", value: projectModeLabel(project.data.mode) },
-  { label: "Year", value: String(project.data.year) },
-  { label: "Status", value: project.data.status }
-];
 ---
 
 <section class="section pt-12 sm:pt-16">
   <div class="shell space-y-10">
-    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-      <div class="space-y-6">
-        <span class="eyebrow">{projectKindLabel(project.data.kind)} · {project.data.category}</span>
-        <h1 class="page-title !text-4xl sm:!text-5xl">{project.data.title}</h1>
-        <p class="page-copy">{project.data.summary}</p>
-
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="surface-note">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--color-soft)]">Problem</p>
-            <p class="mt-3 text-sm leading-7 text-[var(--color-muted)]">{project.data.problem}</p>
-          </div>
-          <div class="surface-note">
-            <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--color-soft)]">Why it matters</p>
-            <p class="mt-3 text-sm leading-7 text-[var(--color-muted)]">{project.data.importance}</p>
-          </div>
-        </div>
-
-        {links.length > 0 && (
-          <div class="flex flex-wrap gap-3">
-            {links.map((link) => (
-              <a href={link.href} target="_blank" rel="noreferrer" class="button-secondary px-4 py-2">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
+    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+      <div class="space-y-5">
+        <span class="eyebrow">{project.data.category} Research Case Study</span>
+        <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          {project.data.title}
+        </h1>
+        <p class="max-w-2xl text-lg leading-8 text-slate-300">{project.data.summary}</p>
       </div>
+      <div class="panel overflow-hidden">
+        <img src={project.data.cover} alt={`${project.data.title} hero visual`} class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
 
+    <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
       <aside class="panel h-fit space-y-6 p-6">
         <div class="space-y-3">
-          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]">Project frame</h2>
-          <dl class="space-y-3 text-sm text-[var(--color-muted)]">
-            {meta.map((item) => (
-              <div class="space-y-1">
-                <dt class="text-xs uppercase tracking-[0.18em] text-[var(--color-soft)]">{item.label}</dt>
-                <dd>{item.value}</dd>
-              </div>
-            ))}
+          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Project Meta</h2>
+          <dl class="space-y-3 text-sm text-slate-300">
             <div class="space-y-1">
-              <dt class="text-xs uppercase tracking-[0.18em] text-[var(--color-soft)]">Role</dt>
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Role</dt>
               <dd>{project.data.role}</dd>
             </div>
             <div class="space-y-1">
-              <dt class="text-xs uppercase tracking-[0.18em] text-[var(--color-soft)]">Stack</dt>
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Year</dt>
+              <dd>{project.data.year}</dd>
+            </div>
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Status</dt>
+              <dd>{project.data.status}</dd>
+            </div>
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Stack</dt>
               <dd class="flex flex-wrap gap-2">
                 {project.data.stack.map((item) => <span class="pill">{item}</span>)}
               </dd>
@@ -78,17 +57,20 @@ const meta = [
           </dl>
         </div>
 
-        <div class="surface-note">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[var(--color-soft)]">Note</p>
-          <p class="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            Some entries here are public repositories, while others are structured research case studies representing ongoing work and system direction.
-          </p>
-        </div>
+        {links.length > 0 && (
+          <div class="space-y-3">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Links</h2>
+            <div class="flex flex-wrap gap-3">
+              {links.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer" class="button-secondary px-4 py-2">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </aside>
-    </div>
 
-    <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-      <aside></aside>
       <article class="panel p-6 sm:p-8 lg:p-10">
         <div class="article-body">
           <slot />
@@ -99,18 +81,18 @@ const meta = [
     {(previousProject || nextProject) && (
       <div class="grid gap-4 sm:grid-cols-2">
         {previousProject ? (
-          <a href={`/projects/${previousProject.slug}/`} class="panel block p-6 transition hover:border-[var(--color-ink)]/15">
-            <p class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Previous project</p>
-            <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{previousProject.data.title}</p>
+          <a href={`/projects/${previousProject.slug}/`} class="panel block p-6 transition hover:border-white/20">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Previous project</p>
+            <p class="mt-3 text-lg font-semibold text-white">{previousProject.data.title}</p>
           </a>
         ) : (
           <div></div>
         )}
 
         {nextProject && (
-          <a href={`/projects/${nextProject.slug}/`} class="panel block p-6 text-left transition hover:border-[var(--color-ink)]/15 sm:text-right">
-            <p class="text-xs uppercase tracking-[0.2em] text-[var(--color-soft)]">Next project</p>
-            <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{nextProject.data.title}</p>
+          <a href={`/projects/${nextProject.slug}/`} class="panel block p-6 text-left transition hover:border-white/20 sm:text-right">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Next project</p>
+            <p class="mt-3 text-lg font-semibold text-white">{nextProject.data.title}</p>
           </a>
         )}
       </div>
