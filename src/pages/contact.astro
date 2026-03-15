@@ -27,8 +27,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <span class="eyebrow">Profile</span>
           <h2 class="text-2xl font-semibold text-white">{profile.name}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">
-            Doctoral researcher at {profile.institution} working across trustworthy AI, AI systems, speech intelligence, cybersecurity, and real-world deployment.
+            Doctoral researcher at {profile.institution} in the {profile.lab.name}, working across trustworthy AI, medical cybersecurity, speech intelligence, and real-world deployment.
           </p>
+          <div class="flex flex-wrap gap-3">
+            <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
+              Lab Website
+            </a>
+            <a
+              href={profile.externalProfiles.cybersecSpeaker.url}
+              target="_blank"
+              rel="noreferrer"
+              class="button-secondary"
+            >
+              CYBERSEC Speaker Profile
+            </a>
+          </div>
         </div>
       </section>
 

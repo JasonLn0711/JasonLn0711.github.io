@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Talks"
-  description="Speaking topics and upcoming CYBERSEC 2026 activity from Jason Chia-Sheng Lin across trustworthy AI, cybersecurity governance, speech systems, and real-world AI deployment."
+  description="Speaking topics and current CYBERSEC 2026 session details from Jason Chia-Sheng Lin across trustworthy AI, cybersecurity, speech systems, and real-world AI deployment."
   pathname="/talks/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -21,10 +21,64 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
           <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
         </div>
-        <div class="flex flex-col justify-center gap-4">
-          <span class="pill w-fit">{speaking.featuredEngagement.label}</span>
-          <h2 class="text-2xl font-semibold text-white">{speaking.featuredEngagement.title}</h2>
-          <p class="max-w-3xl text-base leading-8 text-slate-300">{speaking.featuredEngagement.description}</p>
+        <div class="flex flex-col justify-center gap-5">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="pill w-fit">{speaking.featuredEngagement.label}</span>
+            <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{speaking.featuredEngagement.event}</span>
+          </div>
+
+          <div class="space-y-3">
+            <h2 class="text-2xl font-semibold text-white">{speaking.featuredEngagement.title}</h2>
+            <p class="max-w-3xl text-base leading-8 text-slate-300">{speaking.featuredEngagement.summary}</p>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Schedule</p>
+              <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.schedule}</p>
+            </div>
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Track</p>
+              <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.track}</p>
+            </div>
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Location</p>
+              <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.venue}</p>
+            </div>
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Format</p>
+              <p class="mt-2 text-sm leading-7 text-slate-200">
+                {speaking.featuredEngagement.format} · {speaking.featuredEngagement.language}
+              </p>
+            </div>
+          </div>
+
+          <p class="text-sm leading-7 text-slate-300">{speaking.featuredEngagement.description}</p>
+          <p class="text-sm leading-7 text-slate-400">{speaking.featuredEngagement.speaker}</p>
+          <p class="text-sm leading-7 text-slate-400">{speaking.featuredEngagement.coauthor}</p>
+
+          <div class="flex flex-wrap gap-2">
+            {speaking.featuredEngagement.tags.map((tag) => <span class="pill">{tag}</span>)}
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a
+              href={speaking.featuredEngagement.url}
+              target="_blank"
+              rel="noreferrer"
+              class="button-primary"
+            >
+              Official Session Page
+            </a>
+            <a
+              href={profile.externalProfiles.cybersecSpeaker.url}
+              target="_blank"
+              rel="noreferrer"
+              class="button-secondary"
+            >
+              CYBERSEC Speaker Profile
+            </a>
+          </div>
         </div>
       </article>
 

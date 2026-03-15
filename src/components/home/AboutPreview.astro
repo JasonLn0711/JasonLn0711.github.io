@@ -14,8 +14,11 @@ import { profile } from "../../data/profile";
         <span class="eyebrow">{home.about.eyebrow}</span>
         <h2 class="section-title">{home.about.title}</h2>
         <p class="max-w-3xl text-base leading-8 text-slate-300">{profile.shortBio}</p>
-        <div>
+        <div class="flex flex-wrap gap-3">
           <a href="/about/" class="button-secondary">About Jason</a>
+          <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
+            Lab Website
+          </a>
         </div>
       </div>
     </div>

@@ -16,11 +16,16 @@ export function personSchema(profile: Profile): JsonLd {
     url: site.url,
     image: absoluteUrl(profile.avatar),
     email: `mailto:${profile.email}`,
-    sameAs: [profile.github, profile.linkedin],
+    sameAs: [profile.github, profile.linkedin, profile.externalProfiles.cybersecSpeaker.url],
     knowsAbout: profile.keywords,
     affiliation: {
-      "@type": "CollegeOrUniversity",
-      name: profile.institution
+      "@type": "Organization",
+      name: profile.lab.name,
+      url: profile.lab.url,
+      parentOrganization: {
+        "@type": "CollegeOrUniversity",
+        name: profile.institution
+      }
     },
     homeLocation: {
       "@type": "Place",

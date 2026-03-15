@@ -66,8 +66,8 @@ export const research = {
     label: "Current professional activity",
     title: "CYBERSEC 2026",
     description:
-      "Preparing a 30-minute conference talk on AI-driven cybersecurity governance, with a focus on trustworthy AI systems, risk logic, and real-world deployment concerns.",
-    tags: ["Cybersecurity Governance", "AI Systems", "Deployment"]
+      "Speaking in an official breakout session on cybersecurity design for AI software medical devices, connecting FDA 524B, threat modeling, SBOM, and auditable governance in a regulated setting.",
+    tags: ["Medical Cybersecurity", "Threat Modeling", "Risk Governance"]
   },
   collaboration: {
     title: "Collaboration and research fit",
