@@ -62,49 +62,94 @@ export const research = {
     "Evaluation frameworks for AI deployment in regulated, security-critical, or operationally complex environments.",
     "Secure, evidence-grounded multimodal systems for real-world decision support."
   ],
-  currentActivity: {
-    label: "Recent conference paper",
-    title: "Evolution and Defense Challenges of Ransomware-as-a-Service in the AI Era",
-    description:
-      "Presented in English at CISC 2025, this paper analyzes Medusa and CrazyHunter as case studies for AI-era ransomware evolution and connects their tradecraft to a ZTAID-grounded zero-trust defense framework for real operational environments.",
-    details: [
-      {
-        label: "Conference",
-        value: "Cryptology and Information Security Conference 2025 (CISC 2025)"
-      },
-      {
-        label: "Schedule",
-        value: "May 28-29, 2025"
-      },
-      {
-        label: "Venue",
-        value: "Feng Chia University"
-      },
-      {
-        label: "Format",
-        value: "Conference Paper · English"
-      }
-    ],
-    tags: ["RaaS", "Zero Trust", "ZTAID", "Threat Modeling", "SOAR"],
-    links: [
-      {
-        label: "CISC 2025 Conference Website",
-        url: "https://cisc2025.fcu.edu.tw/"
-      },
-      {
-        label: "Trend Micro CrazyHunter Research",
-        url: "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html"
-      },
-      {
-        label: "CISA Medusa Ransomware Advisory",
-        url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a"
-      },
-      {
-        label: "ZTAID Model Paper",
-        url: "https://cccisa.ccisa.org.tw/article/view/3166"
-      }
-    ]
-  },
+  currentActivities: [
+    {
+      label: "Recent conference paper",
+      title: "Evolution and Defense Challenges of Ransomware-as-a-Service in the AI Era",
+      description:
+        "Presented in English at CISC 2025, this paper analyzes Medusa and CrazyHunter as case studies for AI-era ransomware evolution and connects their tradecraft to a ZTAID-grounded zero-trust defense framework for real operational environments.",
+      details: [
+        {
+          label: "Conference",
+          value: "Cryptology and Information Security Conference 2025 (CISC 2025)"
+        },
+        {
+          label: "Schedule",
+          value: "May 28-29, 2025"
+        },
+        {
+          label: "Venue",
+          value: "Feng Chia University"
+        },
+        {
+          label: "Format",
+          value: "Conference Paper · English"
+        }
+      ],
+      tags: ["RaaS", "Zero Trust", "ZTAID", "Threat Modeling", "SOAR"],
+      links: [
+        {
+          label: "CISC 2025 Conference Website",
+          url: "https://cisc2025.fcu.edu.tw/"
+        },
+        {
+          label: "Trend Micro CrazyHunter Research",
+          url: "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html"
+        },
+        {
+          label: "CISA Medusa Ransomware Advisory",
+          url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a"
+        },
+        {
+          label: "ZTAID Model Paper",
+          url: "https://cccisa.ccisa.org.tw/article/view/3166"
+        }
+      ]
+    },
+    {
+      label: "Recent conference paper",
+      title: "Integration of Threat Pulse Modeling into the ZTAID Zero Trust Maturity Assessment Model",
+      description:
+        "Presented in English at CISC 2025, this paper proposes Threat Pulse Modeling as a way to convert live cyber threat intelligence into pillar-level ZTAID maturity signals for continuous zero-trust assessment and faster operational response.",
+      details: [
+        {
+          label: "Conference",
+          value: "Cryptology and Information Security Conference 2025 (CISC 2025)"
+        },
+        {
+          label: "Schedule",
+          value: "May 28-29, 2025"
+        },
+        {
+          label: "Venue",
+          value: "Feng Chia University"
+        },
+        {
+          label: "Format",
+          value: "Conference Paper · English"
+        }
+      ],
+      tags: ["Threat Intelligence", "Threat Pulse Modeling", "Zero Trust", "ZTAID", "Forecasting"],
+      links: [
+        {
+          label: "CISC 2025 Conference Website",
+          url: "https://cisc2025.fcu.edu.tw/"
+        },
+        {
+          label: "ZTAID Model Paper",
+          url: "https://cccisa.ccisa.org.tw/article/view/3166"
+        },
+        {
+          label: "MITRE ATT&CK",
+          url: "https://attack.mitre.org/"
+        },
+        {
+          label: "CISA Zero Trust Maturity Model",
+          url: "https://www.cisa.gov/resources-tools/resources/zero-trust-maturity-model"
+        }
+      ]
+    }
+  ],
   collaboration: {
     title: "Collaboration and research fit",
     description:

@@ -44,6 +44,32 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </dl>
 
+      <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+        <section class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Current Areas of Work</h2>
+          <div class="mt-6 grid gap-4">
+            {profile.interests.map((item) => (
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                <p class="text-base leading-7 text-slate-300">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="panel p-7 sm:p-8">
+          <h2 class="text-2xl font-semibold text-white">Professional Path</h2>
+          <div class="mt-6 space-y-6">
+            {profile.experience.map((item) => (
+              <div class="border-l border-white/10 pl-5">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
+                <h3 class="mt-2 text-lg font-semibold text-white">{item.title}</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-300">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
       <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
         <div class="panel overflow-hidden">
           <img src={profile.avatar} alt={profile.name} class="aspect-[2/3] w-full object-cover" />
@@ -101,32 +127,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
-        <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Current Areas of Work</h2>
-          <div class="mt-6 grid gap-4">
-            {profile.interests.map((item) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
-                <p class="text-base leading-7 text-slate-300">{item}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Path</h2>
-          <div class="mt-6 space-y-6">
-            {profile.experience.map((item) => (
-              <div class="border-l border-white/10 pl-5">
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
-                <h3 class="mt-2 text-lg font-semibold text-white">{item.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{item.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
 
       <section class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">

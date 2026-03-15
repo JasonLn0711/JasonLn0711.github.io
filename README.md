@@ -77,6 +77,30 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 
 This session focuses on cybersecurity design for AI software medical devices, using FDA 524B as a practical anchor for threat modeling, SBOM, Zero Trust design, and auditable risk governance in heavily regulated environments.
 
+### CISC 2025 English Conference Papers
+
+**1. Evolution and Defense Challenges of Ransomware-as-a-Service in the AI Era**  
+Technical and strategic analysis using Medusa and CrazyHunter as a case study.
+
+- Event: Cryptology and Information Security Conference 2025 (CISC 2025)
+- Schedule: May 28-29, 2025
+- Venue: Feng Chia University
+- Format: Conference Paper, English
+- Conference site: [CISC 2025](https://cisc2025.fcu.edu.tw/)
+
+This paper analyzes how AI-era RaaS operations evolve through BYOVD, LOTL, covert C2, and adaptive tradecraft, then connects those threats to a ZTAID-grounded zero-trust defense strategy for practical containment and response.
+
+**2. Integration of Threat Pulse Modeling into the ZTAID Zero Trust Maturity Assessment Model**  
+An analytical framework for continuous intelligence-driven assessment.
+
+- Event: Cryptology and Information Security Conference 2025 (CISC 2025)
+- Schedule: May 28-29, 2025
+- Venue: Feng Chia University
+- Format: Conference Paper, English
+- Conference site: [CISC 2025](https://cisc2025.fcu.edu.tw/)
+
+This paper proposes Threat Pulse Modeling (TPM) as a way to transform live cyber threat intelligence into ZTAID pillar-level maturity signals, combining pulse-event mapping, severity triage, and time-series forecasting to accelerate the intelligence-to-assessment-to-response loop.
+
 ## Experience Snapshot
 
 ### Current

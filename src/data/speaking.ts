@@ -3,7 +3,7 @@ export const speaking = {
     eyebrow: "Talks / Speaking",
     title: "Talks on trustworthy AI, speech systems, and serious deployment.",
     description:
-      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, alongside an English CISC 2025 conference paper on AI-era ransomware evolution, zero-trust defense, and operational countermeasures."
+      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, alongside two English CISC 2025 conference papers on AI-era ransomware defense and threat pulse modeling for ZTAID-aligned zero-trust maturity assessment."
   },
   featuredEngagement: {
     label: "Official session",
@@ -38,7 +38,7 @@ export const speaking = {
       speaker:
         "Jason Chia-Sheng Lin · Department of Computer Science and Information Engineering, National Yang Ming Chiao Tung University",
       coauthor:
-        "With Yu-Te Wu, Yong-Sheng Chen, and Issac Yi-Yuan Lee · National Yang Ming Chiao Tung University",
+        "With Yu-Te Wu, Yong-Sheng Chen, and Isaac Yi-Yuan Lee · National Yang Ming Chiao Tung University",
       schedule: "May 28-29, 2025",
       venue: "Feng Chia University",
       track: "Cryptology and Information Security Conference",
@@ -65,6 +65,45 @@ export const speaking = {
         }
       ],
       tags: ["Ransomware-as-a-Service", "Zero Trust", "ZTAID", "BYOVD", "SOAR"]
+    },
+    {
+      label: "Conference paper",
+      event: "CISC 2025",
+      title: "Integration of Threat Pulse Modeling into the ZTAID Zero Trust Maturity Assessment Model: An Analytical Framework",
+      summary:
+        "English conference paper proposing Threat Pulse Modeling (TPM) as a way to translate live cyber threat intelligence into ZTAID maturity signals for continuous zero-trust assessment.",
+      description:
+        "The paper defines pulse events, impact-vector scoring across the five ZTAID pillars, severity triage, and time-series forecasting with ARIMA and Kalman filtering, alongside dynamic metrics such as Pulse Coverage Rate and Detection-Feedback Loop Time to shorten the intelligence-to-assessment-to-response cycle.",
+      speaker:
+        "Jason Chia-Sheng Lin · Department of Computer Science and Information Engineering, National Yang Ming Chiao Tung University",
+      coauthor:
+        "With Yu-Te Wu, Yong-Sheng Chen, and Isaac Yi-Yuan Lee · National Yang Ming Chiao Tung University",
+      schedule: "May 28-29, 2025",
+      venue: "Feng Chia University",
+      track: "Cryptology and Information Security Conference",
+      format: "Conference Paper",
+      language: "English",
+      url: "https://cisc2025.fcu.edu.tw/",
+      ctaLabel: "CISC 2025 Conference Website",
+      links: [
+        {
+          label: "CISC 2025 Conference Website",
+          url: "https://cisc2025.fcu.edu.tw/"
+        },
+        {
+          label: "ZTAID Model Paper",
+          url: "https://cccisa.ccisa.org.tw/article/view/3166"
+        },
+        {
+          label: "MITRE ATT&CK",
+          url: "https://attack.mitre.org/"
+        },
+        {
+          label: "CISA Zero Trust Maturity Model",
+          url: "https://www.cisa.gov/resources-tools/resources/zero-trust-maturity-model"
+        }
+      ],
+      tags: ["Threat Intelligence", "Threat Pulse Modeling", "Zero Trust", "ZTAID", "Forecasting"]
     }
   ],
   topics: [
@@ -79,6 +118,12 @@ export const speaking = {
       description:
         "How modern RaaS campaigns combine automation, BYOVD, LOTL, and covert C2 techniques, and how ZTAID-aligned zero-trust strategy can structure practical detection, containment, and recovery.",
       audience: "Cybersecurity conferences, blue teams, graduate seminars"
+    },
+    {
+      title: "Threat Pulse Modeling and Continuous Assessment",
+      description:
+        "How cyber threat intelligence can be translated into pulse events, ZTAID pillar scores, and measurable maturity signals to support faster defensive adaptation.",
+      audience: "Cybersecurity researchers, zero-trust programs, graduate seminars"
     },
     {
       title: "ASR + LLM + RAG for Operational Workflows",

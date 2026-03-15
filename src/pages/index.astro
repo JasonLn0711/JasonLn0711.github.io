@@ -18,11 +18,11 @@ const posts = sortBlogEntries(await getCollection("blog")).slice(0, 3);
 
 <BaseLayout title={site.defaultTitle} description={site.description} pathname="/">
   <Hero />
-  <CredibilityStrip />
   <ResearchThemes />
   <FeaturedProjects projects={projects} />
-  <WritingPreview posts={posts} />
   <SpeakingPreview />
+  <CredibilityStrip />
+  <WritingPreview posts={posts} />
   <AboutPreview />
   <ContactCTA />
 </BaseLayout>

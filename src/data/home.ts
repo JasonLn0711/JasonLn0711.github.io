@@ -47,7 +47,7 @@ export const home = {
     eyebrow: "Talks / Speaking",
     title: "Available for research talks, technical sessions, and interdisciplinary discussion.",
     description:
-      "Speaking activity spans official sessions and English conference papers across trustworthy AI, cybersecurity, speech systems, and the realities of deploying AI where reliability and traceability matter.",
+      "Speaking activity spans official sessions and two English CISC 2025 conference papers across trustworthy AI, cybersecurity, threat intelligence, speech systems, and the realities of deploying AI where reliability and traceability matter.",
     browseLabel: "Speaking topics →"
   },
   about: {

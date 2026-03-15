@@ -1,6 +1,10 @@
 ---
 import { profile } from "../data/profile";
+import { research } from "../data/research";
+import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const currentWorkTitles = research.ongoingWork.map((item) => item.title);
 ---
 
 <BaseLayout
@@ -18,6 +22,31 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
 
+      <div class="grid gap-6 lg:grid-cols-3">
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">Who I am</span>
+          <h2 class="text-2xl font-semibold text-white">Doctoral researcher at NYCU</h2>
+          <p class="text-sm leading-7 text-slate-300">{profile.shortBio}</p>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">What I'm building</span>
+          <h2 class="text-2xl font-semibold text-white">Current research focus</h2>
+          <p class="text-sm leading-7 text-slate-300">{currentWorkTitles.join(" · ")}</p>
+          <p class="text-sm leading-7 text-slate-300">
+            Current work moves from evidence-aware speech systems to grounded analysis workflows and security-minded AI deployment.
+          </p>
+        </article>
+
+        <article class="panel flex flex-col gap-5 p-7">
+          <span class="pill w-fit">Why trust me</span>
+          <h2 class="text-2xl font-semibold text-white">Research and delivery signals</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            Doctoral research at {profile.institutionShort}, an official {speaking.featuredEngagement.event} session, and {speaking.additionalEngagements.length} English CISC 2025 conference papers.
+          </p>
+        </article>
+      </div>
+
       <section class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
         <div class="panel overflow-hidden">
           <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
@@ -27,7 +56,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <span class="eyebrow">Profile</span>
           <h2 class="text-2xl font-semibold text-white">{profile.name}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">
-            Doctoral researcher at {profile.institution} in the {profile.lab.name}, working across trustworthy AI, medical cybersecurity, speech intelligence, and real-world deployment.
+            Doctoral researcher at {profile.institution} in the {profile.lab.name}, working across trustworthy AI, medical cybersecurity, speech intelligence, and real-world deployment, with recent English CISC 2025 papers on ransomware defense and threat pulse modeling for zero-trust maturity assessment.
           </p>
           <div class="flex flex-wrap gap-3">
             <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
