@@ -38,7 +38,7 @@ export const profile = {
   about: [
     "I am a doctoral researcher in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at National Yang Ming Chiao Tung University (NYCU), where my work sits at the intersection of AI systems, trustworthy AI, speech and language pipelines, and security-aware evaluation.",
     "Before doctoral research, I worked in cybercrime investigation. That experience still shapes how I think about evidence, adversarial behavior, failure analysis, and the difference between a model that performs well in isolation and a system that can be trusted in practice.",
-    "Today, I focus on ASR + LLM + RAG workflows, speech intelligence, deployable AI systems, and governance-minded thinking for regulated or security-sensitive environments. My current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, with FDA 524B, threat modeling, SBOM, and auditable governance as core themes."
+    "Today, I focus on ASR + LLM + RAG workflows, speech intelligence, deployable AI systems, and governance-minded thinking for regulated or security-sensitive environments. Recent speaking and paper activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, as well as a CISC 2025 English conference paper on AI-era ransomware evolution, ZTAID-aligned zero-trust defense, and operational countermeasures."
   ],
   interests: [
     "Trustworthy AI systems for operationally meaningful deployment",

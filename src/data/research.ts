@@ -63,11 +63,47 @@ export const research = {
     "Secure, evidence-grounded multimodal systems for real-world decision support."
   ],
   currentActivity: {
-    label: "Current professional activity",
-    title: "CYBERSEC 2026",
+    label: "Recent conference paper",
+    title: "Evolution and Defense Challenges of Ransomware-as-a-Service in the AI Era",
     description:
-      "Speaking in an official breakout session on cybersecurity design for AI software medical devices, connecting FDA 524B, threat modeling, SBOM, and auditable governance in a regulated setting.",
-    tags: ["Medical Cybersecurity", "Threat Modeling", "Risk Governance"]
+      "Presented in English at CISC 2025, this paper analyzes Medusa and CrazyHunter as case studies for AI-era ransomware evolution and connects their tradecraft to a ZTAID-grounded zero-trust defense framework for real operational environments.",
+    details: [
+      {
+        label: "Conference",
+        value: "Cryptology and Information Security Conference 2025 (CISC 2025)"
+      },
+      {
+        label: "Schedule",
+        value: "May 28-29, 2025"
+      },
+      {
+        label: "Venue",
+        value: "Feng Chia University"
+      },
+      {
+        label: "Format",
+        value: "Conference Paper · English"
+      }
+    ],
+    tags: ["RaaS", "Zero Trust", "ZTAID", "Threat Modeling", "SOAR"],
+    links: [
+      {
+        label: "CISC 2025 Conference Website",
+        url: "https://cisc2025.fcu.edu.tw/"
+      },
+      {
+        label: "Trend Micro CrazyHunter Research",
+        url: "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html"
+      },
+      {
+        label: "CISA Medusa Ransomware Advisory",
+        url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a"
+      },
+      {
+        label: "ZTAID Model Paper",
+        url: "https://cccisa.ccisa.org.tw/article/view/3166"
+      }
+    ]
   },
   collaboration: {
     title: "Collaboration and research fit",

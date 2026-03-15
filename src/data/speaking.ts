@@ -3,7 +3,7 @@ export const speaking = {
     eyebrow: "Talks / Speaking",
     title: "Talks on trustworthy AI, speech systems, and serious deployment.",
     description:
-      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, with FDA 524B, threat modeling, SBOM, and auditable governance as practical anchors."
+      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, alongside an English CISC 2025 conference paper on AI-era ransomware evolution, zero-trust defense, and operational countermeasures."
   },
   featuredEngagement: {
     label: "Official session",
@@ -25,12 +25,60 @@ export const speaking = {
     url: "https://cybersec.ithome.com.tw/2026/session/4284",
     tags: ["Medical Cybersecurity", "Governance & Risk Management", "Threat Modeling", "Vulnerability Management"]
   },
+  additionalEngagements: [
+    {
+      label: "Conference paper",
+      event: "CISC 2025",
+      title:
+        "Evolution and Defense Challenges of Ransomware-as-a-Service in the AI Era: A Technical and Strategic Analysis Using Medusa and CrazyHunter as a Case Study",
+      summary:
+        "English conference paper examining how AI-era RaaS operations evolve through BYOVD, LOTL, covert C2, and adaptive tradecraft, then mapping those threats to a ZTAID-grounded zero-trust defense strategy.",
+      description:
+        "The paper uses Medusa and CrazyHunter as concrete case studies to connect modern ransomware operations with practical defense design, including phased authorization, anomaly detection, automated containment, and security orchestration for high-risk environments.",
+      speaker:
+        "Jason Chia-Sheng Lin · Department of Computer Science and Information Engineering, National Yang Ming Chiao Tung University",
+      coauthor:
+        "With Yu-Te Wu, Yong-Sheng Chen, and Issac Yi-Yuan Lee · National Yang Ming Chiao Tung University",
+      schedule: "May 28-29, 2025",
+      venue: "Feng Chia University",
+      track: "Cryptology and Information Security Conference",
+      format: "Conference Paper",
+      language: "English",
+      url: "https://cisc2025.fcu.edu.tw/",
+      ctaLabel: "CISC 2025 Conference Website",
+      links: [
+        {
+          label: "CISC 2025 Conference Website",
+          url: "https://cisc2025.fcu.edu.tw/"
+        },
+        {
+          label: "Trend Micro CrazyHunter Research",
+          url: "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html"
+        },
+        {
+          label: "CISA Medusa Ransomware Advisory",
+          url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a"
+        },
+        {
+          label: "ZTAID Model Paper",
+          url: "https://cccisa.ccisa.org.tw/article/view/3166"
+        }
+      ],
+      tags: ["Ransomware-as-a-Service", "Zero Trust", "ZTAID", "BYOVD", "SOAR"]
+    }
+  ],
   topics: [
     {
       title: "Trustworthy AI Beyond Benchmark Performance",
       description:
         "How to think about reliability, evidence, human review, and system behavior when AI is used in environments where mistakes carry real cost.",
       audience: "Research groups, labs, interdisciplinary audiences"
+    },
+    {
+      title: "AI-Era Ransomware and Zero-Trust Defense",
+      description:
+        "How modern RaaS campaigns combine automation, BYOVD, LOTL, and covert C2 techniques, and how ZTAID-aligned zero-trust strategy can structure practical detection, containment, and recovery.",
+      audience: "Cybersecurity conferences, blue teams, graduate seminars"
     },
     {
       title: "ASR + LLM + RAG for Operational Workflows",
@@ -53,7 +101,7 @@ export const speaking = {
   invitation: {
     title: "Invitation-ready topics",
     description:
-      "Talks can be tailored for research, technical, or cross-functional audiences. If your event sits near trustworthy AI, speech intelligence, RAG systems, or deployment risk, I would be glad to discuss a fit."
+      "Talks can be tailored for research, technical, or cross-functional audiences. If your event sits near trustworthy AI, speech intelligence, ransomware defense, or deployment risk, I would be glad to discuss a fit."
   }
 } as const;
 

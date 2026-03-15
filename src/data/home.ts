@@ -47,7 +47,7 @@ export const home = {
     eyebrow: "Talks / Speaking",
     title: "Available for research talks, technical sessions, and interdisciplinary discussion.",
     description:
-      "Speaking topics connect trustworthy AI, speech and language systems, evaluation, and the realities of deploying AI where reliability and traceability matter.",
+      "Speaking activity spans official sessions and English conference papers across trustworthy AI, cybersecurity, speech systems, and the realities of deploying AI where reliability and traceability matter.",
     browseLabel: "Speaking topics →"
   },
   about: {
