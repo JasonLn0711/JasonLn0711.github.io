@@ -12,32 +12,32 @@ export const linksPage = {
     {
       href: "/research/",
       label: "Research",
-      description: "Research agenda, active directions, and recent conference papers."
+      description: "Agenda, active directions, and current papers."
     },
     {
       href: "/projects/",
       label: "Projects",
-      description: "Case studies in speech intelligence, grounded RAG, and security-aware AI."
+      description: "Selected case studies and system builds."
     },
     {
       href: "/blog/",
       label: "Writing",
-      description: "Essays and research notes that make the reasoning behind the work visible."
+      description: "Essays and research notes."
     },
     {
       href: "/talks/",
       label: "Talks",
-      description: "Speaking topics, keynote material, and recent conference activity."
+      description: "Topics, keynote material, and recent sessions."
     },
     {
       href: "/about/",
       label: "About",
-      description: "Professional context, research path, and technical toolkit."
+      description: "Background, research path, and toolkit."
     },
     {
       href: "/contact/",
       label: "Contact",
-      description: "Email, collaboration context, and the best next step for reaching out."
+      description: "Email, context, and the best next step."
     }
   ],
   audiencePaths: [

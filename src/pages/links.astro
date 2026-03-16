@@ -64,14 +64,14 @@ const selectedWork = [
         <h2 id="links-primary-actions" class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
           Primary paths
         </h2>
-        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {linksPage.primaryActions.map((item) => (
             <a
               href={item.href}
-              class="panel flex h-full flex-col gap-3 p-5 transition hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+              class="panel flex h-full flex-col gap-3 p-4 transition hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
             >
-              <h3 class="text-lg font-semibold text-white">{item.label}</h3>
-              <p class="text-sm leading-7 text-slate-300">{item.description}</p>
+              <h3 class="text-base font-semibold text-white sm:text-lg">{item.label}</h3>
+              <p class="text-sm leading-6 text-slate-300">{item.description}</p>
               <span class="mt-auto text-sm font-semibold text-[var(--color-accent)]">{item.label} →</span>
             </a>
           ))}
