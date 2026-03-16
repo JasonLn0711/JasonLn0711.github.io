@@ -20,6 +20,7 @@ export const site = {
     { href: "/projects/", label: "Projects", description: "Selected case studies and system builds." },
     { href: "/blog/", label: "Writing", description: "Essays and research notes that explain the work." },
     { href: "/talks/", label: "Talks", description: "Speaking topics, recent sessions, and the web keynote." },
+    { href: "/resume/", label: "Resume", description: "Professional snapshot for hiring, collaboration, and review." },
     { href: "/about/", label: "About", description: "Background, working style, and research path." },
     { href: "/contact/", label: "Contact", description: "The fastest route for collaboration or speaking inquiries." }
   ]
