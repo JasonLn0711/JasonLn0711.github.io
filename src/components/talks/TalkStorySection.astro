@@ -38,11 +38,11 @@ const useSplit = hasVisual && variant === "split";
   <div class:list={["panel p-7 sm:p-8 lg:p-10", panelClass]}>
     <div
       class:list={[
-        useSplit ? "grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start" : "",
+        useSplit ? "grid gap-8 xl:grid-cols-[0.84fr_1.16fr] xl:items-start" : "",
         isCenter ? "mx-auto max-w-4xl text-center" : ""
       ]}
     >
-      <div class:list={["space-y-4", !isCenter ? "max-w-3xl" : "", introClass]}>
+      <div class:list={["min-w-0 space-y-4", !isCenter ? "max-w-3xl" : "", introClass]}>
         <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{chapter} · {navLabel}</p>
         {eyebrow && <span class="eyebrow mb-0">{eyebrow}</span>}
         <h2 id={headingId} class:list={["section-title", isCenter ? "mx-auto max-w-3xl" : ""]}>
@@ -53,7 +53,7 @@ const useSplit = hasVisual && variant === "split";
       </div>
 
       {hasVisual && (
-        <div class:list={[visualClass, !useSplit ? "mt-8" : ""]}>
+        <div class:list={["min-w-0", visualClass, !useSplit ? "mt-8" : ""]}>
           <slot name="visual" />
         </div>
       )}
