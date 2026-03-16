@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Minimal disclosure and cross-node pattern formation cover">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09111f" />
+      <stop offset="55%" stop-color="#121d33" />
+      <stop offset="100%" stop-color="#18253e" />
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#97baff" />
+      <stop offset="100%" stop-color="#5fd4c8" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <g opacity="0.15" fill="#89aef8">
+    <circle cx="300" cy="220" r="150" />
+    <circle cx="1330" cy="640" r="220" />
+    <circle cx="1180" cy="200" r="90" />
+  </g>
+  <g fill="none" stroke="url(#line)" stroke-width="3.5" stroke-linecap="round">
+    <path d="M280 590C430 470 560 410 690 420S930 500 1080 468 1240 400 1340 438" opacity="0.78" />
+    <path d="M250 670C410 610 520 560 650 585S910 690 1070 650 1260 540 1360 570" opacity="0.48" />
+    <path d="M410 300C520 360 610 382 710 350S900 245 1030 270 1210 395 1280 430" opacity="0.38" />
+  </g>
+  <g fill="#e2edff">
+    <circle cx="360" cy="610" r="15" />
+    <circle cx="560" cy="455" r="13" />
+    <circle cx="740" cy="430" r="20" />
+    <circle cx="980" cy="492" r="16" />
+    <circle cx="1230" cy="432" r="14" />
+    <circle cx="1130" cy="640" r="12" />
+  </g>
+  <g fill="#9fd0ff" opacity="0.58">
+    <rect x="278" y="564" width="168" height="92" rx="18" />
+    <rect x="658" y="384" width="168" height="92" rx="18" />
+    <rect x="1122" y="384" width="168" height="92" rx="18" />
+  </g>
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif" fill="#f7fbff">
+    <text x="120" y="160" font-size="42" letter-spacing="7" opacity="0.6">TRUSTWORTHY FRAUD INTELLIGENCE</text>
+    <text x="120" y="290" font-size="108" font-weight="700">Minimal Disclosure</text>
+    <text x="120" y="388" font-size="108" font-weight="700">Pattern Formation</text>
+    <text x="120" y="466" font-size="33" opacity="0.74">cross-node synthesis under controlled evidence sharing</text>
+  </g>
+</svg>

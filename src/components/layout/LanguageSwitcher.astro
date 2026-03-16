@@ -18,9 +18,20 @@ const options = getLanguageOptions(pathname);
 const currentPath = normalizePathnameFromSite(pathname);
 ---
 
-<div class:list={[mobile ? "space-y-3" : "items-center gap-3", mobile ? "" : "hidden lg:flex"]}>
-  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.common.language}</p>
-  <div class="flex flex-wrap gap-2" aria-label={copy.common.languageSwitcherAria}>
+<div class:list={[mobile ? "space-y-3" : "", mobile ? "" : "hidden lg:flex"]}>
+  {mobile ? (
+    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.common.language}</p>
+  ) : (
+    <span class="sr-only">{copy.common.language}</span>
+  )}
+  <div
+    class:list={[
+      "inline-flex items-center rounded-full border border-white/[0.1] bg-white/[0.03] p-1",
+      mobile ? "flex-wrap gap-1.5" : "flex-nowrap gap-1"
+    ]}
+    aria-label={copy.common.languageSwitcherAria}
+    role="group"
+  >
     {options.map((option) => {
       const isCurrent = normalizePathnameFromSite(option.href) === currentPath;
 
@@ -28,16 +39,19 @@ const currentPath = normalizePathnameFromSite(pathname);
         <a
           href={option.href}
           class:list={[
-            "inline-flex min-h-10 items-center rounded-full border px-3 text-sm transition",
+            "inline-flex min-h-9 items-center justify-center rounded-full border px-3.5 text-sm font-medium whitespace-nowrap transition",
+            mobile ? "min-w-[4.5rem]" : "min-w-[3.75rem]",
             isCurrent
-              ? "border-white/20 bg-white/[0.08] font-semibold text-white"
-              : "border-white/[0.12] bg-white/[0.04] text-slate-300 hover:border-white/20 hover:text-white"
+              ? "border-white/[0.14] bg-white/[0.1] text-white"
+              : "border-transparent text-slate-400 hover:bg-white/[0.05] hover:text-white"
           ]}
           hreflang={option.locale === "en" ? "en" : option.locale === "zh-tw" ? "zh-TW" : "ja"}
           lang={option.locale === "en" ? "en" : option.locale === "zh-tw" ? "zh-Hant-TW" : "ja"}
           aria-current={isCurrent ? "page" : undefined}
+          aria-label={option.label}
+          title={option.label}
         >
-          {option.label}
+          {option.shortLabel}
         </a>
       );
     })}

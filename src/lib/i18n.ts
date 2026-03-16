@@ -16,21 +16,24 @@ const localeMeta = {
     hreflang: "en",
     intl: "en-US",
     ogLocale: "en_US",
-    label: "English"
+    label: "English",
+    shortLabel: "EN"
   },
   "zh-tw": {
     htmlLang: "zh-Hant-TW",
     hreflang: "zh-TW",
     intl: "zh-TW",
     ogLocale: "zh_TW",
-    label: "繁體中文"
+    label: "繁體中文",
+    shortLabel: "繁中"
   },
   ja: {
     htmlLang: "ja",
     hreflang: "ja",
     intl: "ja-JP",
     ogLocale: "ja_JP",
-    label: "日本語"
+    label: "日本語",
+    shortLabel: "日本語"
   }
 } as const;
 
@@ -1781,7 +1784,8 @@ export function getLanguageOptions(pathname: string) {
   return locales.map((locale) => ({
     locale,
     href: localizePath(basePath, locale),
-    label: localeMeta[locale].label
+    label: localeMeta[locale].label,
+    shortLabel: localeMeta[locale].shortLabel
   }));
 }
 
