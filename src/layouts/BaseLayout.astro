@@ -49,11 +49,32 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
 ---
 
 <!doctype html>
-<html lang={localeInfo.htmlLang}>
+<html lang={localeInfo.htmlLang} data-device="desktop" data-input="fine" data-motion="full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const queries = {
+          mobile: window.matchMedia("(max-width: 47.99rem)"),
+          tablet: window.matchMedia("(min-width: 48rem) and (max-width: 79.99rem)"),
+          coarse: window.matchMedia("(pointer: coarse)"),
+          reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)"),
+          landscape: window.matchMedia("(orientation: landscape)")
+        };
+
+        const applyDeviceProfile = () => {
+          root.dataset.device = queries.mobile.matches ? "mobile" : queries.tablet.matches ? "tablet" : "desktop";
+          root.dataset.input = queries.coarse.matches ? "coarse" : "fine";
+          root.dataset.motion = queries.reducedMotion.matches ? "reduced" : "full";
+          root.dataset.orientation = queries.landscape.matches ? "landscape" : "portrait";
+        };
+
+        applyDeviceProfile();
+      })();
+    </script>
     <Head
       title={title}
       description={description}
@@ -139,6 +160,27 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
         },
         { capture: true }
       );
+
+      (() => {
+        const root = document.documentElement;
+        const queries = {
+          mobile: window.matchMedia("(max-width: 47.99rem)"),
+          tablet: window.matchMedia("(min-width: 48rem) and (max-width: 79.99rem)"),
+          coarse: window.matchMedia("(pointer: coarse)"),
+          reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)"),
+          landscape: window.matchMedia("(orientation: landscape)")
+        };
+
+        const applyDeviceProfile = () => {
+          root.dataset.device = queries.mobile.matches ? "mobile" : queries.tablet.matches ? "tablet" : "desktop";
+          root.dataset.input = queries.coarse.matches ? "coarse" : "fine";
+          root.dataset.motion = queries.reducedMotion.matches ? "reduced" : "full";
+          root.dataset.orientation = queries.landscape.matches ? "landscape" : "portrait";
+        };
+
+        Object.values(queries).forEach((query) => query.addEventListener?.("change", applyDeviceProfile));
+        window.addEventListener("resize", applyDeviceProfile, { passive: true });
+      })();
     </script>
   </body>
 </html>

@@ -13,7 +13,7 @@ const copy = getPageCopy(locale);
   pathname="/404.html"
   noindex={true}
 >
-  <section class="section pt-16">
+  <section class="page-frame pt-16">
     <div class="shell">
       <div class="panel max-w-4xl space-y-8 p-8 sm:p-10">
         <span class="eyebrow">404</span>
@@ -21,7 +21,7 @@ const copy = getPageCopy(locale);
         <p class="text-base leading-8 text-slate-300">
           {copy.notFoundPage.body}
         </p>
-        <div class="flex flex-wrap gap-3">
+        <div class="page-actions">
           <a href={localizePath("/", locale)} class="button-primary" data-plausible-event="404_recovery_click">{copy.notFoundPage.backHome}</a>
           <a href={localizePath("/projects/", locale)} class="button-secondary" data-plausible-event="404_recovery_click">{copy.notFoundPage.viewProjects}</a>
         </div>
@@ -30,7 +30,7 @@ const copy = getPageCopy(locale);
           {site.nav.map((item) => (
             <a
               href={localizePath(item.href, locale)}
-              class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-5 transition hover:border-white/20 hover:bg-white/[0.05]"
+              class="surface-link py-5"
               data-plausible-event="404_recovery_click"
             >
               <span class="block text-sm font-semibold text-white">{item.label}</span>

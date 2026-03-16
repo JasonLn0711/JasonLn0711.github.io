@@ -14,7 +14,7 @@ const { post, featured = false, eventName, locale = defaultLocale } = Astro.prop
 const copy = getPageCopy(locale);
 ---
 
-<article class="panel h-full overflow-hidden">
+<article class="panel h-full overflow-hidden transition hover:border-white/20 hover:bg-white/[0.05]">
   <a
     href={localizePath(`/blog/${post.slug}/`, locale)}
     class:list={["group flex h-full flex-col focus-visible:outline-none", featured && "lg:grid lg:grid-cols-[1fr_1.1fr]"]}
@@ -31,7 +31,7 @@ const copy = getPageCopy(locale);
       loading="lazy"
     />
     <div class="flex h-full flex-col gap-4 p-6 sm:p-7">
-      <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
+      <div class="meta-row text-xs uppercase tracking-[0.2em]">
         <span>{formatLabel(post.data.category, locale)}</span>
         <span class="h-1 w-1 rounded-full bg-white/20"></span>
         <span>{formatDate(post.data.pubDate, locale)}</span>
@@ -39,7 +39,7 @@ const copy = getPageCopy(locale);
       <h3 class="text-2xl font-semibold tracking-tight text-white transition group-hover:text-[var(--color-accent-strong)]">
         {post.data.title}
       </h3>
-      <p class="text-sm leading-7 text-slate-300">{post.data.description}</p>
+      <p class="max-w-[54ch] text-sm leading-7 text-slate-300">{post.data.description}</p>
       <div class="mt-auto flex flex-wrap gap-2">
         {post.data.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
       </div>

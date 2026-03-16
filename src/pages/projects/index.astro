@@ -22,19 +22,19 @@ const filters = [
   description={copy.projectsPage.description}
   pathname={Astro.url.pathname}
 >
-  <section class="section pt-12 sm:pt-16">
-    <div class="shell space-y-10">
-      <div class="max-w-3xl space-y-5">
+  <section class="page-frame">
+    <div class="page-stack">
+      <div class="page-intro">
         <span class="eyebrow">{copy.common.projects}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
           {copy.projectsPage.title}
         </h1>
-        <p class="text-lg leading-8 text-slate-300">
+        <p class="page-summary">
           {copy.projectsPage.description}
         </p>
       </div>
 
-      <section class="panel flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+      <section class="section-card flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="max-w-2xl space-y-2">
           <h2 class="text-lg font-semibold text-white">{copy.projectsPage.filterTitle}</h2>
           <p class="text-sm leading-7 text-slate-300">
@@ -68,14 +68,14 @@ const filters = [
         {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} locale={locale} />)}
       </div>
 
-      <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-2">
           <h2 class="text-2xl font-semibold text-white">{copy.projectsPage.broaderContextTitle}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">
             {copy.projectsPage.broaderContextDescription}
           </p>
         </div>
-        <div class="flex flex-wrap gap-3">
+        <div class="page-actions">
           <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
           <a href={localizePath("/blog/", locale)} class="button-secondary">{copy.common.writing}</a>
           <a href={localizePath("/contact/", locale)} class="button-primary">{copy.common.contact}</a>

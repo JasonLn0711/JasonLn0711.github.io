@@ -19,15 +19,15 @@ const profile = getLocalizedProfile(locale);
 const copy = getPageCopy(locale);
 ---
 
-<section class="section pt-8 sm:pt-12">
+<section class="page-frame pt-8 sm:pt-12">
   <div class="shell grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_360px] xl:items-start">
     <div class="space-y-7">
       <span class="eyebrow">{home.hero.eyebrow}</span>
-      <div class="space-y-5">
+      <div class="page-intro">
         <h1 class="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
           {home.hero.headline}
         </h1>
-        <p class="max-w-2xl text-lg leading-8 text-slate-300">
+        <p class="page-summary">
           {home.hero.description}
         </p>
       </div>
@@ -64,11 +64,11 @@ const copy = getPageCopy(locale);
         </div>
       </div>
 
-      <div class="flex flex-wrap gap-4">
-        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary" data-plausible-event="hero_primary_cta_click">
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary w-full sm:w-auto" data-plausible-event="hero_primary_cta_click">
           {home.hero.primaryCta.label}
         </a>
-        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary" data-plausible-event="hero_secondary_cta_click">
+        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary w-full sm:w-auto" data-plausible-event="hero_secondary_cta_click">
           {home.hero.secondaryCta.label}
         </a>
         <a href={localizePath("/contact/", locale)} class="action-link">
@@ -88,7 +88,7 @@ const copy = getPageCopy(locale);
     </div>
 
     <div class="space-y-4">
-      <section class="panel p-6 sm:p-7">
+      <section class="section-card">
         <div class="space-y-5">
           <div class="space-y-2">
             <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.home.startHere}</p>
@@ -97,14 +97,14 @@ const copy = getPageCopy(locale);
 
           <div class="grid gap-3">
             {home.hero.routes.map((route) => (
-              <a href={localizePath(route.href, locale)} class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+              <a href={localizePath(route.href, locale)} class="surface-link">
                 <span class="block text-sm font-semibold text-white">{route.title}</span>
                 <span class="mt-2 block text-sm leading-6 text-slate-400">{route.description}</span>
               </a>
             ))}
           </div>
 
-          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+          <div class="surface-card">
             <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.whatYouWillFind}</p>
             <ul class="mt-3 space-y-3">
               {home.hero.siteMap.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
@@ -113,8 +113,19 @@ const copy = getPageCopy(locale);
         </div>
       </section>
 
-      <div class="panel hidden h-[280px] overflow-hidden md:block motion-reduce:hidden" aria-hidden="true">
-        <HeroScene client:idle />
+      <div class="panel relative hidden h-[280px] overflow-hidden md:block" aria-hidden="true">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(99,164,255,0.24),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(143,184,255,0.16),transparent_26%)]"></div>
+        <div class="absolute left-6 top-6 z-10">
+          <span class="pill">{copy.home.signalMesh}</span>
+        </div>
+        <div class="absolute inset-0 grid place-items-center px-10 py-8">
+          <div class="grid h-full w-full max-w-[18rem] grid-cols-4 gap-3 opacity-80">
+            {Array.from({ length: 16 }).map(() => <span class="rounded-full border border-white/[0.12] bg-white/[0.04]"></span>)}
+          </div>
+        </div>
+        <div class="absolute inset-0">
+          <HeroScene client:media="(min-width: 80rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)" />
+        </div>
       </div>
 
       <div class="panel flex min-h-[220px] flex-col justify-between overflow-hidden p-8 md:hidden" aria-hidden="true">
@@ -128,16 +139,6 @@ const copy = getPageCopy(locale);
           <div class="grid h-full grid-cols-4 gap-3">
             {Array.from({ length: 12 }).map(() => <span class="rounded-full border border-white/[0.12] bg-white/[0.04]"></span>)}
           </div>
-        </div>
-      </div>
-
-      <div class="panel hidden min-h-[220px] items-center justify-center p-8 text-center md:flex motion-safe:hidden" aria-hidden="true">
-        <div class="space-y-4">
-          <span class="eyebrow">{copy.home.reducedMotion}</span>
-          <h2 class="text-2xl font-semibold text-white">{copy.home.visualPreviewDisabled}</h2>
-          <p class="mx-auto max-w-md text-sm leading-7 text-slate-300">
-            {copy.home.visualPreviewCopy}
-          </p>
         </div>
       </div>
     </div>

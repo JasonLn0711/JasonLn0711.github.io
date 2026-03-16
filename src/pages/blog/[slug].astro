@@ -43,17 +43,17 @@ const copy = getPageCopy(locale);
   publishedTime={publishedTime}
   modifiedTime={modifiedTime}
 >
-  <section class="section pt-12 sm:pt-16">
-    <div class="shell space-y-10">
-      <div class="max-w-4xl space-y-5">
+  <section class="page-frame">
+    <div class="page-stack">
+      <div class="page-intro">
         <a href={localizePath("/blog/", locale)} class="action-link">
           <span aria-hidden="true">←</span>
           {copy.common.backToWriting}
         </a>
         <span class="eyebrow">{formatLabel(post.data.category, locale)}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{post.data.title}</h1>
-        <p class="max-w-3xl text-lg leading-8 text-slate-300">{post.data.description}</p>
-        <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+        <p class="page-summary">{post.data.description}</p>
+        <div class="meta-row">
           <span>{formatDate(post.data.pubDate, locale)}</span>
           {post.data.tags.map((tag) => <span class="pill">{tag}</span>)}
         </div>
@@ -66,7 +66,7 @@ const copy = getPageCopy(locale);
       <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_280px]">
         <article class="space-y-6">
           {locale !== "en" && <UntranslatedNotice locale={locale} kind="blog" />}
-          <div class="panel p-6 sm:p-8 lg:p-10">
+          <div class="reading-panel">
             <div class="article-body">
               <Content />
             </div>
@@ -91,14 +91,14 @@ const copy = getPageCopy(locale);
         )}
       </div>
 
-      <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-2">
           <h2 class="text-2xl font-semibold text-white">{copy.common.continueFromThisPiece}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">
             If this note was useful, the next helpful step is usually to compare it with the research agenda, a project case study, or start a conversation.
           </p>
         </div>
-        <div class="flex flex-wrap gap-3">
+        <div class="page-actions">
           <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
           <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.common.projects}</a>
           <a href={localizePath("/contact/", locale)} class="button-primary">{copy.common.contact}</a>

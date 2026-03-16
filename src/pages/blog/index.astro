@@ -17,28 +17,28 @@ const copy = getPageCopy(locale);
   description={copy.blogIndexPage.description}
   pathname={Astro.url.pathname}
 >
-  <section class="section pt-12 sm:pt-16">
-    <div class="shell space-y-10">
-      <div class="max-w-3xl space-y-5">
+  <section class="page-frame">
+    <div class="page-stack">
+      <div class="page-intro">
         <span class="eyebrow">{copy.common.writing}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
           {copy.blogIndexPage.title}
         </h1>
-        <p class="text-lg leading-8 text-slate-300">
+        <p class="page-summary">
           {copy.blogIndexPage.description}
         </p>
       </div>
 
-      <section class="panel grid gap-4 p-6 sm:grid-cols-3">
-        <a href="#featured-writing" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+      <section class="section-card grid gap-4 sm:grid-cols-3">
+        <a href="#featured-writing" class="surface-link">
           <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.featuredTitle}</span>
           <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.featuredDescription}</span>
         </a>
-        <a href="#recent-writing" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+        <a href="#recent-writing" class="surface-link">
           <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.recentTitle}</span>
           <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.recentDescription}</span>
         </a>
-        <a href={localizePath("/projects/", locale)} class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+        <a href={localizePath("/projects/", locale)} class="surface-link">
           <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.implementationTitle}</span>
           <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.implementationDescription}</span>
         </a>

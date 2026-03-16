@@ -35,16 +35,16 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
   image={profile.avatar}
   pathname={Astro.url.pathname}
 >
-  <section class="section pt-12 sm:pt-16">
-    <div class="shell space-y-12">
+  <section class="page-frame">
+    <div class="page-stack">
       <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
-        <div class="max-w-4xl space-y-6">
+        <div class="page-intro space-y-6">
           <span class="eyebrow">{copy.common.resume}</span>
           <div class="space-y-5">
             <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               {copy.resumePage.title}
             </h1>
-            <p class="text-lg leading-8 text-slate-300">
+            <p class="page-summary">
               {formatMessage(copy.resumePage.intro, {
                 name: profile.name,
                 institution: profile.institution
@@ -52,7 +52,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-3">
+          <div class="page-actions">
             <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
               LinkedIn
@@ -62,7 +62,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
           </div>
         </div>
 
-        <aside class="panel overflow-hidden p-6 sm:p-7">
+        <aside class="section-card overflow-hidden p-6 sm:p-7">
           <div class="space-y-6">
             <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
               <img
@@ -106,7 +106,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
       </dl>
 
       <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.professionalSummary}</h2>
           <div class="mt-6 space-y-5">
             <p class="text-base leading-8 text-slate-300">
@@ -121,11 +121,11 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
           </div>
         </section>
 
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.whatBrings}</h2>
           <div class="mt-6 grid gap-4">
             {professionalStrengths.map((item) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <div class="surface-card">
                 <h3 class="text-lg font-semibold text-white">{item.title}</h3>
                 <p class="mt-2 text-sm leading-7 text-slate-300">{item.description}</p>
               </div>
@@ -135,7 +135,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
       </div>
 
       <div class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.experience}</h2>
           <div class="mt-6 space-y-6">
             {profile.experience.map((item) => (
@@ -148,11 +148,11 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
           </div>
         </section>
 
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.currentWork}</h2>
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <div class="surface-card">
                 <p class="text-base leading-7 text-slate-300">{item}</p>
               </div>
             ))}
@@ -175,7 +175,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
         <div class="grid gap-6 xl:grid-cols-3">
           {projects.map((project) => (
             <article class="panel flex h-full flex-col p-6 sm:p-7">
-              <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
+              <div class="meta-row text-xs uppercase tracking-[0.2em]">
                 <span>{project.data.category}</span>
                 <span class="h-1 w-1 rounded-full bg-white/20"></span>
                 <span>{project.data.year}</span>
@@ -199,14 +199,14 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
       </section>
 
       <div class="grid gap-8 xl:grid-cols-2">
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.speakingSignals}</h2>
           <div class="mt-6 space-y-5">
-            <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5">
+            <div class="surface-card border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)]">
               <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{speaking.featuredEngagement.event}</p>
               <h3 class="mt-2 text-lg font-semibold text-white">{speaking.featuredEngagement.title}</h3>
               <p class="mt-2 text-sm leading-7 text-slate-300">{speaking.featuredEngagement.summary}</p>
-              <div class="mt-4 flex flex-wrap gap-3">
+              <div class="page-actions mt-4">
                 <a href={localizePath("/talks/", locale)} class="button-secondary">{copy.resumePage.talksPage}</a>
                 <a href={profile.externalProfiles.cybersecSpeaker.url} target="_blank" rel="noreferrer" class="button-secondary">
                   {copy.resumePage.speakerProfile}
@@ -215,7 +215,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
             </div>
 
             {speaking.additionalEngagements.map((engagement) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <div class="surface-card">
                 <p class="text-xs uppercase tracking-[0.2em] text-slate-500">
                   {engagement.event} · {engagement.format}
                 </p>
@@ -226,11 +226,11 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
           </div>
         </section>
 
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.writingCommunication}</h2>
           <div class="mt-6 space-y-5">
             {posts.map((post) => (
-              <article class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <article class="surface-card">
                 <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{post.data.category}</p>
                 <h3 class="mt-2 text-lg font-semibold text-white">{post.data.title}</h3>
                 <p class="mt-2 text-sm leading-7 text-slate-300">{post.data.description}</p>
@@ -243,7 +243,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
               </article>
             ))}
 
-            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <div class="surface-card">
               <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.resumePage.professionalSignals}</p>
               <ul class="mt-4 space-y-4">
                 {teamSignals.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
@@ -254,11 +254,11 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
       </div>
 
       <div class="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
-        <section class="panel p-7 sm:p-8">
+        <section class="section-card">
           <h2 class="text-2xl font-semibold text-white">{copy.resumePage.methodsAndToolkit}</h2>
           <div class="mt-6 grid gap-5">
             {profile.toolkit.map((group) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <div class="surface-card">
                 <h3 class="text-lg font-semibold text-white">{group.title}</h3>
                 <div class="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => <span class="pill">{item}</span>)}
@@ -268,7 +268,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
           </div>
         </section>
 
-        <section class="panel flex flex-col gap-6 p-7 sm:p-8">
+        <section class="section-card flex flex-col gap-6">
           <div class="space-y-3">
             <h2 class="text-2xl font-semibold text-white">{copy.resumePage.openToConversations}</h2>
             <p class="max-w-2xl text-base leading-8 text-slate-300">
@@ -278,20 +278,20 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
 
           <div class="grid gap-3 sm:grid-cols-3">
             {profile.contactTopics.map((topic) => (
-              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <div class="surface-card p-4">
                 <p class="text-sm leading-7 text-slate-300">{topic}</p>
               </div>
             ))}
           </div>
 
-          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+          <div class="surface-card">
             <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.contact}</p>
             <p class="mt-3 text-base leading-8 text-slate-300">
               {copy.resumePage.contactCardDescription}
             </p>
           </div>
 
-          <div class="mt-auto flex flex-wrap gap-3">
+          <div class="page-actions mt-auto">
             <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
             <a href={localizePath("/contact/", locale)} class="button-secondary">{copy.resumePage.contactPage}</a>
             <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
