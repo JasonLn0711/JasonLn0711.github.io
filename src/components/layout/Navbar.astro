@@ -20,39 +20,6 @@ const localizedSite = getLocalizedSite(locale);
 const localizedProfile = getLocalizedProfile(locale);
 const copy = getPageCopy(locale);
 const primaryNav = localizedSite.nav.filter((item) => item.href !== "/contact/");
-const compactMenuCopy: Record<SiteLocale, Record<string, { label?: string; description?: string }>> = {
-  en: {
-    "/research/": { description: "Focus and papers" },
-    "/projects/": { description: "Selected builds" },
-    "/blog/": { description: "Notes and essays" },
-    "/talks/": { description: "Sessions and keynote" },
-    "/resume/": { description: "Quick profile" },
-    "/about/": { description: "Background and path" },
-    "/contact/": { description: "Email and next step" }
-  },
-  "zh-tw": {
-    "/research/": { description: "方向與論文" },
-    "/projects/": { description: "案例與實作" },
-    "/blog/": { description: "筆記與文章" },
-    "/talks/": { description: "講題與場次" },
-    "/resume/": { description: "快速摘要" },
-    "/about/": { description: "背景與脈絡" },
-    "/contact/": { description: "聯絡方式" }
-  },
-  ja: {
-    "/research/": { description: "テーマと論文" },
-    "/projects/": { description: "事例と実装" },
-    "/blog/": { description: "ノートと記事" },
-    "/talks/": { description: "登壇とキーノート" },
-    "/resume/": { description: "要約プロフィール" },
-    "/about/": { description: "背景と流れ" },
-    "/contact/": { description: "連絡先" }
-  }
-};
-const compactMobileNav = localizedSite.nav.map((item) => ({
-  ...item,
-  ...(compactMenuCopy[locale][item.href] ?? {})
-}));
 
 function isActive(href: string) {
   const localizedHref = localizePath(href, locale);
@@ -60,8 +27,8 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.55] shadow-[0_12px_40px_rgba(2,6,23,0.16)] backdrop-blur-2xl supports-[backdrop-filter]:bg-slate-950/[0.35]">
-  <div class="shell relative py-4" data-nav-root data-mobile-menu-open="false">
+<header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.8] backdrop-blur">
+  <div class="shell py-4" data-nav-root>
     <div class="flex min-h-[64px] items-center justify-between gap-4">
       <div class="min-w-0">
         <a href={localizePath("/", locale)} class="inline-flex min-h-11 items-center text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase" aria-label={localizedProfile.name}>
@@ -115,345 +82,54 @@ function isActive(href: string) {
 
       <button
         type="button"
-        class="mobile-menu-toggle md:hidden"
+        class="button-secondary md:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         data-mobile-nav-toggle
       >
-        <span data-mobile-nav-label>{copy.common.menu}</span>
-        <span class="mobile-menu-toggle__icon" aria-hidden="true">
-          <span></span>
-          <span></span>
-        </span>
+        {copy.common.menu}
       </button>
     </div>
 
-    <div id="mobile-menu" class="mobile-menu md:hidden" hidden data-mobile-menu data-state="closed">
-      <div class="mobile-menu__inner">
-        <nav class="grid gap-2.5" aria-label="Mobile primary">
-          {compactMobileNav.map((item, index) => (
-            <a
-              href={localizePath(item.href, locale)}
-              class:list={[
-                "mobile-menu-link",
-                isActive(item.href) ? "is-active" : undefined
-              ]}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              data-mobile-nav-link
-              data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
-            >
-              <span class="mobile-menu-link__index">{String(index + 1).padStart(2, "0")}</span>
-              <span class="mobile-menu-link__text">
-                <span class="mobile-menu-link__title">{item.label}</span>
-                <span class="mobile-menu-link__description">{item.description}</span>
-              </span>
-            </a>
-          ))}
-        </nav>
+    <div id="mobile-menu" class="panel mt-4 p-4 md:hidden" hidden data-mobile-menu>
+      <nav class="space-y-2" aria-label="Mobile primary">
+        {localizedSite.nav.map((item) => (
+          <a
+            href={localizePath(item.href, locale)}
+            class:list={[
+              "block rounded-3xl px-4 py-4 transition",
+              isActive(item.href)
+                ? "border border-white/10 bg-white/[0.08] text-white"
+                : "border border-transparent text-slate-200 hover:border-white/[0.08] hover:bg-white/[0.04] hover:text-white"
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            data-mobile-nav-link
+            data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
+          >
+            <span class="block text-sm font-semibold">{item.label}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{item.description}</span>
+          </a>
+        ))}
+      </nav>
 
-        <div class="mobile-menu__footer">
-          <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} />
+      <div class="mt-4 border-t border-white/[0.08] pt-4">
+        <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} />
+      </div>
 
-          <div class="mobile-menu__actions">
-            <a href={`mailto:${localizedProfile.email}`} class="mobile-menu-chip" data-mobile-nav-link>
-              {copy.common.emailJason}
-            </a>
-            <a href={localizedProfile.github} class="mobile-menu-chip" target="_blank" rel="noreferrer" data-mobile-nav-link>
-              GitHub
-            </a>
-            <a href={localizedProfile.linkedin} class="mobile-menu-chip" target="_blank" rel="noreferrer" data-mobile-nav-link>
-              LinkedIn
-            </a>
-          </div>
-        </div>
+      <div class="mt-4 grid gap-2 border-t border-white/[0.08] pt-4 text-sm text-slate-300">
+        <a href={`mailto:${localizedProfile.email}`} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" data-mobile-nav-link>
+          {copy.common.emailJason}
+        </a>
+        <a href={localizedProfile.github} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
+          GitHub
+        </a>
+        <a href={localizedProfile.linkedin} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
+          LinkedIn
+        </a>
       </div>
     </div>
   </div>
 </header>
-
-<style>
-  .mobile-menu-toggle {
-    position: relative;
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    gap: 0.75rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background:
-      linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06)),
-      rgba(15, 23, 42, 0.4);
-    padding: 0.72rem 0.82rem 0.72rem 1rem;
-    color: #f8fbff;
-    box-shadow: 0 18px 46px rgba(2, 6, 23, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(18px) saturate(160%);
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      box-shadow 180ms ease,
-      background 180ms ease;
-  }
-
-  .mobile-menu-toggle:hover {
-    transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 22px 50px rgba(2, 6, 23, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  }
-
-  .mobile-menu-toggle[aria-expanded="true"] {
-    border-color: rgba(143, 184, 255, 0.34);
-    background:
-      linear-gradient(140deg, rgba(143, 184, 255, 0.26), rgba(255, 255, 255, 0.08)),
-      rgba(15, 23, 42, 0.54);
-    box-shadow: 0 24px 54px rgba(29, 78, 216, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  }
-
-  .mobile-menu-toggle__icon {
-    position: relative;
-    display: inline-flex;
-    width: 1.9rem;
-    height: 1.9rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .mobile-menu-toggle__icon span {
-    position: absolute;
-    width: 0.72rem;
-    height: 1.5px;
-    border-radius: 9999px;
-    background: currentColor;
-    transition: transform 180ms ease;
-  }
-
-  .mobile-menu-toggle__icon span:first-child {
-    transform: translateY(-0.18rem);
-  }
-
-  .mobile-menu-toggle__icon span:last-child {
-    transform: translateY(0.18rem);
-  }
-
-  .mobile-menu-toggle[aria-expanded="true"] .mobile-menu-toggle__icon span:first-child {
-    transform: rotate(45deg);
-  }
-
-  .mobile-menu-toggle[aria-expanded="true"] .mobile-menu-toggle__icon span:last-child {
-    transform: rotate(-45deg);
-  }
-
-  .mobile-menu {
-    position: absolute;
-    inset-inline: 0;
-    top: calc(100% + 0.7rem);
-    z-index: 60;
-    max-height: min(78vh, 42rem);
-    overflow: auto;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 2rem;
-    background:
-      linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08) 18%, rgba(15, 23, 42, 0.72) 70%, rgba(6, 10, 18, 0.9) 100%);
-    box-shadow: 0 28px 90px rgba(2, 6, 23, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-    backdrop-filter: blur(30px) saturate(170%);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-0.75rem) scale(0.98);
-    transform-origin: top center;
-    transition:
-      opacity 220ms ease,
-      transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-menu::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 45%;
-    background:
-      radial-gradient(circle at top left, rgba(143, 184, 255, 0.34), transparent 38%),
-      radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 28%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 62%);
-    pointer-events: none;
-  }
-
-  .mobile-menu::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: calc(2rem - 1px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    pointer-events: none;
-  }
-
-  .mobile-menu[data-state="open"] {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0) scale(1);
-  }
-
-  .mobile-menu__inner {
-    position: relative;
-    padding: 1rem;
-  }
-
-  .mobile-menu__inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 24%, transparent 80%, rgba(255, 255, 255, 0.04));
-    pointer-events: none;
-  }
-
-  .mobile-menu-link {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.95rem;
-    align-items: center;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04) 24%, rgba(15, 23, 42, 0.48) 100%);
-    padding: 1rem 1.05rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      background 180ms ease,
-      box-shadow 180ms ease;
-  }
-
-  .mobile-menu-link::before {
-    content: "";
-    position: absolute;
-    left: -8%;
-    top: -26%;
-    width: 56%;
-    height: 140%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
-    opacity: 0;
-    transition: opacity 180ms ease;
-    pointer-events: none;
-  }
-
-  .mobile-menu-link:hover,
-  .mobile-menu-link:focus-visible {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.16);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 28%, rgba(15, 23, 42, 0.52) 100%);
-    box-shadow: 0 16px 34px rgba(2, 6, 23, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  }
-
-  .mobile-menu-link:hover::before,
-  .mobile-menu-link:focus-visible::before,
-  .mobile-menu-link.is-active::before {
-    opacity: 1;
-  }
-
-  .mobile-menu-link.is-active {
-    border-color: rgba(143, 184, 255, 0.3);
-    background: linear-gradient(135deg, rgba(143, 184, 255, 0.22), rgba(255, 255, 255, 0.12) 26%, rgba(15, 23, 42, 0.56) 100%);
-    box-shadow: 0 18px 38px rgba(29, 78, 216, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  }
-
-  .mobile-menu-link__index {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-    min-width: 2.45rem;
-    justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.06);
-    padding: 0.32rem 0.45rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    color: rgba(226, 232, 240, 0.72);
-  }
-
-  .mobile-menu-link__text {
-    position: relative;
-    z-index: 1;
-    min-width: 0;
-  }
-
-  .mobile-menu-link__title {
-    display: block;
-    color: #f8fbff;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .mobile-menu-link__description {
-    display: block;
-    margin-top: 0.18rem;
-    color: rgba(226, 232, 240, 0.74);
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
-
-  .mobile-menu__footer {
-    position: relative;
-    margin-top: 0.85rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 0.95rem;
-  }
-
-  .mobile-menu__actions {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.85rem;
-  }
-
-  .mobile-menu-chip {
-    display: inline-flex;
-    min-height: 2.85rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(241, 245, 249, 0.84);
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      background 180ms ease,
-      color 180ms ease;
-  }
-
-  .mobile-menu-chip:hover,
-  .mobile-menu-chip:focus-visible {
-    transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-
-  @media (max-width: 420px) {
-    .mobile-menu__actions {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mobile-menu,
-    .mobile-menu-toggle,
-    .mobile-menu-link,
-    .mobile-menu-chip,
-    .mobile-menu-toggle__icon span,
-    .mobile-menu-link::before {
-      transition: none !important;
-    }
-  }
-</style>
 
 <noscript>
   <style>
@@ -463,60 +139,25 @@ function isActive(href: string) {
 
     [data-mobile-menu] {
       display: block !important;
-      position: static !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      transform: none !important;
-      margin-top: 1rem !important;
     }
   </style>
 </noscript>
 
-<script is:inline define:vars={{ menuLabel: copy.common.menu, closeLabel: copy.common.close }}>
+<script is:inline>
   const navRoot = document.querySelector("[data-nav-root]");
   const toggle = navRoot?.querySelector("[data-mobile-nav-toggle]");
   const menu = navRoot?.querySelector("[data-mobile-menu]");
   const menuLinks = navRoot ? Array.from(navRoot.querySelectorAll("[data-mobile-nav-link]")) : [];
 
   if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement && navRoot instanceof HTMLElement) {
-    const label = toggle.querySelector("[data-mobile-nav-label]");
-    let closeTimer = 0;
-
-    const setToggleLabel = (nextLabel) => {
-      if (label instanceof HTMLElement) {
-        label.textContent = nextLabel;
-      }
-    };
-
-    const closeMenu = (immediate = false) => {
-      window.clearTimeout(closeTimer);
+    const closeMenu = () => {
       toggle.setAttribute("aria-expanded", "false");
-      navRoot.dataset.mobileMenuOpen = "false";
-      setToggleLabel(menuLabel);
-
-      if (immediate || menu.hidden) {
-        menu.hidden = true;
-        menu.dataset.state = "closed";
-        return;
-      }
-
-      menu.dataset.state = "closing";
-      closeTimer = window.setTimeout(() => {
-        menu.hidden = true;
-        menu.dataset.state = "closed";
-      }, 220);
+      menu.hidden = true;
     };
 
     const openMenu = () => {
-      window.clearTimeout(closeTimer);
       toggle.setAttribute("aria-expanded", "true");
-      navRoot.dataset.mobileMenuOpen = "true";
-      setToggleLabel(closeLabel);
       menu.hidden = false;
-      menu.dataset.state = "closed";
-      window.requestAnimationFrame(() => {
-        menu.dataset.state = "open";
-      });
     };
 
     toggle.addEventListener("click", () => {
@@ -529,7 +170,7 @@ function isActive(href: string) {
       openMenu();
     });
 
-    menuLinks.forEach((link) => link.addEventListener("click", () => closeMenu()));
+    menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
@@ -545,7 +186,7 @@ function isActive(href: string) {
 
     window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
       if (event.matches) {
-        closeMenu(true);
+        closeMenu();
       }
     });
   }
