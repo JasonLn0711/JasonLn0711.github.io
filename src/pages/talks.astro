@@ -17,76 +17,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="text-lg leading-8 text-slate-300">{speaking.page.description}</p>
       </div>
 
-      {speaking.additionalEngagements.length > 0 && (
-        <section class="space-y-6">
-          <div class="max-w-4xl space-y-3">
-            <span class="eyebrow">English Research Sessions</span>
-            <h2 class="text-3xl font-semibold tracking-tight text-white">Conference paper activity</h2>
-            <p class="text-base leading-8 text-slate-300">
-              Two English CISC 2025 paper sessions connecting technical analysis, operational threat models, continuous assessment, and practical defense strategy.
-            </p>
-          </div>
-
-          <div class="grid gap-6">
-            {speaking.additionalEngagements.map((engagement) => (
-              <article class="panel flex flex-col gap-6 p-7 sm:p-8">
-                <div class="flex flex-wrap items-center gap-3">
-                  <span class="pill">{engagement.label}</span>
-                  <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{engagement.event}</span>
-                </div>
-
-                <div class="space-y-3">
-                  <h2 class="text-2xl font-semibold text-white">{engagement.title}</h2>
-                  <p class="max-w-4xl text-base leading-8 text-slate-300">{engagement.summary}</p>
-                </div>
-
-                <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Schedule</p>
-                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.schedule}</p>
-                  </div>
-                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Track</p>
-                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.track}</p>
-                  </div>
-                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Venue</p>
-                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.venue}</p>
-                  </div>
-                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Format</p>
-                    <p class="mt-2 text-sm leading-7 text-slate-200">
-                      {engagement.format} · {engagement.language}
-                    </p>
-                  </div>
-                </div>
-
-                <p class="text-sm leading-7 text-slate-300">{engagement.description}</p>
-                <p class="text-sm leading-7 text-slate-400">{engagement.speaker}</p>
-                <p class="text-sm leading-7 text-slate-400">{engagement.coauthor}</p>
-
-                <div class="flex flex-wrap gap-2">
-                  {engagement.tags.map((tag) => <span class="pill">{tag}</span>)}
-                </div>
-
-                <div class="flex flex-wrap gap-3">
-                  {(engagement.links ?? [{ label: engagement.ctaLabel, url: engagement.url }]).map((link) => (
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      class="button-secondary"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
-
       <article class="panel grid gap-8 overflow-hidden p-7 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)]">
         <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
           <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
@@ -161,6 +91,76 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
       </article>
+
+      {speaking.additionalEngagements.length > 0 && (
+        <section class="space-y-6">
+          <div class="max-w-4xl space-y-3">
+            <span class="eyebrow">English Research Sessions</span>
+            <h2 class="text-3xl font-semibold tracking-tight text-white">Conference paper activity</h2>
+            <p class="text-base leading-8 text-slate-300">
+              Two English CISC 2025 paper sessions connecting technical analysis, operational threat models, continuous assessment, and practical defense strategy.
+            </p>
+          </div>
+
+          <div class="grid gap-6">
+            {speaking.additionalEngagements.map((engagement) => (
+              <article class="panel flex flex-col gap-6 p-7 sm:p-8">
+                <div class="flex flex-wrap items-center gap-3">
+                  <span class="pill">{engagement.label}</span>
+                  <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{engagement.event}</span>
+                </div>
+
+                <div class="space-y-3">
+                  <h2 class="text-2xl font-semibold text-white">{engagement.title}</h2>
+                  <p class="max-w-4xl text-base leading-8 text-slate-300">{engagement.summary}</p>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Schedule</p>
+                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.schedule}</p>
+                  </div>
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Track</p>
+                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.track}</p>
+                  </div>
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Venue</p>
+                    <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.venue}</p>
+                  </div>
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Format</p>
+                    <p class="mt-2 text-sm leading-7 text-slate-200">
+                      {engagement.format} · {engagement.language}
+                    </p>
+                  </div>
+                </div>
+
+                <p class="text-sm leading-7 text-slate-300">{engagement.description}</p>
+                <p class="text-sm leading-7 text-slate-400">{engagement.speaker}</p>
+                <p class="text-sm leading-7 text-slate-400">{engagement.coauthor}</p>
+
+                <div class="flex flex-wrap gap-2">
+                  {engagement.tags.map((tag) => <span class="pill">{tag}</span>)}
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                  {(engagement.links ?? [{ label: engagement.ctaLabel, url: engagement.url }]).map((link) => (
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="button-secondary"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section class="grid gap-6 xl:grid-cols-3">
         {speaking.topics.map((topic) => (
