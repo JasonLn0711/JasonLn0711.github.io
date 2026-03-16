@@ -31,10 +31,14 @@ function isActive(href: string) {
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.8] backdrop-blur">
-  <div class="shell relative py-4" data-nav-root>
+  <div class="shell py-4">
     <div class="flex min-h-[64px] items-center justify-between gap-4">
       <div class="min-w-0">
-        <a href={localizePath("/", locale)} class="inline-flex min-h-11 items-center text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase" aria-label={localizedProfile.name}>
+        <a
+          href={localizePath("/", locale)}
+          class="inline-flex min-h-11 items-center text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase"
+          aria-label={localizedProfile.name}
+        >
           <span class="sm:hidden">{localizedProfile.shortName}</span>
           <span class="hidden sm:inline">{localizedProfile.name}</span>
         </a>
@@ -73,9 +77,7 @@ function isActive(href: string) {
       <div class={isHomePage ? "hidden" : "hidden items-center gap-3 md:flex"}>
         <a
           href={localizePath("/contact/", locale)}
-          class:list={[
-            isActive("/contact/") ? "button-primary" : "button-secondary"
-          ]}
+          class:list={[isActive("/contact/") ? "button-primary" : "button-secondary"]}
           data-plausible-event="nav_contact_click"
           aria-current={isActive("/contact/") ? "page" : undefined}
         >
@@ -83,441 +85,48 @@ function isActive(href: string) {
         </a>
       </div>
 
-      <button
-        type="button"
-        class="mobile-menu-toggle md:hidden"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-haspopup="dialog"
-        aria-label={copy.common.menu}
-        data-mobile-nav-toggle
-      >
-        <span class="sr-only">{copy.common.menu}</span>
-        <span class="mobile-menu-toggle-icon" aria-hidden="true">
-          <span></span>
-          <span></span>
-        </span>
-      </button>
+      <div class="md:hidden">
+        <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} compact={true} />
+      </div>
     </div>
 
-    <div class="mobile-menu-shell md:hidden" data-mobile-menu-shell data-open="false" aria-hidden="true">
-      <button
-        type="button"
-        class="mobile-menu-backdrop"
-        tabindex="-1"
-        aria-label={copy.common.close}
-        data-mobile-menu-backdrop
-      ></button>
-
-      <div
-        id="mobile-menu"
-        class="mobile-menu-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-label={copy.common.menu}
-        tabindex="-1"
-        data-mobile-menu
-      >
-        <div class="mobile-menu-panel-inner">
-          <div class="mobile-menu-header">
-            <a href={localizePath("/", locale)} class="mobile-menu-brand" data-mobile-nav-link>
-              {localizedProfile.shortName}
-            </a>
-
-            <button
-              type="button"
-              class="mobile-menu-close"
-              aria-label={copy.common.close}
-              data-mobile-nav-close
-            >
-              {copy.common.close}
-            </button>
-          </div>
-
-          <nav class="mobile-menu-list" aria-label="Mobile primary">
-            {mobileNavItems.map((item) => (
-              <a
-                href={localizePath(item.href, locale)}
-                class:list={[
-                  "mobile-menu-link",
-                  isActive(item.href) ? "mobile-menu-link-active" : undefined
-                ]}
-                aria-current={isActive(item.href) ? "page" : undefined}
-                data-mobile-nav-link
-                data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
-              >
-                <span class="mobile-menu-link-text">{item.label}</span>
-              </a>
-            ))}
-          </nav>
-
-          <div class="mobile-menu-group">
-            <div class="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4">
-              <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="mt-4 border-t border-white/[0.08] pt-4 md:hidden">
+      <nav class="mobile-direct-nav" aria-label="Primary">
+        {mobileNavItems.map((item) => (
+          <a
+            href={localizePath(item.href, locale)}
+            class:list={[
+              "inline-flex min-h-10 shrink-0 items-center rounded-full border px-4 text-sm font-medium transition",
+              item.href === "/contact/"
+                ? isActive(item.href)
+                  ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-slate-950"
+                  : "border-[var(--color-accent)]/35 bg-[color:rgba(99,164,255,0.12)] text-white hover:bg-[color:rgba(99,164,255,0.18)]"
+                : isActive(item.href)
+                  ? "border-white/[0.16] bg-white/[0.08] text-white"
+                  : "border-white/[0.08] bg-white/[0.03] text-slate-300 hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
     </div>
   </div>
 </header>
 
 <style>
-  [data-mobile-nav-toggle] {
-    display: inline-flex;
-    min-height: 2.9rem;
-    width: 2.9rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(15, 23, 42, 0.88);
-    color: white;
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      background-color 180ms ease;
-  }
-
-  [data-mobile-nav-toggle]:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(15, 23, 42, 0.96);
-  }
-
-  [data-mobile-nav-toggle]:active {
-    transform: scale(0.985);
-  }
-
-  .mobile-menu-toggle-icon {
+  .mobile-direct-nav {
     display: flex;
-    height: 1rem;
-    width: 1rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.26rem;
-  }
-
-  .mobile-menu-toggle-icon span {
-    display: block;
-    height: 1.5px;
-    width: 1rem;
-    border-radius: 999px;
-    background: currentColor;
-    transition: transform 180ms ease, opacity 180ms ease;
-  }
-
-  [data-mobile-nav-toggle][aria-expanded="true"] .mobile-menu-toggle-icon span:first-child {
-    transform: translateY(2.9px) rotate(45deg);
-  }
-
-  [data-mobile-nav-toggle][aria-expanded="true"] .mobile-menu-toggle-icon span:last-child {
-    transform: translateY(-2.9px) rotate(-45deg);
-  }
-
-  .mobile-menu-shell {
-    position: absolute;
-    top: calc(100% + 0.4rem);
-    right: 0;
-    left: 0;
-    z-index: 60;
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 1.5rem;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 220ms ease, visibility 220ms ease;
-  }
-
-  .mobile-menu-shell[data-open="true"] {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .mobile-menu-backdrop {
-    position: fixed;
-    inset: 0;
-    border: 0;
-    background: transparent;
-  }
-
-  .mobile-menu-panel {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 22rem);
-    max-height: min(70vh, 32rem);
-    overflow: auto;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 1.75rem;
-    background: rgba(11, 16, 32, 0.96);
-    box-shadow: 0 24px 48px rgba(2, 6, 23, 0.42);
-    transform: translateY(-0.8rem) scale(0.98);
-    opacity: 0;
-    transition: transform 220ms ease, opacity 220ms ease;
-  }
-
-  .mobile-menu-shell[data-open="true"] .mobile-menu-panel {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-
-  .mobile-menu-panel-inner {
-    padding: 1.1rem;
-  }
-
-  .mobile-menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .mobile-menu-brand {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: white;
-  }
-
-  .mobile-menu-close {
-    display: inline-flex;
-    min-height: 2.5rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
-    padding: 0.65rem 0.95rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: white;
-    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-  }
-
-  .mobile-menu-close:hover {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .mobile-menu-close:active {
-    transform: scale(0.985);
-  }
-
-  .mobile-menu-list {
-    display: grid;
     gap: 0.6rem;
-    margin-top: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .mobile-menu-link {
-    display: block;
-    min-height: 3.4rem;
-    border-radius: 1.1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 0.95rem 1rem;
-    transition:
-      border-color 180ms ease,
-      background-color 180ms ease;
-  }
-
-  .mobile-menu-link:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .mobile-menu-link-active {
-    border-color: rgba(143, 184, 255, 0.42);
-    background: rgba(99, 164, 255, 0.12);
-  }
-
-  .mobile-menu-link-text {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.35;
-    color: white;
-  }
-
-  .mobile-menu-group {
-    margin-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1rem;
-  }
-
-  :global(html.mobile-menu-open),
-  :global(body.mobile-menu-open) {
-    overflow: hidden;
-  }
-
-  @media (max-width: 360px) {
-    .mobile-menu-shell {
-      padding-right: 0.75rem;
-      padding-left: 0.75rem;
-    }
-
-    .mobile-menu-panel-inner {
-      padding: 0.85rem;
-    }
+  .mobile-direct-nav::-webkit-scrollbar {
+    display: none;
   }
 </style>
-
-<noscript>
-  <style>
-    [data-mobile-nav-toggle] {
-      display: none !important;
-    }
-
-    [data-mobile-menu-shell] {
-      position: static !important;
-      inset: auto !important;
-      display: block !important;
-      padding: 1rem 0 0 !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-
-    [data-mobile-menu-backdrop] {
-      display: none !important;
-    }
-
-    [data-mobile-menu] {
-      max-height: none !important;
-      transform: none !important;
-      opacity: 1 !important;
-    }
-  </style>
-</noscript>
-
-<script is:inline>
-  const navRoot = document.querySelector("[data-nav-root]");
-  const toggle = navRoot?.querySelector("[data-mobile-nav-toggle]");
-  const menuShell = navRoot?.querySelector("[data-mobile-menu-shell]");
-  const menu = navRoot?.querySelector("[data-mobile-menu]");
-  const closeButton = navRoot?.querySelector("[data-mobile-nav-close]");
-  const backdrop = navRoot?.querySelector("[data-mobile-menu-backdrop]");
-  const menuLinks = navRoot ? Array.from(navRoot.querySelectorAll("[data-mobile-nav-link]")) : [];
-
-  if (
-    toggle instanceof HTMLButtonElement &&
-    menuShell instanceof HTMLElement &&
-    menu instanceof HTMLElement &&
-    navRoot instanceof HTMLElement
-  ) {
-    let previousFocus = toggle;
-
-    const focusableSelector = [
-      "a[href]",
-      "button:not([disabled])",
-      "[tabindex]:not([tabindex='-1'])"
-    ].join(",");
-
-    const getFocusableElements = () =>
-      Array.from(menuShell.querySelectorAll(focusableSelector)).filter((element) => element instanceof HTMLElement && !element.hasAttribute("disabled"));
-
-    const setScrollLock = (isOpen) => {
-      document.documentElement.classList.toggle("mobile-menu-open", isOpen);
-      document.body.classList.toggle("mobile-menu-open", isOpen);
-    };
-
-    const isMenuOpen = () => toggle.getAttribute("aria-expanded") === "true";
-
-    const closeMenu = ({ returnFocus = true } = {}) => {
-      if (!isMenuOpen()) {
-        return;
-      }
-
-      toggle.setAttribute("aria-expanded", "false");
-      menuShell.dataset.open = "false";
-      menuShell.setAttribute("aria-hidden", "true");
-      if ("inert" in menuShell) {
-        menuShell.inert = true;
-      }
-      setScrollLock(false);
-
-      if (returnFocus && previousFocus instanceof HTMLElement) {
-        previousFocus.focus();
-      }
-    };
-
-    const openMenu = () => {
-      if (document.activeElement instanceof HTMLElement) {
-        previousFocus = document.activeElement;
-      }
-
-      toggle.setAttribute("aria-expanded", "true");
-      menuShell.dataset.open = "true";
-      menuShell.setAttribute("aria-hidden", "false");
-      if ("inert" in menuShell) {
-        menuShell.inert = false;
-      }
-      setScrollLock(true);
-
-      const focusTarget = closeButton instanceof HTMLButtonElement ? closeButton : getFocusableElements()[0];
-      if (focusTarget instanceof HTMLElement) {
-        requestAnimationFrame(() => focusTarget.focus());
-      }
-    };
-
-    if ("inert" in menuShell) {
-      menuShell.inert = true;
-    }
-
-    toggle.addEventListener("click", () => {
-      if (isMenuOpen()) {
-        closeMenu();
-        return;
-      }
-
-      openMenu();
-    });
-
-    closeButton?.addEventListener("click", () => closeMenu());
-    backdrop?.addEventListener("click", () => closeMenu());
-
-    menuLinks.forEach((link) =>
-      link.addEventListener("click", () => {
-        closeMenu({ returnFocus: false });
-      })
-    );
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && isMenuOpen()) {
-        closeMenu();
-      }
-
-      if (event.key === "Tab" && isMenuOpen()) {
-        const focusableElements = getFocusableElements();
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (!(firstElement instanceof HTMLElement) || !(lastElement instanceof HTMLElement)) {
-          return;
-        }
-
-        if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement.focus();
-        } else if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement.focus();
-        }
-      }
-    });
-
-    window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
-      if (event.matches) {
-        closeMenu({ returnFocus: false });
-      }
-    });
-
-    window.addEventListener("pagehide", () => {
-      closeMenu({ returnFocus: false });
-    });
-  }
-</script>
