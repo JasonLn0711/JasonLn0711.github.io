@@ -22,6 +22,8 @@ export const speaking = {
     track: "Medical Cybersecurity Forum",
     format: "Breakout Session",
     language: "Mandarin with AI live translation",
+    storyHref: "/talks/regulated-ai-cybersecurity/",
+    storyLabel: "Web keynote narrative",
     url: "https://cybersec.ithome.com.tw/2026/session/4284",
     tags: ["Medical Cybersecurity", "Governance & Risk Management", "Threat Modeling", "Vulnerability Management"]
   },

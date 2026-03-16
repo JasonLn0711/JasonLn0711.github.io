@@ -1,0 +1,676 @@
+---
+import { profile } from "../../data/profile";
+import { speaking } from "../../data/speaking";
+import { talkStory } from "../../data/talkStory";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../lib/site";
+import TalkStoryNav from "../../components/talks/TalkStoryNav.astro";
+import TalkStorySection from "../../components/talks/TalkStorySection.astro";
+
+const heroSection = talkStory.sections[0];
+const storySections = talkStory.sections.slice(1);
+const featured = speaking.featuredEngagement;
+
+const eventHighlights = [
+  { label: "Schedule", value: featured.schedule },
+  { label: "Track", value: featured.track },
+  { label: "Venue", value: featured.venue },
+  { label: "Format", value: `${featured.format} · ${featured.language}` }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: talkStory.title,
+  description: talkStory.description,
+  mainEntityOfPage: absoluteUrl(talkStory.pathname),
+  author: {
+    "@type": "Person",
+    name: profile.name
+  },
+  about: [
+    "Medical AI cybersecurity",
+    "FDA Section 524B",
+    "Threat modeling",
+    "Federated learning leakage",
+    "Clinical patch governance"
+  ]
+};
+---
+
+<BaseLayout
+  title={talkStory.title}
+  description={talkStory.description}
+  pathname={talkStory.pathname}
+  type="article"
+  schema={schema}
+>
+  <section id={heroSection.id} aria-labelledby={`${heroSection.id}-title`} class="section pt-10 sm:pt-16 scroll-mt-28">
+    <div class="shell space-y-10">
+      <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+        <div class="space-y-7">
+          <div class="space-y-4">
+            <span class="eyebrow mb-0">{talkStory.eyebrow}</span>
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">
+              {heroSection.chapter} · {heroSection.navLabel}
+            </p>
+          </div>
+
+          <div class="space-y-5">
+            <h1 id={`${heroSection.id}-title`} class="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              {talkStory.title}
+            </h1>
+            <p class="text-xl leading-8 text-slate-200 sm:text-2xl">{talkStory.subtitle}</p>
+            <p class="max-w-3xl text-lg leading-8 text-slate-300">{talkStory.supportingLine}</p>
+          </div>
+
+          <p class="text-sm uppercase tracking-[0.18em] text-slate-400">{talkStory.speakerLine}</p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href={`#${storySections[0].id}`} class="button-primary">Start the story</a>
+            <a href={featured.url} target="_blank" rel="noreferrer" class="button-secondary">Official session page</a>
+            <a href="/talks/" class="button-secondary">All talks</a>
+          </div>
+
+          <dl class="grid max-w-2xl gap-4 rounded-4xl border border-white/10 bg-white/[0.03] p-6 sm:grid-cols-3">
+            {talkStory.heroMetrics.map((metric) => (
+              <div>
+                <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{metric.label}</dt>
+                <dd class="mt-2 text-sm leading-7 text-slate-200">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <aside class="panel p-7 sm:p-8">
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="pill">{featured.label}</span>
+              <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{featured.event}</span>
+            </div>
+
+            <div class="space-y-3">
+              <h2 class="text-2xl font-semibold text-white">Session snapshot</h2>
+              <p class="text-base leading-8 text-slate-300">
+                This page translates the featured CYBERSEC keynote into a native web chapter, using the same calm editorial treatment, panel language, and navigation structure as the rest of the site.
+              </p>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              {eventHighlights.map((item) => (
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{item.label}</p>
+                  <p class="mt-2 text-sm leading-7 text-slate-200">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Through-line</p>
+              <p class="mt-3 text-base leading-8 text-slate-300">
+                The keynote moves from a single hospital incident to a broader systems claim: trustworthy medical AI depends on hardware, runtime, protocols, governance, and operational control, not only on model performance.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <TalkStoryNav sections={talkStory.sections} mode="mobile" />
+    </div>
+  </section>
+
+  <section class="pb-16 sm:pb-20">
+    <div class="shell grid gap-8 xl:grid-cols-[280px_minmax(0,1fr)]">
+      <aside class="hidden xl:block">
+        <div class="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto">
+          <TalkStoryNav sections={talkStory.sections} mode="desktop" />
+        </div>
+      </aside>
+
+      <div class="space-y-6 sm:space-y-8">
+        <TalkStorySection
+          id={storySections[0].id}
+          chapter={storySections[0].chapter}
+          navLabel={storySections[0].navLabel}
+          title="If an AI recommends the wrong movie, it is fine."
+          intro="The threshold for harm changes completely when AI participates in clinical judgment."
+          variant="center"
+        >
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 text-left">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Ordinary software miss</p>
+              <p class="mt-4 text-2xl font-semibold tracking-tight text-white">
+                If an AI recommends the wrong movie, it is fine.
+              </p>
+            </div>
+
+            <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-6 text-left">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Clinical miss</p>
+              <p class="mt-4 text-2xl font-semibold tracking-tight text-white">
+                But what if that AI is outlining a tumor?
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+            <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Why medical AI is different</p>
+            <p class="mt-4 text-3xl font-semibold tracking-tight text-white">That is not a bug.</p>
+            <p class="mt-2 text-2xl font-semibold tracking-tight text-slate-200">That is a medical incident.</p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[1].id}
+          chapter={storySections[1].chapter}
+          navLabel={storySections[1].navLabel}
+          eyebrow={talkStory.incident.eyebrow}
+          title="MacKay Memorial Hospital ransomware attack"
+          intro="Public hospital incidents remind us that the clinical system, not only the model artifact, determines safety."
+        >
+          <Fragment slot="visual">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Location</p>
+                <p class="mt-3 text-lg font-semibold text-white">{talkStory.incident.lines[0]}</p>
+              </div>
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Disruption</p>
+                <p class="mt-3 text-lg font-semibold text-white">{talkStory.incident.lines[1]}</p>
+              </div>
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5 sm:col-span-2">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">System lesson</p>
+                <p class="mt-3 text-lg font-semibold text-white">{talkStory.incident.lines[2]}</p>
+                <p class="mt-2 text-base leading-7 text-slate-300">{talkStory.incident.lines[3]}</p>
+              </div>
+              <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5 sm:col-span-2">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{talkStory.incident.statLabel}</p>
+                <p class="mt-3 text-2xl font-semibold tracking-tight text-white">{talkStory.incident.statValue}</p>
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[2].id}
+          chapter={storySections[2].chapter}
+          navLabel={storySections[2].navLabel}
+          title="The Untouched Model Paradox"
+          intro="Integrity checks on weights and checkpoints do not protect the workflow around them."
+          variant="center"
+        >
+          <div class="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 text-left">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Model state</p>
+              <p class="mt-4 text-2xl font-semibold tracking-tight text-white">The model can remain untouched.</p>
+            </div>
+
+            <div class="flex justify-center text-3xl text-[var(--color-accent)]" aria-hidden="true">→</div>
+
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 text-left">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Clinical consequence</p>
+              <p class="mt-4 text-2xl font-semibold tracking-tight text-white">The system can still be compromised.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+            <p class="text-base leading-8 text-slate-300">
+              Model integrity does not guarantee clinical trust. The attack surface includes infrastructure, dependencies, orchestration, identity, and the human-facing output path.
+            </p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[3].id}
+          chapter={storySections[3].chapter}
+          navLabel={storySections[3].navLabel}
+          eyebrow="FDA Section 524B"
+          title="In healthcare, AI is not just software. It is clinical risk."
+          intro="In regulated medical contexts, cybersecurity obligations sit alongside safety and effectiveness."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="grid gap-4 md:grid-cols-3">
+                {talkStory.fdaRequirements.map((requirement) => (
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Requirement</p>
+                    <p class="mt-4 text-lg font-semibold text-white">{requirement}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+
+          <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-6">
+            <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Regulatory message</p>
+            <p class="mt-4 text-2xl font-semibold tracking-tight text-white">
+              AI security is no longer a best practice. It is a legal requirement.
+            </p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[4].id}
+          chapter={storySections[4].chapter}
+          navLabel={storySections[4].navLabel}
+          title="Defending the full stack: a new architectural paradigm"
+          intro="Risk moves across layers, so defense and accountability have to move with it."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.12)] via-white/[0.04] to-transparent p-5">
+              <div class="space-y-3">
+                {[...talkStory.stackLayers].reverse().map((layer, index) => (
+                  <div
+                    class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4"
+                    style={`margin-inline:${index * 10}px`}
+                  >
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Layer</p>
+                    <p class="mt-2 text-lg font-semibold text-white">{layer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+
+          <p class="text-base leading-8 text-slate-300">
+            AI security is not only an engineering problem. It is also a governance problem, because trust depends on who can change the system, how evidence is collected, and whether operational controls survive deployment pressure.
+          </p>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[5].id}
+          chapter={storySections[5].chapter}
+          navLabel={storySections[5].navLabel}
+          title="The foundation of fragility: hardware and kernel exploits"
+          intro="The lower layers define whether everything above them can still be trusted."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+                <div class="space-y-4">
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Foundation</p>
+                    <p class="mt-3 text-lg font-semibold text-white">Hardware</p>
+                  </div>
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Foundation</p>
+                    <p class="mt-3 text-lg font-semibold text-white">Kernel</p>
+                  </div>
+                </div>
+
+                <div class="hidden justify-center text-3xl text-[var(--color-accent)] lg:flex" aria-hidden="true">→</div>
+
+                <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-6">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Trust impact</p>
+                  <p class="mt-4 text-3xl font-semibold tracking-tight text-white">Flip a single bit. Collapse trust.</p>
+                </div>
+              </div>
+            </div>
+          </Fragment>
+
+          <div class="flex flex-wrap gap-2">
+            {talkStory.fragilityLabels.map((label) => <span class="pill">{label}</span>)}
+          </div>
+          <p class="mt-6 text-sm leading-7 text-slate-400">
+            The most fragile layer is not always the model. A trusted model running on an untrusted foundation is still an untrusted clinical system.
+          </p>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[6].id}
+          chapter={storySections[6].chapter}
+          navLabel={storySections[6].navLabel}
+          title="The Protocol Frontier: exploiting frameworks and agents"
+          intro="Modern AI applications inherit the risks of orchestration, integration, and tool use."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.12)] via-white/[0.04] to-transparent p-5">
+              <div class="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center">
+                {talkStory.protocolLayers.map((layer, index) => (
+                  <Fragment>
+                    {index > 0 && <div class="hidden justify-center text-2xl text-[var(--color-accent)] lg:flex" aria-hidden="true">→</div>}
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                      <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Layer</p>
+                      <p class="mt-3 text-base font-semibold text-white">{layer}</p>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+
+          <p class="text-base leading-8 text-slate-300">
+            As AI systems gain tools, memory, and orchestration, the attack surface expands beyond the model. Security now has to account for workflows, service boundaries, and the connectors that bridge AI to clinical systems.
+          </p>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[7].id}
+          chapter={storySections[7].chapter}
+          navLabel={storySections[7].navLabel}
+          title="Anatomy of a local privilege escalation in Medical AI"
+          intro="A weak internal foothold can still distort the output path seen by clinicians."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="space-y-3">
+                {talkStory.escalationSteps.map((step, index) => (
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                    <div class="flex items-center gap-4">
+                      <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.04] text-sm font-semibold text-white">
+                        {index + 1}
+                      </span>
+                      <p class="text-base font-semibold text-white">{step}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+
+          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Safety note</p>
+            <p class="mt-3 text-sm leading-7 text-slate-300">Conceptual attack anatomy only.</p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[8].id}
+          chapter={storySections[8].chapter}
+          navLabel={storySections[8].navLabel}
+          title="If data never leaves the hospital, is it really safe?"
+          intro="Local hosting narrows some exposure, but it does not remove trust and access problems."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.1)] via-white/[0.03] to-transparent p-5">
+              <div class="rounded-[1.5rem] border border-dashed border-white/[0.18] p-4">
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Hospital perimeter</p>
+                  <p class="mt-4 text-2xl font-semibold tracking-tight text-white">On-premise does not equal trusted.</p>
+                  <p class="mt-2 text-base leading-7 text-slate-300">Inside the hospital does not equal secure.</p>
+                </div>
+
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  {talkStory.onPremRisks.map((risk) => (
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                      <p class="text-sm font-semibold text-white">{risk}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[9].id}
+          chapter={storySections[9].chapter}
+          navLabel={storySections[9].navLabel}
+          title="What is Federated Learning?"
+          intro="Federated learning changes where data lives, not whether the overall system needs threat modeling."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+                {talkStory.federatedParticipants.map((participant, index) => (
+                  <Fragment>
+                    {index > 0 && <div class="hidden justify-center text-2xl text-[var(--color-accent)] lg:flex" aria-hidden="true">↔</div>}
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                      <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Local site</p>
+                      <p class="mt-3 text-lg font-semibold text-white">{participant}</p>
+                      <p class="mt-2 text-sm leading-7 text-slate-300">Local training stays inside the institution.</p>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+
+              <div class="mt-4 rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Coordinator flow</p>
+                <p class="mt-3 text-lg font-semibold text-white">Data stays local. Model updates travel.</p>
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[10].id}
+          chapter={storySections[10].chapter}
+          navLabel={storySections[10].navLabel}
+          title="Data may stay, but information can still leak"
+          intro="Information can leak through updates, gradients, or behavior even when raw records never move."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.12)] via-white/[0.04] to-transparent p-5">
+              <div class="grid gap-4 md:grid-cols-2">
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Distribution truth</p>
+                  <p class="mt-3 text-2xl font-semibold tracking-tight text-white">Data stays local.</p>
+                </div>
+                <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Security truth</p>
+                  <p class="mt-3 text-2xl font-semibold tracking-tight text-white">Risk can still exist.</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                {talkStory.leakageLabels.map((label) => <span class="pill">{label}</span>)}
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[11].id}
+          chapter={storySections[11].chapter}
+          navLabel={storySections[11].navLabel}
+          title="The real problem was not accuracy. It was trust."
+          intro="Accuracy scores alone do not restore confidence if the surrounding chain cannot be explained or controlled."
+          variant="center"
+        >
+          <div class="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center">
+            {talkStory.trustChain.map((item, index) => (
+              <Fragment>
+                {index > 0 && <div class="hidden justify-center text-2xl text-[var(--color-accent)] lg:flex" aria-hidden="true">→</div>}
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5 text-left">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Trust chain</p>
+                  <p class="mt-3 text-lg font-semibold text-white">{item}</p>
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[12].id}
+          chapter={storySections[12].chapter}
+          navLabel={storySections[12].navLabel}
+          title="LeakPro: test the model before you share it"
+          intro="Leakage testing should happen before a model crosses organizational boundaries."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Before sharing</p>
+                  <p class="mt-3 text-lg font-semibold text-white">Model ready for release?</p>
+                </div>
+
+                <div class="hidden justify-center text-2xl text-[var(--color-accent)] lg:flex" aria-hidden="true">→</div>
+
+                <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-6">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Validation gate</p>
+                  <p class="mt-3 text-lg font-semibold text-white">Ask whether it leaks, not only whether it is accurate.</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                {talkStory.leakProLabels.map((label) => <span class="pill">{label}</span>)}
+              </div>
+            </div>
+          </Fragment>
+
+          <p class="text-base leading-8 text-slate-300">
+            Pre-release leakage assessment provides evidence for governance, model sharing, and internal review. It turns privacy risk into something testable instead of assumed.
+          </p>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[13].id}
+          chapter={storySections[13].chapter}
+          navLabel={storySections[13].navLabel}
+          title="The Future Question for Medical AI"
+          intro="Medical AI is governed across time, not just at launch."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.12)] via-white/[0.04] to-transparent p-5">
+              <div class="grid gap-3 md:grid-cols-3">
+                {talkStory.lifecycleLabels.map((label, index) => (
+                  <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Stage {index + 1}</p>
+                    <p class="mt-3 text-base font-semibold text-white">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+
+          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+            <p class="text-2xl font-semibold tracking-tight text-white">
+              How do we govern systems that keep changing?
+            </p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[14].id}
+          chapter={storySections[14].chapter}
+          navLabel={storySections[14].navLabel}
+          title="Embedding security into the SaMD DNA"
+          intro="Threat modeling connects abstract architecture to concrete design and review decisions."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="rounded-[1.5rem] border border-dashed border-white/[0.18] p-4">
+                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Threat model frame</p>
+                  <p class="mt-3 text-lg font-semibold text-white">Architecture becomes control points.</p>
+                </div>
+
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  {talkStory.threatModelLabels.map((label) => (
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                      <p class="text-sm font-semibold text-white">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[15].id}
+          chapter={storySections[15].chapter}
+          navLabel={storySections[15].navLabel}
+          title="The 'Default-Deny' clinical environment"
+          intro="A clinical environment benefits from explicit trust boundaries and permitted paths only."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-[color:rgba(99,164,255,0.12)] via-white/[0.04] to-transparent p-5">
+              <div class="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-center">
+                {talkStory.clinicalZones.map((zone, index) => (
+                  <Fragment>
+                    {index > 0 && <div class="hidden justify-center text-2xl text-[var(--color-accent)] lg:flex" aria-hidden="true">→</div>}
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                      <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Zone</p>
+                      <p class="mt-3 text-base font-semibold text-white">{zone}</p>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+
+              <div class="mt-4 rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Policy</p>
+                <p class="mt-3 text-lg font-semibold text-white">{talkStory.clinicalPolicy}</p>
+              </div>
+            </div>
+          </Fragment>
+
+          <p class="text-base leading-8 text-slate-300">
+            Inside the hospital is not the same as trusted. A clinical architecture should restrict movement by default, make exceptions explicit, and treat vendor or integration access as bounded paths rather than ambient trust.
+          </p>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[16].id}
+          chapter={storySections[16].chapter}
+          navLabel={storySections[16].navLabel}
+          title="Balancing clinical stability with cybersecurity responsiveness"
+          intro="Security response has to respect both exploit urgency and validation reality."
+        >
+          <Fragment slot="visual">
+            <div class="rounded-[1.75rem] border border-white/[0.08] bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent p-5">
+              <div class="grid gap-4 lg:grid-cols-[1fr_1fr]">
+                <div class="grid gap-3 sm:grid-cols-2">
+                  {talkStory.patchInputs.map((item) => (
+                    <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                      <p class="text-sm font-semibold text-white">{item}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-6">
+                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Decision principle</p>
+                  <p class="mt-3 text-2xl font-semibold tracking-tight text-white">
+                    The right patch decision is not the fastest one. It is the most controllable one.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Fragment>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[17].id}
+          chapter={storySections[17].chapter}
+          navLabel={storySections[17].navLabel}
+          title="Patient safety supersedes cybersecurity speed."
+          intro="Clinical systems are allowed to move carefully when patient harm is on the line."
+          variant="center"
+        >
+          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8">
+            <p class="mx-auto max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              Patient safety
+              <span class="block text-slate-300">supersedes</span>
+              cybersecurity speed.
+            </p>
+            <p class="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300">
+              In clinical environments, patching must be fast enough, but also safe enough to trust.
+            </p>
+          </div>
+        </TalkStorySection>
+
+        <TalkStorySection
+          id={storySections[18].id}
+          chapter={storySections[18].chapter}
+          navLabel={storySections[18].navLabel}
+          title="AI security is not about protecting models. It is about protecting the entire computing stack."
+          intro="The endpoint of this talk is a shift from model-centric security to system-centric trust."
+          variant="center"
+        >
+          <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-8">
+            <p class="mx-auto max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              AI security is not about protecting models.
+              <span class="mt-2 block">It is about protecting the entire computing stack.</span>
+            </p>
+            <p class="mt-5 text-sm uppercase tracking-[0.18em] text-slate-400">{talkStory.closingLine}</p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <a href="/talks/" class="button-secondary">Back to talks</a>
+            <a href="/contact/" class="button-primary">Invite Jason to speak</a>
+          </div>
+        </TalkStorySection>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

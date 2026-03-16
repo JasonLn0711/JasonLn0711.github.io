@@ -1,0 +1,63 @@
+---
+interface StoryLink {
+  chapter: string;
+  id: string;
+  navLabel: string;
+}
+
+interface Props {
+  sections: ReadonlyArray<StoryLink>;
+  mode?: "desktop" | "mobile";
+}
+
+const { sections, mode = "desktop" } = Astro.props;
+const isDesktop = mode === "desktop";
+---
+
+{isDesktop ? (
+  <nav aria-label="Talk chapters" class="panel p-5">
+    <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Talk chapters</p>
+    <ol class="mt-4 space-y-2">
+      {sections.map((section) => (
+        <li>
+          <a
+            href={`#${section.id}`}
+            class="flex items-start gap-3 rounded-2xl border border-transparent px-3 py-3 text-slate-300 transition hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+          >
+            <span class="min-w-10 text-xs uppercase tracking-[0.2em] text-slate-500">{section.chapter}</span>
+            <span class="text-sm leading-6">{section.navLabel}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+) : (
+  <div class="panel p-4 xl:hidden">
+    <details class="group">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-2 py-1 text-sm font-semibold text-white">
+        <span>Jump to a chapter</span>
+        <span class="text-xs uppercase tracking-[0.2em] text-slate-500">{sections.length} sections</span>
+      </summary>
+
+      <ol class="mt-4 grid gap-2 sm:grid-cols-2">
+        {sections.map((section) => (
+          <li>
+            <a
+              href={`#${section.id}`}
+              class="flex items-start gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.03] px-3 py-3 text-slate-300 transition hover:border-white/[0.12] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+            >
+              <span class="min-w-10 text-xs uppercase tracking-[0.2em] text-slate-500">{section.chapter}</span>
+              <span class="text-sm leading-6">{section.navLabel}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  </div>
+)}
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

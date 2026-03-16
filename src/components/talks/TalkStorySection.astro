@@ -1,0 +1,68 @@
+---
+interface Props {
+  id: string;
+  chapter: string;
+  navLabel: string;
+  title: string;
+  eyebrow?: string;
+  intro?: string;
+  variant?: "split" | "stack" | "center";
+  panelClass?: string;
+  introClass?: string;
+  visualClass?: string;
+  bodyClass?: string;
+}
+
+const {
+  id,
+  chapter,
+  navLabel,
+  title,
+  eyebrow,
+  intro,
+  variant = "split",
+  panelClass = "",
+  introClass = "",
+  visualClass = "",
+  bodyClass = ""
+} = Astro.props;
+
+const headingId = `${id}-title`;
+const hasVisual = Astro.slots.has("visual");
+const hasBody = Astro.slots.has("default");
+const isCenter = variant === "center";
+const useSplit = hasVisual && variant === "split";
+---
+
+<section id={id} aria-labelledby={headingId} class="scroll-mt-28">
+  <div class:list={["panel p-7 sm:p-8 lg:p-10", panelClass]}>
+    <div
+      class:list={[
+        useSplit ? "grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start" : "",
+        isCenter ? "mx-auto max-w-4xl text-center" : ""
+      ]}
+    >
+      <div class:list={["space-y-4", !isCenter ? "max-w-3xl" : "", introClass]}>
+        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{chapter} · {navLabel}</p>
+        {eyebrow && <span class="eyebrow mb-0">{eyebrow}</span>}
+        <h2 id={headingId} class:list={["section-title", isCenter ? "mx-auto max-w-3xl" : ""]}>
+          {title}
+        </h2>
+        {intro && <p class:list={["section-copy mt-0", isCenter ? "mx-auto" : ""]}>{intro}</p>}
+        <slot name="intro" />
+      </div>
+
+      {hasVisual && (
+        <div class:list={[visualClass, !useSplit ? "mt-8" : ""]}>
+          <slot name="visual" />
+        </div>
+      )}
+    </div>
+
+    {hasBody && (
+      <div class:list={["mt-8", isCenter ? "mx-auto max-w-4xl" : "", bodyClass]}>
+        <slot />
+      </div>
+    )}
+  </div>
+</section>
