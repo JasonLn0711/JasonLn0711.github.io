@@ -587,7 +587,13 @@ function isActive(href: string) {
       document.body.classList.toggle("mobile-menu-open", isOpen);
     };
 
+    const isMenuOpen = () => toggle.getAttribute("aria-expanded") === "true";
+
     const closeMenu = ({ returnFocus = true } = {}) => {
+      if (!isMenuOpen()) {
+        return;
+      }
+
       toggle.setAttribute("aria-expanded", "false");
       menuShell.dataset.open = "false";
       menuShell.setAttribute("aria-hidden", "true");
@@ -625,8 +631,7 @@ function isActive(href: string) {
     }
 
     toggle.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      if (isOpen) {
+      if (isMenuOpen()) {
         closeMenu();
         return;
       }
@@ -644,11 +649,11 @@ function isActive(href: string) {
     );
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && isMenuOpen()) {
         closeMenu();
       }
 
-      if (event.key === "Tab" && toggle.getAttribute("aria-expanded") === "true") {
+      if (event.key === "Tab" && isMenuOpen()) {
         const focusableElements = getFocusableElements();
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
