@@ -95,7 +95,7 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
       <main id="content" tabindex="-1" class="flex-1 focus:outline-none">
         <slot />
       </main>
-      <Footer locale={locale} />
+      <Footer locale={locale} pathname={currentPathname} />
     </div>
     <script is:inline define:vars={{ officialSessionUrl, speakerProfileUrl, talkStoryUrl }}>
       const normalizeHref = (href) => {

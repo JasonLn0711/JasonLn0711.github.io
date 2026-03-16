@@ -1,10 +1,8 @@
 ---
 import { normalizePathname } from "../../lib/site";
-import LanguageSwitcher from "./LanguageSwitcher.astro";
 import {
   getLocalizedProfile,
   getLocalizedSite,
-  getPageCopy,
   localizePath,
   type SiteLocale
 } from "../../lib/i18n";
@@ -18,10 +16,7 @@ const { locale, pathname } = Astro.props;
 const currentPath = normalizePathname(pathname);
 const localizedSite = getLocalizedSite(locale);
 const localizedProfile = getLocalizedProfile(locale);
-const copy = getPageCopy(locale);
-const homePath = localizePath("/", locale);
-const isHomePage = currentPath === homePath;
-const primaryNav = localizedSite.nav.filter((item) => item.href !== "/contact/");
+const primaryNav = localizedSite.nav;
 const mobileNavItems = localizedSite.nav;
 
 function isActive(href: string) {
@@ -44,7 +39,7 @@ function isActive(href: string) {
         </a>
       </div>
 
-      <nav class={isHomePage ? "hidden" : "hidden items-center gap-1 md:flex"} aria-label="Primary">
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
         {primaryNav.map((item) => (
           <a
             href={localizePath(item.href, locale)}
@@ -55,6 +50,7 @@ function isActive(href: string) {
                 : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
             ]}
             aria-current={isActive(item.href) ? "page" : undefined}
+            data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
           >
             {item.label}
           </a>
@@ -62,10 +58,6 @@ function isActive(href: string) {
       </nav>
 
       <div class="hidden items-center gap-3 xl:flex">
-        <LanguageSwitcher locale={locale} pathname={pathname} />
-      </div>
-
-      <div class={isHomePage ? "hidden" : "hidden items-center gap-3 xl:flex"}>
         <a
           href={localizedProfile.github}
           class="profile-icon-link"
@@ -90,21 +82,6 @@ function isActive(href: string) {
             <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9.75h3.96V21H3V9.75ZM9.46 9.75h3.8v1.54h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.04V21h-3.96v-5.06c0-1.2-.02-2.76-1.68-2.76-1.69 0-1.95 1.31-1.95 2.67V21H9.46V9.75Z" />
           </svg>
         </a>
-      </div>
-
-      <div class={isHomePage ? "hidden" : "hidden items-center gap-3 md:flex"}>
-        <a
-          href={localizePath("/contact/", locale)}
-          class:list={[isActive("/contact/") ? "button-primary" : "button-secondary"]}
-          data-plausible-event="nav_contact_click"
-          aria-current={isActive("/contact/") ? "page" : undefined}
-        >
-          {copy.common.contact}
-        </a>
-      </div>
-
-      <div class="md:hidden">
-        <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} compact={true} />
       </div>
     </div>
 

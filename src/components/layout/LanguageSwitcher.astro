@@ -11,16 +11,18 @@ interface Props {
   pathname: string;
   mobile?: boolean;
   compact?: boolean;
+  alwaysVisible?: boolean;
 }
 
-const { locale, pathname, mobile = false, compact = false } = Astro.props;
+const { locale, pathname, mobile = false, compact = false, alwaysVisible = false } = Astro.props;
 const copy = getPageCopy(locale);
 const options = getLanguageOptions(pathname);
 const currentPath = normalizePathnameFromSite(pathname);
+const showLabel = mobile ? !compact : alwaysVisible;
 ---
 
-<div class:list={[mobile && !compact ? "space-y-3" : "", mobile ? "" : "hidden lg:flex"]}>
-  {mobile && !compact ? (
+<div class:list={[showLabel ? "space-y-3" : "", mobile || alwaysVisible ? "" : "hidden lg:flex"]}>
+  {showLabel ? (
     <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.common.language}</p>
   ) : (
     <span class="sr-only">{copy.common.language}</span>
@@ -28,7 +30,7 @@ const currentPath = normalizePathnameFromSite(pathname);
   <div
     class:list={[
       "inline-flex items-center rounded-full border border-white/[0.1] bg-white/[0.03] p-1",
-      mobile ? (compact ? "flex-nowrap gap-1" : "flex-wrap gap-1.5") : "flex-nowrap gap-1"
+      mobile || alwaysVisible ? (compact ? "flex-nowrap gap-1" : "flex-wrap gap-1.5") : "flex-nowrap gap-1"
     ]}
     aria-label={copy.common.languageSwitcherAria}
     role="group"
@@ -41,7 +43,7 @@ const currentPath = normalizePathnameFromSite(pathname);
           href={option.href}
           class:list={[
             "inline-flex min-h-9 items-center justify-center rounded-full border px-3.5 text-sm font-medium whitespace-nowrap transition",
-            mobile ? (compact ? "min-h-8 min-w-0 px-2.5 text-xs" : "min-w-[4.5rem]") : "min-w-[3.75rem]",
+            mobile || alwaysVisible ? (compact ? "min-h-8 min-w-0 px-2.5 text-xs" : "min-w-[4.5rem]") : "min-w-[3.75rem]",
             isCurrent
               ? "border-white/[0.14] bg-white/[0.1] text-white"
               : "border-transparent text-slate-400 hover:bg-white/[0.05] hover:text-white"

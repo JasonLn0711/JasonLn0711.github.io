@@ -1,10 +1,12 @@
 ---
 import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { getLocalizedProfile, getLocalizedSite, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
   locale: SiteLocale;
+  pathname: string;
 }
 
 type FooterMeta = {
@@ -12,7 +14,7 @@ type FooterMeta = {
   commitDate: string | null;
 };
 
-const { locale } = Astro.props;
+const { locale, pathname } = Astro.props;
 const profile = getLocalizedProfile(locale);
 const localizedSite = getLocalizedSite(locale);
 const copy = getPageCopy(locale);
@@ -156,12 +158,16 @@ const footerMetaItems = [
         </section>
       </div>
 
-      <div class="mt-10 flex flex-col gap-4 border-t border-white/[0.08] pt-5 sm:flex-row sm:items-end sm:justify-between">
-        <div class="space-y-1">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.footer.copyrightLabel}</p>
-          <p class="text-sm text-slate-300">
-            © {year} {profile.name}. {copy.footer.rightsReserved}
-          </p>
+      <div class="mt-10 grid gap-6 border-t border-white/[0.08] pt-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div class="space-y-5">
+          <div class="space-y-1">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.footer.copyrightLabel}</p>
+            <p class="text-sm text-slate-300">
+              © {year} {profile.name}. {copy.footer.rightsReserved}
+            </p>
+          </div>
+
+          <LanguageSwitcher locale={locale} pathname={pathname} alwaysVisible={true} />
         </div>
 
         <div class="flex flex-wrap gap-x-8 gap-y-3">
