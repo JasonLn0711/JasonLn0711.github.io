@@ -1,4 +1,5 @@
 ---
+import { execSync } from "node:child_process";
 import {
   getLocalizedProfile,
   getLocalizedSite,
@@ -17,6 +18,39 @@ const profile = getLocalizedProfile(locale);
 const localizedSite = getLocalizedSite(locale);
 const copy = getPageCopy(locale);
 const year = new Date().getFullYear();
+
+function readCommand(command: string) {
+  try {
+    return execSync(command, { cwd: Astro.root.pathname, stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
+  } catch {
+    return null;
+  }
+}
+
+function normalizeRepoUrl(remote: string | null) {
+  if (!remote) {
+    return null;
+  }
+
+  if (remote.startsWith("git@github.com:")) {
+    return `https://github.com/${remote.slice("git@github.com:".length).replace(/\.git$/, "")}`;
+  }
+
+  return remote.replace(/\.git$/, "");
+}
+
+const repoUrl = normalizeRepoUrl(readCommand("git config --get remote.origin.url"));
+const repoName = repoUrl ? repoUrl.split("/").at(-1) : null;
+const branchName = readCommand("git rev-parse --abbrev-ref HEAD");
+const commitHash = readCommand("git rev-parse --short HEAD");
+const commitDate = readCommand("git log -1 --format=%cs");
+const packageVersion = process.env.npm_package_version ?? null;
+const branchUrl = repoUrl && branchName ? `${repoUrl}/tree/${branchName}` : repoUrl;
+const commitUrl = repoUrl && commitHash ? `${repoUrl}/commit/${commitHash}` : repoUrl;
+const localeCode = locale === "zh-tw" ? "zh-TW" : locale === "ja" ? "ja-JP" : "en-US";
+const lastUpdated = commitDate
+  ? new Intl.DateTimeFormat(localeCode, { year: "numeric", month: "short", day: "numeric" }).format(new Date(`${commitDate}T00:00:00Z`))
+  : null;
 ---
 
 <footer class="border-t border-white/[0.08] py-10">
@@ -76,6 +110,51 @@ const year = new Date().getFullYear();
             <a href="/rss.xml" class="transition hover:text-white">
               RSS
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="sm:col-span-2">
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.footer.versionControl}</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(0,1.25fr)_repeat(4,minmax(0,0.75fr))]">
+          <a
+            href={repoUrl ?? profile.github}
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+          >
+            <span class="block text-sm font-semibold text-white">{copy.footer.repositoryLabel}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{repoName ?? "GitHub"}</span>
+          </a>
+
+          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4">
+            <span class="block text-sm font-semibold text-white">{copy.footer.versionLabel}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{packageVersion ? `v${packageVersion}` : "local"}</span>
+          </div>
+
+          <a
+            href={branchUrl ?? repoUrl ?? profile.github}
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+          >
+            <span class="block text-sm font-semibold text-white">{copy.footer.branchLabel}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{branchName ?? "main"}</span>
+          </a>
+
+          <a
+            href={commitUrl ?? repoUrl ?? profile.github}
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
+          >
+            <span class="block text-sm font-semibold text-white">{copy.footer.commitLabel}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{commitHash ?? "local"}</span>
+          </a>
+
+          <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4">
+            <span class="block text-sm font-semibold text-white">{copy.common.lastUpdated}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{lastUpdated ?? "Pending"}</span>
           </div>
         </div>
       </section>

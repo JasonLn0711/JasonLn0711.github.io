@@ -20,6 +20,10 @@ const localizedSite = getLocalizedSite(locale);
 const localizedProfile = getLocalizedProfile(locale);
 const copy = getPageCopy(locale);
 const primaryNav = localizedSite.nav.filter((item) => item.href !== "/contact/");
+const mobileNavItems = localizedSite.nav.map((item, index) => ({
+  ...item,
+  index: String(index + 1).padStart(2, "0")
+}));
 
 function isActive(href: string) {
   const localizedHref = localizePath(href, locale);
@@ -82,54 +86,447 @@ function isActive(href: string) {
 
       <button
         type="button"
-        class="button-secondary md:hidden"
+        class="mobile-menu-toggle md:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
+        aria-haspopup="dialog"
         data-mobile-nav-toggle
       >
-        {copy.common.menu}
+        <span class="mobile-menu-toggle-label">{copy.common.menu}</span>
+        <span class="mobile-menu-toggle-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
       </button>
     </div>
 
-    <div id="mobile-menu" class="panel mt-4 p-4 md:hidden" hidden data-mobile-menu>
-      <nav class="space-y-2" aria-label="Mobile primary">
-        {localizedSite.nav.map((item) => (
-          <a
-            href={localizePath(item.href, locale)}
-            class:list={[
-              "block rounded-3xl px-4 py-4 transition",
-              isActive(item.href)
-                ? "border border-white/10 bg-white/[0.08] text-white"
-                : "border border-transparent text-slate-200 hover:border-white/[0.08] hover:bg-white/[0.04] hover:text-white"
-            ]}
-            aria-current={isActive(item.href) ? "page" : undefined}
-            data-mobile-nav-link
-            data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
-          >
-            <span class="block text-sm font-semibold">{item.label}</span>
-            <span class="mt-1 block text-sm leading-6 text-slate-400">{item.description}</span>
-          </a>
-        ))}
-      </nav>
+    <div class="mobile-menu-shell md:hidden" data-mobile-menu-shell data-open="false" aria-hidden="true">
+      <button
+        type="button"
+        class="mobile-menu-backdrop"
+        tabindex="-1"
+        aria-label={copy.common.close}
+        data-mobile-menu-backdrop
+      ></button>
 
-      <div class="mt-4 border-t border-white/[0.08] pt-4">
-        <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} />
-      </div>
+      <div
+        id="mobile-menu"
+        class="mobile-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label={copy.common.menu}
+        tabindex="-1"
+        data-mobile-menu
+      >
+        <div class="mobile-menu-panel-inner">
+          <div class="mobile-menu-header">
+            <div>
+              <p class="mobile-menu-kicker">{copy.common.explore}</p>
+              <p class="mobile-menu-title">{copy.common.menu}</p>
+            </div>
 
-      <div class="mt-4 grid gap-2 border-t border-white/[0.08] pt-4 text-sm text-slate-300">
-        <a href={`mailto:${localizedProfile.email}`} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" data-mobile-nav-link>
-          {copy.common.emailJason}
-        </a>
-        <a href={localizedProfile.github} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
-          GitHub
-        </a>
-        <a href={localizedProfile.linkedin} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
-          LinkedIn
-        </a>
+            <button
+              type="button"
+              class="mobile-menu-close"
+              aria-label={copy.common.close}
+              data-mobile-nav-close
+            >
+              {copy.common.close}
+            </button>
+          </div>
+
+          <nav class="mobile-menu-list" aria-label="Mobile primary">
+            {mobileNavItems.map((item) => (
+              <a
+                href={localizePath(item.href, locale)}
+                class:list={[
+                  "mobile-menu-link",
+                  isActive(item.href) ? "mobile-menu-link-active" : undefined
+                ]}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                data-mobile-nav-link
+                data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
+              >
+                <span class="mobile-menu-link-index">{item.index}</span>
+                <span class="mobile-menu-link-text">{item.label}</span>
+              </a>
+            ))}
+          </nav>
+
+          <div class="mobile-menu-group">
+            <p class="mobile-menu-group-label">{copy.common.language}</p>
+            <div class="mobile-menu-language rounded-[1.5rem] border border-white/10 bg-white/[0.05] p-4">
+              <LanguageSwitcher locale={locale} pathname={pathname} mobile={true} />
+            </div>
+          </div>
+
+          <div class="mobile-menu-group">
+            <p class="mobile-menu-group-label">{copy.common.connect}</p>
+            <div class="mobile-menu-actions">
+              <a
+                href={`mailto:${localizedProfile.email}`}
+                class="mobile-menu-action"
+                data-mobile-nav-link
+              >
+                {copy.common.email}
+              </a>
+              <a
+                href={localizedProfile.github}
+                class="mobile-menu-action"
+                target="_blank"
+                rel="noreferrer"
+                data-mobile-nav-link
+              >
+                GitHub
+              </a>
+              <a
+                href={localizedProfile.linkedin}
+                class="mobile-menu-action"
+                target="_blank"
+                rel="noreferrer"
+                data-mobile-nav-link
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </header>
+
+<style>
+  [data-mobile-nav-toggle] {
+    position: relative;
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07) 42%, rgba(15, 23, 42, 0.38)),
+      rgba(7, 13, 28, 0.64);
+    padding: 0.7rem 0.8rem 0.7rem 1rem;
+    color: white;
+    box-shadow:
+      0 10px 32px rgba(2, 6, 23, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(18px) saturate(170%);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  [data-mobile-nav-toggle]:hover {
+    border-color: rgba(255, 255, 255, 0.24);
+    box-shadow:
+      0 14px 36px rgba(2, 6, 23, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+
+  [data-mobile-nav-toggle]:active {
+    transform: scale(0.985);
+  }
+
+  .mobile-menu-toggle-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .mobile-menu-toggle-icon {
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.24rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .mobile-menu-toggle-icon span {
+    display: block;
+    height: 1.5px;
+    width: 0.86rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  [data-mobile-nav-toggle][aria-expanded="true"] .mobile-menu-toggle-icon span:first-child {
+    transform: translateY(2.9px) rotate(45deg);
+  }
+
+  [data-mobile-nav-toggle][aria-expanded="true"] .mobile-menu-toggle-icon span:last-child {
+    transform: translateY(-2.9px) rotate(-45deg);
+  }
+
+  .mobile-menu-shell {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: calc(env(safe-area-inset-top, 0px) + 5.4rem) 1rem calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 220ms ease, visibility 220ms ease;
+  }
+
+  .mobile-menu-shell[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background:
+      radial-gradient(circle at 18% 16%, rgba(162, 216, 255, 0.2), transparent 24%),
+      radial-gradient(circle at 82% 0%, rgba(255, 255, 255, 0.14), transparent 18%),
+      linear-gradient(180deg, rgba(6, 10, 20, 0.2), rgba(6, 10, 20, 0.58));
+    opacity: 0;
+    backdrop-filter: blur(18px) saturate(135%);
+    transition: opacity 220ms ease;
+  }
+
+  .mobile-menu-shell[data-open="true"] .mobile-menu-backdrop {
+    opacity: 1;
+  }
+
+  .mobile-menu-panel {
+    position: relative;
+    width: min(100%, 32rem);
+    max-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 6.4rem);
+    overflow: auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 2rem;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12) 28%, rgba(148, 163, 184, 0.08) 54%, rgba(15, 23, 42, 0.48)),
+      rgba(8, 15, 32, 0.58);
+    box-shadow:
+      0 28px 72px rgba(2, 6, 23, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px) saturate(185%);
+    transform: translateY(-0.8rem) scale(0.98);
+    opacity: 0;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+
+  .mobile-menu-shell[data-open="true"] .mobile-menu-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .mobile-menu-panel::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(2rem - 1px);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.02) 56%, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+  }
+
+  .mobile-menu-panel::after {
+    content: "";
+    position: absolute;
+    left: -14%;
+    top: -6%;
+    height: 13rem;
+    width: 70%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(161, 214, 255, 0.26), transparent 72%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  .mobile-menu-panel-inner {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.15rem 0.15rem 1rem;
+  }
+
+  .mobile-menu-kicker {
+    margin: 0;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.64);
+  }
+
+  .mobile-menu-title {
+    margin: 0.35rem 0 0;
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .mobile-menu-close {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.7rem 1rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px) saturate(150%);
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .mobile-menu-close:hover {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .mobile-menu-close:active {
+    transform: scale(0.985);
+  }
+
+  .mobile-menu-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .mobile-menu-link {
+    display: flex;
+    min-height: 3.9rem;
+    align-items: center;
+    gap: 0.95rem;
+    border-radius: 1.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 42%, rgba(15, 23, 42, 0.18)),
+      rgba(255, 255, 255, 0.03);
+    padding: 0.95rem 1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .mobile-menu-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08) 42%, rgba(15, 23, 42, 0.16)),
+      rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-menu-link-active {
+    border-color: rgba(143, 184, 255, 0.42);
+    background:
+      linear-gradient(135deg, rgba(143, 184, 255, 0.24), rgba(255, 255, 255, 0.08) 38%, rgba(15, 23, 42, 0.18)),
+      rgba(99, 164, 255, 0.12);
+    box-shadow:
+      0 16px 34px rgba(18, 53, 102, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+
+  .mobile-menu-link-index {
+    min-width: 2.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(191, 219, 254, 0.86);
+  }
+
+  .mobile-menu-link-text {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: white;
+  }
+
+  .mobile-menu-group {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+  }
+
+  .mobile-menu-group-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.62);
+  }
+
+  .mobile-menu-actions {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .mobile-menu-action {
+    display: inline-flex;
+    min-height: 3.1rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(241, 245, 249, 0.94);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .mobile-menu-action:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  :global(html.mobile-menu-open),
+  :global(body.mobile-menu-open) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 360px) {
+    .mobile-menu-shell {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+
+    .mobile-menu-panel-inner {
+      padding: 0.85rem;
+    }
+  }
+</style>
 
 <noscript>
   <style>
@@ -137,8 +534,24 @@ function isActive(href: string) {
       display: none !important;
     }
 
-    [data-mobile-menu] {
+    [data-mobile-menu-shell] {
+      position: static !important;
+      inset: auto !important;
       display: block !important;
+      padding: 1rem 0 0 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+
+    [data-mobile-menu-backdrop] {
+      display: none !important;
+    }
+
+    [data-mobile-menu] {
+      max-height: none !important;
+      transform: none !important;
+      opacity: 1 !important;
     }
   </style>
 </noscript>
@@ -146,19 +559,70 @@ function isActive(href: string) {
 <script is:inline>
   const navRoot = document.querySelector("[data-nav-root]");
   const toggle = navRoot?.querySelector("[data-mobile-nav-toggle]");
+  const menuShell = navRoot?.querySelector("[data-mobile-menu-shell]");
   const menu = navRoot?.querySelector("[data-mobile-menu]");
+  const closeButton = navRoot?.querySelector("[data-mobile-nav-close]");
+  const backdrop = navRoot?.querySelector("[data-mobile-menu-backdrop]");
   const menuLinks = navRoot ? Array.from(navRoot.querySelectorAll("[data-mobile-nav-link]")) : [];
 
-  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement && navRoot instanceof HTMLElement) {
-    const closeMenu = () => {
+  if (
+    toggle instanceof HTMLButtonElement &&
+    menuShell instanceof HTMLElement &&
+    menu instanceof HTMLElement &&
+    navRoot instanceof HTMLElement
+  ) {
+    let previousFocus = toggle;
+
+    const focusableSelector = [
+      "a[href]",
+      "button:not([disabled])",
+      "[tabindex]:not([tabindex='-1'])"
+    ].join(",");
+
+    const getFocusableElements = () =>
+      Array.from(menuShell.querySelectorAll(focusableSelector)).filter((element) => element instanceof HTMLElement && !element.hasAttribute("disabled"));
+
+    const setScrollLock = (isOpen) => {
+      document.documentElement.classList.toggle("mobile-menu-open", isOpen);
+      document.body.classList.toggle("mobile-menu-open", isOpen);
+    };
+
+    const closeMenu = ({ returnFocus = true } = {}) => {
       toggle.setAttribute("aria-expanded", "false");
-      menu.hidden = true;
+      menuShell.dataset.open = "false";
+      menuShell.setAttribute("aria-hidden", "true");
+      if ("inert" in menuShell) {
+        menuShell.inert = true;
+      }
+      setScrollLock(false);
+
+      if (returnFocus && previousFocus instanceof HTMLElement) {
+        previousFocus.focus();
+      }
     };
 
     const openMenu = () => {
+      if (document.activeElement instanceof HTMLElement) {
+        previousFocus = document.activeElement;
+      }
+
       toggle.setAttribute("aria-expanded", "true");
-      menu.hidden = false;
+      menuShell.dataset.open = "true";
+      menuShell.setAttribute("aria-hidden", "false");
+      if ("inert" in menuShell) {
+        menuShell.inert = false;
+      }
+      setScrollLock(true);
+
+      const focusTarget = closeButton instanceof HTMLButtonElement ? closeButton : getFocusableElements()[0];
+      if (focusTarget instanceof HTMLElement) {
+        requestAnimationFrame(() => focusTarget.focus());
+      }
     };
+
+    if ("inert" in menuShell) {
+      menuShell.inert = true;
+    }
 
     toggle.addEventListener("click", () => {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
@@ -170,24 +634,47 @@ function isActive(href: string) {
       openMenu();
     });
 
-    menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
+    closeButton?.addEventListener("click", () => closeMenu());
+    backdrop?.addEventListener("click", () => closeMenu());
+
+    menuLinks.forEach((link) =>
+      link.addEventListener("click", () => {
+        closeMenu({ returnFocus: false });
+      })
+    );
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
       }
-    });
 
-    document.addEventListener("click", (event) => {
-      if (!menu.hidden && event.target instanceof Node && !navRoot.contains(event.target)) {
-        closeMenu();
+      if (event.key === "Tab" && toggle.getAttribute("aria-expanded") === "true") {
+        const focusableElements = getFocusableElements();
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!(firstElement instanceof HTMLElement) || !(lastElement instanceof HTMLElement)) {
+          return;
+        }
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
       }
     });
 
     window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
       if (event.matches) {
-        closeMenu();
+        closeMenu({ returnFocus: false });
       }
+    });
+
+    window.addEventListener("pagehide", () => {
+      closeMenu({ returnFocus: false });
     });
   }
 </script>

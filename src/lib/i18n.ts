@@ -827,6 +827,7 @@ const pageCopy = {
       about: "About",
       links: "Links",
       resume: "Resume",
+      close: "Close",
       menu: "Menu",
       skipToContent: "Skip to content",
       emailJason: "Email Jason",
@@ -884,7 +885,12 @@ const pageCopy = {
       aboutCta: "About",
       researchLab: "Research lab",
       githubDescription: "Code, prototypes, and implementation work.",
-      linkedInDescription: "Professional profile and external context."
+      linkedInDescription: "Professional profile and external context.",
+      versionControl: "Version Control",
+      repositoryLabel: "Repository",
+      versionLabel: "Version",
+      branchLabel: "Branch",
+      commitLabel: "Commit"
     },
     home: {
       heroPills: ["Doctoral Researcher", "Speaker", "Trustworthy AI"],
@@ -1096,6 +1102,7 @@ const pageCopy = {
       about: "關於",
       links: "連結",
       resume: "履歷",
+      close: "關閉",
       menu: "選單",
       skipToContent: "跳到內容",
       emailJason: "寄信給 Jason",
@@ -1153,7 +1160,12 @@ const pageCopy = {
       aboutCta: "關於",
       researchLab: "研究室",
       githubDescription: "程式碼、原型與實作工作。",
-      linkedInDescription: "專業背景與外部脈絡。"
+      linkedInDescription: "專業背景與外部脈絡。",
+      versionControl: "版本控管",
+      repositoryLabel: "原始碼",
+      versionLabel: "版本",
+      branchLabel: "分支",
+      commitLabel: "提交"
     },
     home: {
       heroPills: ["博士生", "講者", "值得信賴的 AI"],
@@ -1365,6 +1377,7 @@ const pageCopy = {
       about: "プロフィール",
       links: "リンク",
       resume: "経歴",
+      close: "閉じる",
       menu: "メニュー",
       skipToContent: "本文へ移動",
       emailJason: "Jason にメール",
@@ -1422,7 +1435,12 @@ const pageCopy = {
       aboutCta: "プロフィール",
       researchLab: "研究室",
       githubDescription: "コード、プロトタイプ、実装の記録。",
-      linkedInDescription: "職務プロフィールと外部文脈。"
+      linkedInDescription: "職務プロフィールと外部文脈。",
+      versionControl: "バージョン管理",
+      repositoryLabel: "リポジトリ",
+      versionLabel: "バージョン",
+      branchLabel: "ブランチ",
+      commitLabel: "コミット"
     },
     home: {
       heroPills: ["博士課程", "登壇", "信頼できる AI"],
