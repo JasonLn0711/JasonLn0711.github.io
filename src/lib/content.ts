@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { defaultLocale, getLocaleMeta, translateLabel, type SiteLocale } from "./i18n";
 
 export function sortBlogEntries(entries: CollectionEntry<"blog">[]) {
   return [...entries]
@@ -20,15 +21,21 @@ export function sortProjects(entries: CollectionEntry<"projects">[]) {
   });
 }
 
-export function formatDate(date: Date) {
-  return new Intl.DateTimeFormat("en-US", {
+export function formatDate(date: Date, locale: SiteLocale = defaultLocale) {
+  return new Intl.DateTimeFormat(getLocaleMeta(locale).intl, {
     year: "numeric",
     month: "short",
     day: "numeric"
   }).format(date);
 }
 
-export function formatLabel(value: string) {
+export function formatLabel(value: string, locale: SiteLocale = defaultLocale) {
+  const translated = translateLabel(value, locale);
+
+  if (translated !== value) {
+    return translated;
+  }
+
   return value
     .split("-")
     .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))

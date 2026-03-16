@@ -2,9 +2,15 @@
 import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Head from "../components/seo/Head.astro";
-import { profile } from "../data/profile";
-import { speaking } from "../data/speaking";
-import { absoluteUrl } from "../lib/site";
+import { absoluteUrl, normalizePathname } from "../lib/site";
+import {
+  getLocaleFromPathname,
+  getLocaleMeta,
+  getLocalizedProfile,
+  getLocalizedSpeaking,
+  getPageCopy,
+  localizePath
+} from "../lib/i18n";
 import "../styles/global.css";
 
 interface Props {
@@ -23,7 +29,7 @@ const {
   title,
   description,
   image,
-  pathname = "/",
+  pathname = Astro.url.pathname,
   type = "website",
   schema,
   noindex = false,
@@ -31,13 +37,19 @@ const {
   modifiedTime
 } = Astro.props;
 
-const officialSessionUrl = speaking.featuredEngagement.url;
-const speakerProfileUrl = profile.externalProfiles.cybersecSpeaker.url;
-const talkStoryUrl = absoluteUrl(speaking.featuredEngagement.storyHref);
+const currentPathname = normalizePathname(pathname);
+const locale = getLocaleFromPathname(currentPathname);
+const localeInfo = getLocaleMeta(locale);
+const localizedProfile = getLocalizedProfile(locale);
+const localizedSpeaking = getLocalizedSpeaking(locale);
+const copy = getPageCopy(locale);
+const officialSessionUrl = localizedSpeaking.featuredEngagement.url;
+const speakerProfileUrl = localizedProfile.externalProfiles.cybersecSpeaker.url;
+const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngagement.storyHref, locale));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={localeInfo.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,16 +64,17 @@ const talkStoryUrl = absoluteUrl(speaking.featuredEngagement.storyHref);
       noindex={noindex}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}
+      locale={locale}
     />
   </head>
   <body>
-    <a href="#content" class="skip-link">Skip to content</a>
+    <a href="#content" class="skip-link">{copy.common.skipToContent}</a>
     <div class="flex min-h-screen flex-col">
-      <Navbar />
+      <Navbar locale={locale} pathname={currentPathname} />
       <main id="content" tabindex="-1" class="flex-1 focus:outline-none">
         <slot />
       </main>
-      <Footer />
+      <Footer locale={locale} pathname={currentPathname} />
     </div>
     <script is:inline define:vars={{ officialSessionUrl, speakerProfileUrl, talkStoryUrl }}>
       const normalizeHref = (href) => {

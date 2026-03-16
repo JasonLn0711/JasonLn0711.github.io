@@ -1,19 +1,23 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { formatLabel } from "../../lib/content";
+import { defaultLocale, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
   project: CollectionEntry<"projects">;
   filters?: string[];
   eventName?: string;
+  locale?: SiteLocale;
 }
 
-const { project, filters = [project.data.category], eventName } = Astro.props;
+const { project, filters = [project.data.category], eventName, locale = defaultLocale } = Astro.props;
 const tags = Array.from(new Set(filters));
+const copy = getPageCopy(locale);
 ---
 
 <article data-project-card data-category={tags.join(",")} class="panel overflow-hidden">
   <a
-    href={`/projects/${project.slug}/`}
+    href={localizePath(`/projects/${project.slug}/`, locale)}
     class="group flex h-full flex-col focus-visible:outline-none"
     data-plausible-event={eventName}
     data-plausible-project={eventName ? project.data.title : undefined}
@@ -27,7 +31,7 @@ const tags = Array.from(new Set(filters));
     />
     <div class="flex flex-1 flex-col gap-5 p-6 sm:p-7">
       <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
-        <span>{project.data.category}</span>
+        <span>{formatLabel(project.data.category, locale)}</span>
         <span class="h-1 w-1 rounded-full bg-white/20"></span>
         <span>{project.data.year}</span>
         <span class="h-1 w-1 rounded-full bg-white/20"></span>
@@ -45,7 +49,7 @@ const tags = Array.from(new Set(filters));
       <div class="mt-auto flex items-center justify-between gap-3">
         <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{project.data.role}</p>
         <span class="action-link">
-          Open case study
+          {copy.common.openCaseStudy}
           <span aria-hidden="true">→</span>
         </span>
       </div>

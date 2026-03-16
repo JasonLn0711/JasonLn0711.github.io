@@ -1,7 +1,21 @@
 ---
-import { profile } from "../../data/profile";
-import { site } from "../../lib/site";
+import {
+  getLocalizedProfile,
+  getLocalizedSite,
+  getPageCopy,
+  localizePath,
+  type SiteLocale
+} from "../../lib/i18n";
 
+interface Props {
+  locale: SiteLocale;
+  pathname: string;
+}
+
+const { locale } = Astro.props;
+const profile = getLocalizedProfile(locale);
+const localizedSite = getLocalizedSite(locale);
+const copy = getPageCopy(locale);
 const year = new Date().getFullYear();
 ---
 
@@ -11,13 +25,13 @@ const year = new Date().getFullYear();
       <div class="space-y-3">
         <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{profile.name}</p>
         <p class="max-w-2xl text-sm leading-7 text-slate-400">
-          A calm, research-oriented portfolio about trustworthy AI, speech intelligence, cybersecurity, and real-world deployment in settings where evidence and reliability matter.
+          {copy.footer.description}
         </p>
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <a href="/contact/" class="button-primary">Contact Jason</a>
-        <a href="/about/" class="button-secondary">About</a>
+        <a href={localizePath("/contact/", locale)} class="button-primary">{copy.footer.contactCta}</a>
+        <a href={localizePath("/about/", locale)} class="button-secondary">{copy.footer.aboutCta}</a>
       </div>
 
       <p class="text-xs text-slate-500">© {year} {profile.name}</p>
@@ -25,10 +39,10 @@ const year = new Date().getFullYear();
 
     <div class="grid gap-8 sm:grid-cols-2">
       <section>
-        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Explore</h2>
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.explore}</h2>
         <nav class="mt-4 space-y-3" aria-label="Footer">
-          {site.nav.map((item) => (
-            <a href={item.href} class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          {localizedSite.nav.map((item) => (
+            <a href={localizePath(item.href, locale)} class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
               <span class="block text-sm font-semibold text-white">{item.label}</span>
               <span class="mt-1 block text-sm leading-6 text-slate-400">{item.description}</span>
             </a>
@@ -37,27 +51,27 @@ const year = new Date().getFullYear();
       </section>
 
       <section>
-        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Connect</h2>
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.connect}</h2>
         <div class="mt-4 space-y-3 text-sm text-slate-400">
           <a href={`mailto:${profile.email}`} class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
-            <span class="block text-sm font-semibold text-white">Email</span>
+            <span class="block text-sm font-semibold text-white">{copy.common.email}</span>
             <span class="mt-1 block">{profile.email}</span>
           </a>
           <a href={profile.lab.url} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
-            <span class="block text-sm font-semibold text-white">Research lab</span>
+            <span class="block text-sm font-semibold text-white">{copy.footer.researchLab}</span>
             <span class="mt-1 block">{profile.lab.name}</span>
           </a>
           <a href={profile.github} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
             <span class="block text-sm font-semibold text-white">GitHub</span>
-            <span class="mt-1 block">Code, prototypes, and implementation work.</span>
+            <span class="mt-1 block">{copy.footer.githubDescription}</span>
           </a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
             <span class="block text-sm font-semibold text-white">LinkedIn</span>
-            <span class="mt-1 block">Professional profile and external context.</span>
+            <span class="mt-1 block">{copy.footer.linkedInDescription}</span>
           </a>
           <div class="flex flex-wrap gap-4 pl-1 text-xs uppercase tracking-[0.18em] text-slate-500">
-            <a href="/links/" class="transition hover:text-white">
-              Links
+            <a href={localizePath("/links/", locale)} class="transition hover:text-white">
+              {copy.common.links}
             </a>
             <a href="/rss.xml" class="transition hover:text-white">
               RSS

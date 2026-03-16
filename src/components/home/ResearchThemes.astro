@@ -1,6 +1,13 @@
 ---
-import { home } from "../../data/home";
-import { research } from "../../data/research";
+import { defaultLocale, getLocalizedHome, getLocalizedResearch, localizePath, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
+const research = getLocalizedResearch(locale);
 ---
 
 <section class="section">
@@ -13,7 +20,7 @@ import { research } from "../../data/research";
         {home.research.description}
       </p>
       </div>
-      <a href="/research/" class="button-secondary">{home.research.browseLabel}</a>
+      <a href={localizePath("/research/", locale)} class="button-secondary">{home.research.browseLabel}</a>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

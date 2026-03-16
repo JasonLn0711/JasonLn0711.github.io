@@ -1,47 +1,57 @@
 ---
-import { profile } from "../data/profile";
-import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { pageTitle } from "../lib/site";
+import {
+  getLocaleFromPathname,
+  getLocalizedPageTitle,
+  getLocalizedProfile,
+  getLocalizedSpeaking,
+  getPageCopy,
+  localizePath
+} from "../lib/i18n";
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const profile = getLocalizedProfile(locale);
+const speaking = getLocalizedSpeaking(locale);
+const copy = getPageCopy(locale);
 ---
 
 <BaseLayout
-  title={pageTitle("About")}
-  description="This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI systems intended for serious real-world use."
+  title={getLocalizedPageTitle(locale, copy.common.about)}
+  description={copy.aboutPage.description}
   image={profile.avatar}
-  pathname="/about/"
+  pathname={Astro.url.pathname}
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-14">
       <div class="max-w-3xl space-y-5">
-        <span class="eyebrow">About</span>
+        <span class="eyebrow">{copy.common.about}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Researcher, systems builder, and security-minded thinker.
+          {copy.aboutPage.title}
         </h1>
         <p class="text-lg leading-8 text-slate-300">
-          This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI systems intended for serious real-world use.
+          {copy.aboutPage.description}
         </p>
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <a href="/research/" class="button-secondary">Research focus</a>
-        <a href="/projects/" class="button-secondary">Selected projects</a>
-        <a href="/blog/" class="button-secondary">Writing</a>
-        <a href="/talks/" class="button-secondary">Talks</a>
-        <a href="/contact/" class="button-primary">Contact</a>
+        <a href={localizePath("/research/", locale)} class="button-secondary">{copy.aboutPage.actionResearch}</a>
+        <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.aboutPage.actionProjects}</a>
+        <a href={localizePath("/blog/", locale)} class="button-secondary">{copy.aboutPage.actionWriting}</a>
+        <a href={localizePath("/talks/", locale)} class="button-secondary">{copy.aboutPage.actionTalks}</a>
+        <a href={localizePath("/contact/", locale)} class="button-primary">{copy.aboutPage.actionContact}</a>
       </div>
 
       <dl class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Current Role</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">Doctoral Researcher</dd>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.currentRole}</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">{copy.aboutPage.currentRoleValue}</dd>
         </div>
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Institution</dt>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.institution}</dt>
           <dd class="mt-3 text-base leading-7 text-slate-200">{profile.institution}</dd>
         </div>
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Research Lab</dt>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.researchLab}</dt>
           <dd class="mt-3 text-base leading-7 text-slate-200">
             <a href={profile.lab.url} target="_blank" rel="noreferrer" class="transition hover:text-white">
               {profile.lab.name}
@@ -49,14 +59,14 @@ import { pageTitle } from "../lib/site";
           </dd>
         </div>
         <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">Primary Lens</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">Trustworthy AI, security, and deployment realism</dd>
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.primaryLens}</dt>
+          <dd class="mt-3 text-base leading-7 text-slate-200">{copy.aboutPage.primaryLensValue}</dd>
         </div>
       </dl>
 
       <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Current Areas of Work</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.currentAreasOfWork}</h2>
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -67,7 +77,7 @@ import { pageTitle } from "../lib/site";
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Path</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.professionalPath}</h2>
           <div class="mt-6 space-y-6">
             {profile.experience.map((item) => (
               <div class="border-l border-white/10 pl-5">
@@ -92,10 +102,10 @@ import { pageTitle } from "../lib/site";
         </div>
 
         <div class="panel space-y-6 p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Narrative</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.professionalNarrative}</h2>
           {profile.about.map((paragraph) => <p class="text-base leading-8 text-slate-300">{paragraph}</p>)}
           <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Current speaking and paper activity</p>
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.currentSpeakingAndPaperActivity}</p>
 
             <div class="mt-3 space-y-5">
               <div class="space-y-2">
@@ -108,7 +118,7 @@ import { pageTitle } from "../lib/site";
                     rel="noreferrer"
                     class="inline-flex text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
                   >
-                    View official session page →
+                    {copy.aboutPage.currentSpeakingActivityLinks.official} →
                   </a>
                   <a
                     href={profile.externalProfiles.cybersecSpeaker.url}
@@ -116,7 +126,7 @@ import { pageTitle } from "../lib/site";
                     rel="noreferrer"
                     class="inline-flex text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
                   >
-                    View CYBERSEC speaker profile →
+                    {copy.aboutPage.currentSpeakingActivityLinks.profile} →
                   </a>
                 </div>
               </div>
@@ -147,14 +157,14 @@ import { pageTitle } from "../lib/site";
 
       <section class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
         <div class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Selected Signals</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.selectedSignals}</h2>
           <ul class="mt-6 space-y-4">
             {profile.achievements.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
           </ul>
         </div>
 
         <div class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Methods / Technical Toolkit</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.methodsAndToolkit}</h2>
           <div class="mt-6 grid gap-5 md:grid-cols-2">
             {profile.toolkit.map((group) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -170,13 +180,13 @@ import { pageTitle } from "../lib/site";
 
       <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-3">
-          <h2 class="text-2xl font-semibold text-white">Work together</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.common.workTogether}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="/research/" class="button-secondary">Research</a>
-          <a href="/projects/" class="button-secondary">Projects</a>
-          <a href={`mailto:${profile.email}`} class="button-primary">Email</a>
+          <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
+          <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.common.projects}</a>
+          <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.email}</a>
         </div>
       </section>
     </div>

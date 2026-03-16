@@ -1,13 +1,15 @@
 ---
-import { home } from "../../data/home";
 import type { CollectionEntry } from "astro:content";
+import { defaultLocale, getLocalizedHome, localizePath, type SiteLocale } from "../../lib/i18n";
 import ProjectCard from "../project/ProjectCard.astro";
 
 interface Props {
   projects: CollectionEntry<"projects">[];
+  locale?: SiteLocale;
 }
 
-const { projects } = Astro.props;
+const { projects, locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
 ---
 
 <section class="section">
@@ -18,13 +20,13 @@ const { projects } = Astro.props;
         <h2 class="section-title">{home.projects.title}</h2>
         <p class="section-copy">{home.projects.description}</p>
       </div>
-      <a href="/projects/" class="button-secondary">
+      <a href={localizePath("/projects/", locale)} class="button-secondary">
         {home.projects.browseLabel}
       </a>
     </div>
 
     <div class="grid gap-6 xl:grid-cols-3">
-      {projects.map((project) => <ProjectCard project={project} eventName="featured_project_click" />)}
+      {projects.map((project) => <ProjectCard project={project} eventName="featured_project_click" locale={locale} />)}
     </div>
   </div>
 </section>

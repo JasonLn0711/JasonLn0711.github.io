@@ -1,7 +1,17 @@
 ---
 import { profile } from "../../data/profile";
 import { personSchema, webPageSchema, websiteSchema } from "../../lib/schema";
-import { absoluteUrl, site } from "../../lib/site";
+import { absoluteUrl } from "../../lib/site";
+import {
+  defaultLocale,
+  getAlternateLocaleLinks,
+  getLocaleFromPathname,
+  getLocaleMeta,
+  getLocalizedSite,
+  localizePath,
+  stripLocaleFromPathname,
+  type SiteLocale
+} from "../../lib/i18n";
 
 interface Props {
   title?: string;
@@ -13,49 +23,63 @@ interface Props {
   noindex?: boolean;
   publishedTime?: string;
   modifiedTime?: string;
+  locale?: SiteLocale;
 }
 
 type JsonLd = Record<string, unknown>;
 
 const {
-  title = site.defaultTitle,
-  description = site.description,
-  image = site.ogImage,
+  title: rawTitle,
+  description: rawDescription,
+  image: rawImage,
   pathname = "/",
   type = "website",
   schema = [],
   noindex = false,
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  locale: requestedLocale
 } = Astro.props;
 
+const locale = requestedLocale ?? getLocaleFromPathname(pathname);
+const localeInfo = getLocaleMeta(locale);
+const localizedSite = getLocalizedSite(locale);
+const title = rawTitle ?? localizedSite.defaultTitle;
+const description = rawDescription ?? localizedSite.description;
+const image = rawImage ?? localizedSite.ogImage;
 const canonical = absoluteUrl(pathname);
 const socialImage = image.startsWith("http") ? image : absoluteUrl(image);
-const pageName = title === site.defaultTitle ? site.name : title.split(" | ")[0] ?? title;
+const pageName = title === localizedSite.defaultTitle ? localizedSite.name : title.split(" | ")[0] ?? title;
 const extraSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const isHomePath = stripLocaleFromPathname(pathname) === "/";
 const baseSchemas: JsonLd[] = noindex
   ? []
-  : pathname === "/"
+  : isHomePath
     ? [personSchema(profile), websiteSchema(profile), webPageSchema({ name: pageName, description, pathname, image })]
     : [webPageSchema({ name: pageName, description, pathname, image })];
 const allSchemas: JsonLd[] = [...baseSchemas, ...extraSchemas];
-const plausibleSnippet = site.analytics.plausibleSnippet.trim();
-const googleSiteVerificationToken = site.verification.googleSiteVerificationToken.trim();
+const plausibleSnippet = localizedSite.analytics.plausibleSnippet.trim();
+const googleSiteVerificationToken = localizedSite.verification.googleSiteVerificationToken.trim();
+const alternateLocaleLinks = getAlternateLocaleLinks(pathname);
+const defaultAlternate = absoluteUrl(localizePath(stripLocaleFromPathname(pathname), defaultLocale));
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
 <meta name="theme-color" content="#0b1020" />
+<meta name="language" content={localeInfo.hreflang} />
 <link rel="canonical" href={canonical} />
-<link rel="alternate" type="application/rss+xml" title={`${site.name} RSS Feed`} href={absoluteUrl("/rss.xml")} />
+<link rel="alternate" hreflang="x-default" href={defaultAlternate} />
+{alternateLocaleLinks.map((entry) => <link rel="alternate" hreflang={entry.hreflang} href={absoluteUrl(entry.href)} />)}
+<link rel="alternate" type="application/rss+xml" title={`${localizedSite.name} RSS Feed`} href={absoluteUrl("/rss.xml")} />
 {googleSiteVerificationToken && <meta name="google-site-verification" content={googleSiteVerificationToken} />}
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
-<meta property="og:site_name" content={site.name} />
-<meta property="og:locale" content={site.locale} />
+<meta property="og:site_name" content={localizedSite.name} />
+<meta property="og:locale" content={localeInfo.ogLocale} />
 <meta property="og:image" content={socialImage} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />

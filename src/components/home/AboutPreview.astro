@@ -1,6 +1,21 @@
 ---
-import { home } from "../../data/home";
-import { profile } from "../../data/profile";
+import {
+  defaultLocale,
+  getLocalizedHome,
+  getLocalizedProfile,
+  getPageCopy,
+  localizePath,
+  type SiteLocale
+} from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
+const profile = getLocalizedProfile(locale);
+const copy = getPageCopy(locale);
 ---
 
 <section class="section">
@@ -24,10 +39,10 @@ import { profile } from "../../data/profile";
           ))}
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="/about/" class="button-secondary">About Jason</a>
-          <a href="/blog/investigation-and-trustworthy-ai/" class="button-secondary">Background essay</a>
+          <a href={localizePath("/about/", locale)} class="button-secondary">{copy.home.aboutJason}</a>
+          <a href={localizePath("/blog/investigation-and-trustworthy-ai/", locale)} class="button-secondary">{copy.home.backgroundEssay}</a>
           <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
-            Lab Website
+            {copy.common.labWebsite}
           </a>
         </div>
       </div>

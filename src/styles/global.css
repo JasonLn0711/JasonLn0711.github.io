@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-sans: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", "Hiragino Sans", "Yu Gothic", "Avenir Next", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
   --color-bg: #0b1020;
   --color-surface: rgba(15, 23, 42, 0.76);

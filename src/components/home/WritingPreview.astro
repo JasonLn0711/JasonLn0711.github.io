@@ -1,13 +1,16 @@
 ---
-import { home } from "../../data/home";
 import type { CollectionEntry } from "astro:content";
+import { defaultLocale, getLocalizedHome, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 import BlogCard from "../blog/BlogCard.astro";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
+  locale?: SiteLocale;
 }
 
-const { posts } = Astro.props;
+const { posts, locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
+const copy = getPageCopy(locale);
 ---
 
 <section class="section">
@@ -18,20 +21,20 @@ const { posts } = Astro.props;
         <h2 class="section-title">{home.writing.title}</h2>
         <p class="section-copy">{home.writing.description}</p>
       </div>
-      <a href="/blog/" class="button-secondary">
+      <a href={localizePath("/blog/", locale)} class="button-secondary">
         {home.writing.browseLabel}
       </a>
     </div>
 
     {posts.length > 0 ? (
       <div class="grid gap-6 lg:grid-cols-3">
-        {posts.map((post) => <BlogCard post={post} eventName="writing_card_click" />)}
+        {posts.map((post) => <BlogCard post={post} eventName="writing_card_click" locale={locale} />)}
       </div>
     ) : (
       <div class="panel p-8">
-        <h3 class="text-2xl font-semibold text-white">Writing in progress</h3>
+        <h3 class="text-2xl font-semibold text-white">{copy.home.writingInProgress}</h3>
         <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-          New essays, research notes, and technical perspectives will appear here as the body of work continues to grow.
+          {copy.home.writingInProgressCopy}
         </p>
       </div>
     )}

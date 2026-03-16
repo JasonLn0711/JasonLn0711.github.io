@@ -1,25 +1,40 @@
 ---
-import { profile } from "../../data/profile";
-import { speaking } from "../../data/speaking";
+import {
+  defaultLocale,
+  getLocalizedProfile,
+  getLocalizedSpeaking,
+  getPageCopy,
+  localizePath,
+  type SiteLocale
+} from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const profile = getLocalizedProfile(locale);
+const speaking = getLocalizedSpeaking(locale);
+const copy = getPageCopy(locale);
 ---
 
 <section class="pb-4">
   <div class="shell">
     <div class="panel grid gap-4 p-5 sm:p-6 lg:grid-cols-[repeat(3,minmax(0,1fr))_auto] lg:items-center">
       <div class="space-y-1">
-        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Research base</p>
+        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.researchBase}</p>
         <p class="text-sm leading-7 text-slate-200">{profile.trustSignals[0]}</p>
       </div>
       <div class="space-y-1">
-        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Speaking signal</p>
+        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.speakingSignal}</p>
         <p class="text-sm leading-7 text-slate-200">{profile.trustSignals[1]}</p>
       </div>
       <div class="space-y-1">
-        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Publication activity</p>
+        <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.publicationActivity}</p>
         <p class="text-sm leading-7 text-slate-200">{profile.trustSignals[2]}</p>
       </div>
-      <a href={speaking.featuredEngagement.storyHref} class="action-link whitespace-nowrap">
-        Read the web keynote
+      <a href={localizePath(speaking.featuredEngagement.storyHref, locale)} class="action-link whitespace-nowrap">
+        {copy.home.readWebKeynote}
         <span aria-hidden="true">→</span>
       </a>
     </div>

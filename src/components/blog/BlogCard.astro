@@ -1,19 +1,22 @@
 ---
 import { formatDate, formatLabel } from "../../lib/content";
 import type { CollectionEntry } from "astro:content";
+import { defaultLocale, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
   post: CollectionEntry<"blog">;
   featured?: boolean;
   eventName?: string;
+  locale?: SiteLocale;
 }
 
-const { post, featured = false, eventName } = Astro.props;
+const { post, featured = false, eventName, locale = defaultLocale } = Astro.props;
+const copy = getPageCopy(locale);
 ---
 
 <article class="panel h-full overflow-hidden">
   <a
-    href={`/blog/${post.slug}/`}
+    href={localizePath(`/blog/${post.slug}/`, locale)}
     class:list={["group flex h-full flex-col focus-visible:outline-none", featured && "lg:grid lg:grid-cols-[1fr_1.1fr]"]}
     data-plausible-event={eventName}
     data-plausible-slug={eventName ? post.slug : undefined}
@@ -29,9 +32,9 @@ const { post, featured = false, eventName } = Astro.props;
     />
     <div class="flex h-full flex-col gap-4 p-6 sm:p-7">
       <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
-        <span>{formatLabel(post.data.category)}</span>
+        <span>{formatLabel(post.data.category, locale)}</span>
         <span class="h-1 w-1 rounded-full bg-white/20"></span>
-        <span>{formatDate(post.data.pubDate)}</span>
+        <span>{formatDate(post.data.pubDate, locale)}</span>
       </div>
       <h3 class="text-2xl font-semibold tracking-tight text-white transition group-hover:text-[var(--color-accent-strong)]">
         {post.data.title}
@@ -41,7 +44,7 @@ const { post, featured = false, eventName } = Astro.props;
         {post.data.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
       </div>
       <span class="action-link mt-2">
-        Read article
+        {copy.common.readArticle}
         <span aria-hidden="true">→</span>
       </span>
     </div>

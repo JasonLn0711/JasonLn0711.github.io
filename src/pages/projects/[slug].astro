@@ -3,8 +3,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ProjectLayout from "../../components/project/ProjectLayout.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { sortProjects } from "../../lib/content";
+import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy } from "../../lib/i18n";
 import { projectSchema } from "../../lib/schema";
-import { pageTitle } from "../../lib/site";
 
 export async function getStaticPaths() {
   const projects = sortProjects(await getCollection("projects"));
@@ -27,16 +27,18 @@ interface Props {
 
 const { project, previousProject, nextProject } = Astro.props;
 const { Content } = await project.render();
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const copy = getPageCopy(locale);
 ---
 
 <BaseLayout
-  title={pageTitle(project.data.title, "Projects")}
+  title={getLocalizedPageTitle(locale, project.data.title, copy.common.projects)}
   description={project.data.summary}
   image={project.data.cover}
-  pathname={`/projects/${project.slug}/`}
+  pathname={Astro.url.pathname}
   schema={projectSchema(project)}
 >
-  <ProjectLayout project={project} previousProject={previousProject ?? undefined} nextProject={nextProject ?? undefined}>
+  <ProjectLayout project={project} previousProject={previousProject ?? undefined} nextProject={nextProject ?? undefined} locale={locale}>
     <Content />
   </ProjectLayout>
 </BaseLayout>

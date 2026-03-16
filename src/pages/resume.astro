@@ -1,87 +1,64 @@
 ---
 import { getCollection } from "astro:content";
-import { profile } from "../data/profile";
-import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sortBlogEntries, sortProjects } from "../lib/content";
-import { pageTitle } from "../lib/site";
+import {
+  formatMessage,
+  getLocaleFromPathname,
+  getLocalizedPageTitle,
+  getLocalizedProfile,
+  getLocalizedSpeaking,
+  getPageCopy,
+  localizePath
+} from "../lib/i18n";
 
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const profile = getLocalizedProfile(locale);
+const speaking = getLocalizedSpeaking(locale);
+const copy = getPageCopy(locale);
 const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
 const posts = sortBlogEntries(await getCollection("blog")).slice(0, 2);
-
-const professionalStrengths = [
-  {
-    title: "Research-grounded systems thinking",
-    description:
-      "Works across models, pipelines, runtime assumptions, and operational constraints rather than treating AI work as an isolated modeling problem."
-  },
-  {
-    title: "Security-aware technical judgment",
-    description:
-      "Brings threat modeling, privacy, leakage risk, and deployment realism into system design for environments where failure has real cost."
-  },
-  {
-    title: "Clear communication for mixed audiences",
-    description:
-      "Turns technical work into talks, case studies, and structured writing that hiring managers, researchers, and technical collaborators can inspect quickly."
-  }
-];
-
-const teamSignals = [
-  "Interdisciplinary profile spanning doctoral research, systems building, and investigation-informed reasoning.",
-  "Comfortable in research, engineering-adjacent, and technically cross-functional conversations.",
-  "Public work includes an official CYBERSEC 2026 session and two English CISC 2025 conference papers."
-];
-
-const resumeMetrics = [
-  {
-    label: "Current role",
-    value: "Doctoral researcher at NYCU"
-  },
-  {
-    label: "Base",
-    value: profile.lab.name
-  },
-  {
-    label: "Primary focus",
-    value: "Trustworthy AI, speech intelligence, and cybersecurity"
-  },
-  {
-    label: "Recent public signals",
-    value: `1 official session + ${speaking.additionalEngagements.length} English conference papers`
-  }
-];
+const professionalStrengths = copy.resumePage.professionalStrengths;
+const teamSignals = copy.resumePage.teamSignals;
+const resumeMetrics = copy.resumePage.metrics.map((item) => ({
+  label: item.label,
+  value: formatMessage(item.value, {
+    lab: profile.lab.name,
+    count: speaking.additionalEngagements.length
+  })
+}));
 ---
 
 <BaseLayout
-  title={pageTitle("Resume")}
-  description="A professional resume page summarizing Jason Chia-Sheng Lin's current role, strengths, experience, selected work, and public research signals for hiring and collaboration review."
+  title={getLocalizedPageTitle(locale, copy.common.resume)}
+  description={copy.resumePage.description}
   image={profile.avatar}
-  pathname="/resume/"
+  pathname={Astro.url.pathname}
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-12">
       <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
         <div class="max-w-4xl space-y-6">
-          <span class="eyebrow">Resume</span>
+          <span class="eyebrow">{copy.common.resume}</span>
           <div class="space-y-5">
             <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Professional profile for research, AI systems, and security-aware technical work.
+              {copy.resumePage.title}
             </h1>
             <p class="text-lg leading-8 text-slate-300">
-              {profile.name} is a doctoral researcher at {profile.institution} whose work connects trustworthy AI, speech
-              intelligence, cybersecurity, and deployment-ready system design. This page is designed for hiring managers,
-              technical leaders, collaborators, and organizers who want a concise, professional overview.
+              {formatMessage(copy.resumePage.intro, {
+                name: profile.name,
+                institution: profile.institution
+              })}
             </p>
           </div>
 
           <div class="flex flex-wrap gap-3">
-            <a href={`mailto:${profile.email}`} class="button-primary">Email Jason</a>
+            <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
               LinkedIn
             </a>
-            <a href="/projects/" class="button-secondary">Selected projects</a>
-            <a href="/about/" class="button-secondary">About</a>
+            <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.resumePage.selectedProjects}</a>
+            <a href={localizePath("/about/", locale)} class="button-secondary">{copy.common.about}</a>
           </div>
         </div>
 
@@ -130,25 +107,22 @@ const resumeMetrics = [
 
       <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Summary</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.professionalSummary}</h2>
           <div class="mt-6 space-y-5">
             <p class="text-base leading-8 text-slate-300">
               {profile.shortBio}
             </p>
             <p class="text-base leading-8 text-slate-300">
-              Before doctoral research, Jason worked in cybercrime investigation. That background continues to shape a
-              practical approach to evidence, adversarial behavior, traceability, and the gap between a model that looks
-              good in isolation and a system that remains trustworthy in real-world use.
+              {copy.resumePage.summaryParagraphTwo}
             </p>
             <p class="text-base leading-8 text-slate-300">
-              Current work spans speech and language pipelines, trustworthy AI evaluation, medical AI cybersecurity, and
-              deployment-minded AI system design in environments where reviewability and operational constraints matter.
+              {copy.resumePage.summaryParagraphThree}
             </p>
           </div>
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">What Jason Brings to a Team</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.whatBrings}</h2>
           <div class="mt-6 grid gap-4">
             {professionalStrengths.map((item) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -162,7 +136,7 @@ const resumeMetrics = [
 
       <div class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Professional Experience</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.experience}</h2>
           <div class="mt-6 space-y-6">
             {profile.experience.map((item) => (
               <div class="border-l border-white/10 pl-5">
@@ -175,7 +149,7 @@ const resumeMetrics = [
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Current Areas of Work</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.currentWork}</h2>
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -189,14 +163,13 @@ const resumeMetrics = [
       <section class="space-y-6">
         <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div class="max-w-3xl">
-            <span class="eyebrow">Selected Work</span>
-            <h2 class="section-title">Representative projects that show applied systems thinking.</h2>
+            <span class="eyebrow">{copy.resumePage.selectedWorkEyebrow}</span>
+            <h2 class="section-title">{copy.resumePage.selectedWorkTitle}</h2>
             <p class="section-copy">
-              These case studies show how Jason frames problems, builds systems, and explains technical choices in ways
-              that are inspectable by both technical and cross-functional readers.
+              {copy.resumePage.selectedWorkDescription}
             </p>
           </div>
-          <a href="/projects/" class="button-secondary">Browse all projects</a>
+          <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.resumePage.browseAllProjects}</a>
         </div>
 
         <div class="grid gap-6 xl:grid-cols-3">
@@ -215,8 +188,8 @@ const resumeMetrics = [
                 {project.data.stack.slice(0, 5).map((item) => <span class="pill">{item}</span>)}
               </div>
               <div class="mt-auto pt-6">
-                <a href={`/projects/${project.slug}/`} class="action-link">
-                  Open case study
+                <a href={localizePath(`/projects/${project.slug}/`, locale)} class="action-link">
+                  {copy.common.openCaseStudy}
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -227,16 +200,16 @@ const resumeMetrics = [
 
       <div class="grid gap-8 xl:grid-cols-2">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Speaking and Publication Signals</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.speakingSignals}</h2>
           <div class="mt-6 space-y-5">
             <div class="rounded-3xl border border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)] p-5">
               <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{speaking.featuredEngagement.event}</p>
               <h3 class="mt-2 text-lg font-semibold text-white">{speaking.featuredEngagement.title}</h3>
               <p class="mt-2 text-sm leading-7 text-slate-300">{speaking.featuredEngagement.summary}</p>
               <div class="mt-4 flex flex-wrap gap-3">
-                <a href="/talks/" class="button-secondary">Talks page</a>
+                <a href={localizePath("/talks/", locale)} class="button-secondary">{copy.resumePage.talksPage}</a>
                 <a href={profile.externalProfiles.cybersecSpeaker.url} target="_blank" rel="noreferrer" class="button-secondary">
-                  Speaker profile
+                  {copy.resumePage.speakerProfile}
                 </a>
               </div>
             </div>
@@ -254,7 +227,7 @@ const resumeMetrics = [
         </section>
 
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Writing and Technical Communication</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.writingCommunication}</h2>
           <div class="mt-6 space-y-5">
             {posts.map((post) => (
               <article class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -262,8 +235,8 @@ const resumeMetrics = [
                 <h3 class="mt-2 text-lg font-semibold text-white">{post.data.title}</h3>
                 <p class="mt-2 text-sm leading-7 text-slate-300">{post.data.description}</p>
                 <div class="mt-4">
-                  <a href={`/blog/${post.slug}/`} class="action-link">
-                    Read article
+                  <a href={localizePath(`/blog/${post.slug}/`, locale)} class="action-link">
+                    {copy.common.readArticle}
                     <span aria-hidden="true">→</span>
                   </a>
                 </div>
@@ -271,7 +244,7 @@ const resumeMetrics = [
             ))}
 
             <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
-              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Professional signals</p>
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.resumePage.professionalSignals}</p>
               <ul class="mt-4 space-y-4">
                 {teamSignals.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
               </ul>
@@ -282,7 +255,7 @@ const resumeMetrics = [
 
       <div class="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
         <section class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Methods and Technical Toolkit</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.methodsAndToolkit}</h2>
           <div class="mt-6 grid gap-5">
             {profile.toolkit.map((group) => (
               <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
@@ -297,10 +270,9 @@ const resumeMetrics = [
 
         <section class="panel flex flex-col gap-6 p-7 sm:p-8">
           <div class="space-y-3">
-            <h2 class="text-2xl font-semibold text-white">Open to the Following Conversations</h2>
+            <h2 class="text-2xl font-semibold text-white">{copy.resumePage.openToConversations}</h2>
             <p class="max-w-2xl text-base leading-8 text-slate-300">
-              The strongest fit is with teams, labs, or organizers working near trustworthy AI, speech and language
-              systems, deployment-sensitive workflows, or cybersecurity-minded system design.
+              {copy.resumePage.openToConversationsDescription}
             </p>
           </div>
 
@@ -313,16 +285,15 @@ const resumeMetrics = [
           </div>
 
           <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Contact</p>
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.contact}</p>
             <p class="mt-3 text-base leading-8 text-slate-300">
-              Email is the best route for hiring conversations, research collaboration, speaking invitations, and
-              technically specific discussion.
+              {copy.resumePage.contactCardDescription}
             </p>
           </div>
 
           <div class="mt-auto flex flex-wrap gap-3">
-            <a href={`mailto:${profile.email}`} class="button-primary">Email Jason</a>
-            <a href="/contact/" class="button-secondary">Contact page</a>
+            <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
+            <a href={localizePath("/contact/", locale)} class="button-secondary">{copy.resumePage.contactPage}</a>
             <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
               GitHub
             </a>

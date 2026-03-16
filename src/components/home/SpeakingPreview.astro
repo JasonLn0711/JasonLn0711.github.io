@@ -1,7 +1,23 @@
 ---
-import { home } from "../../data/home";
-import { profile } from "../../data/profile";
-import { speaking } from "../../data/speaking";
+import {
+  defaultLocale,
+  getLocalizedHome,
+  getLocalizedProfile,
+  getLocalizedSpeaking,
+  getPageCopy,
+  localizePath,
+  type SiteLocale
+} from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
+const profile = getLocalizedProfile(locale);
+const speaking = getLocalizedSpeaking(locale);
+const copy = getPageCopy(locale);
 ---
 
 <section class="section">
@@ -12,7 +28,7 @@ import { speaking } from "../../data/speaking";
         <h2 class="section-title">{home.speaking.title}</h2>
         <p class="section-copy">{home.speaking.description}</p>
       </div>
-      <a href="/talks/" class="button-secondary">
+      <a href={localizePath("/talks/", locale)} class="button-secondary">
         {home.speaking.browseLabel}
       </a>
     </div>
@@ -35,7 +51,7 @@ import { speaking } from "../../data/speaking";
           rel="noreferrer"
           class="action-link"
         >
-          Official session page
+          {copy.common.officialSessionPageShort}
           <span aria-hidden="true">→</span>
         </a>
         <a
@@ -44,7 +60,7 @@ import { speaking } from "../../data/speaking";
           rel="noreferrer"
           class="action-link"
         >
-          CYBERSEC speaker profile
+          {copy.common.speakerProfile}
           <span aria-hidden="true">→</span>
         </a>
       </div>

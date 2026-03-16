@@ -1,12 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../lib/site";
-import { pageTitle } from "../lib/site";
+import { getLocalizedPageTitle, getLocalizedSite, getPageCopy, localizePath } from "../lib/i18n";
+
+const locale = "en";
+const site = getLocalizedSite(locale);
+const copy = getPageCopy(locale);
 ---
 
 <BaseLayout
-  title={pageTitle("Page not found")}
-  description="The page you were looking for is not available."
+  title={getLocalizedPageTitle(locale, copy.notFoundPage.title)}
+  description={copy.notFoundPage.description}
   pathname="/404.html"
   noindex={true}
 >
@@ -14,19 +17,19 @@ import { pageTitle } from "../lib/site";
     <div class="shell">
       <div class="panel max-w-4xl space-y-8 p-8 sm:p-10">
         <span class="eyebrow">404</span>
-        <h1 class="text-4xl font-semibold tracking-tight text-white">Page not found</h1>
+        <h1 class="text-4xl font-semibold tracking-tight text-white">{copy.notFoundPage.title}</h1>
         <p class="text-base leading-8 text-slate-300">
-          The page you were looking for is not available. The quickest recovery is to jump back to one of the main sections below.
+          {copy.notFoundPage.body}
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/" class="button-primary" data-plausible-event="404_recovery_click">Back home</a>
-          <a href="/projects/" class="button-secondary" data-plausible-event="404_recovery_click">View projects</a>
+          <a href={localizePath("/", locale)} class="button-primary" data-plausible-event="404_recovery_click">{copy.notFoundPage.backHome}</a>
+          <a href={localizePath("/projects/", locale)} class="button-secondary" data-plausible-event="404_recovery_click">{copy.notFoundPage.viewProjects}</a>
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {site.nav.map((item) => (
             <a
-              href={item.href}
+              href={localizePath(item.href, locale)}
               class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-5 transition hover:border-white/20 hover:bg-white/[0.05]"
               data-plausible-event="404_recovery_click"
             >

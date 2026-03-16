@@ -3,38 +3,46 @@ import { getCollection } from "astro:content";
 import ProjectCard from "../../components/project/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projectFilters, sortProjects } from "../../lib/content";
-import { pageTitle } from "../../lib/site";
+import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy, localizePath } from "../../lib/i18n";
 
 const projects = sortProjects(await getCollection("projects"));
-const filters = ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"];
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const copy = getPageCopy(locale);
+const filters = [
+  { id: "All", label: copy.projectsPage.filters[0] },
+  { id: "Speech", label: copy.projectsPage.filters[1] },
+  { id: "AI Systems", label: copy.projectsPage.filters[2] },
+  { id: "Fraud Analysis", label: copy.projectsPage.filters[3] },
+  { id: "Security", label: copy.projectsPage.filters[4] }
+];
 ---
 
 <BaseLayout
-  title={pageTitle("Projects")}
-  description="This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the technical decisions that mattered, and the reason the work is relevant in practice."
-  pathname="/projects/"
+  title={getLocalizedPageTitle(locale, copy.common.projects)}
+  description={copy.projectsPage.description}
+  pathname={Astro.url.pathname}
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-10">
       <div class="max-w-3xl space-y-5">
-        <span class="eyebrow">Projects</span>
+        <span class="eyebrow">{copy.common.projects}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Research-led case studies in trustworthy AI, speech intelligence, and security-aware systems.
+          {copy.projectsPage.title}
         </h1>
         <p class="text-lg leading-8 text-slate-300">
-          This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the technical decisions that mattered, and the reason the work is relevant in practice.
+          {copy.projectsPage.description}
         </p>
       </div>
 
       <section class="panel flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
         <div class="max-w-2xl space-y-2">
-          <h2 class="text-lg font-semibold text-white">Filter by theme</h2>
+          <h2 class="text-lg font-semibold text-white">{copy.projectsPage.filterTitle}</h2>
           <p class="text-sm leading-7 text-slate-300">
-            Use these filters to jump directly to speech, AI systems, fraud analysis, or security-related case studies.
+            {copy.projectsPage.filterDescription}
           </p>
         </div>
         <p class="text-sm text-slate-400" aria-live="polite" data-project-results-summary>
-          Showing {projects.length} of {projects.length} projects
+          {copy.projectsPage.showingSummary.replace("{count}", String(projects.length)).replace("{total}", String(projects.length))}
         </p>
       </section>
 
@@ -46,52 +54,68 @@ const filters = ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"];
               "button-secondary px-4 py-2",
               index === 0 && "border-white/20 bg-white/[0.08] text-white"
             ]}
-            data-filter={filter}
+            data-filter={filter.id}
+            data-filter-label={filter.label}
             aria-controls="project-grid"
             aria-pressed={index === 0 ? "true" : "false"}
           >
-            {filter}
+            {filter.label}
           </button>
         ))}
       </div>
 
       <div id="project-grid" class="grid gap-6 xl:grid-cols-3">
-        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} />)}
+        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} locale={locale} />)}
       </div>
 
       <section class="panel flex flex-col gap-5 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
         <div class="space-y-2">
-          <h2 class="text-2xl font-semibold text-white">Need the broader context?</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.projectsPage.broaderContextTitle}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">
-            If a case study is relevant, the next useful comparison is usually the research agenda, a writing sample, or a direct conversation.
+            {copy.projectsPage.broaderContextDescription}
           </p>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="/research/" class="button-secondary">Research</a>
-          <a href="/blog/" class="button-secondary">Writing</a>
-          <a href="/contact/" class="button-primary">Contact</a>
+          <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
+          <a href={localizePath("/blog/", locale)} class="button-secondary">{copy.common.writing}</a>
+          <a href={localizePath("/contact/", locale)} class="button-primary">{copy.common.contact}</a>
         </div>
       </section>
     </div>
   </section>
 
-  <script is:inline>
+  <script
+    is:inline
+    define:vars={{
+      projectsSummary: copy.projectsPage.showingSummary,
+      projectsSummaryWithFilter: copy.projectsPage.showingSummaryWithFilter
+    }}
+  >
     const buttons = Array.from(document.querySelectorAll("[data-filter]"));
     const cards = Array.from(document.querySelectorAll("[data-project-card]"));
     const summary = document.querySelector("[data-project-results-summary]");
     const total = cards.length;
 
-    const updateSummary = (count, filter) => {
+    const updateSummary = (count, filter, filterLabel) => {
       if (!(summary instanceof HTMLElement)) {
         return;
       }
 
-      summary.textContent = `Showing ${count} of ${total} projects${filter && filter !== "All" ? ` for ${filter}` : ""}`;
+      if (filter && filter !== "All") {
+        summary.textContent = projectsSummaryWithFilter
+          .replace("{count}", String(count))
+          .replace("{total}", String(total))
+          .replace("{filter}", String(filterLabel));
+        return;
+      }
+
+      summary.textContent = projectsSummary.replace("{count}", String(count)).replace("{total}", String(total));
     };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         const filter = button.dataset.filter;
+        const filterLabel = button.dataset.filterLabel;
         let visibleCount = 0;
 
         buttons.forEach((item) => {
@@ -110,7 +134,7 @@ const filters = ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"];
           }
         });
 
-        updateSummary(visibleCount, filter);
+        updateSummary(visibleCount, filter, filterLabel);
       });
     });
   </script>

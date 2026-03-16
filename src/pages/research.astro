@@ -1,14 +1,24 @@
 ---
-import { profile } from "../data/profile";
-import { research } from "../data/research";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { pageTitle } from "../lib/site";
+import {
+  getLocaleFromPathname,
+  getLocalizedPageTitle,
+  getLocalizedProfile,
+  getLocalizedResearch,
+  getPageCopy,
+  localizePath
+} from "../lib/i18n";
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const profile = getLocalizedProfile(locale);
+const research = getLocalizedResearch(locale);
+const copy = getPageCopy(locale);
 ---
 
 <BaseLayout
-  title={pageTitle("Research")}
+  title={getLocalizedPageTitle(locale, copy.common.research)}
   description={research.page.description}
-  pathname="/research/"
+  pathname={Astro.url.pathname}
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-14">
@@ -22,28 +32,28 @@ import { pageTitle } from "../lib/site";
 
       <section class="panel grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4 lg:p-7">
         <a href="#active-work" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
-          <span class="block text-sm font-semibold text-white">What is active now?</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">Current work and next steps.</span>
+          <span class="block text-sm font-semibold text-white">{copy.researchPage.activeNowTitle}</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.researchPage.activeNowDescription}</span>
         </a>
         <a href="#recent-papers" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
-          <span class="block text-sm font-semibold text-white">What signals depth?</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">Recent conference papers and themes.</span>
+          <span class="block text-sm font-semibold text-white">{copy.researchPage.depthTitle}</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.researchPage.depthDescription}</span>
         </a>
-        <a href="/projects/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
-          <span class="block text-sm font-semibold text-white">Want implementation evidence?</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">Go from the agenda to case studies.</span>
+        <a href={localizePath("/projects/", locale)} class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">{copy.researchPage.implementationTitle}</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.researchPage.implementationDescription}</span>
         </a>
-        <a href="/contact/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
-          <span class="block text-sm font-semibold text-white">Considering collaboration?</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">Use the direct contact path.</span>
+        <a href={localizePath("/contact/", locale)} class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">{copy.researchPage.collaborationTitle}</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.researchPage.collaborationDescription}</span>
         </a>
       </section>
 
       <section id="active-work" class="panel p-7 sm:p-8 scroll-mt-28">
         <div class="max-w-3xl space-y-3">
-          <h2 class="text-2xl font-semibold text-white">Active work and current directions</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.researchPage.activeWorkTitle}</h2>
           <p class="text-base leading-8 text-slate-300">
-            Ongoing work is organized around a small number of durable research directions rather than a long list of disconnected experiments.
+            {copy.researchPage.activeWorkDescription}
           </p>
         </div>
 
@@ -56,7 +66,7 @@ import { pageTitle } from "../lib/site";
               <h3 class="mt-4 text-xl font-semibold text-white">{item.title}</h3>
               <p class="mt-4 text-sm leading-7 text-slate-300">{item.summary}</p>
               <p class="mt-4 text-sm leading-7 text-slate-300">
-                <span class="text-slate-200">Current next step:</span> {item.nextStep}
+                <span class="text-slate-200">{copy.researchPage.currentNextStep}</span> {item.nextStep}
               </p>
               <div class="mt-5 flex flex-wrap gap-2">
                 {item.tags.map((tag) => <span class="pill">{tag}</span>)}
@@ -68,9 +78,9 @@ import { pageTitle } from "../lib/site";
 
       <section id="recent-papers" class="panel p-7 sm:p-8 scroll-mt-28">
         <div class="max-w-3xl space-y-3">
-          <h2 class="text-2xl font-semibold text-white">Recent conference papers</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.researchPage.recentPapersTitle}</h2>
           <p class="text-base leading-8 text-slate-300">
-            Recent English conference papers connect the research agenda with practical deployment, threat modeling, and measurable defense strategy.
+            {copy.researchPage.recentPapersDescription}
           </p>
         </div>
 
@@ -121,26 +131,26 @@ import { pageTitle } from "../lib/site";
 
       <section class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
         <article class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Questions I care about</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.researchPage.questionsTitle}</h2>
           <ul class="mt-6 space-y-4">
             {research.questions.map((question) => <li class="text-base leading-7 text-slate-300">{question}</li>)}
           </ul>
         </article>
 
         <article class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Working style</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.researchPage.workingStyleTitle}</h2>
           <p class="mt-6 text-base leading-8 text-slate-300">
-            I tend to approach AI as a full-system problem rather than a single-model problem. That means thinking about data quality, retrieval, evaluation, security assumptions, failure analysis, and human review as connected parts of the same design task.
+            {copy.researchPage.workingStyleParagraphOne}
           </p>
           <p class="mt-4 text-base leading-8 text-slate-300">
-            The common thread across the portfolio is simple: build systems that are not only capable, but also inspectable, evidence-aware, and realistic about deployment conditions.
+            {copy.researchPage.workingStyleParagraphTwo}
           </p>
           <div class="mt-6 flex flex-wrap gap-2">
             {profile.credibility.map((item) => <span class="pill">{item}</span>)}
           </div>
           <div class="mt-6">
             <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
-              Research Lab Website
+              {copy.researchPage.labWebsite}
             </a>
           </div>
         </article>
@@ -148,7 +158,7 @@ import { pageTitle } from "../lib/site";
 
       <section id="collaboration" class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr] scroll-mt-28">
         <article class="panel p-7 sm:p-8">
-          <h2 class="text-2xl font-semibold text-white">Future directions</h2>
+          <h2 class="text-2xl font-semibold text-white">{copy.researchPage.futureDirectionsTitle}</h2>
           <ul class="mt-6 space-y-4">
             {research.futureDirections.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
           </ul>
@@ -161,12 +171,12 @@ import { pageTitle } from "../lib/site";
           </div>
           <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
             <p class="text-sm leading-7 text-slate-300">
-              Good collaboration fits include research groups, interdisciplinary labs, and technical teams that want to turn strong ideas into inspectable systems, evaluable prototypes, or conference-ready case studies.
+              {copy.researchPage.collaborationBox}
             </p>
           </div>
           <div class="flex flex-wrap gap-3">
-            <a href="/projects/" class="button-secondary">Selected Projects</a>
-            <a href="/contact/" class="button-primary">Collaborate</a>
+            <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.researchPage.selectedProjects}</a>
+            <a href={localizePath("/contact/", locale)} class="button-primary">{copy.researchPage.collaborate}</a>
           </div>
         </article>
       </section>
