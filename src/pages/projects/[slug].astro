@@ -4,6 +4,7 @@ import ProjectLayout from "../../components/project/ProjectLayout.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { sortProjects } from "../../lib/content";
 import { projectSchema } from "../../lib/schema";
+import { pageTitle } from "../../lib/site";
 
 export async function getStaticPaths() {
   const projects = sortProjects(await getCollection("projects"));
@@ -29,7 +30,7 @@ const { Content } = await project.render();
 ---
 
 <BaseLayout
-  title={project.data.title}
+  title={pageTitle(project.data.title, "Projects")}
   description={project.data.summary}
   image={project.data.cover}
   pathname={`/projects/${project.slug}/`}

@@ -3,14 +3,15 @@ import { getCollection } from "astro:content";
 import ProjectCard from "../../components/project/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projectFilters, sortProjects } from "../../lib/content";
+import { pageTitle } from "../../lib/site";
 
 const projects = sortProjects(await getCollection("projects"));
 const filters = ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"];
 ---
 
 <BaseLayout
-  title="Projects"
-  description="Research-led case studies spanning trustworthy AI systems, speech intelligence, fraud analysis, and security-aware deployment."
+  title={pageTitle("Projects")}
+  description="This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the technical decisions that mattered, and the reason the work is relevant in practice."
   pathname="/projects/"
 >
   <section class="section pt-12 sm:pt-16">

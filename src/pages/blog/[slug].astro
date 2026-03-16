@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatDate, formatLabel, sortBlogEntries } from "../../lib/content";
 import { blogSchema } from "../../lib/schema";
+import { pageTitle } from "../../lib/site";
 
 export async function getStaticPaths() {
   const posts = sortBlogEntries(await getCollection("blog"));
@@ -25,15 +26,19 @@ interface Props {
 
 const { post, previousPost, nextPost } = Astro.props;
 const { Content, headings } = await post.render();
+const publishedTime = post.data.pubDate.toISOString();
+const modifiedTime = (post.data.updatedDate ?? post.data.pubDate).toISOString();
 ---
 
 <BaseLayout
-  title={post.data.title}
+  title={pageTitle(post.data.title, "Writing")}
   description={post.data.description}
   image={post.data.ogImage ?? post.data.cover}
   pathname={`/blog/${post.slug}/`}
   type="article"
   schema={blogSchema(post)}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
 >
   <section class="section pt-12 sm:pt-16">
     <div class="shell space-y-10">

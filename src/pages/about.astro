@@ -2,11 +2,13 @@
 import { profile } from "../data/profile";
 import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTitle } from "../lib/site";
 ---
 
 <BaseLayout
-  title="About"
-  description="Professional background, research interests, and working methods behind Jason Chia-Sheng Lin's work in AI systems, trustworthy AI, cybersecurity, and real-world deployment."
+  title={pageTitle("About")}
+  description="This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI systems intended for serious real-world use."
+  image={profile.avatar}
   pathname="/about/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -72,7 +74,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
         <div class="panel overflow-hidden">
-          <img src={profile.avatar} alt={profile.name} class="aspect-[2/3] w-full object-cover" />
+          <img
+            src={profile.avatar}
+            alt={`Portrait of ${profile.name}`}
+            width="1693"
+            height="2540"
+            class="aspect-[2/3] w-full object-cover"
+          />
         </div>
 
         <div class="panel space-y-6 p-7 sm:p-8">

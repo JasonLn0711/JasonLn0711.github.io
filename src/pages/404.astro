@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTitle } from "../lib/site";
 ---
 
 <BaseLayout
-  title="Page not found"
-  description="The requested page could not be found."
+  title={pageTitle("Page not found")}
+  description="The page you were looking for is not available."
   pathname="/404.html"
   noindex={true}
 >

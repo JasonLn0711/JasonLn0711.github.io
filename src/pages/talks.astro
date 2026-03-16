@@ -2,11 +2,13 @@
 import { profile } from "../data/profile";
 import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTitle } from "../lib/site";
 ---
 
 <BaseLayout
-  title="Talks"
-  description="Speaking topics, official session details, and selected conference-paper activity from Jason Chia-Sheng Lin across trustworthy AI, cybersecurity, speech systems, and real-world AI deployment."
+  title={pageTitle("Talks")}
+  description={speaking.page.description}
+  image={profile.avatar}
   pathname="/talks/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -19,7 +21,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <article class="panel grid gap-8 overflow-hidden p-7 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)]">
         <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
-          <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
+          <img
+            src={profile.avatar}
+            alt={`Portrait of ${profile.name}`}
+            width="1693"
+            height="2540"
+            class="aspect-[4/5] w-full object-cover"
+          />
         </div>
         <div class="flex flex-col justify-center gap-5">
           <div class="flex flex-wrap items-center gap-3">

@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BlogCard from "../../components/blog/BlogCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { sortBlogEntries } from "../../lib/content";
+import { pageTitle } from "../../lib/site";
 
 const posts = sortBlogEntries(await getCollection("blog"));
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
@@ -10,8 +11,8 @@ const remainingPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
 ---
 
 <BaseLayout
-  title="Writing"
-  description="Essays, research notes, and technical writing on trustworthy AI, speech intelligence, cybersecurity, and real-world AI deployment."
+  title={pageTitle("Writing")}
+  description="Essays and research notes that make the reasoning behind the work visible, from evidence-aware speech pipelines to deployment risk, evaluation, and trustworthy AI in practice."
   pathname="/blog/"
 >
   <section class="section pt-12 sm:pt-16">

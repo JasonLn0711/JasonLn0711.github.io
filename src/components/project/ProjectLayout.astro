@@ -10,10 +10,10 @@ interface Props {
 const { project, previousProject, nextProject } = Astro.props;
 
 const links = [
-  project.data.repo ? { label: "Repository", href: project.data.repo } : undefined,
-  project.data.demo ? { label: "Demo", href: project.data.demo } : undefined,
-  project.data.paper ? { label: "Paper", href: project.data.paper } : undefined
-].filter((link): link is { label: string; href: string } => Boolean(link));
+  project.data.repo ? { label: "Repository", href: project.data.repo, eventName: "project_repo_click" } : undefined,
+  project.data.demo ? { label: "Demo", href: project.data.demo, eventName: "project_demo_click" } : undefined,
+  project.data.paper ? { label: "Paper", href: project.data.paper, eventName: "project_paper_click" } : undefined
+].filter((link): link is { label: string; href: string; eventName: string } => Boolean(link));
 ---
 
 <section class="section pt-12 sm:pt-16">
@@ -62,7 +62,15 @@ const links = [
             <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Links</h2>
             <div class="flex flex-wrap gap-3">
               {links.map((link) => (
-                <a href={link.href} target="_blank" rel="noreferrer" class="button-secondary px-4 py-2">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="button-secondary px-4 py-2"
+                  data-plausible-event={link.eventName}
+                  data-plausible-project={project.data.title}
+                  data-plausible-slug={project.slug}
+                >
                   {link.label}
                 </a>
               ))}

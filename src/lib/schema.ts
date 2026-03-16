@@ -4,6 +4,12 @@ import { profile } from "../data/profile";
 import { absoluteUrl, site } from "./site";
 
 type JsonLd = Record<string, unknown>;
+interface WebPageSchemaInput {
+  name: string;
+  description: string;
+  pathname: string;
+  image?: string;
+}
 
 export function personSchema(profile: Profile): JsonLd {
   return {
@@ -38,7 +44,7 @@ export function websiteSchema(profile: Profile): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: profile.name,
+    name: site.name,
     url: site.url,
     description: site.description,
     author: {
@@ -48,12 +54,36 @@ export function websiteSchema(profile: Profile): JsonLd {
   };
 }
 
+export function webPageSchema({ name, description, pathname, image }: WebPageSchemaInput): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: absoluteUrl(pathname),
+    isPartOf: {
+      "@type": "WebSite",
+      name: site.name,
+      url: site.url
+    },
+    ...(image
+      ? {
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: absoluteUrl(image)
+          }
+        }
+      : {})
+  };
+}
+
 export function blogSchema(entry: CollectionEntry<"blog">): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: entry.data.title,
     description: entry.data.description,
+    url: absoluteUrl(`/blog/${entry.slug}/`),
     datePublished: entry.data.pubDate.toISOString(),
     dateModified: (entry.data.updatedDate ?? entry.data.pubDate).toISOString(),
     image: absoluteUrl(entry.data.ogImage ?? entry.data.cover),
@@ -62,29 +92,30 @@ export function blogSchema(entry: CollectionEntry<"blog">): JsonLd {
     author: {
       "@type": "Person",
       name: profile.name
+    },
+    publisher: {
+      "@type": "Person",
+      name: profile.name,
+      url: site.url
     }
   };
 }
 
 export function projectSchema(entry: CollectionEntry<"projects">): JsonLd {
-  const primaryLanguage = entry.data.stack.find((item) =>
-    ["Python", "TypeScript", "JavaScript", "R"].includes(item)
-  );
-
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
+    "@type": "ResearchProject",
     name: entry.data.title,
     description: entry.data.summary,
-    codeRepository: entry.data.repo,
     url: absoluteUrl(`/projects/${entry.slug}/`),
+    image: absoluteUrl(entry.data.cover),
     dateCreated: `${entry.data.year}-01-01`,
     keywords: [entry.data.category, ...entry.data.stack].join(", "),
-    genre: entry.data.category,
+    about: entry.data.category,
     creator: {
       "@type": "Person",
-      name: profile.name
-    },
-    ...(primaryLanguage ? { programmingLanguage: primaryLanguage } : {})
+      name: profile.name,
+      url: site.url
+    }
   };
 }

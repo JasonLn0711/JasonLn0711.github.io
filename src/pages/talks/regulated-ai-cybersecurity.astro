@@ -1,15 +1,15 @@
 ---
-import { profile } from "../../data/profile";
 import { speaking } from "../../data/speaking";
 import { talkStory } from "../../data/talkStory";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { absoluteUrl } from "../../lib/site";
 import TalkStoryNav from "../../components/talks/TalkStoryNav.astro";
 import TalkStorySection from "../../components/talks/TalkStorySection.astro";
+import { pageTitle } from "../../lib/site";
 
 const heroSection = talkStory.sections[0];
 const storySections = talkStory.sections.slice(1);
 const featured = speaking.featuredEngagement;
+const pageDescription = `${talkStory.subtitle}. ${talkStory.supportingLine}`;
 
 const eventHighlights = [
   { label: "Schedule", value: featured.schedule },
@@ -17,33 +17,13 @@ const eventHighlights = [
   { label: "Venue", value: featured.venue },
   { label: "Format", value: `${featured.format} · ${featured.language}` }
 ];
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: talkStory.title,
-  description: talkStory.description,
-  mainEntityOfPage: absoluteUrl(talkStory.pathname),
-  author: {
-    "@type": "Person",
-    name: profile.name
-  },
-  about: [
-    "Medical AI cybersecurity",
-    "FDA Section 524B",
-    "Threat modeling",
-    "Federated learning leakage",
-    "Clinical patch governance"
-  ]
-};
 ---
 
 <BaseLayout
-  title={talkStory.title}
-  description={talkStory.description}
+  title={pageTitle(talkStory.title, "Talks")}
+  description={pageDescription}
   pathname={talkStory.pathname}
   type="article"
-  schema={schema}
 >
   <section id={heroSection.id} aria-labelledby={`${heroSection.id}-title`} class="section pt-10 sm:pt-16 scroll-mt-28">
     <div class="shell space-y-10">

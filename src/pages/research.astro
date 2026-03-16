@@ -2,11 +2,12 @@
 import { profile } from "../data/profile";
 import { research } from "../data/research";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTitle } from "../lib/site";
 ---
 
 <BaseLayout
-  title="Research"
-  description="Research directions and active work from Jason Chia-Sheng Lin on trustworthy AI systems, speech intelligence, cybersecurity, and real-world deployment."
+  title={pageTitle("Research")}
+  description={research.page.description}
   pathname="/research/"
 >
   <section class="section pt-12 sm:pt-16">

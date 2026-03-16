@@ -2,6 +2,9 @@
 import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Head from "../components/seo/Head.astro";
+import { profile } from "../data/profile";
+import { speaking } from "../data/speaking";
+import { absoluteUrl } from "../lib/site";
 import "../styles/global.css";
 
 interface Props {
@@ -12,6 +15,8 @@ interface Props {
   type?: "website" | "article";
   schema?: Record<string, unknown> | Array<Record<string, unknown>>;
   noindex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const {
@@ -21,8 +26,14 @@ const {
   pathname = "/",
   type = "website",
   schema,
-  noindex = false
+  noindex = false,
+  publishedTime,
+  modifiedTime
 } = Astro.props;
+
+const officialSessionUrl = speaking.featuredEngagement.url;
+const speakerProfileUrl = profile.externalProfiles.cybersecSpeaker.url;
+const talkStoryUrl = absoluteUrl(speaking.featuredEngagement.storyHref);
 ---
 
 <!doctype html>
@@ -39,6 +50,8 @@ const {
       type={type}
       schema={schema}
       noindex={noindex}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
     />
   </head>
   <body>
@@ -50,5 +63,69 @@ const {
       </main>
       <Footer />
     </div>
+    <script is:inline define:vars={{ officialSessionUrl, speakerProfileUrl, talkStoryUrl }}>
+      const normalizeHref = (href) => {
+        try {
+          return new URL(href, window.location.origin).toString();
+        } catch {
+          return href;
+        }
+      };
+
+      const collectProps = (target) => {
+        const props = {};
+
+        if (target.dataset.plausibleProject) {
+          props.project = target.dataset.plausibleProject;
+        }
+
+        if (target.dataset.plausibleSlug) {
+          props.slug = target.dataset.plausibleSlug;
+        }
+
+        return Object.keys(props).length > 0 ? props : undefined;
+      };
+
+      document.addEventListener(
+        "click",
+        (event) => {
+          const target = event.target instanceof Element ? event.target.closest("a, button") : null;
+
+          if (!(target instanceof HTMLElement)) {
+            return;
+          }
+
+          let eventName = target.dataset.plausibleEvent;
+
+          if (!eventName && target instanceof HTMLAnchorElement) {
+            const href = normalizeHref(target.href);
+
+            if (target.href.startsWith("mailto:")) {
+              eventName = "email_click";
+            } else if (href === officialSessionUrl) {
+              eventName = "official_session_click";
+            } else if (href === speakerProfileUrl) {
+              eventName = "speaker_profile_click";
+            } else if (href === talkStoryUrl) {
+              eventName = "talk_story_click";
+            }
+          }
+
+          if (!eventName || typeof window.plausible !== "function") {
+            return;
+          }
+
+          const props = collectProps(target);
+
+          if (props) {
+            window.plausible(eventName, { props });
+            return;
+          }
+
+          window.plausible(eventName);
+        },
+        { capture: true }
+      );
+    </script>
   </body>
 </html>

@@ -3,13 +3,15 @@ import { profile } from "../data/profile";
 import { research } from "../data/research";
 import { speaking } from "../data/speaking";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageTitle } from "../lib/site";
 
 const currentWorkTitles = research.ongoingWork.map((item) => item.title);
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Contact Jason Chia-Sheng Lin for research collaboration, speaking, or technical discussions related to trustworthy AI, AI systems, speech intelligence, and real-world deployment."
+  title={pageTitle("Contact")}
+  description={profile.contactPrompt}
+  image={profile.avatar}
   pathname="/contact/"
 >
   <section class="section pt-12 sm:pt-16">
@@ -49,7 +51,13 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
 
       <section class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
         <div class="panel overflow-hidden">
-          <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] w-full object-cover" />
+          <img
+            src={profile.avatar}
+            alt={`Portrait of ${profile.name}`}
+            width="1693"
+            height="2540"
+            class="aspect-[4/5] w-full object-cover"
+          />
         </div>
 
         <div class="panel flex flex-col justify-center gap-5 p-7 sm:p-8">
