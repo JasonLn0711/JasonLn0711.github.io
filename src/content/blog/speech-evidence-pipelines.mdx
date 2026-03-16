@@ -1,6 +1,6 @@
 ---
 title: Designing Speech Evidence Pipelines with ASR and LLMs
-description: A research note on turning long-form conversational audio into structured, evidence-aware outputs without losing traceability.
+description: A research note on building speech evidence pipelines with ASR, retrieval, and LLMs while keeping outputs grounded in transcript evidence.
 pubDate: 2026-02-18
 tags:
   - Speech Intelligence
@@ -17,7 +17,9 @@ Speech intelligence becomes much more useful when it goes beyond raw transcripti
 
 ## The core problem
 
-ASR output is noisy, speaker turns are imperfect, and important evidence can be scattered across a long conversation. If we ask an LLM to summarize everything at once, it may sound fluent while losing the exact grounding that makes the result trustworthy.
+Recent ASR work has moved the field forward significantly. The [Whisper paper](https://arxiv.org/abs/2212.04356), for example, showed how large-scale weak supervision can produce robust multilingual speech recognition at impressive scale. But even strong transcription does not solve the full problem. Speaker turns remain imperfect, conversational structure is messy, and the evidence that matters can be scattered across a long interaction.
+
+If we ask an LLM to summarize everything at once, the result may sound coherent while losing the exact grounding that makes the output trustworthy. Long-context capability does not eliminate this risk. As [*Lost in the Middle*](https://arxiv.org/abs/2307.03172) usefully demonstrates, even when relevant information is technically present in the context window, language models do not always use it reliably.
 
 ## A better research framing
 
@@ -38,7 +40,7 @@ An investigator-facing speech system benefits from explicit intermediate layers:
 3. Structured extraction for entities, claims, or suspicious patterns
 4. Final outputs that remain linked to the original supporting passages
 
-That layered design keeps the system grounded and makes it easier to evaluate where errors actually happen.
+That layered design keeps the system grounded and makes it easier to evaluate where errors actually happen. It is also why [Lewis et al.'s retrieval-augmented generation paper](https://arxiv.org/abs/2005.11401) remains conceptually important: retrieval should not be treated as a cosmetic add-on for larger prompts, but as a first-class mechanism for exposing what evidence the system is actually using.
 
 ## Evaluation beyond a single score
 
@@ -49,21 +51,14 @@ For this kind of system, I care less about a single benchmark number and more ab
 - grounding quality of LLM outputs
 - reviewer confidence in extracted evidence
 
-```ts
-const evaluationSlices = [
-  "speaker_turn_quality",
-  "retrieval_recall",
-  "grounding_strength",
-  "reviewer_confidence"
-];
-```
-
-In practice, the best improvements often come from pipeline design, not just model size. Better segmentation, better retrieval, and better evidence presentation frequently matter more than a more complex prompt.
+In practice, the best improvements often come from pipeline design, not just model size. Better segmentation, better retrieval, and better evidence presentation frequently matter more than a more elaborate prompt.
 
 ## Why trustworthy AI matters here
 
 For speech evidence systems, trust is not a visual layer added at the end. It is part of the system contract. If a reviewer cannot see where a generated conclusion came from, the system has not done enough to earn a place in a serious workflow.
 
+That is why I think speech intelligence should be evaluated not only by whether it sounds fluent, but by whether it preserves provenance, exposes uncertainty, and supports downstream review under realistic operating conditions. In serious settings, the most valuable pipeline is often not the one that produces the smoothest summary, but the one that makes evidence easier to recover, compare, and verify.
+
 ## Closing note
 
-The most useful speech intelligence systems are not the ones that sound the smartest. They are the ones that preserve evidence, expose uncertainty, and help people review complex conversations with more confidence.
+The most useful speech intelligence systems are not the ones that sound the smartest. They are the ones that preserve evidence, expose uncertainty, and help people review complex conversations with more confidence. For me, that is the real promise of combining ASR, retrieval, and LLMs: not automated eloquence, but better-supported human judgment over difficult conversational evidence.

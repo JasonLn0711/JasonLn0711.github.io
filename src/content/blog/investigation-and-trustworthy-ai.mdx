@@ -1,6 +1,6 @@
 ---
 title: From Cybercrime Investigation to Trustworthy AI
-description: An essay on how investigation work shaped the way I think about evidence, reliability, and AI systems for high-stakes use.
+description: An essay on how cybercrime investigation shaped the way I think about evidence, adversarial behavior, and trustworthy AI for high-stakes systems.
 pubDate: 2026-01-10
 tags:
   - Trustworthy AI
@@ -13,19 +13,19 @@ cover: /projects/fraud-conversation-analysis-rag.svg
 ogImage: /og/default.png
 ---
 
-Before becoming a doctoral researcher, I worked in law enforcement as a cybercrime investigator. That background still shapes the kinds of AI systems I want to build and the kinds of claims I am willing to trust.
+Before becoming a doctoral researcher, I worked in law enforcement as a cybercrime investigator. That experience still shapes the kinds of AI systems I want to build and, just as importantly, the kinds of claims I am willing to trust.
 
 ## Evidence changes how you think about AI
 
-Investigation work makes one point very clear: a conclusion is only as useful as the evidence behind it. In research, it is easy to be impressed by a fluent output or a promising benchmark. In operational work, that is not enough.
+Investigation work leaves little patience for fluent but weakly grounded conclusions. A claim matters only insofar as the evidence behind it can be inspected, challenged, and connected back to a concrete chain of events. In research, it is easy to be impressed by a strong benchmark number or a polished output. In operational work, that is not enough.
 
-When the cost of a mistake is high, traceability matters. You need to know where a claim came from, what uncertainty remains, and how a human can verify it.
+That instinct transfers naturally into AI. One reason I find [NIST AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10) useful is that it does not reduce trustworthiness to accuracy alone; it treats reliability, explainability and interpretability, privacy, and accountability as parts of the same design problem. When the cost of a mistake is high, traceability matters. You need to know where a claim came from, what uncertainty remains, and how a human can verify it.
 
 ## Adversarial thinking is useful beyond security
 
-Cybercrime investigation also teaches you to expect adaptive behavior. Fraud tactics change. Attackers respond to defenses. Surface-level success can hide deeper fragility.
+Cybercrime investigation also teaches you to expect adaptation. Fraud tactics change. Attackers respond to defenses. Surface-level success can hide deeper fragility. A system that looks reliable under static assumptions may fail quickly once the environment becomes strategic.
 
-That mindset transfers naturally into AI security and trustworthy AI. It encourages questions like:
+That mindset is valuable well beyond traditional security. It encourages questions like:
 
 1. What happens when the data distribution shifts?
 2. Where can the model leak information?
@@ -34,16 +34,18 @@ That mindset transfers naturally into AI security and trustworthy AI. It encoura
 
 ## Why this matters for LLM systems
 
-Large language models are powerful, but in high-stakes contexts they should be treated as components in a system, not as the system itself. Retrieval, evaluation, and evidence presentation are not optional extras. They are what make the system safe enough to use.
+Large language models are powerful, but in high-stakes contexts they should be treated as components in a system, not as the system itself. Retrieval, evaluation, and evidence presentation are not optional extras. They are what make the system usable without breaking the chain of evidence.
 
-This is especially true in domains like fraud detection, speech intelligence, and security analysis, where the difference between a useful output and a misleading one often comes down to whether the reasoning remains grounded.
+In that sense, I am sympathetic to Cynthia Rudin's argument in [*Stop Explaining Black Box Machine Learning Models for High Stakes Decisions and Use Interpretable Models Instead*](https://doi.org/10.1038/s42256-019-0048-x). In serious settings, the goal should not simply be to attach better post hoc explanations to opaque systems. The better question is whether the system can be designed to remain inspectable enough for the task in the first place.
+
+This matters in domains like fraud analysis, speech intelligence, and security investigation, where the difference between a useful output and a misleading one often comes down to whether the reasoning remains grounded, reviewable, and proportionate to the stakes. The [OECD AI Principles](https://www.oecd.org/en/topics/sub-issues/ai-principles.html) reinforce the same point by linking trustworthy AI to transparency, robustness, accountability, and meaningful human oversight.
 
 ## A better framing
 
-The transition from investigation work to AI research changed my technical interests, but it did not change the standard I care about. I still want systems that help people reason better under uncertainty.
+The transition from investigation work to AI research changed my technical interests, but it did not change the standard I care about. I still want systems that help people reason better under uncertainty rather than merely automate impressive-looking outputs.
 
-That is why I am drawn to speech intelligence, RAG systems, trustworthy AI, and AI security. They all sit near the same core question: how do we make machine intelligence useful without breaking the chain of evidence?
+That is why I am drawn to speech intelligence, retrieval-augmented systems, trustworthy AI, and AI security. They all sit near the same core question: how do we make machine intelligence useful without breaking the chain of evidence?
 
 ## Closing note
 
-I do not think of my background in cybercrime investigation as something separate from AI research. I think of it as the reason I care so much about building AI systems that are evidence-aware, secure, and genuinely trustworthy.
+I do not think of my background in cybercrime investigation as something separate from AI research. I think of it as the reason I care so much about building AI systems that are evidence-aware, secure, and genuinely trustworthy. The tools have changed, but the standard has not: in high-stakes settings, useful intelligence should be grounded enough to inspect, cautious enough to question, and practical enough to support human judgment rather than replace it.
