@@ -147,3 +147,47 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 ## About This Repository
 
 This repository contains the source for my personal website and research portfolio, built with Astro and used as a public platform for my research profile, writing, project case studies, and speaking activity.
+
+## Recent SEO and Analytics Updates
+
+- Standardized the site's shared SEO pipeline through the Astro layout and head components instead of adding a second SEO framework.
+- Added unique, route-specific titles, meta descriptions, canonical URLs, Open Graph tags, and Twitter tags for the main public pages and detail pages.
+- Normalized canonical URL handling around the production domain: [https://jasonln0711.github.io](https://jasonln0711.github.io).
+- Refined structured data so the home page uses `Person`, `WebSite`, and `WebPage`; blog posts use `BlogPosting`; project pages use `ResearchProject`; and other public pages use `WebPage`.
+- Kept the 404 page accessible but marked it `noindex, follow`, and verified that it does not appear in the sitemap.
+- Verified that `robots.txt` points to the generated sitemap index at `/sitemap-index.xml`.
+- Added RSS discovery in the shared head as an absolute `alternate` feed link.
+- Improved factual image metadata for the shared headshot by adding dimensions and clearer alt text without changing the visual design.
+- Added a shared Plausible analytics integration point plus safe custom-event hooks for:
+  - `email_click`
+  - `official_session_click`
+  - `speaker_profile_click`
+  - `talk_story_click`
+  - `project_repo_click`
+  - `project_demo_click`
+  - `project_paper_click`
+  - `404`
+- Confirmed that the site remains visually unchanged and that `npm run build` passes after the refactor.
+
+### Files Updated for This Refactor
+
+- `src/lib/site.ts`
+- `src/lib/schema.ts`
+- `src/components/seo/Head.astro`
+- `src/layouts/BaseLayout.astro`
+- `src/components/project/ProjectLayout.astro`
+- `src/pages/about.astro`
+- `src/pages/contact.astro`
+- `src/pages/research.astro`
+- `src/pages/talks.astro`
+- `src/pages/talks/regulated-ai-cybersecurity.astro`
+- `src/pages/blog/index.astro`
+- `src/pages/blog/[slug].astro`
+- `src/pages/projects/index.astro`
+- `src/pages/projects/[slug].astro`
+- `src/pages/404.astro`
+
+### Manual TODOs
+
+- Paste the exact Plausible "Review Installation" snippet into `src/lib/site.ts`.
+- Paste the optional Google Search Console verification token into `src/lib/site.ts` if Search Console verification is needed.
