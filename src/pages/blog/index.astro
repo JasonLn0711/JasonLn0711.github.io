@@ -27,14 +27,29 @@ const remainingPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
         </p>
       </div>
 
+      <section class="panel grid gap-4 p-6 sm:grid-cols-3">
+        <a href="#featured-writing" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Start with the featured piece</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">A fast way to understand the voice and concerns behind the work.</span>
+        </a>
+        <a href="#recent-writing" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Browse recent notes</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Scan topics quickly by category, date, and tags.</span>
+        </a>
+        <a href="/projects/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Want implementation examples?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Jump from reasoning to project case studies.</span>
+        </a>
+      </section>
+
       {featuredPost && (
-        <section class="space-y-5">
+        <section id="featured-writing" class="space-y-5 scroll-mt-28">
           <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Featured piece</h2>
           <BlogCard post={featuredPost} featured={true} />
         </section>
       )}
 
-      <section class="space-y-5">
+      <section id="recent-writing" class="space-y-5 scroll-mt-28">
         <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Recent writing</h2>
         {remainingPosts.length > 0 ? (
           <div class="grid gap-6 lg:grid-cols-2">

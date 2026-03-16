@@ -12,7 +12,7 @@ import { speaking } from "../../data/speaking";
         <h2 class="section-title">{home.speaking.title}</h2>
         <p class="section-copy">{home.speaking.description}</p>
       </div>
-      <a href="/talks/" class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]">
+      <a href="/talks/" class="button-secondary">
         {home.speaking.browseLabel}
       </a>
     </div>
@@ -33,17 +33,19 @@ import { speaking } from "../../data/speaking";
           href={speaking.featuredEngagement.url}
           target="_blank"
           rel="noreferrer"
-          class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
+          class="action-link"
         >
-          Official session page →
+          Official session page
+          <span aria-hidden="true">→</span>
         </a>
         <a
           href={profile.externalProfiles.cybersecSpeaker.url}
           target="_blank"
           rel="noreferrer"
-          class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
+          class="action-link"
         >
-          CYBERSEC speaker profile →
+          CYBERSEC speaker profile
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </article>
@@ -68,9 +70,10 @@ import { speaking } from "../../data/speaking";
                   href={link.url}
                   target="_blank"
                   rel="noreferrer"
-                  class="text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
+                  class="action-link"
                 >
-                  {link.label} →
+                  {link.label}
+                  <span aria-hidden="true">→</span>
                 </a>
               ))}
             </div>

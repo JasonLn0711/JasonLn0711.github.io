@@ -19,7 +19,22 @@ import { pageTitle } from "../lib/site";
         <p class="text-lg leading-8 text-slate-300">{speaking.page.description}</p>
       </div>
 
-      <article class="panel grid gap-8 overflow-hidden p-7 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <section class="panel grid gap-4 p-6 sm:grid-cols-3">
+        <a href="#featured-talk" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Review the featured session</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Best for organizers who need a concrete talk example fast.</span>
+        </a>
+        <a href="#topics" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Browse topics and audience fit</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Useful when checking whether the content matches your event.</span>
+        </a>
+        <a href="/contact/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Ready to invite Jason?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Use the contact page for the fastest direct route.</span>
+        </a>
+      </section>
+
+      <article id="featured-talk" class="panel grid gap-8 overflow-hidden p-7 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)] scroll-mt-28">
         <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
           <img
             src={profile.avatar}
@@ -170,7 +185,7 @@ import { pageTitle } from "../lib/site";
         </section>
       )}
 
-      <section class="grid gap-6 xl:grid-cols-3">
+      <section id="topics" class="grid gap-6 xl:grid-cols-3 scroll-mt-28">
         {speaking.topics.map((topic) => (
           <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
             <h2 class="text-2xl font-semibold tracking-tight text-white">{topic.title}</h2>

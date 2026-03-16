@@ -1,5 +1,6 @@
 export const profile = {
   name: "Jason Chia-Sheng Lin",
+  shortName: "Jason Lin",
   handle: "JasonLn0711",
   title: "Doctoral Researcher, Artificial Intelligence in Medical Imaging / Signal Analysis Lab",
   institution: "National Yang Ming Chiao Tung University",
@@ -35,6 +36,25 @@ export const profile = {
     "High-Stakes AI Deployment"
   ],
   credibility: ["Trustworthy AI", "AI Systems", "Speech Intelligence", "Cybersecurity", "High-Stakes Deployment"],
+  quickFacts: [
+    {
+      label: "Role",
+      value: "Doctoral researcher at NYCU"
+    },
+    {
+      label: "Focus",
+      value: "Trustworthy AI, speech intelligence, and cybersecurity"
+    },
+    {
+      label: "Approach",
+      value: "Evidence-aware systems for real-world, high-stakes use"
+    }
+  ],
+  trustSignals: [
+    "Doctoral research in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at NYCU.",
+    "Official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices.",
+    "Two English CISC 2025 conference papers connecting security analysis with practical deployment and defense."
+  ],
   about: [
     "I am a doctoral researcher in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at National Yang Ming Chiao Tung University (NYCU), where my work sits at the intersection of AI systems, trustworthy AI, speech and language pipelines, and security-aware evaluation.",
     "Before doctoral research, I worked in cybercrime investigation. That experience still shapes how I think about evidence, adversarial behavior, failure analysis, and the difference between a model that performs well in isolation and a system that can be trusted in practice.",
@@ -95,6 +115,16 @@ export const profile = {
       title: "Research / Evaluation",
       items: ["Experiment Design", "Evaluation Frameworks", "Reproducible Workflows", "Python", "GitHub Actions"]
     }
+  ],
+  contactTopics: [
+    "Research collaboration and interdisciplinary lab conversations",
+    "Speaking invitations for trustworthy AI, speech systems, or cybersecurity",
+    "Hiring, technical peer exchange, and evidence-aware AI system design"
+  ],
+  contactChecklist: [
+    "What you are working on and why it connects to Jason's research.",
+    "What kind of conversation would be useful: collaboration, talk, review, or role discussion.",
+    "Any timing, audience, or constraints that would help shape a reply."
   ],
   contactPrompt:
     "I welcome thoughtful conversations around research collaboration, trustworthy AI, speech and language systems, and AI deployment in security-sensitive or regulated environments."

@@ -20,7 +20,26 @@ import { pageTitle } from "../lib/site";
         <p class="text-lg leading-8 text-slate-300">{research.page.description}</p>
       </div>
 
-      <section class="panel p-7 sm:p-8">
+      <section class="panel grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4 lg:p-7">
+        <a href="#active-work" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">What is active now?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Current work and next steps.</span>
+        </a>
+        <a href="#recent-papers" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">What signals depth?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Recent conference papers and themes.</span>
+        </a>
+        <a href="/projects/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Want implementation evidence?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Go from the agenda to case studies.</span>
+        </a>
+        <a href="/contact/" class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+          <span class="block text-sm font-semibold text-white">Considering collaboration?</span>
+          <span class="mt-2 block text-sm leading-6 text-slate-400">Use the direct contact path.</span>
+        </a>
+      </section>
+
+      <section id="active-work" class="panel p-7 sm:p-8 scroll-mt-28">
         <div class="max-w-3xl space-y-3">
           <h2 class="text-2xl font-semibold text-white">Active work and current directions</h2>
           <p class="text-base leading-8 text-slate-300">
@@ -47,7 +66,7 @@ import { pageTitle } from "../lib/site";
         </div>
       </section>
 
-      <section class="panel p-7 sm:p-8">
+      <section id="recent-papers" class="panel p-7 sm:p-8 scroll-mt-28">
         <div class="max-w-3xl space-y-3">
           <h2 class="text-2xl font-semibold text-white">Recent conference papers</h2>
           <p class="text-base leading-8 text-slate-300">
@@ -88,7 +107,7 @@ import { pageTitle } from "../lib/site";
         </div>
       </section>
 
-      <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <section id="research-pillars" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 scroll-mt-28">
         {research.pillars.map((pillar) => (
           <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
             <h2 class="text-2xl font-semibold tracking-tight text-white">{pillar.title}</h2>
@@ -127,7 +146,7 @@ import { pageTitle } from "../lib/site";
         </article>
       </section>
 
-      <section class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
+      <section id="collaboration" class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr] scroll-mt-28">
         <article class="panel p-7 sm:p-8">
           <h2 class="text-2xl font-semibold text-white">Future directions</h2>
           <ul class="mt-6 space-y-4">

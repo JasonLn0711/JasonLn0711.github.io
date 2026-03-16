@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../lib/site";
 import { pageTitle } from "../lib/site";
 ---
 
@@ -11,15 +12,28 @@ import { pageTitle } from "../lib/site";
 >
   <section class="section pt-16">
     <div class="shell">
-      <div class="panel max-w-2xl space-y-6 p-8 sm:p-10">
+      <div class="panel max-w-4xl space-y-8 p-8 sm:p-10">
         <span class="eyebrow">404</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white">Page not found</h1>
         <p class="text-base leading-8 text-slate-300">
-          The page you were looking for is not available. You can head back to the homepage or continue browsing the portfolio.
+          The page you were looking for is not available. The quickest recovery is to jump back to one of the main sections below.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/" class="button-primary">Back home</a>
-          <a href="/projects/" class="button-secondary">View projects</a>
+          <a href="/" class="button-primary" data-plausible-event="404_recovery_click">Back home</a>
+          <a href="/projects/" class="button-secondary" data-plausible-event="404_recovery_click">View projects</a>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {site.nav.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-3xl border border-white/[0.08] bg-white/[0.03] px-5 py-5 transition hover:border-white/20 hover:bg-white/[0.05]"
+              data-plausible-event="404_recovery_click"
+            >
+              <span class="block text-sm font-semibold text-white">{item.label}</span>
+              <span class="mt-2 block text-sm leading-6 text-slate-400">{item.description}</span>
+            </a>
+          ))}
         </div>
       </div>
     </div>

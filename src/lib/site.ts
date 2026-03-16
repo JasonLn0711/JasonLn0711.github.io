@@ -3,7 +3,7 @@ import { home } from "../data/home";
 export const site = {
   name: "Jason Chia-Sheng Lin",
   url: "https://jasonln0711.github.io",
-  defaultTitle: "Jason Chia-Sheng Lin | Doctoral Researcher in AI Systems and Trustworthy AI",
+  defaultTitle: "Jason Chia-Sheng Lin | Trustworthy AI, Speech Intelligence, and Security",
   description: home.hero.description,
   ogImage: "/og/default.png",
   locale: "en_US",
@@ -16,12 +16,12 @@ export const site = {
     plausibleSnippet: ""
   },
   nav: [
-    { href: "/research/", label: "Research" },
-    { href: "/projects/", label: "Projects" },
-    { href: "/blog/", label: "Writing" },
-    { href: "/talks/", label: "Talks" },
-    { href: "/about/", label: "About" },
-    { href: "/contact/", label: "Contact" }
+    { href: "/research/", label: "Research", description: "Agenda, current directions, and recent papers." },
+    { href: "/projects/", label: "Projects", description: "Selected case studies and system builds." },
+    { href: "/blog/", label: "Writing", description: "Essays and research notes that explain the work." },
+    { href: "/talks/", label: "Talks", description: "Speaking topics, recent sessions, and the web keynote." },
+    { href: "/about/", label: "About", description: "Background, working style, and research path." },
+    { href: "/contact/", label: "Contact", description: "The fastest route for collaboration or speaking inquiries." }
   ]
 } as const;
 

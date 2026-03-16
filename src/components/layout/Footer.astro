@@ -6,40 +6,65 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-white/[0.08] py-10">
-  <div class="shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-    <div class="max-w-xl space-y-3">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{profile.name}</p>
-      <p class="max-w-lg text-sm leading-6 text-slate-400">
-        Doctoral research platform focused on trustworthy AI systems, speech intelligence, cybersecurity, and real-world high-stakes deployment.
-      </p>
+  <div class="shell grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+    <div class="space-y-5">
+      <div class="space-y-3">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{profile.name}</p>
+        <p class="max-w-2xl text-sm leading-7 text-slate-400">
+          A calm, research-oriented portfolio about trustworthy AI, speech intelligence, cybersecurity, and real-world deployment in settings where evidence and reliability matter.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="/contact/" class="button-primary">Contact Jason</a>
+        <a href="/about/" class="button-secondary">About</a>
+      </div>
+
       <p class="text-xs text-slate-500">© {year} {profile.name}</p>
     </div>
 
-    <div class="flex flex-col gap-4 text-sm text-slate-400 md:items-end">
-      <nav class="flex flex-wrap gap-4" aria-label="Footer">
-        {site.nav.map((item) => (
-          <a href={item.href} class="transition hover:text-white">
-            {item.label}
+    <div class="grid gap-8 sm:grid-cols-2">
+      <section>
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Explore</h2>
+        <nav class="mt-4 space-y-3" aria-label="Footer">
+          {site.nav.map((item) => (
+            <a href={item.href} class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05]">
+              <span class="block text-sm font-semibold text-white">{item.label}</span>
+              <span class="mt-1 block text-sm leading-6 text-slate-400">{item.description}</span>
+            </a>
+          ))}
+        </nav>
+      </section>
+
+      <section>
+        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">Connect</h2>
+        <div class="mt-4 space-y-3 text-sm text-slate-400">
+          <a href={`mailto:${profile.email}`} class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
+            <span class="block text-sm font-semibold text-white">Email</span>
+            <span class="mt-1 block">{profile.email}</span>
           </a>
-        ))}
-        <a href="/links/" class="transition hover:text-white">
-          Links
-        </a>
-        <a href="/rss.xml" class="transition hover:text-white">
-          RSS
-        </a>
-      </nav>
-      <div class="flex flex-wrap gap-4">
-        <a href={`mailto:${profile.email}`} class="transition hover:text-white">
-          Email
-        </a>
-        <a href={profile.github} target="_blank" rel="noreferrer" class="transition hover:text-white">
-          GitHub
-        </a>
-        <a href={profile.linkedin} target="_blank" rel="noreferrer" class="transition hover:text-white">
-          LinkedIn
-        </a>
-      </div>
+          <a href={profile.lab.url} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
+            <span class="block text-sm font-semibold text-white">Research lab</span>
+            <span class="mt-1 block">{profile.lab.name}</span>
+          </a>
+          <a href={profile.github} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
+            <span class="block text-sm font-semibold text-white">GitHub</span>
+            <span class="mt-1 block">Code, prototypes, and implementation work.</span>
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" class="block rounded-3xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white">
+            <span class="block text-sm font-semibold text-white">LinkedIn</span>
+            <span class="mt-1 block">Professional profile and external context.</span>
+          </a>
+          <div class="flex flex-wrap gap-4 pl-1 text-xs uppercase tracking-[0.18em] text-slate-500">
+            <a href="/links/" class="transition hover:text-white">
+              Links
+            </a>
+            <a href="/rss.xml" class="transition hover:text-white">
+              RSS
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </footer>

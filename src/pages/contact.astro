@@ -24,30 +24,41 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
         <p class="text-lg leading-8 text-slate-300">{profile.contactPrompt}</p>
       </div>
 
-      <div class="grid gap-6 lg:grid-cols-3">
-        <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">Who I am</span>
-          <h2 class="text-2xl font-semibold text-white">Doctoral researcher at NYCU</h2>
-          <p class="text-sm leading-7 text-slate-300">{profile.shortBio}</p>
-        </article>
+      <section class="panel grid gap-6 p-7 sm:p-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="space-y-5">
+          <div class="space-y-2">
+            <h2 class="text-2xl font-semibold text-white">The direct route</h2>
+            <p class="text-base leading-8 text-slate-300">
+              Email is the best path for collaboration, speaking invitations, hiring conversations, and technically specific questions.
+            </p>
+          </div>
 
-        <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">What I'm building</span>
-          <h2 class="text-2xl font-semibold text-white">Current research focus</h2>
-          <p class="text-sm leading-7 text-slate-300">{currentWorkTitles.join(" · ")}</p>
-          <p class="text-sm leading-7 text-slate-300">
-            Current work moves from evidence-aware speech systems to grounded analysis workflows and security-minded AI deployment.
-          </p>
-        </article>
+          <div class="grid gap-3 sm:grid-cols-3">
+            {profile.contactTopics.map((topic) => (
+              <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <p class="text-sm leading-7 text-slate-300">{topic}</p>
+              </div>
+            ))}
+          </div>
 
-        <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">Why trust me</span>
-          <h2 class="text-2xl font-semibold text-white">Research and delivery signals</h2>
-          <p class="text-sm leading-7 text-slate-300">
-            Doctoral research at {profile.institutionShort}, an official {speaking.featuredEngagement.event} session, and {speaking.additionalEngagements.length} English CISC 2025 conference papers.
-          </p>
-        </article>
-      </div>
+          <div class="flex flex-wrap gap-3">
+            <a href={`mailto:${profile.email}`} class="button-primary">Email Jason</a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
+              LinkedIn
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6">
+          <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Helpful context to include</p>
+          <ul class="mt-4 space-y-4">
+            {profile.contactChecklist.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
+          </ul>
+        </div>
+      </section>
 
       <section class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
         <div class="panel overflow-hidden">
@@ -84,8 +95,8 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
 
       <div class="grid gap-6 lg:grid-cols-3">
         <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">Email</span>
-          <h2 class="text-2xl font-semibold text-white">Research and collaboration</h2>
+          <span class="pill w-fit">Research</span>
+          <h2 class="text-2xl font-semibold text-white">Collaboration and technical discussion</h2>
           <p class="text-sm leading-7 text-slate-300">
             The best route for collaboration, speaking invitations, research discussions, and technically specific inquiries.
           </p>
@@ -93,24 +104,22 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
         </article>
 
         <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">GitHub</span>
-          <h2 class="text-2xl font-semibold text-white">Code and technical work</h2>
-          <p class="text-sm leading-7 text-slate-300">
-            Browse repositories, prototypes, and the implementation side of ongoing research and engineering work.
-          </p>
-          <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
-            Visit GitHub
+          <span class="pill w-fit">Current work</span>
+          <h2 class="text-2xl font-semibold text-white">What Jason is building now</h2>
+          <p class="text-sm leading-7 text-slate-300">{currentWorkTitles.join(" · ")}</p>
+          <a href="/research/" class="button-secondary mt-auto">
+            View research
           </a>
         </article>
 
         <article class="panel flex flex-col gap-5 p-7">
-          <span class="pill w-fit">LinkedIn</span>
-          <h2 class="text-2xl font-semibold text-white">Professional connection</h2>
+          <span class="pill w-fit">Signals</span>
+          <h2 class="text-2xl font-semibold text-white">Credibility and external references</h2>
           <p class="text-sm leading-7 text-slate-300">
-            Connect for longer-term opportunities, introductions, and interdisciplinary or international conversations.
+            Doctoral research at {profile.institutionShort}, an official {speaking.featuredEngagement.event} session, and {speaking.additionalEngagements.length} English CISC 2025 conference papers.
           </p>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary mt-auto">
-            View LinkedIn
+          <a href="/talks/" class="button-secondary mt-auto">
+            Review talks
           </a>
         </article>
       </div>

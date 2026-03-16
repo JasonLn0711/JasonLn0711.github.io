@@ -13,9 +13,19 @@ import { profile } from "../../data/profile";
       <div class="flex flex-col justify-center gap-5">
         <span class="eyebrow">{home.about.eyebrow}</span>
         <h2 class="section-title">{home.about.title}</h2>
+        <p class="max-w-3xl text-base leading-8 text-slate-300">{home.about.description}</p>
         <p class="max-w-3xl text-base leading-8 text-slate-300">{profile.shortBio}</p>
+        <div class="grid gap-3 sm:grid-cols-3">
+          {profile.quickFacts.map((fact) => (
+            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{fact.label}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-200">{fact.value}</p>
+            </div>
+          ))}
+        </div>
         <div class="flex flex-wrap gap-3">
           <a href="/about/" class="button-secondary">About Jason</a>
+          <a href="/blog/investigation-and-trustworthy-ai/" class="button-secondary">Background essay</a>
           <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
             Lab Website
           </a>

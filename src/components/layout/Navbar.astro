@@ -1,57 +1,169 @@
 ---
 import { profile } from "../../data/profile";
-import { site } from "../../lib/site";
+import { normalizePathname, site } from "../../lib/site";
+
+const currentPath = normalizePathname(Astro.url.pathname);
+const primaryNav = site.nav.filter((item) => item.href !== "/contact/");
+
+function isActive(href: string) {
+  return currentPath === href || (href !== "/" && currentPath.startsWith(href));
+}
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.72] backdrop-blur">
-  <div class="shell flex min-h-[72px] items-center justify-between gap-6 py-4">
-    <a href="/" class="min-w-0 text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase">
-      {profile.name}
-    </a>
-
-    <nav class="hidden items-center gap-5 md:flex" aria-label="Primary">
-      {site.nav.map((item) => (
-        <a href={item.href} class="text-sm text-slate-300 transition hover:text-white">
-          {item.label}
+<header class="sticky top-0 z-50 border-b border-white/[0.08] bg-slate-950/[0.8] backdrop-blur">
+  <div class="shell py-4" data-nav-root>
+    <div class="flex min-h-[64px] items-center justify-between gap-4">
+      <div class="min-w-0">
+        <a href="/" class="inline-flex min-h-11 items-center text-sm font-semibold tracking-[0.22em] text-slate-100 uppercase" aria-label={profile.name}>
+          <span class="sm:hidden">{profile.shortName}</span>
+          <span class="hidden sm:inline">{profile.name}</span>
         </a>
-      ))}
-    </nav>
+        <p class="hidden text-xs text-slate-400 xl:block">Trustworthy AI, speech intelligence, and security.</p>
+      </div>
 
-    <div class="hidden items-center gap-3 lg:flex">
-      <a href={profile.github} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
-        GitHub
-      </a>
-      <a href={profile.linkedin} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
-        LinkedIn
-      </a>
-      <a href={`mailto:${profile.email}`} class="pill transition hover:border-white/20 hover:text-white">
-        Email
-      </a>
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+        {primaryNav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "inline-flex min-h-11 items-center rounded-full px-4 text-sm transition",
+              isActive(item.href)
+                ? "bg-white/[0.08] font-semibold text-white"
+                : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="hidden items-center gap-3 xl:flex">
+        <a href={profile.github} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
+          GitHub
+        </a>
+        <a href={profile.linkedin} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="hidden items-center gap-3 md:flex">
+        <a
+          href="/contact/"
+          class:list={[
+            isActive("/contact/") ? "button-primary" : "button-secondary"
+          ]}
+          data-plausible-event="nav_contact_click"
+          aria-current={isActive("/contact/") ? "page" : undefined}
+        >
+          Contact
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="button-secondary md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-mobile-nav-toggle
+      >
+        Menu
+      </button>
     </div>
 
-    <details class="group relative md:hidden">
-      <summary class="button-secondary list-none cursor-pointer px-4 py-2">
-        Menu
-      </summary>
-      <div class="panel absolute right-0 mt-3 min-w-56 p-4">
-        <nav class="flex flex-col gap-3" aria-label="Mobile">
-          {site.nav.map((item) => (
-            <a href={item.href} class="text-sm text-slate-200 transition hover:text-white">
-              {item.label}
-            </a>
-          ))}
-          <div class="my-1 h-px bg-white/[0.08]"></div>
-          <a href={profile.github} class="text-sm text-slate-300 transition hover:text-white" target="_blank" rel="noreferrer">
-            GitHub
+    <div id="mobile-menu" class="panel mt-4 p-4 md:hidden" hidden data-mobile-menu>
+      <nav class="space-y-2" aria-label="Mobile primary">
+        {site.nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "block rounded-3xl px-4 py-4 transition",
+              isActive(item.href)
+                ? "border border-white/10 bg-white/[0.08] text-white"
+                : "border border-transparent text-slate-200 hover:border-white/[0.08] hover:bg-white/[0.04] hover:text-white"
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            data-mobile-nav-link
+            data-plausible-event={item.href === "/contact/" ? "nav_contact_click" : undefined}
+          >
+            <span class="block text-sm font-semibold">{item.label}</span>
+            <span class="mt-1 block text-sm leading-6 text-slate-400">{item.description}</span>
           </a>
-          <a href={profile.linkedin} class="text-sm text-slate-300 transition hover:text-white" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-          <a href={`mailto:${profile.email}`} class="text-sm text-slate-300 transition hover:text-white">
-            Email
-          </a>
-        </nav>
+        ))}
+      </nav>
+
+      <div class="mt-4 grid gap-2 border-t border-white/[0.08] pt-4 text-sm text-slate-300">
+        <a href={`mailto:${profile.email}`} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" data-mobile-nav-link>
+          Email Jason
+        </a>
+        <a href={profile.github} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
+          GitHub
+        </a>
+        <a href={profile.linkedin} class="rounded-2xl px-3 py-3 transition hover:bg-white/[0.04] hover:text-white" target="_blank" rel="noreferrer" data-mobile-nav-link>
+          LinkedIn
+        </a>
       </div>
-    </details>
+    </div>
   </div>
 </header>
+
+<noscript>
+  <style>
+    [data-mobile-nav-toggle] {
+      display: none !important;
+    }
+
+    [data-mobile-menu] {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+<script is:inline>
+  const navRoot = document.querySelector("[data-nav-root]");
+  const toggle = navRoot?.querySelector("[data-mobile-nav-toggle]");
+  const menu = navRoot?.querySelector("[data-mobile-menu]");
+  const menuLinks = navRoot ? Array.from(navRoot.querySelectorAll("[data-mobile-nav-link]")) : [];
+
+  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement && navRoot instanceof HTMLElement) {
+    const closeMenu = () => {
+      toggle.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    };
+
+    const openMenu = () => {
+      toggle.setAttribute("aria-expanded", "true");
+      menu.hidden = false;
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        closeMenu();
+        return;
+      }
+
+      openMenu();
+    });
+
+    menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!menu.hidden && event.target instanceof Node && !navRoot.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
+      if (event.matches) {
+        closeMenu();
+      }
+    });
+  }
+</script>
