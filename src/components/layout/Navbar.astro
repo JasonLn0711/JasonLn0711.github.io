@@ -66,11 +66,29 @@ function isActive(href: string) {
       </div>
 
       <div class={isHomePage ? "hidden" : "hidden items-center gap-3 xl:flex"}>
-        <a href={localizedProfile.github} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
-          GitHub
+        <a
+          href={localizedProfile.github}
+          class="profile-icon-link"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[1.05rem] w-[1.05rem] fill-current">
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56 0-.28-.01-1.2-.02-2.17-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.14 1.17A10.9 10.9 0 0 1 12 6.03c.97 0 1.95.13 2.87.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.37-5.24 5.66.41.36.77 1.08.77 2.19 0 1.58-.01 2.85-.01 3.24 0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+          </svg>
         </a>
-        <a href={localizedProfile.linkedin} class="pill transition hover:border-white/20 hover:text-white" target="_blank" rel="noreferrer">
-          LinkedIn
+        <a
+          href={localizedProfile.linkedin}
+          class="profile-icon-link"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+          title="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="h-[1rem] w-[1rem] fill-current">
+            <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9.75h3.96V21H3V9.75ZM9.46 9.75h3.8v1.54h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.04V21h-3.96v-5.06c0-1.2-.02-2.76-1.68-2.76-1.69 0-1.95 1.31-1.95 2.67V21H9.46V9.75Z" />
+          </svg>
         </a>
       </div>
 
@@ -117,6 +135,30 @@ function isActive(href: string) {
 </header>
 
 <style>
+  .profile-icon-link {
+    display: inline-flex;
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgb(203 213 225);
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .profile-icon-link:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    transform: translateY(-1px);
+  }
+
   .mobile-direct-nav {
     display: flex;
     gap: 0.6rem;
