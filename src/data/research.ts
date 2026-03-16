@@ -1,22 +1,22 @@
 export const research = {
   page: {
     eyebrow: "Research",
-    title: "Research at the intersection of AI systems, security, and trustworthy deployment.",
+    title: "Research at the intersection of AI agents, security, and trustworthy deployment.",
     description:
-      "My work asks how AI systems can remain useful, inspectable, and dependable when they are deployed in environments shaped by uncertainty, evidence requirements, and real operational cost."
+      "My work asks how AI agents and decision-support systems can remain useful, inspectable, and dependable when they are deployed in environments shaped by uncertainty, evidence requirements, and real operational cost."
   },
   pillars: [
     {
-      title: "Trustworthy AI Systems",
+      title: "Trustworthy AI and Agent Systems",
       description:
-        "Designing AI systems where reliability, evaluation, human review, and traceability are part of the architecture rather than afterthoughts.",
+        "Designing AI agents and systems where reliability, evaluation, human review, and traceability are part of the architecture rather than afterthoughts.",
       tags: ["Reliability", "Evaluation", "Human Review"]
     },
     {
-      title: "Speech, Language, and Evidence Pipelines",
+      title: "Speech, Language, and Agent Workflows",
       description:
-        "Building ASR + LLM + RAG workflows for conversational analysis, structured extraction, and evidence-aware reasoning over long-form audio and transcripts.",
-      tags: ["ASR", "LLM", "RAG"]
+        "Building ASR + LLM + RAG pipelines and agent workflows for conversational analysis, structured extraction, and evidence-aware reasoning over long-form audio and transcripts.",
+      tags: ["ASR", "Agents", "RAG"]
     },
     {
       title: "Security and High-Stakes Deployment",
@@ -26,9 +26,9 @@ export const research = {
     }
   ],
   questions: [
-    "How can AI systems support human decision-making in high-stakes environments without weakening the chain of evidence?",
-    "What makes an AI system trustworthy beyond benchmark performance or fluent output?",
-    "How should speech and language pipelines be designed for real operational workflows rather than idealized demos?",
+    "How can AI agents support human decision-making in high-stakes environments without weakening the chain of evidence?",
+    "What makes an AI agent or system trustworthy beyond fluent output, benchmark scores, or tool use?",
+    "How should speech pipelines and IDE-like assistants be designed for real workflows rather than idealized demos?",
     "How can deployment constraints, governance, and security be built into AI system design from the start?"
   ],
   ongoingWork: [
@@ -36,16 +36,16 @@ export const research = {
       title: "Evidence-Aware Speech Intelligence Pipelines",
       status: "Active Research",
       summary:
-        "Developing systems that move from raw conversational audio to structured, reviewable outputs while preserving traceability between generated conclusions and source evidence.",
-      nextStep: "Refining evaluation slices for transcript quality, retrieval behavior, and reviewer trust.",
+        "Developing systems that move from raw conversational audio to structured, reviewable outputs while preserving traceability across retrieval, agent steps, and generated conclusions.",
+      nextStep: "Refining evaluation slices for transcript quality, retrieval behavior, agent steps, and reviewer trust.",
       tags: ["Speech Intelligence", "ASR", "Traceability"]
     },
     {
       title: "Grounded Fraud Conversation Analysis",
       status: "Active Research",
       summary:
-        "Studying how RAG-based workflows can support fraud-related conversation analysis without relying on unsupported language-model reasoning.",
-      nextStep: "Extending retrieval and answer-grounding evaluation for analyst-facing use.",
+        "Studying how RAG-based and agentic workflows can support fraud-related conversation analysis without relying on unsupported language-model reasoning.",
+      nextStep: "Extending retrieval, tool-use, and answer-grounding evaluation for analyst-facing use.",
       tags: ["Fraud Analysis", "RAG", "LLM Systems"]
     },
     {
@@ -58,9 +58,9 @@ export const research = {
     }
   ],
   futureDirections: [
-    "Trustworthy speech systems for analyst-facing and evidence-sensitive workflows.",
-    "Evaluation frameworks for AI deployment in regulated, security-critical, or operationally complex environments.",
-    "Secure, evidence-grounded multimodal systems for real-world decision support."
+    "Trustworthy speech and agent systems for analyst-facing, evidence-sensitive workflows.",
+    "IDE-like agent systems for research, development, and human-in-the-loop review.",
+    "Evaluation frameworks for AI deployment in regulated, security-critical, or operationally complex environments."
   ],
   currentActivities: [
     {
@@ -153,7 +153,7 @@ export const research = {
   collaboration: {
     title: "Collaboration and research fit",
     description:
-      "I am especially interested in collaborations that value technical depth, careful evaluation, and the realities of deploying AI in environments where reliability, reviewability, and governance matter."
+      "I am especially interested in collaborations that value technical depth, careful evaluation, and the realities of deploying AI agents and systems where reliability, reviewability, and governance matter."
   }
 } as const;
 

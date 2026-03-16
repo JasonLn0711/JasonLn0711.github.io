@@ -1,9 +1,9 @@
 export const speaking = {
   page: {
     eyebrow: "Talks / Speaking",
-    title: "Talks on trustworthy AI, speech systems, and serious deployment.",
+    title: "Talks on AI agents, trustworthy AI, speech systems, and serious deployment.",
     description:
-      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, alongside two English CISC 2025 conference papers on AI-era ransomware defense and threat pulse modeling for ZTAID-aligned zero-trust maturity assessment."
+      "I am interested in speaking with research groups, conferences, technical teams, and interdisciplinary audiences working on AI agents and systems where reliability, evidence, and operational context matter. Current speaking activity includes an official CYBERSEC 2026 breakout session on cybersecurity design for AI software medical devices, alongside two English CISC 2025 conference papers on AI-era ransomware defense and threat pulse modeling for ZTAID-aligned zero-trust maturity assessment."
   },
   featuredEngagement: {
     label: "Official session",
@@ -134,6 +134,12 @@ export const speaking = {
       audience: "NLP teams, speech researchers, applied AI practitioners"
     },
     {
+      title: "AI Agents and IDE-Like Assistant Systems",
+      description:
+        "How to design tool-using agents and coding-assistant workflows that stay inspectable, grounded, and useful for real work.",
+      audience: "AI product teams, research labs, engineering groups"
+    },
+    {
       title: "Security-Minded AI System Design",
       description:
         "Why privacy, leakage risk, adversarial thinking, and deployment assumptions should be treated as core system questions rather than compliance afterthoughts.",
@@ -148,7 +154,7 @@ export const speaking = {
   invitation: {
     title: "Invitation-ready topics",
     description:
-      "Talks can be tailored for research, technical, or cross-functional audiences. If your event sits near trustworthy AI, speech intelligence, ransomware defense, or deployment risk, I would be glad to discuss a fit."
+      "Talks can be tailored for research, technical, or cross-functional audiences. If your event sits near AI agents, trustworthy AI, speech intelligence, ransomware defense, or deployment risk, I would be glad to discuss a fit."
   }
 } as const;
 

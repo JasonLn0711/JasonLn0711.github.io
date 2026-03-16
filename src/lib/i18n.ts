@@ -877,10 +877,10 @@ const pageCopy = {
       lastUpdated: "Last updated"
     },
     navbar: {
-      desktopTagline: "Trustworthy AI, speech intelligence, and security."
+      desktopTagline: "AI agents, speech intelligence, and security."
     },
     footer: {
-      description: "A calm, research-oriented portfolio about trustworthy AI, speech intelligence, cybersecurity, and real-world deployment in settings where evidence and reliability matter.",
+      description: "A calm, research-oriented portfolio about AI agents, trustworthy AI, speech intelligence, cybersecurity, and real-world deployment in settings where evidence and reliability matter.",
       contactCta: "Contact Jason",
       aboutCta: "About",
       researchLab: "Research lab",
@@ -895,10 +895,10 @@ const pageCopy = {
       commitLabel: "Commit"
     },
     home: {
-      heroPills: ["Doctoral Researcher", "Speaker", "Trustworthy AI"],
+      heroPills: ["Doctoral Researcher", "AI Agents", "Speaker"],
       meetJason: "Meet Jason",
-      heroInstitutionSummary: "NYCU · AI systems, speech intelligence, cybersecurity, and regulated deployment",
-      heroSummary: "Investigation-informed research focused on building AI systems that remain useful when evidence, reviewability, and operational constraints matter.",
+      heroInstitutionSummary: "NYCU · AI agents, speech intelligence, cybersecurity, and regulated deployment",
+      heroSummary: "Investigation-informed research and builds focused on AI agents and systems that stay useful when evidence, human review, and operational constraints matter.",
       heroContact: "Contact Jason",
       startHere: "Start here",
       choosePath: "Choose the path that matches your visit.",
@@ -921,15 +921,15 @@ const pageCopy = {
       writingInProgressCopy: "New essays, research notes, and technical perspectives will appear here as the body of work continues to grow."
     },
     aboutPage: {
-      description: "This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI systems intended for serious real-world use.",
-      title: "Researcher, systems builder, and security-minded thinker.",
+      description: "This page provides the professional context behind the portfolio: the doctoral research agenda, the investigation-informed perspective, and the way I approach AI agents and systems intended for serious real-world use.",
+      title: "Researcher, agent builder, and security-minded thinker.",
       actionResearch: "Research focus",
       actionProjects: "Selected projects",
       actionWriting: "Writing",
       actionTalks: "Talks",
       actionContact: "Contact",
       currentRoleValue: "Doctoral Researcher",
-      primaryLensValue: "Trustworthy AI, security, and deployment realism",
+      primaryLensValue: "AI agents, trustworthy AI, and deployment realism",
       currentSpeakingActivityLinks: {
         official: "View official session page",
         profile: "View CYBERSEC speaker profile"
@@ -945,27 +945,27 @@ const pageCopy = {
       collaborationTitle: "Considering collaboration?",
       collaborationDescription: "Use the direct contact path.",
       activeWorkTitle: "Active work and current directions",
-      activeWorkDescription: "Ongoing work is organized around a small number of durable research directions rather than a long list of disconnected experiments.",
+      activeWorkDescription: "Ongoing work is organized around a small number of durable directions in agents, speech pipelines, and deployment rather than a long list of disconnected experiments.",
       currentNextStep: "Current next step:",
       recentPapersTitle: "Recent conference papers",
       recentPapersDescription: "Recent English conference papers connect the research agenda with practical deployment, threat modeling, and measurable defense strategy.",
       questionsTitle: "Questions I care about",
       workingStyleTitle: "Working style",
-      workingStyleParagraphOne: "I tend to approach AI as a full-system problem rather than a single-model problem. That means thinking about data quality, retrieval, evaluation, security assumptions, failure analysis, and human review as connected parts of the same design task.",
-      workingStyleParagraphTwo: "The common thread across the portfolio is simple: build systems that are not only capable, but also inspectable, evidence-aware, and realistic about deployment conditions.",
+      workingStyleParagraphOne: "I tend to approach AI as a full-system and agent-workflow problem rather than a single-model problem. That means thinking about data quality, tools, retrieval, evaluation, security assumptions, failure analysis, and human review as connected parts of the same design task.",
+      workingStyleParagraphTwo: "The common thread across the portfolio is simple: build agents and systems that are capable, inspectable, evidence-aware, and realistic about deployment conditions.",
       labWebsite: "Research Lab Website",
       futureDirectionsTitle: "Future directions",
-      collaborationBox: "Good collaboration fits include research groups, interdisciplinary labs, and technical teams that want to turn strong ideas into inspectable systems, evaluable prototypes, or conference-ready case studies.",
+      collaborationBox: "Good collaboration fits include research groups, interdisciplinary labs, and technical teams that want to turn strong ideas into inspectable agents, evaluable prototypes, or conference-ready case studies.",
       selectedProjects: "Selected Projects",
       collaborate: "Collaborate"
     },
     contactPage: {
       title: "Start a serious conversation.",
       directRouteTitle: "The direct route",
-      directRouteDescription: "Email is the best path for collaboration, speaking invitations, hiring conversations, and technically specific questions.",
+      directRouteDescription: "Email is the best path for collaboration, speaking invitations, hiring conversations, and technically specific questions about AI agents or system design.",
       helpfulContext: "Helpful context to include",
       profileEyebrow: "Profile",
-      profileSummary: "Doctoral researcher at {institution} in the {lab}, working across trustworthy AI, medical cybersecurity, speech intelligence, and real-world deployment, with recent English CISC 2025 papers on ransomware defense and threat pulse modeling for zero-trust maturity assessment.",
+      profileSummary: "Doctoral researcher at {institution} in the {lab}, working across AI agents, trustworthy AI, medical cybersecurity, speech intelligence, and real-world deployment, with recent English CISC 2025 papers on ransomware defense and threat pulse modeling for zero-trust maturity assessment.",
       collaborationCardTitle: "Collaboration and technical discussion",
       collaborationCardDescription: "The best route for collaboration, speaking invitations, research discussions, and technically specific inquiries.",
       sendEmail: "Send an email",
@@ -979,13 +979,13 @@ const pageCopy = {
     },
     resumePage: {
       description: "A professional resume page summarizing Jason Chia-Sheng Lin's current role, strengths, experience, selected work, and public research signals for hiring and collaboration review.",
-      title: "Professional profile for research, AI systems, and security-aware technical work.",
-      intro: "{name} is a doctoral researcher at {institution} whose work connects trustworthy AI, speech intelligence, cybersecurity, and deployment-ready system design. This page is designed for hiring managers, technical leaders, collaborators, and organizers who want a concise, professional overview.",
+      title: "Professional profile for AI agents, trustworthy AI, and security-aware technical work.",
+      intro: "{name} is a doctoral researcher at {institution} whose work connects AI agents, trustworthy AI, speech intelligence, cybersecurity, and deployment-ready system design. This page is designed for hiring managers, technical leaders, collaborators, and organizers who want a concise, professional overview.",
       selectedProjects: "Selected projects",
       professionalStrengths: [
         {
-          title: "Research-grounded systems thinking",
-          description: "Works across models, pipelines, runtime assumptions, and operational constraints rather than treating AI work as an isolated modeling problem."
+          title: "Agent and systems thinking",
+          description: "Works across models, tools, orchestration, runtime assumptions, and operational constraints rather than treating AI work as an isolated modeling problem."
         },
         {
           title: "Security-aware technical judgment",
@@ -997,19 +997,19 @@ const pageCopy = {
         }
       ],
       teamSignals: [
-        "Interdisciplinary profile spanning doctoral research, systems building, and investigation-informed reasoning.",
+        "Interdisciplinary profile spanning doctoral research, agent and system building, and investigation-informed reasoning.",
         "Comfortable in research, engineering-adjacent, and technically cross-functional conversations.",
         "Public work includes an official CYBERSEC 2026 session and two English CISC 2025 conference papers."
       ],
       metrics: [
         { label: "Current role", value: "Doctoral researcher at NYCU" },
         { label: "Base", value: "{lab}" },
-        { label: "Primary focus", value: "Trustworthy AI, speech intelligence, and cybersecurity" },
+        { label: "Primary focus", value: "AI agents, speech intelligence, and cybersecurity" },
         { label: "Recent public signals", value: "1 official session + {count} English conference papers" }
       ],
       professionalSummary: "Professional Summary",
       summaryParagraphTwo: "Before doctoral research, Jason worked in cybercrime investigation. That background continues to shape a practical approach to evidence, adversarial behavior, traceability, and the gap between a model that looks good in isolation and a system that remains trustworthy in real-world use.",
-      summaryParagraphThree: "Current work spans speech and language pipelines, trustworthy AI evaluation, medical AI cybersecurity, and deployment-minded AI system design in environments where reviewability and operational constraints matter.",
+      summaryParagraphThree: "Current work spans AI agents, speech and language pipelines, trustworthy AI evaluation, medical AI cybersecurity, and deployment-minded system design in environments where reviewability and operational constraints matter.",
       whatBrings: "What Jason Brings to a Team",
       experience: "Professional Experience",
       currentWork: "Current Areas of Work",
@@ -1042,13 +1042,13 @@ const pageCopy = {
       emptyState: "More writing is on the way."
     },
     projectsPage: {
-      description: "This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the technical decisions that mattered, and the reason the work is relevant in practice.",
-      title: "Research-led case studies in trustworthy AI, speech intelligence, and security-aware systems.",
+      description: "This page focuses on intentional case studies rather than a repository dump. Each project is framed through the problem, the system design, the key technical decisions, and the reason the work matters in practice.",
+      title: "Research-led case studies in AI agents, speech intelligence, and security-aware systems.",
       filterTitle: "Filter by theme",
-      filterDescription: "Use these filters to jump directly to speech, AI systems, fraud analysis, or security-related case studies.",
+      filterDescription: "Use these filters to jump directly to speech, AI and agent systems, fraud analysis, or security-related case studies.",
       showingSummary: "Showing {count} of {total} projects",
       showingSummaryWithFilter: "Showing {count} of {total} projects for {filter}",
-      filters: ["All", "Speech", "AI Systems", "Fraud Analysis", "Security"],
+      filters: ["All", "Speech", "AI / Agents", "Fraud Analysis", "Security"],
       broaderContextTitle: "Need the broader context?",
       broaderContextDescription: "If a case study is relevant, the next useful comparison is usually the research agenda, a writing sample, or a direct conversation."
     },
@@ -1071,7 +1071,7 @@ const pageCopy = {
       venue: "Venue",
       formatsTitle: "Formats and audience fit",
       formatsDescription: "These talks are especially well suited to research groups, technical conferences, interdisciplinary programs, and teams working on AI in environments where reliability and governance matter.",
-      invitationBox: "If you are organizing a seminar, conference session, lab talk, or interdisciplinary event related to trustworthy AI, speech intelligence, RAG systems, or high-stakes deployment, feel free to reach out with your format and audience in mind.",
+      invitationBox: "If you are organizing a seminar, conference session, lab talk, or interdisciplinary event related to AI agents, trustworthy AI, speech intelligence, RAG systems, or high-stakes deployment, feel free to reach out with your format and audience in mind.",
       inviteJason: "Invite Jason to Speak"
     },
     linksPage: {
