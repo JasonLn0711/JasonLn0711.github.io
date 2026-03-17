@@ -46,31 +46,31 @@ type DeepPartial<T> = T extends Primitive
 
 const siteOverrides = {
   "zh-tw": {
-    defaultTitle: "Jason Chia-Sheng Lin | 值得信賴的 AI、語音智能與安全",
-    description: "這個網站整理了 Jason Chia-Sheng Lin 在值得信賴的 AI、語音智能、資安，以及高風險真實部署場景中的研究與系統實作。",
+    defaultTitle: "Jason Chia-Sheng Lin | 值得信賴的 AI、語音智能與資安",
+    description: "這個網站整理 Jason Chia-Sheng Lin 在值得信賴的 AI、語音智能、資安，以及高風險與受規範場域中的研究與系統實作。",
     locale: "zh_TW",
     nav: [
-      { href: "/research/", label: "研究", description: "研究主軸、目前方向與近期論文。" },
+      { href: "/research/", label: "研究", description: "研究主軸、目前關注與近期論文。" },
       { href: "/projects/", label: "專案", description: "精選案例研究與系統實作。" },
-      { href: "/blog/", label: "文章", description: "說明研究思路與實作判斷的文章與筆記。" },
-      { href: "/talks/", label: "演講", description: "演講主題、近期活動與網頁版講稿。" },
-      { href: "/resume/", label: "履歷", description: "提供招募、合作與審閱參考的專業摘要。" },
-      { href: "/about/", label: "關於", description: "背景、工作方式與研究脈絡。" },
+      { href: "/blog/", label: "文章", description: "整理研究思路與技術判斷的文章與筆記。" },
+      { href: "/talks/", label: "演講", description: "演講主題、近期場次與網頁版講稿。" },
+      { href: "/resume/", label: "履歷", description: "方便招募、合作或審閱時快速掌握的專業摘要。" },
+      { href: "/about/", label: "關於我", description: "我的背景、工作方式與研究脈絡。" },
       { href: "/contact/", label: "聯絡", description: "合作與演講邀請最直接的聯絡方式。" }
     ]
   },
   ja: {
-    defaultTitle: "Jason Chia-Sheng Lin | 信頼できる AI、音声インテリジェンス、セキュリティ",
-    description: "このサイトでは、Jason Chia-Sheng Lin の信頼できる AI、音声インテリジェンス、サイバーセキュリティ、そして高リスク環境での実装を見据えたシステム研究をまとめています。",
+    defaultTitle: "Jason Chia-Sheng Lin | 信頼できるAI、音声インテリジェンス、サイバーセキュリティ",
+    description: "このサイトでは、Jason Chia-Sheng Lin による信頼できるAI、音声インテリジェンス、サイバーセキュリティ、そして高リスク環境や規制環境を見据えたシステム研究を紹介しています。",
     locale: "ja_JP",
     nav: [
-      { href: "/research/", label: "研究", description: "研究テーマ、現在の方向性、最近の論文。" },
+      { href: "/research/", label: "研究", description: "研究テーマ、現在の関心、最近の論文。" },
       { href: "/projects/", label: "プロジェクト", description: "代表的なケーススタディと実装例。" },
-      { href: "/blog/", label: "執筆", description: "研究と実装の考え方を伝える文章とノート。" },
-      { href: "/talks/", label: "講演", description: "講演テーマ、最近の登壇、Web キーノート。" },
-      { href: "/resume/", label: "経歴", description: "採用、共同研究、レビューのための職務概要。" },
-      { href: "/about/", label: "プロフィール", description: "背景、働き方、研究の流れ。" },
-      { href: "/contact/", label: "連絡", description: "共同研究や登壇相談のための連絡先。" }
+      { href: "/blog/", label: "文章", description: "研究や実装の考え方をまとめた文章とノート。" },
+      { href: "/talks/", label: "講演", description: "講演テーマ、最近の登壇、Web版の講演記録。" },
+      { href: "/resume/", label: "経歴", description: "採用や共同研究の検討に役立つ職務概要。" },
+      { href: "/about/", label: "プロフィール", description: "背景、取り組み方、研究の流れ。" },
+      { href: "/contact/", label: "お問い合わせ", description: "共同研究や登壇相談のための連絡先。" }
     ]
   }
 } as const;
@@ -78,10 +78,10 @@ const siteOverrides = {
 const homeOverrides = {
   "zh-tw": {
     hero: {
-      eyebrow: "Jason Chia-Sheng Lin ・ NYCU 博士生",
-      headline: "我打造能在語音、安全與受規範的真實場域中可靠運作的 AI 系統。",
+      eyebrow: "Jason Chia-Sheng Lin｜NYCU 博士生",
+      headline: "我打造能在語音、安全與受規範場域中真正落地的 AI 系統。",
       description:
-        "這是一個研究型作品網站，整理我在值得信賴的 AI、語音智能、資安，以及重視證據、可靠性與可審查性的部署型系統上的工作。",
+        "這是我的研究與作品網站，整理我在值得信賴的 AI、語音智能、資安，以及重視證據、可審查性與部署現實的系統工作。",
       primaryCta: {
         label: "瀏覽研究"
       },
@@ -90,81 +90,81 @@ const homeOverrides = {
       },
       metrics: [
         {
-          label: "目前角色",
+          label: "目前身分",
           value: "NYCU 博士生"
         },
         {
-          label: "工作主軸",
+          label: "主要領域",
           value: "值得信賴的 AI、語音智能與資安"
         },
         {
-          label: "建議起點",
-          value: "想先看方向可從研究開始，想看實作證據可從專案開始，想邀請演講可看演講頁"
+          label: "建議入口",
+          value: "想先看研究方向可從研究頁開始，想看實作證據可先看專案，想邀請演講可直接看演講頁"
         }
       ],
       routes: [
         {
           title: "研究合作夥伴",
-          description: "先看研究主軸、目前方向，以及合作可能如何切入。"
+          description: "先看研究主軸、目前關注，以及可能的合作切入點。"
         },
         {
           title: "招募團隊",
-          description: "從精選專案開始，再透過文章與個人簡介了解背景。"
+          description: "可先看精選專案，再用文章與關於頁快速掌握背景。"
         },
         {
           title: "會議主辦方",
-          description: "先看演講主題、重點講題與聯絡方式。"
+          description: "先看演講主題、代表場次與聯絡方式。"
         }
       ],
       siteMap: [
         "研究主軸與目前工作",
         "精選專案與案例研究",
-        "說明技術判斷的文章與筆記",
+        "整理技術判斷的文章與筆記",
         "演講、網頁版講稿與聯絡方式"
       ]
     },
     research: {
       eyebrow: "研究方向",
-      title: "以實際部署、證據與安全為核心的研究主軸。",
-      description: "這些工作圍繞一小組核心問題，探索當可靠性、可追溯性與營運限制被視為一級需求時，AI 系統會如何表現。",
+      title: "以部署現實、證據與安全為核心的研究主軸。",
+      description: "這些工作圍繞幾個核心問題展開，關心的是當可靠性、可追溯性與營運限制被當成一級需求時，AI 系統該如何被設計。",
       browseLabel: "查看完整研究總覽"
     },
     projects: {
       eyebrow: "精選專案",
       title: "值得信賴的 AI、語音智能與安全導向系統的案例研究。",
-      description: "每個專案都以案例研究方式呈現，讓訪客能看見問題、系統選擇，以及它在真實世界中為何重要。",
+      description: "每個專案都用案例研究的方式呈現，讓訪客看見問題定義、系統選擇，以及它在真實場域中的意義。",
       browseLabel: "瀏覽全部專案"
     },
     writing: {
       eyebrow: "精選文章",
-      title: "關於值得信賴的 AI、有據可循的系統，以及營運判斷的文章。",
-      description: "透過短文與研究筆記，把技術判斷背後的思路攤開來。",
+      title: "關於值得信賴的 AI、有據可循的系統，以及實務判斷的文章。",
+      description: "透過文章與研究筆記，把技術判斷背後的思路整理清楚。",
       browseLabel: "查看全部文章"
     },
     speaking: {
       eyebrow: "演講 / 分享",
       title: "歡迎研究演講、技術分享與跨領域對談邀請。",
       description:
-        "近期公開活動涵蓋官方場次與英文會議論文，主題橫跨值得信賴的 AI、資安、威脅情報、語音系統，以及 AI 在重視可靠性與可追溯性場域中的實際落地問題。",
+        "近期公開活動涵蓋官方場次與英文會議論文，主題橫跨值得信賴的 AI、資安、威脅情報、語音系統，以及 AI 在重視可靠性與可追溯性場域中的落地問題。",
       browseLabel: "瀏覽演講與主題"
     },
     about: {
       eyebrow: "背景摘要",
-      title: "從調查實務走向 AI 系統研究的跨領域路徑。",
-      description: "我的研究方向深受博士研究、系統實作，以及調查工作中形成的證據意識與失效分析視角影響。"
+      title: "從調查實務走到 AI 系統研究的跨域路徑。",
+      description: "我的研究方向深受博士研究、系統實作，以及調查工作累積的證據意識與失效分析視角影響。"
     },
     contact: {
       eyebrow: "聯絡",
       title: "歡迎研究合作、技術交流與演講邀請。",
-      description: "最快的方式是寄電子郵件。聯絡頁也整理了哪些背景資訊最有助於我快速理解你的需求。"
+      description: "最快的方式是寄電子郵件。聯絡頁也整理了哪些背景資訊最能幫助我快速理解你的需求。"
     }
   },
   ja: {
     hero: {
-      eyebrow: "Jason Chia-Sheng Lin ・ NYCU 博士課程",
-      headline: "音声、安全、規制環境で信頼して使える AI システムを設計しています。",
+      eyebrow: "Jason Chia-Sheng Lin | NYCU博士課程",
+      headline: "音声・セキュリティ・規制環境でも、現実に運用できるAIシステムを設計しています。",
       description:
-        "このサイトは、信頼できる AI、音声インテリジェンス、サイバーセキュリティ、そして証拠性・信頼性・レビュー可能性が重要な実運用システムに関する研究ポートフォリオです。",
+        "このサイトは、信頼できるAI、音声インテリジェンス、サイバーセキュリティ、そして証拠性・レビュー可能性・導入現実を重視するシステム研究をまとめた個人サイトです。",
       primaryCta: {
         label: "研究を見る"
       },
@@ -173,82 +173,82 @@ const homeOverrides = {
       },
       metrics: [
         {
-          label: "現在の役割",
+          label: "現在の所属",
           value: "NYCU 博士課程"
         },
         {
           label: "主な領域",
-          value: "信頼できる AI、音声インテリジェンス、サイバーセキュリティ"
+          value: "信頼できるAI、音声インテリジェンス、サイバーセキュリティ"
         },
         {
-          label: "最初のおすすめ",
-          value: "方向性は研究、実装の証拠はプロジェクト、登壇相談は講演ページへ"
+          label: "おすすめの見方",
+          value: "研究の方向は研究ページ、実装例はプロジェクト、登壇相談は講演ページからどうぞ"
         }
       ],
       routes: [
         {
           title: "共同研究をご検討の方へ",
-          description: "研究テーマ、現在の方向性、協業の接点からご覧ください。"
+          description: "研究テーマ、現在の関心、協業の接点からご覧ください。"
         },
         {
-          title: "採用・リクルーティングご担当の方へ",
-          description: "代表プロジェクトから入り、執筆とプロフィールで背景をたどれます。"
+          title: "採用ご担当の方へ",
+          description: "代表プロジェクトから入り、文章とプロフィールで背景を追えます。"
         },
         {
           title: "イベント主催の方へ",
-          description: "講演テーマ、注目セッション、連絡先をご覧ください。"
+          description: "講演テーマ、代表セッション、連絡先をご覧ください。"
         }
       ],
       siteMap: [
         "研究テーマと現在の取り組み",
         "代表プロジェクトとケーススタディ",
-        "技術判断をたどれる文章とノート",
-        "講演、Web キーノート、連絡先"
+        "技術判断の背景がわかる文章とノート",
+        "講演、Web版講演記録、連絡先"
       ]
     },
     research: {
       eyebrow: "研究方向",
-      title: "実装、証拠性、安全性から組み立てている研究テーマ。",
-      description: "信頼性、追跡可能性、運用制約を一級の設計条件として扱ったときに AI システムがどう振る舞うかを、少数の核となるテーマとして追っています。",
+      title: "実装、証拠性、安全性から組み立てている研究テーマです。",
+      description: "信頼性、追跡可能性、運用制約を設計の中心に置いたとき、AIシステムはどうあるべきかを、いくつかの軸に分けて追っています。",
       browseLabel: "研究全体を見る"
     },
     projects: {
       eyebrow: "代表プロジェクト",
-      title: "信頼できる AI、音声インテリジェンス、安全志向システムのケーススタディ。",
-      description: "各プロジェクトは、課題、設計判断、実務上の意味が伝わるようケーススタディとして構成しています。",
+      title: "信頼できるAI、音声インテリジェンス、セキュリティ志向のシステムに関するケーススタディ。",
+      description: "各プロジェクトは、課題設定、設計判断、実務上の意味が伝わるようケーススタディとしてまとめています。",
       browseLabel: "すべてのプロジェクト"
     },
     writing: {
       eyebrow: "注目の文章",
-      title: "信頼できる AI、根拠が追えるシステム、運用判断について書いた文章。",
-      description: "短いエッセイと研究ノートで、技術判断の背景をたどりやすくしています。",
-      browseLabel: "すべての執筆"
+      title: "信頼できるAI、根拠をたどれるシステム、実務判断についての文章です。",
+      description: "エッセイや研究ノートを通じて、技術判断の背景が見えるようにしています。",
+      browseLabel: "すべての文章"
     },
     speaking: {
       eyebrow: "講演 / 登壇",
-      title: "研究講演、技術講演、分野横断の対話に対応しています。",
+      title: "研究講演、技術共有、分野横断の対話に対応しています。",
       description:
-        "最近の登壇には公式セッションと英語会議論文の発表があり、主題は信頼できる AI、サイバーセキュリティ、脅威インテリジェンス、音声システム、そして信頼性と追跡可能性が求められる現場での AI 導入です。",
+        "最近の登壇には公式セッションと英語会議論文の発表があり、主題は信頼できるAI、サイバーセキュリティ、脅威インテリジェンス、音声システム、そして信頼性と追跡可能性が求められる現場でのAI導入です。",
       browseLabel: "講演テーマを見る"
     },
     about: {
       eyebrow: "プロフィール概要",
-      title: "調査の現場から AI システム研究へとつながる学際的な歩み。",
-      description: "博士研究、システム構築、そして調査実務で培った証拠の見方と失敗分析の視点が、この研究と実践の土台になっています。"
+      title: "調査の現場からAIシステム研究へとつながる学際的な歩みです。",
+      description: "博士研究、システム構築、そして調査実務で培った証拠の見方と失敗分析の視点が、現在の研究と実践の土台になっています。"
     },
     contact: {
-      eyebrow: "連絡",
+      eyebrow: "お問い合わせ",
       title: "共同研究、技術的な対話、登壇のご相談を歓迎します。",
-      description: "もっとも早いご連絡方法はメールです。連絡ページには、最初に共有いただけると助かる情報もまとめています。"
+      description: "もっとも早いご連絡方法はメールです。お問い合わせページには、最初に共有いただけると助かる情報もまとめています。"
     }
   }
 } as const;
 
 const profileOverrides = {
   "zh-tw": {
-    tagline: "為真實世界、安全關鍵與受規範場景打造值得信賴的 AI 系統。",
-    bio: "Jason Chia-Sheng Lin 是國立陽明交通大學人工智慧於醫學影像與訊號分析實驗室的博士生，研究重點包含值得信賴的 AI、AI 醫療器材軟體（SaMD）、資安，以及高風險場域中可實際部署的 AI 系統。",
-    shortBio: "我結合醫療 AI 研究、系統實作與調查工作中的證據思維，設計在證據、法規與部署限制都重要時仍然有用的 AI 系統。",
+    tagline: "專注於真實世界、高風險與受規範場域中可落地的 AI 系統。",
+    bio: "Jason Chia-Sheng Lin 目前就讀國立陽明交通大學人工智慧於醫學影像與訊號分析實驗室博士班，研究聚焦於值得信賴的 AI、AI 醫療器材軟體（SaMD）、資安，以及高風險場域中的可部署 AI 系統。",
+    shortBio: "我結合醫療 AI 研究、系統實作與調查工作中的證據思維，設計在證據、法規與部署限制都重要時，仍然真正有用的 AI 系統。",
     quickFacts: [
       {
         label: "角色",
@@ -264,21 +264,21 @@ const profileOverrides = {
       }
     ],
     trustSignals: [
-      "於 NYCU 人工智慧於醫學影像與訊號分析實驗室進行博士研究。",
+      "目前於 NYCU 人工智慧於醫學影像與訊號分析實驗室進行博士研究。",
       "受邀於 CYBERSEC 2026 官方分論壇分享 AI 醫療器材軟體的資安設計。",
-      "於 CISC 2025 發表兩篇英文論文，連結安全分析與實務部署防禦。"
+      "於 CISC 2025 發表兩篇英文論文，連結安全分析與實際部署防禦。"
     ],
     about: [
-      "我目前是國立陽明交通大學（NYCU）人工智慧於醫學影像與訊號分析實驗室的博士生，研究聚焦於 AI 系統、值得信賴的 AI、語音與語言流程，以及安全導向的評估方法。",
-      "在進入博士研究之前，我曾從事網路犯罪偵查。這段經驗至今仍深刻影響我如何理解證據、對抗性行為、失效分析，以及單一模型表現良好與整體系統真正可信之間的差距。",
-      "目前我關注 ASR + LLM + RAG 工作流程、語音智能、可實際部署的 AI 系統，以及受規範或安全敏感場域所需的治理設計。近期公開活動包含 CYBERSEC 2026 官方分論壇演講，以及兩篇 CISC 2025 英文論文，分別探討 AI 時代勒索軟體的演化與 Threat Pulse Modeling 在 ZTAID 零信任成熟度評估中的應用。"
+      "我目前是國立陽明交通大學（NYCU）人工智慧於醫學影像與訊號分析實驗室的博士生，研究聚焦於 AI 系統、值得信賴的 AI、語音與語言流程，以及安全導向的評估設計。",
+      "在進入博士研究之前，我曾從事網路犯罪偵查。這段經驗至今仍深刻影響我如何理解證據、對抗性行為、失效分析，以及單一模型表現不錯和整體系統真正可信之間的差距。",
+      "目前我關注 ASR + LLM + RAG 工作流程、語音智能、可實際部署的 AI 系統，以及受規範或安全敏感場域需要的治理設計。近期公開活動包含 CYBERSEC 2026 官方分論壇演講，以及兩篇 CISC 2025 英文論文，分別探討 AI 時代勒索軟體的演化與 Threat Pulse Modeling 在 ZTAID 零信任成熟度評估中的應用。"
     ],
     interests: [
       "能在真實部署中派上用場的值得信賴 AI 系統",
       "用於語音智能與證據導向分析的 ASR + LLM + RAG 工作流程",
       "高風險場景 AI 系統中的安全、隱私與評估設計",
-      "分析師導向工作流程中的人工審查、可追溯性與決策支援",
-      "面向反詐、醫療與其他受規範領域的真實 AI 系統設計"
+      "分析師工作流程中的人工審查、可追溯性與決策支援",
+      "面向反詐、醫療與其他受規範領域的 AI 系統設計"
     ],
     experience: [
       {
@@ -299,13 +299,13 @@ const profileOverrides = {
       {
         period: "持續進行",
         title: "研究與技術溝通",
-        detail: "持續發展關於值得信賴的 AI、語音系統與部署風險的研究案例、技術寫作與演講內容。"
+        detail: "持續整理關於值得信賴的 AI、語音系統與部署風險的研究案例、技術寫作與演講內容。"
       }
     ],
     achievements: [
-      "跨越研究、系統實作與安全導向思考的跨領域背景。",
+      "具備研究、系統實作與安全導向思考交會的跨域背景。",
       "目前工作連結 ASR、LLM/RAG 流程、評估設計與部署限制。",
-      "歡迎研究團隊、技術團隊，以及處理高風險 AI 使用情境的單位與我交流合作。"
+      "歡迎研究團隊、技術團隊，以及面對高風險 AI 使用情境的單位與我交流合作。"
     ],
     contactTopics: [
       "研究合作與跨領域實驗室交流",
@@ -313,16 +313,16 @@ const profileOverrides = {
       "招募、技術交流與證據導向 AI 系統設計"
     ],
     contactChecklist: [
-      "你正在做什麼，以及它為何與 Jason 的研究有連結。",
+      "你目前在做什麼，以及它為什麼和 Jason 的研究有關。",
       "你希望進行哪一類型的交流：合作、演講、審閱或職務討論。",
       "任何時程、受眾或限制條件，都能幫助我更快回覆。"
     ],
     contactPrompt: "歡迎就研究合作、值得信賴的 AI、語音與語言系統，以及安全敏感或受規範場景中的 AI 部署與我交流。"
   },
   ja: {
-    tagline: "実社会、安全クリティカル、規制環境で使える信頼できる AI システムを設計しています。",
-    bio: "Jason Chia-Sheng Lin は、国立陽明交通大学の Artificial Intelligence in Medical Imaging / Signal Analysis Lab に所属する博士課程の研究者です。信頼できる AI、AI 医療機器ソフトウェア（SaMD）、サイバーセキュリティ、高リスク環境で実装可能な AI システムを研究しています。",
-    shortBio: "医療AIラボでの研究、システム実装、そして調査実務で培った証拠志向の思考を組み合わせ、証拠性・規制・導入制約が重要な場面でも役立つ AI システムを設計しています。",
+    tagline: "実社会の高リスク環境や規制環境で使えるAIシステムを設計しています。",
+    bio: "Jason Chia-Sheng Lin は、国立陽明交通大学の Artificial Intelligence in Medical Imaging / Signal Analysis Lab に所属する博士課程研究者です。信頼できるAI、AI医療機器ソフトウェア（SaMD）、サイバーセキュリティ、高リスク環境で導入可能なAIシステムを研究しています。",
+    shortBio: "医療AIラボでの研究、システム実装、そして調査実務で培った証拠志向の視点を組み合わせ、証拠性・規制・導入制約が重要な場面でも機能するAIシステムを設計しています。",
     quickFacts: [
       {
         label: "役割",
@@ -330,7 +330,7 @@ const profileOverrides = {
       },
       {
         label: "主領域",
-        value: "信頼できる AI、音声インテリジェンス、サイバーセキュリティ"
+        value: "信頼できるAI、音声インテリジェンス、サイバーセキュリティ"
       },
       {
         label: "アプローチ",
@@ -339,26 +339,26 @@ const profileOverrides = {
     ],
     trustSignals: [
       "NYCU の Artificial Intelligence in Medical Imaging / Signal Analysis Lab で博士研究を進めています。",
-      "CYBERSEC 2026 公式セッションで AI 医療機器ソフトウェアのセキュリティ設計を講演しました。",
-      "CISC 2025 で、実運用防御とセキュリティ分析をつなぐ英語論文を 2 本発表しました。"
+      "CYBERSEC 2026 の公式セッションで、AI医療機器ソフトウェアのセキュリティ設計について講演しました。",
+      "CISC 2025 で、実運用の防御とセキュリティ分析をつなぐ英語論文を2本発表しました。"
     ],
     about: [
-      "現在、国立陽明交通大学（NYCU）の Artificial Intelligence in Medical Imaging / Signal Analysis Lab で博士研究に取り組み、AI システム、信頼できる AI、音声・言語パイプライン、セキュリティを意識した評価設計を研究しています。",
-      "博士研究に入る前は、サイバー犯罪捜査の実務に携わっていました。この経験は今でも、証拠、敵対的行動、失敗分析、そして単独で高性能に見えるモデルと実運用で信頼できるシステムの違いを考える土台になっています。",
-      "現在は ASR + LLM + RAG ワークフロー、音声インテリジェンス、実装可能な AI システム、そして規制や安全性の要件が厳しい現場に向けたガバナンス設計に注力しています。最近の公開活動として、CYBERSEC 2026 の公式セッションと、AI 時代のランサムウェアの進化および ZTAID 向け Threat Pulse Modeling を扱う CISC 2025 の英語論文 2 本があります。"
+      "現在、国立陽明交通大学（NYCU）の Artificial Intelligence in Medical Imaging / Signal Analysis Lab で博士研究に取り組み、AIシステム、信頼できるAI、音声・言語パイプライン、セキュリティを意識した評価設計を研究しています。",
+      "博士研究に入る前は、サイバー犯罪捜査の実務に携わっていました。この経験は今でも、証拠、敵対的行動、失敗分析、そして単体では高性能に見えるモデルと実運用で信頼できるシステムの違いを考える土台になっています。",
+      "現在は ASR + LLM + RAG ワークフロー、音声インテリジェンス、実装可能なAIシステム、そして規制や安全性の要件が厳しい現場に向けたガバナンス設計に注力しています。最近の公開活動として、CYBERSEC 2026 の公式セッションと、AI時代のランサムウェアの進化および ZTAID 向け Threat Pulse Modeling を扱う CISC 2025 の英語論文2本があります。"
     ],
     interests: [
-      "実運用で意味を持つ信頼できる AI システム",
+      "実運用の中で意味を持つ信頼できるAIシステム",
       "音声インテリジェンスと証拠志向分析のための ASR + LLM + RAG パイプライン",
-      "高リスク環境向け AI システムの安全性、プライバシー、評価設計",
+      "高リスク環境向けAIシステムの安全性、プライバシー、評価設計",
       "分析者向けワークフローにおける人間レビュー、追跡可能性、意思決定支援",
-      "不正対策、医療、その他の規制領域に向けた実社会の AI システム設計"
+      "不正対策、医療、その他の規制領域に向けた実社会のAIシステム設計"
     ],
     experience: [
       {
         period: "現在",
         title: "博士課程研究者、NYCU Artificial Intelligence in Medical Imaging / Signal Analysis Lab",
-        detail: "信頼できる AI システム、医療サイバーセキュリティ、音声インテリジェンス、根拠が追える LLM ワークフロー、実運用を見据えたセキュリティ評価を研究しています。"
+        detail: "信頼できるAIシステム、医療サイバーセキュリティ、音声インテリジェンス、根拠をたどれるLLMワークフロー、実運用を見据えたセキュリティ評価を研究しています。"
       },
       {
         period: "以前",
@@ -368,30 +368,30 @@ const profileOverrides = {
       {
         period: "学際的",
         title: "調査経験を土台にしたシステム思考",
-        detail: "証拠意識、敵対的思考、運用規律を AI システムの設計と評価に持ち込んでいます。"
+        detail: "証拠意識、敵対的思考、運用規律をAIシステムの設計と評価に持ち込んでいます。"
       },
       {
         period: "継続中",
         title: "研究と技術発信",
-        detail: "信頼できる AI、音声システム、導入リスクに関するケーススタディ、技術文書、講演資料を継続的に整えています。"
+        detail: "信頼できるAI、音声システム、導入リスクに関するケーススタディ、技術文書、講演資料を継続的に整えています。"
       }
     ],
     achievements: [
-      "研究、システム実装、セキュリティ志向の思考を横断する学際的プロフィール。",
-      "現在の取り組みは ASR、LLM/RAG、評価設計、導入制約を結びつけています。",
-      "研究グループ、技術チーム、高リスク AI 利用者との協業に開かれています。"
+      "研究、システム実装、セキュリティ志向の思考を横断する学際的なプロフィールです。",
+      "現在の取り組みは ASR、LLM/RAG、評価設計、導入制約をつないでいます。",
+      "研究グループ、技術チーム、高リスクなAI活用に向き合う組織との協業を歓迎しています。"
     ],
     contactTopics: [
-      "共同研究や学際的ラボとの対話",
-      "信頼できる AI、音声システム、サイバーセキュリティに関する講演依頼",
-      "採用、技術交流、証拠志向 AI システム設計"
+      "共同研究や学際的なラボとの対話",
+      "信頼できるAI、音声システム、サイバーセキュリティに関する講演依頼",
+      "採用、技術交流、証拠志向のAIシステム設計"
     ],
     contactChecklist: [
-      "取り組んでいる内容と、それが Jason の研究とどう接続するか。",
-      "必要な対話の種類: 共同研究、講演、レビュー、あるいは役割の相談。",
+      "取り組んでいる内容と、それが Jason の研究とどうつながるか。",
+      "必要な対話の種類: 共同研究、講演、レビュー、あるいは役割に関する相談。",
       "時期、対象読者、制約など、返信を考える上で役立つ情報。"
     ],
-    contactPrompt: "共同研究、信頼できる AI、音声・言語システム、安全性や規制要件が重要な環境での AI 導入についての対話を歓迎します。"
+    contactPrompt: "共同研究、信頼できるAI、音声・言語システム、安全性や規制要件が重要な環境でのAI導入についての対話を歓迎します。"
   }
 } as const;
 
@@ -399,13 +399,13 @@ const researchOverrides = {
   "zh-tw": {
     page: {
       eyebrow: "研究",
-      title: "位於 AI 系統、安全與可信部署交會處的研究。",
-      description: "我的研究關注：當 AI 系統部署在充滿不確定性、證據要求與真實營運成本的環境中時，如何仍然保持有用、可檢視且可靠。"
+      title: "位在 AI 系統、安全與可信部署交會處的研究。",
+      description: "我的研究關注的是：當 AI 系統被放進充滿不確定性、證據要求與真實營運成本的環境時，如何仍然保持有用、可檢視且可靠。"
     },
     pillars: [
       {
         title: "值得信賴的 AI 系統",
-        description: "把可靠性、評估、人類審查與可追溯性視為架構本身，而不是事後補上的附加條件。",
+        description: "把可靠性、評估、人類審查與可追溯性視為架構的一部分，而不是事後補上的附加條件。",
         tags: ["可靠性", "評估", "人工審查"]
       },
       {
@@ -415,21 +415,21 @@ const researchOverrides = {
       },
       {
         title: "安全與高風險部署",
-        description: "研究隱私、資訊外洩、對抗風險與治理限制，這些因素如何塑造受規範或安全敏感場景中的 AI 系統。",
+        description: "研究隱私、資訊外洩、對抗風險與治理限制，這些因素如何形塑受規範或安全敏感場景中的 AI 系統。",
         tags: ["安全", "隱私", "部署"]
       }
     ],
     questions: [
       "AI 系統如何在不削弱證據鏈的前提下，支援高風險環境中的人類決策？",
       "除了基準測試表現與流暢輸出之外，什麼才真正讓一個 AI 系統值得信賴？",
-      "語音與語言流程應如何為真實營運工作流程設計，而不是為理想化展示設計？",
+      "語音與語言流程該如何為真實營運工作流程而設計，而不是只為理想化展示而存在？",
       "部署限制、治理與安全如何從一開始就被內建進 AI 系統設計？"
     ],
     ongoingWork: [
       {
         title: "證據導向的語音智能流程",
         status: "進行中研究",
-        summary: "開發可從原始對話音訊走到結構化、可審閱輸出的系統，同時保留生成結論與來源證據之間的可追溯性。",
+        summary: "開發可從原始對話音訊一路走到結構化、可審閱輸出的系統，同時保留生成結論與來源證據之間的可追溯性。",
         nextStep: "持續細化逐字稿品質、檢索行為與審閱者信任感等評估面向。",
         tags: ["語音智能", "ASR", "可追溯性"]
       },
@@ -437,7 +437,7 @@ const researchOverrides = {
         title: "有據可循的詐欺對話分析",
         status: "進行中研究",
         summary: "研究以 RAG 為基礎的工作流程，如何在不依賴缺乏依據的 LLM 推理下支援詐欺對話分析。",
-        nextStep: "延伸到分析師使用情境下的檢索品質與答案是否有據可循的評估。",
+        nextStep: "延伸到分析師使用情境下的檢索品質，以及答案是否有據可循的評估。",
         tags: ["詐欺分析", "RAG", "LLM 系統"]
       },
       {
@@ -455,43 +455,43 @@ const researchOverrides = {
     ],
     collaboration: {
       title: "合作與研究契合度",
-      description: "我特別期待與重視技術深度、謹慎評估，以及關注 AI 在可靠性、可審查性與治理要求場景中如何實際落地的人合作。"
+      description: "我特別期待與重視技術深度、謹慎評估，以及關注 AI 在可靠性、可審查性與治理要求場景中如何真正落地的人合作。"
     }
   },
   ja: {
     page: {
       eyebrow: "研究",
-      title: "AI システム、セキュリティ、信頼できる導入の交点にある研究。",
-      description: "不確実性、証拠要件、現実の運用コストを伴う環境に AI を導入したとき、なお有用で検証可能かつ信頼できる状態をどう保つかを研究しています。"
+      title: "AIシステム、セキュリティ、信頼できる導入の交点にある研究です。",
+      description: "不確実性、証拠要件、現実の運用コストを伴う環境にAIを導入したとき、なお有用で検証可能かつ信頼できる状態をどう保つかを研究しています。"
     },
     pillars: [
       {
-        title: "信頼できる AI システム",
-        description: "信頼性、評価、人間レビュー、追跡可能性を後付けではなくアーキテクチャの一部として設計します。",
+        title: "信頼できるAIシステム",
+        description: "信頼性、評価、人間レビュー、追跡可能性を、後付けではなくアーキテクチャの一部として設計します。",
         tags: ["信頼性", "評価", "人間レビュー"]
       },
       {
         title: "音声・言語・証拠パイプライン",
-        description: "ASR + LLM + RAG を用い、長時間音声と文字起こしに対する会話分析、構造化抽出、証拠志向推論を行うワークフローを構築しています。",
+        description: "ASR + LLM + RAG を用い、長時間音声や文字起こしに対する会話分析、構造化抽出、証拠志向の推論を行うワークフローを構築しています。",
         tags: ["ASR", "LLM", "RAG"]
       },
       {
         title: "セキュリティと高リスク導入",
-        description: "規制環境や安全性が重要な場で用いられる AI システムにおいて、プライバシー、漏えい、敵対的リスク、ガバナンス制約がどう影響するかを研究しています。",
+        description: "規制環境や安全性が重要な場で使われるAIシステムにおいて、プライバシー、漏えい、敵対的リスク、ガバナンス制約がどう影響するかを研究しています。",
         tags: ["セキュリティ", "プライバシー", "導入"]
       }
     ],
     questions: [
-      "証拠の連鎖を弱めずに、高リスク環境で人間の意思決定を支援する AI システムはどう設計できるか。",
-      "ベンチマーク性能や流暢な出力を超えて、AI システムを信頼できるものにする要素は何か。",
+      "証拠のつながりを弱めずに、高リスク環境で人の意思決定を支えるAIシステムはどう設計できるか。",
+      "ベンチマーク性能や流暢な出力を超えて、AIシステムを信頼できるものにする要素は何か。",
       "音声・言語パイプラインは理想化されたデモではなく、実際の運用フローにどう合わせるべきか。",
-      "導入制約、ガバナンス、セキュリティを最初から AI システム設計に組み込むにはどうすべきか。"
+      "導入制約、ガバナンス、セキュリティを最初からAIシステム設計に組み込むにはどうすべきか。"
     ],
     ongoingWork: [
       {
         title: "証拠志向の音声インテリジェンス・パイプライン",
         status: "進行中の研究",
-        summary: "生の会話音声から構造化されレビュー可能な出力へ至るシステムを開発し、生成結果と元証拠の間の追跡可能性を保ちます。",
+        summary: "生の会話音声から、構造化されレビュー可能な出力へ至るシステムを開発し、生成結果と元の証拠のあいだの追跡可能性を保ちます。",
         nextStep: "文字起こし品質、検索挙動、レビュー担当者の信頼感という観点から評価を磨いています。",
         tags: ["音声インテリジェンス", "ASR", "追跡可能性"]
       },
@@ -499,25 +499,25 @@ const researchOverrides = {
         title: "根拠が追える不正会話分析",
         status: "進行中の研究",
         summary: "根拠のない LLM 推論に頼らず、不正関連の会話分析を支援する RAG ワークフローを研究しています。",
-        nextStep: "分析者の利用場面に合わせ、検索品質と回答の根拠性を評価しています。",
+        nextStep: "分析者の利用場面に合わせて、検索品質と回答の根拠性を評価しています。",
         tags: ["不正分析", "RAG", "LLM システム"]
       },
       {
         title: "連合学習における漏えいとプライバシーリスク",
         status: "継続研究",
-        summary: "機微な AI 環境で、協調学習が現実的な漏えい・プライバシー前提の下でどう振る舞うかを検証しています。",
-        nextStep: "脅威モデルと導入前提ごとに攻防トレードオフを比較しています。",
+        summary: "機微なAI環境で、協調学習が現実的な漏えい・プライバシー前提の下でどう振る舞うかを検証しています。",
+        nextStep: "脅威モデルと導入前提ごとに、攻防のトレードオフを比較しています。",
         tags: ["連合学習", "プライバシー", "セキュリティ"]
       }
     ],
     futureDirections: [
-      "分析者向けで、証拠に敏感なワークフローを支える信頼できる音声システム。",
-      "規制環境、セキュリティ重要環境、運用が複雑な環境に向けた AI 導入評価フレームワーク。",
+      "分析者向けで、証拠重視のワークフローを支える信頼できる音声システム。",
+      "規制環境、セキュリティ上重要な環境、運用が複雑な環境に向けたAI導入評価フレームワーク。",
       "実際の意思決定支援に向けた、安全で証拠に基づくマルチモーダルシステム。"
     ],
     collaboration: {
       title: "共同研究と適合性",
-      description: "技術的な深さ、丁寧な評価、そして信頼性・レビュー可能性・ガバナンスが重要な環境への AI 導入を重視する協業に特に関心があります。"
+      description: "技術的な深さ、丁寧な評価、そして信頼性・レビュー可能性・ガバナンスが重要な環境へのAI導入を重視する協業に、特に関心があります。"
     }
   }
 } as const;
@@ -533,8 +533,8 @@ const speakingOverrides = {
     featuredEngagement: {
       label: "官方場次",
       summary: "聚焦 AI 醫療器材軟體資安實務的分論壇，從 FDA 524B 出發，串連威脅建模、SBOM、零信任設計與可稽核的風險治理。",
-      description: "此場次探討 FDA 524B 的審查期待如何影響 AI 醫療器材軟體的資安設計，並進一步連結到工程流程、透明治理與可持續的安全策略。",
-      language: "中文，提供 AI 即時翻譯",
+      description: "這場分享討論 FDA 524B 的審查期待如何影響 AI 醫療器材軟體的資安設計，並進一步連到工程流程、透明治理與可持續的安全策略。",
+      language: "中文，現場提供 AI 即時翻譯",
       storyLabel: "網頁版講稿"
     },
     additionalEngagements: [
@@ -556,7 +556,7 @@ const speakingOverrides = {
     topics: [
       {
         title: "超越基準測試的值得信賴 AI",
-        description: "當 AI 被用在錯誤代價很高的場域時，如何思考可靠性、證據、人類審查與系統行為。",
+        description: "當 AI 被用在錯誤代價很高的場域時，該如何思考可靠性、證據、人類審查與系統行為。",
         audience: "研究團隊、實驗室、跨領域聽眾"
       },
       {
@@ -576,7 +576,7 @@ const speakingOverrides = {
       },
       {
         title: "安全導向的 AI 系統設計",
-        description: "為什麼隱私、資訊外洩風險、對抗性思維與部署假設應被視為核心系統問題，而不是事後才補上的合規要求。",
+        description: "為什麼隱私、資訊外洩風險、對抗性思維與部署假設，應被視為核心系統問題，而不是事後才補上的合規要求。",
         audience: "安全團隊、工程團隊、政策相關利害關係人"
       }
     ],
@@ -587,27 +587,27 @@ const speakingOverrides = {
     ],
     invitation: {
       title: "適合邀請的演講主題",
-      description: "演講內容可依研究、技術或跨職能聽眾調整。如果你的活動與值得信賴的 AI、語音智能、勒索軟體防禦或部署風險相關，歡迎與我討論。"
+      description: "演講內容可依研究、技術或跨職能聽眾調整。如果你的活動與值得信賴的 AI、語音智能、勒索軟體防禦或部署風險相關，歡迎來信討論。"
     }
   },
   ja: {
     page: {
       eyebrow: "講演 / 登壇",
-      title: "信頼できる AI、音声システム、高要求な導入環境に関する講演。",
+      title: "信頼できるAI、音声システム、高い要求がある導入環境に関する講演です。",
       description:
-        "信頼性、証拠、実運用の文脈が重要な AI システムに関心を持つ研究グループ、会議、技術チーム、分野横断の聴衆との対話を歓迎しています。最近の公開活動として、CYBERSEC 2026 の公式セッションと、AI 時代のランサムウェア防御および Threat Pulse Modeling を扱う CISC 2025 の英語論文 2 本があります。"
+        "信頼性、証拠、実運用の文脈が重要なAIシステムに関心を持つ研究グループ、会議、技術チーム、分野横断の聴衆との対話を歓迎しています。最近の公開活動として、CYBERSEC 2026 の公式セッションと、AI時代のランサムウェア防御および Threat Pulse Modeling を扱う CISC 2025 の英語論文2本があります。"
     },
     featuredEngagement: {
       label: "公式セッション",
-      summary: "AI 医療機器ソフトウェアのサイバーセキュリティ実務を扱う分科会で、FDA 524B を起点に脅威モデリング、SBOM、ゼロトラスト設計、監査可能なリスク統治を結びます。",
-      description: "このセッションでは、FDA 524B の審査要件が AI 医療機器ソフトウェアのセキュリティ設計にどう影響するかを検討し、それをエンジニアリング運用、透明なガバナンス、持続可能なセキュリティ戦略へ接続します。",
-      language: "中国語、AI 同時翻訳あり",
-      storyLabel: "Web キーノート"
+      summary: "AI医療機器ソフトウェアのサイバーセキュリティ実務を扱う分科会で、FDA 524B を起点に脅威モデリング、SBOM、ゼロトラスト設計、監査可能なリスク統治を結びます。",
+      description: "このセッションでは、FDA 524B の審査要件が AI医療機器ソフトウェアのセキュリティ設計にどう影響するかを検討し、それをエンジニアリング運用、透明なガバナンス、持続可能なセキュリティ戦略へ接続します。",
+      language: "中国語、AI同時翻訳あり",
+      storyLabel: "Web版講演記録"
     },
     additionalEngagements: [
       {
         label: "会議論文",
-        summary: "AI 時代の RaaS が BYOVD、LOTL、秘匿化された C2、適応的な攻撃手口によってどう進化するかを分析し、ZTAID に基づくゼロトラスト防御戦略へ結びつけた英語論文です。",
+        summary: "AI時代の RaaS が BYOVD、LOTL、秘匿化された C2、適応的な攻撃手口によってどう進化するかを分析し、ZTAID に基づくゼロトラスト防御戦略へ結びつけた英語論文です。",
         description: "Medusa と CrazyHunter をケーススタディに、現代のランサムウェア運用と、段階的認可、異常検知、自動封じ込め、セキュリティオーケストレーションを含む実践的な防御設計をつなげています。",
         language: "英語",
         format: "会議論文"
@@ -615,35 +615,35 @@ const speakingOverrides = {
       {
         label: "会議論文",
         summary: "Threat Pulse Modeling（TPM）を、ライブ脅威インテリジェンスを ZTAID 成熟度シグナルへ変換する方法として提案し、継続的なゼロトラスト評価を支える英語論文です。",
-        description: "pulse event、5 つの ZTAID の柱にまたがる impact-vector スコアリング、深刻度のトリアージ、ARIMA とカルマンフィルタによる時系列予測に加え、Pulse Coverage Rate や Detection-Feedback Loop Time といった動的指標を定義しています。",
+        description: "pulse event、5つの ZTAID の柱にまたがる impact-vector スコアリング、深刻度のトリアージ、ARIMA とカルマンフィルタによる時系列予測に加え、Pulse Coverage Rate や Detection-Feedback Loop Time といった動的指標を定義しています。",
         language: "英語",
         format: "会議論文"
       }
     ],
     topics: [
       {
-        title: "ベンチマークを超えて考える信頼できる AI",
-        description: "誤りのコストが大きい環境で AI を使うとき、信頼性、証拠、人間レビュー、システムの振る舞いをどう捉えるか。",
+        title: "ベンチマークを超えて考える信頼できるAI",
+        description: "誤りのコストが大きい環境でAIを使うとき、信頼性、証拠、人間レビュー、システムの振る舞いをどう捉えるか。",
         audience: "研究グループ、ラボ、学際的な聴衆"
       },
       {
-        title: "AI 時代のランサムウェアとゼロトラスト防御",
+        title: "AI時代のランサムウェアとゼロトラスト防御",
         description: "現代の RaaS キャンペーンが自動化、BYOVD、LOTL、秘匿化された C2 をどう組み合わせるか、そして ZTAID に沿ったゼロトラスト戦略でどう検知・封じ込め・復旧するか。",
         audience: "サイバーセキュリティ会議、ブルーチーム、大学院セミナー"
       },
       {
         title: "Threat Pulse Modeling と継続的評価",
-        description: "脅威インテリジェンスを pulse event、ZTAID の柱ごとのスコア、測定可能な成熟度シグナルへ変換し、防御の適応を速める方法。",
+        description: "脅威インテリジェンスを pulse event、ZTAID の柱ごとのスコア、測定可能な成熟度シグナルへ変換し、防御の適応を速める方法です。",
         audience: "セキュリティ研究者、ゼロトラストプログラム、大学院セミナー"
       },
       {
         title: "実運用ワークフロー向け ASR + LLM + RAG",
-        description: "生の文字起こしから、根拠が追える検証可能な分析結果へつなぐ音声・言語パイプラインの設計パターン。",
+        description: "生の文字起こしから、根拠を追える検証可能な分析結果へつなぐ音声・言語パイプラインの設計パターンです。",
         audience: "NLP チーム、音声研究者、応用 AI 実務者"
       },
       {
-        title: "セキュリティ志向の AI システム設計",
-        description: "プライバシー、漏えいリスク、敵対的思考、導入前提を、後付けのコンプライアンスではなく中核の設計課題として扱う理由。",
+        title: "セキュリティ志向のAIシステム設計",
+        description: "プライバシー、漏えいリスク、敵対的思考、導入前提を、後付けのコンプライアンスではなく中核の設計課題として扱う理由です。",
         audience: "セキュリティチーム、エンジニアリング組織、政策関連ステークホルダー"
       }
     ],
@@ -654,7 +654,7 @@ const speakingOverrides = {
     ],
     invitation: {
       title: "ご相談いただきやすい講演テーマ",
-      description: "講演内容は研究者向け、技術者向け、分野横断の聴衆向けに調整できます。信頼できる AI、音声インテリジェンス、ランサムウェア防御、導入リスクに近いテーマであれば、ぜひご相談ください。"
+      description: "講演内容は研究者向け、技術者向け、分野横断の聴衆向けに調整できます。信頼できるAI、音声インテリジェンス、ランサムウェア防御、導入リスクに近いテーマであれば、ぜひご相談ください。"
     }
   }
 } as const;
@@ -663,12 +663,12 @@ const linksPageOverrides = {
   "zh-tw": {
     page: {
       eyebrow: "快速連結",
-      description: "Jason Chia-Sheng Lin 的研究、專案、文章、演講與聯絡方式的精簡入口頁。"
+      description: "Jason Chia-Sheng Lin 的研究、專案、文章、演講與聯絡方式的快速入口頁。"
     },
     primaryActions: [
       {
         label: "研究",
-        description: "研究主軸、目前方向與近期論文。"
+        description: "研究主軸、目前關注與近期論文。"
       },
       {
         label: "專案",
@@ -683,8 +683,8 @@ const linksPageOverrides = {
         description: "主題、網頁版講稿與近期活動。"
       },
       {
-        label: "關於",
-        description: "背景、研究脈絡與工具箱。"
+        label: "關於我",
+        description: "背景、研究脈絡與工作方式。"
       },
       {
         label: "聯絡",
@@ -694,11 +694,11 @@ const linksPageOverrides = {
     audiencePaths: [
       {
         label: "合作",
-        description: "研究合作、技術交流與跨領域工作請從這裡開始。"
+        description: "研究合作、技術交流與跨領域工作可以從這裡開始。"
       },
       {
         label: "招募團隊",
-        description: "快速了解背景、研究契合度，以及這些工作如何連結研究與實作成果。"
+        description: "快速了解背景、研究契合度，以及這些工作如何串起研究與實作。"
       },
       {
         label: "學生",
@@ -706,7 +706,7 @@ const linksPageOverrides = {
       },
       {
         label: "演講 / 媒體",
-        description: "瀏覽主題、近期場次，以及適合邀請的研討會或活動內容。"
+        description: "瀏覽主題、近期場次，以及適合邀請的活動內容。"
       }
     ],
     profileLinks: [
@@ -733,38 +733,38 @@ const linksPageOverrides = {
     ],
     contact: {
       title: "聯絡",
-      description: "最適合用於合作、演講邀請、研究討論與技術細節交流的聯絡方式。",
+      description: "最適合用於合作、演講邀請、研究討論與技術交流的聯絡方式。",
       ctaLabel: "寄信給 Jason"
     }
   },
   ja: {
     page: {
       eyebrow: "クイックリンク",
-      description: "Jason Chia-Sheng Lin の研究、プロジェクト、執筆、講演、連絡先へすばやく進むためのページです。"
+      description: "Jason Chia-Sheng Lin の研究、プロジェクト、文章、講演、連絡先へすばやく進むためのページです。"
     },
     primaryActions: [
       {
         label: "研究",
-        description: "研究テーマ、現在の方向性、最近の論文。"
+        description: "研究テーマ、現在の関心、最近の論文。"
       },
       {
         label: "プロジェクト",
         description: "代表的なケーススタディと実装。"
       },
       {
-        label: "執筆",
+        label: "文章",
         description: "文章と研究ノート。"
       },
       {
         label: "講演",
-        description: "テーマ、Web キーノート、最近の登壇。"
+        description: "テーマ、Web版講演記録、最近の登壇。"
       },
       {
         label: "プロフィール",
-        description: "背景、研究の流れ、技術スタック。"
+        description: "背景、研究の流れ、取り組み方。"
       },
       {
-        label: "連絡",
+        label: "お問い合わせ",
         description: "メール、背景情報、次の一歩。"
       }
     ],
@@ -783,7 +783,7 @@ const linksPageOverrides = {
       },
       {
         label: "講演 / メディア",
-        description: "講演テーマ、最近の登壇、セミナーやイベント向けの資料を確認できます。"
+        description: "講演テーマ、最近の登壇、セミナーやイベント向けの情報を確認できます。"
       }
     ],
     profileLinks: [
@@ -797,19 +797,19 @@ const linksPageOverrides = {
       },
       {
         label: "LinkedIn",
-        description: "長期的なつながりや職務背景を補うプロフィール。"
+        description: "職務背景や外部での活動を補うプロフィールです。"
       },
       {
         label: "CYBERSEC スピーカープロフィール",
-        description: "2026 年の注目セッションに関する外部登壇プロフィール。"
+        description: "2026年の注目セッションに関する外部登壇プロフィール。"
       },
       {
         label: "公式セッションページ",
-        description: "医療サイバーセキュリティ分科会の公式イベントページ。"
+        description: "医療サイバーセキュリティ分科会の公式イベントページです。"
       }
     ],
     contact: {
-      title: "連絡",
+      title: "お問い合わせ",
       description: "共同研究、講演依頼、研究相談、技術的な問い合わせに最適な連絡先です。",
       ctaLabel: "Jason にメール"
     }
@@ -1101,7 +1101,7 @@ const pageCopy = {
       research: "研究",
       writing: "文章",
       talks: "演講",
-      about: "關於",
+      about: "關於我",
       links: "連結",
       resume: "履歷",
       close: "關閉",
@@ -1133,7 +1133,7 @@ const pageCopy = {
       previousPiece: "上一篇",
       nextPiece: "下一篇",
       untranslatedLabel: "翻譯狀態",
-      untranslatedTitle: "目前為英文原文",
+      untranslatedTitle: "目前僅提供英文原文",
       untranslatedBlog: "這篇文章目前僅提供英文版本。導覽與周邊介面會依你選擇的語言顯示。",
       untranslatedProject: "這個案例研究目前僅提供英文版本。導覽與周邊介面會依你選擇的語言顯示。",
       untranslatedTalk: "這篇長篇網頁講稿目前僅提供英文版本。導覽與周邊介面會依你選擇的語言顯示。",
@@ -1144,10 +1144,10 @@ const pageCopy = {
       currentAreasOfWork: "目前工作領域",
       professionalPath: "經歷脈絡",
       professionalNarrative: "專業背景",
-      currentSpeakingAndPaperActivity: "近期演講與論文發表",
+      currentSpeakingAndPaperActivity: "近期演講與論文",
       selectedSignals: "代表實績",
       methodsAndToolkit: "方法 / 技術工具",
-      workTogether: "歡迎交流的方向",
+      workTogether: "歡迎交流的主題",
       email: "電子郵件",
       connect: "外部連結",
       explore: "站內導覽",
@@ -1157,9 +1157,9 @@ const pageCopy = {
       desktopTagline: "值得信賴的 AI、語音智能與安全。"
     },
     footer: {
-      description: "一個冷靜、研究導向的作品網站，聚焦於值得信賴的 AI、語音智能、資安，以及在重視證據與可靠性的場景中如何讓系統真正落地。",
+      description: "這是一個偏研究導向的個人網站，聚焦於值得信賴的 AI、語音智能、資安，以及在重視證據與可靠性的場景中，系統如何真正落地。",
       contactCta: "聯絡 Jason",
-      aboutCta: "關於",
+      aboutCta: "關於我",
       researchLab: "研究室",
       githubDescription: "程式碼、原型與實作工作。",
       linkedInDescription: "專業背景與外部脈絡。",
@@ -1175,7 +1175,7 @@ const pageCopy = {
       heroPills: ["博士生", "講者", "值得信賴的 AI"],
       meetJason: "認識 Jason",
       heroInstitutionSummary: "NYCU · AI 系統、語音智能、資安與受規範部署",
-      heroSummary: "以調查工作為基礎的研究，專注於打造在證據、可審查性與營運限制都重要時仍可用的 AI 系統。",
+      heroSummary: "以調查經驗為底的研究與實作，專注於打造在證據、可審查性與營運限制都重要時，仍能可靠運作的 AI 系統。",
       heroContact: "聯絡 Jason",
       startHere: "從這裡開始",
       choosePath: "選擇最符合你來訪目的的入口。",
@@ -1186,20 +1186,20 @@ const pageCopy = {
       visualPreviewDisabled: "視覺預覽已停用",
       visualPreviewCopy: "為尊重降低動態偏好，互動式網路視覺化已停用。",
       aboutJason: "關於 Jason",
-      backgroundEssay: "背景介紹",
-      helpfulFirstMessage: "建議在第一封訊息中提供",
+      backgroundEssay: "背景文章",
+      helpfulFirstMessage: "第一封訊息建議包含",
       helpfulFirstMessageCopy: "說明你的背景、這次交流為什麼適合，以及你期待的下一步。",
       openContactPage: "前往聯絡頁",
       researchBase: "所屬研究室",
-      speakingSignal: "演講紀錄",
+      speakingSignal: "公開演講",
       publicationActivity: "論文發表",
       readWebKeynote: "閱讀網頁版講稿",
       writingInProgress: "文章持續整理中",
       writingInProgressCopy: "新的文章、研究筆記與技術觀點會隨著工作持續累積而陸續加入。"
     },
     aboutPage: {
-      description: "這一頁提供作品網站背後的專業脈絡，包括博士研究主軸、調查經驗帶來的視角，以及我如何看待面向真實世界的 AI 系統。",
-      title: "研究者、系統實作者，以及帶著安全視角工作的實踐者。",
+      description: "這一頁整理作品網站背後的專業脈絡，包括博士研究主軸、調查經驗帶來的視角，以及我如何看待面向真實世界的 AI 系統。",
+      title: "研究者、系統實作者，也是帶著安全視角工作的實踐者。",
       actionResearch: "研究焦點",
       actionProjects: "精選專案",
       actionWriting: "文章",
@@ -1228,8 +1228,8 @@ const pageCopy = {
       recentPapersDescription: "近期英文會議論文把研究主軸連到實際部署、威脅建模與可衡量的防禦策略。",
       questionsTitle: "我在意的問題",
       workingStyleTitle: "工作方式",
-      workingStyleParagraphOne: "我通常把 AI 視為完整系統問題，而不是單一模型問題。這代表資料品質、檢索、評估、安全假設、失效分析與人工審查都必須一起被考慮。",
-      workingStyleParagraphTwo: "整個作品網站背後的共同主線很簡單：打造不只能力強，而且可檢視、有據可循，並對真實部署條件保持誠實的系統。",
+      workingStyleParagraphOne: "我通常把 AI 視為完整的系統問題，而不是單一模型問題。這代表資料品質、檢索、評估、安全假設、失效分析與人工審查都必須一起被思考。",
+      workingStyleParagraphTwo: "整個作品網站背後的共同主線其實很簡單：打造不只能力強，而且可檢視、有據可循，並對真實部署條件保持誠實的系統。",
       labWebsite: "研究實驗室網站",
       futureDirectionsTitle: "未來方向",
       collaborationBox: "適合的合作通常來自研究團隊、跨領域實驗室，或想把好點子落成可檢視系統、可評估原型、或會議案例研究的技術團隊。",
@@ -1237,12 +1237,12 @@ const pageCopy = {
       collaborate: "合作交流"
     },
     contactPage: {
-      title: "開始一場認真的對話。",
-      directRouteTitle: "最直接的方式",
-      directRouteDescription: "對於合作、演講邀請、招募交流與技術細節問題，寄電子郵件是最直接的方式。",
+      title: "從一封清楚的信開始對話。",
+      directRouteTitle: "最快的聯絡方式",
+      directRouteDescription: "如果是合作、演講邀請、招募交流或技術細節問題，寄電子郵件會是最快也最直接的方式。",
       helpfulContext: "建議附上的背景資訊",
       profileEyebrow: "簡介",
-      profileSummary: "目前於 {institution} 的 {lab} 擔任博士生，研究橫跨值得信賴的 AI、醫療資安、語音智能與真實部署，近期也在 CISC 2025 以英文發表關於勒索軟體防禦與零信任成熟度 Threat Pulse Modeling 的論文。",
+      profileSummary: "目前於 {institution} 的 {lab} 就讀博士班，研究橫跨值得信賴的 AI、醫療資安、語音智能與真實部署，近期也在 CISC 2025 以英文發表關於勒索軟體防禦與零信任成熟度 Threat Pulse Modeling 的論文。",
       collaborationCardTitle: "合作與技術交流",
       collaborationCardDescription: "最適合用來討論合作、演講邀請、研究交流與技術細節。",
       sendEmail: "寄電子郵件",
@@ -1256,8 +1256,8 @@ const pageCopy = {
     },
     resumePage: {
       description: "這是一頁式履歷摘要，整理 Jason Chia-Sheng Lin 目前角色、核心優勢、經歷、代表作品與公開研究訊號，方便招募與合作時快速審閱。",
-      title: "面向研究、AI 系統與安全導向技術工作的專業概要。",
-      intro: "{name} 是 {institution} 的博士生，研究串連值得信賴的 AI、語音智能、資安，以及可部署的系統設計。這頁是為希望快速了解整體輪廓的招募經理、技術主管、合作夥伴與主辦方而設計。",
+      title: "面向研究、AI 系統與安全導向技術工作的專業摘要。",
+      intro: "{name} 是 {institution} 的博士生，研究串連值得信賴的 AI、語音智能、資安，以及可部署的系統設計。這一頁是為希望快速掌握整體輪廓的招募經理、技術主管、合作夥伴與主辦方而設計。",
       selectedProjects: "精選專案",
       professionalStrengths: [
         {
@@ -1285,7 +1285,7 @@ const pageCopy = {
         { label: "近期公開訊號", value: "1 個官方場次 + {count} 篇英文會議論文" }
       ],
       professionalSummary: "專業摘要",
-      summaryParagraphTwo: "在進入博士研究之前，Jason 曾從事網路犯罪偵查。這段背景持續影響他如何理解證據、對抗性行為、可追溯性，以及單一模型看起來不錯與系統在真實世界中仍然可信之間的差距。",
+      summaryParagraphTwo: "在進入博士研究之前，Jason 曾從事網路犯罪偵查。這段背景持續影響他如何理解證據、對抗性行為、可追溯性，以及單一模型看起來不錯和系統在真實世界中仍然可信之間的差距。",
       summaryParagraphThree: "目前工作橫跨語音與語言流程、值得信賴的 AI 評估、醫療 AI 資安，以及在重視可審查性與營運限制環境中的部署導向 AI 系統設計。",
       whatBrings: "Jason 能為團隊帶來什麼",
       experience: "專業經歷",
@@ -1309,7 +1309,7 @@ const pageCopy = {
       description: "這些文章與研究筆記把工作背後的思路攤開，包括證據導向的語音流程、部署風險、評估，以及值得信賴的 AI 的實務觀點。",
       title: "關於值得信賴的 AI、語音智能與安全導向系統設計的文章。",
       featuredTitle: "先從精選文章開始",
-      featuredDescription: "快速理解這些工作背後的語氣與關注點。",
+      featuredDescription: "快速掌握這些工作背後的語氣與關注點。",
       recentTitle: "瀏覽近期筆記",
       recentDescription: "依主題、日期與標籤快速掃描內容。",
       implementationTitle: "想看實作案例？",
@@ -1333,7 +1333,7 @@ const pageCopy = {
       reviewTitle: "先看重點場次",
       reviewDescription: "適合需要快速確認具體講題範例的主辦方。",
       browseTitle: "瀏覽主題與適合的受眾",
-      browseDescription: "當你在判斷內容是否符合活動時很實用。",
+      browseDescription: "當你在判斷內容是否符合活動需求時會很實用。",
       readyTitle: "想邀請 Jason 演講？",
       readyDescription: "最快的方式是使用聯絡頁。",
       schedule: "時間",
@@ -1344,7 +1344,7 @@ const pageCopy = {
       narrativeVersionDescription: "這場重點講題也提供 20 個章節的網頁敘事版，延伸成與整體網站一致的長篇網頁講稿。",
       englishSessionsEyebrow: "英文研究場次",
       englishSessionsTitle: "會議論文活動",
-      englishSessionsDescription: "兩場 CISC 2025 英文論文場次，把技術分析、營運威脅模型、持續性評估與實務防禦策略連接起來。",
+      englishSessionsDescription: "兩場 CISC 2025 英文論文場次，把技術分析、營運威脅模型、持續性評估與實務防禦策略串接起來。",
       venue: "場地",
       formatsTitle: "形式與受眾契合度",
       formatsDescription: "這些演講特別適合研究團隊、技術型會議、跨領域課程，以及在 AI 部署中重視可靠性與治理的團隊。",
@@ -1352,7 +1352,7 @@ const pageCopy = {
       inviteJason: "邀請 Jason 演講"
     },
     linksPage: {
-      basedIn: "位於 {location}",
+      basedIn: "目前位於 {location}",
       primaryPaths: "主要入口",
       quickPathsTitle: "依受眾快速前往",
       quickPathsDescription: "這頁的目的是縮短第一次判斷要往哪裡走的時間。如果你已經知道自己為何而來，這些是最快進到對應內容的入口。",
@@ -1373,10 +1373,10 @@ const pageCopy = {
   },
   ja: {
     common: {
-      contact: "連絡",
+      contact: "お問い合わせ",
       projects: "プロジェクト",
       research: "研究",
-      writing: "執筆",
+      writing: "文章",
       talks: "講演",
       about: "プロフィール",
       links: "リンク",
@@ -1390,10 +1390,10 @@ const pageCopy = {
       officialSessionPage: "公式セッションページ",
       officialSessionPageShort: "公式ページ",
       language: "言語",
-      languageSwitcherAria: "言語切替",
+      languageSwitcherAria: "言語切り替え",
       readArticle: "記事を読む",
       openCaseStudy: "ケーススタディを見る",
-      backToWriting: "執筆一覧に戻る",
+      backToWriting: "文章一覧に戻る",
       backToProjects: "プロジェクト一覧に戻る",
       continueFromThisPiece: "この記事から続けて読む",
       projectSnapshot: "プロジェクト概要",
@@ -1410,10 +1410,10 @@ const pageCopy = {
       previousPiece: "前の記事",
       nextPiece: "次の記事",
       untranslatedLabel: "翻訳状況",
-      untranslatedTitle: "本文は英語版のみです",
+      untranslatedTitle: "本文は英語のみです",
       untranslatedBlog: "この記事は現在英語版のみです。共通ナビゲーションと周辺 UI は、選択した言語のままご覧いただけます。",
       untranslatedProject: "このケーススタディは現在英語版のみです。共通ナビゲーションと周辺 UI は、選択した言語のままご覧いただけます。",
-      untranslatedTalk: "この長編 Web キーノートは現在英語版のみです。共通ナビゲーションと周辺 UI は、選択した言語のままご覧いただけます。",
+      untranslatedTalk: "この長編の Web 講演ページは現在英語版のみです。共通ナビゲーションと周辺 UI は、選択した言語のままご覧いただけます。",
       currentRole: "現在の役割",
       institution: "所属機関",
       researchLab: "研究室",
@@ -1421,25 +1421,25 @@ const pageCopy = {
       currentAreasOfWork: "現在の取り組み",
       professionalPath: "これまでの歩み",
       professionalNarrative: "背景と文脈",
-      currentSpeakingAndPaperActivity: "最近の登壇・論文活動",
+      currentSpeakingAndPaperActivity: "最近の登壇・論文",
       selectedSignals: "主な実績",
       methodsAndToolkit: "方法 / 技術スタック",
-      workTogether: "ご相談いただけること",
+      workTogether: "ご相談いただけるテーマ",
       email: "メール",
       connect: "外部リンク",
       explore: "サイト内案内",
       lastUpdated: "最終更新"
     },
     navbar: {
-      desktopTagline: "信頼できる AI、音声インテリジェンス、セキュリティ。"
+      desktopTagline: "信頼できるAI、音声インテリジェンス、セキュリティ。"
     },
     footer: {
-      description: "証拠性と信頼性が重要な場での、信頼できる AI、音声インテリジェンス、サイバーセキュリティ、実運用導入を扱う研究ポートフォリオです。",
-      contactCta: "Jason に連絡",
+      description: "証拠性と信頼性が重要な現場を前提に、信頼できるAI、音声インテリジェンス、サイバーセキュリティ、実運用導入を扱う研究ポートフォリオです。",
+      contactCta: "Jason に連絡する",
       aboutCta: "プロフィール",
       researchLab: "研究室",
       githubDescription: "コード、プロトタイプ、実装の記録。",
-      linkedInDescription: "職務プロフィールと外部文脈。",
+      linkedInDescription: "職務プロフィールと外部での文脈。",
       copyrightLabel: "著作権",
       rightsReserved: "All rights reserved.",
       versionControl: "バージョン管理",
@@ -1449,11 +1449,11 @@ const pageCopy = {
       commitLabel: "コミット"
     },
     home: {
-      heroPills: ["博士課程", "登壇", "信頼できる AI"],
+      heroPills: ["博士課程", "登壇", "信頼できるAI"],
       meetJason: "Jason について",
-      heroInstitutionSummary: "NYCU ・ AI システム、音声インテリジェンス、サイバーセキュリティ、規制環境での実装",
-      heroSummary: "証拠性、レビュー可能性、運用制約が重要な場面でも役立つ AI システムの構築に焦点を当てた、調査経験に根ざす研究です。",
-      heroContact: "Jason に連絡",
+      heroInstitutionSummary: "NYCU | AIシステム、音声インテリジェンス、サイバーセキュリティ、規制環境での導入",
+      heroSummary: "調査経験に根ざし、証拠性、レビュー可能性、運用制約が重要な場面でも機能するAIシステムの研究と実装に取り組んでいます。",
+      heroContact: "お問い合わせ",
       startHere: "ここから始める",
       choosePath: "訪問目的に合う導線を選んでください。",
       whatYouWillFind: "このサイトにあるもの",
@@ -1463,27 +1463,27 @@ const pageCopy = {
       visualPreviewDisabled: "ビジュアルプレビューは無効です",
       visualPreviewCopy: "モーション低減設定を尊重し、インタラクティブなネットワーク表示を停止しています。",
       aboutJason: "Jason について",
-      backgroundEssay: "背景紹介",
+      backgroundEssay: "背景エッセイ",
       helpfulFirstMessage: "最初のメッセージにあると助かること",
       helpfulFirstMessageCopy: "あなたの背景、今回の対話がなぜ合うのか、どんな次の一歩が有用かを共有してください。",
-      openContactPage: "連絡ページを開く",
+      openContactPage: "お問い合わせページを開く",
       researchBase: "所属研究室",
       speakingSignal: "登壇実績",
       publicationActivity: "論文発表",
-      readWebKeynote: "Web キーノートを読む",
-      writingInProgress: "文章は継続更新中",
-      writingInProgressCopy: "エッセイ、研究ノート、技術的視点は今後も追加していきます。"
+      readWebKeynote: "Web版講演記録を読む",
+      writingInProgress: "文章は順次追加中",
+      writingInProgressCopy: "エッセイ、研究ノート、技術的な視点は今後も継続して追加していきます。"
     },
     aboutPage: {
-      description: "このページでは、ポートフォリオの背景にある専門文脈、博士研究の軸、調査経験から来る視点、そして実世界向け AI システムへの向き合い方を紹介します。",
-      title: "研究者であり、システムを作る人であり、セキュリティの視点を持つ実践者。",
+      description: "このページでは、ポートフォリオの背景にある専門的な文脈、博士研究の軸、調査経験から来る視点、そして実世界向けAIシステムへの向き合い方を紹介します。",
+      title: "研究者であり、システムをつくる人であり、セキュリティの視点を持つ実践者。",
       actionResearch: "研究を見る",
       actionProjects: "代表プロジェクト",
-      actionWriting: "執筆",
+      actionWriting: "文章",
       actionTalks: "講演",
-      actionContact: "連絡",
+      actionContact: "お問い合わせ",
       currentRoleValue: "博士課程",
-      primaryLensValue: "信頼できる AI、セキュリティ、実運用の前提",
+      primaryLensValue: "信頼できるAI、セキュリティ、実運用の前提",
       currentSpeakingActivityLinks: {
         official: "公式セッションページを見る",
         profile: "CYBERSEC スピーカープロフィールを見る"
@@ -1497,7 +1497,7 @@ const pageCopy = {
       implementationTitle: "実装の証拠を見たいですか？",
       implementationDescription: "研究テーマからケーススタディへ進めます。",
       collaborationTitle: "共同研究を考えていますか？",
-      collaborationDescription: "最短ルートは連絡ページです。",
+      collaborationDescription: "最短ルートはお問い合わせページです。",
       activeWorkTitle: "現在の取り組みと方向性",
       activeWorkDescription: "進行中の取り組みは、ばらばらな実験の羅列ではなく、継続性のある少数の研究方向として整理されています。",
       currentNextStep: "現在の次の一歩:",
@@ -1505,8 +1505,8 @@ const pageCopy = {
       recentPapersDescription: "最近の英語会議論文は、研究テーマを実導入、脅威モデリング、測定可能な防御戦略へ接続しています。",
       questionsTitle: "私が重視する問い",
       workingStyleTitle: "取り組み方",
-      workingStyleParagraphOne: "私は AI を単一モデルの問題ではなく、システム全体の問題として捉える傾向があります。データ品質、検索、評価、セキュリティ前提、失敗分析、人間レビューを一体の設計課題として扱います。",
-      workingStyleParagraphTwo: "このポートフォリオ全体を貫く共通点はシンプルです。能力が高いだけでなく、検証可能で、証拠志向で、実際の導入条件に正直なシステムを作ることです。",
+      workingStyleParagraphOne: "私はAIを単一モデルの問題ではなく、システム全体の問題として捉える傾向があります。データ品質、検索、評価、セキュリティ前提、失敗分析、人間レビューを一体の設計課題として扱います。",
+      workingStyleParagraphTwo: "このポートフォリオ全体を貫く考え方はシンプルです。能力が高いだけでなく、検証可能で、証拠志向で、実際の導入条件に正直なシステムをつくることです。",
       labWebsite: "研究室サイト",
       futureDirectionsTitle: "今後の方向性",
       collaborationBox: "相性が良い共同研究には、強いアイデアを検証可能なシステム、評価可能なプロトタイプ、あるいは会議向けケーススタディへ発展させたい研究グループ、学際ラボ、技術チームが含まれます。",
@@ -1514,12 +1514,12 @@ const pageCopy = {
       collaborate: "共同研究を相談する"
     },
     contactPage: {
-      title: "きちんとした対話を始めましょう。",
-      directRouteTitle: "いちばん確実な連絡方法",
-      directRouteDescription: "共同研究、講演依頼、採用相談、技術的に具体的な質問にはメールが最適です。",
+      title: "まずはメールでご連絡ください。",
+      directRouteTitle: "いちばん確実な方法",
+      directRouteDescription: "共同研究、講演依頼、採用相談、技術的に具体的な質問は、メールでのご連絡がいちばん確実です。",
       helpfulContext: "含めていただけると助かる情報",
       profileEyebrow: "プロフィール",
-      profileSummary: "{institution} の {lab} に所属する博士課程の研究者として、信頼できる AI、医療サイバーセキュリティ、音声インテリジェンス、実運用導入に取り組んでいます。最近は CISC 2025 で、ランサムウェア防御とゼロトラスト成熟度の Threat Pulse Modeling に関する英語論文を発表しました。",
+      profileSummary: "{institution} の {lab} に所属する博士課程研究者として、信頼できるAI、医療サイバーセキュリティ、音声インテリジェンス、実運用導入に取り組んでいます。最近は CISC 2025 で、ランサムウェア防御とゼロトラスト成熟度の Threat Pulse Modeling に関する英語論文を発表しました。",
       collaborationCardTitle: "共同研究と技術対話",
       collaborationCardDescription: "共同研究、講演依頼、研究相談、技術的な問い合わせに最適な導線です。",
       sendEmail: "メールを送る",
@@ -1533,8 +1533,8 @@ const pageCopy = {
     },
     resumePage: {
       description: "採用や共同研究の確認向けに、Jason Chia-Sheng Lin の現在の役割、強み、経験、代表作、公開実績を簡潔にまとめた経歴ページです。",
-      title: "研究、AI システム、セキュリティ志向の技術活動に向けた経歴概要。",
-      intro: "{name} は {institution} の博士課程の研究者で、信頼できる AI、音声インテリジェンス、サイバーセキュリティ、実装可能なシステム設計をつなぐ研究と実装に取り組んでいます。このページは、採用担当者、技術リーダー、共同研究者、主催者が短時間で全体像をつかむための要約です。",
+      title: "研究、AIシステム、セキュリティ志向の技術活動に関する経歴概要。",
+      intro: "{name} は {institution} の博士課程研究者で、信頼できるAI、音声インテリジェンス、サイバーセキュリティ、実装可能なシステム設計をつなぐ研究と実装に取り組んでいます。このページは、採用担当者、技術リーダー、共同研究者、主催者が短時間で全体像をつかむための要約です。",
       selectedProjects: "代表プロジェクト",
       professionalStrengths: [
         {
@@ -1558,18 +1558,18 @@ const pageCopy = {
       metrics: [
         { label: "現在の役割", value: "NYCU 博士課程" },
         { label: "拠点", value: "{lab}" },
-        { label: "主なテーマ", value: "信頼できる AI、音声インテリジェンス、サイバーセキュリティ" },
+        { label: "主なテーマ", value: "信頼できるAI、音声インテリジェンス、サイバーセキュリティ" },
         { label: "最近の公開実績", value: "公式セッション 1 件 + 英語会議論文 {count} 本" }
       ],
       professionalSummary: "職務概要",
-      summaryParagraphTwo: "博士研究の前にはサイバー犯罪捜査に従事していました。その経験は、証拠、敵対的行動、追跡可能性、そして単独では良く見えるモデルと現実で信頼できるシステムの差を考える上で今も影響しています。",
-      summaryParagraphThree: "現在の取り組みは、音声・言語パイプライン、信頼できる AI の評価、医療 AI サイバーセキュリティ、そしてレビュー可能性と運用制約が重要な環境に向けた導入志向の AI システム設計にまたがります。",
+      summaryParagraphTwo: "博士研究の前にはサイバー犯罪捜査に従事していました。その経験は、証拠、敵対的行動、追跡可能性、そして単体では良く見えるモデルと現実で信頼できるシステムの差を考える上で、今も影響しています。",
+      summaryParagraphThree: "現在の取り組みは、音声・言語パイプライン、信頼できるAIの評価、医療AIサイバーセキュリティ、そしてレビュー可能性と運用制約が重要な環境に向けた導入志向のAIシステム設計にまたがります。",
       whatBrings: "チームに持ち込めるもの",
       experience: "職務経験",
       currentWork: "現在の取り組み",
       selectedWorkEyebrow: "代表作",
-      selectedWorkTitle: "応用的なシステム思考を示す代表プロジェクト。",
-      selectedWorkDescription: "これらのケーススタディは、Jason が課題をどう定義し、システムを構築し、技術判断を技術読者にも横断的読者にも検証可能な形で説明するかを示します。",
+      selectedWorkTitle: "応用的なシステム思考を示す代表プロジェクトです。",
+      selectedWorkDescription: "これらのケーススタディは、Jason が課題をどう定義し、システムを構築し、技術判断を技術読者にも横断的な読者にも検証可能な形で説明するかを示します。",
       browseAllProjects: "すべてのプロジェクト",
       speakingSignals: "講演と発表の実績",
       talksPage: "講演ページ",
@@ -1578,13 +1578,13 @@ const pageCopy = {
       professionalSignals: "公開実績",
       methodsAndToolkit: "方法と技術スタック",
       openToConversations: "歓迎しているご相談",
-      openToConversationsDescription: "信頼できる AI、音声と言語システム、導入に敏感なワークフロー、あるいはセキュリティ志向のシステム設計に近いチーム、ラボ、主催者との対話に特に適合します。",
+      openToConversationsDescription: "信頼できるAI、音声と言語システム、導入に敏感なワークフロー、あるいはセキュリティ志向のシステム設計に近いチーム、ラボ、主催者との対話に特に適合します。",
       contactCardDescription: "採用相談、共同研究、講演依頼、技術的な議論にはメールが最適です。",
-      contactPage: "連絡ページ"
+      contactPage: "お問い合わせページ"
     },
     blogIndexPage: {
-      description: "証拠志向の音声パイプライン、導入リスク、評価、信頼できる AI の実践まで、取り組みの背後にある考え方を見える形にした文章と研究ノートです。",
-      title: "信頼できる AI、音声インテリジェンス、セキュリティ志向のシステム設計についての執筆。",
+      description: "証拠志向の音声パイプライン、導入リスク、評価、信頼できるAIの実践まで、取り組みの背後にある考え方を見える形にした文章と研究ノートです。",
+      title: "信頼できるAI、音声インテリジェンス、セキュリティ志向のシステム設計についての文章です。",
       featuredTitle: "まずは注目の記事から",
       featuredDescription: "この取り組みの語り口と問題意識を素早くつかめます。",
       recentTitle: "最近のノートを見る",
@@ -1592,17 +1592,17 @@ const pageCopy = {
       implementationTitle: "実装例を見たいですか？",
       implementationDescription: "考え方からプロジェクトのケーススタディへ進めます。",
       featuredPiece: "注目の記事",
-      recentWriting: "最近の執筆",
+      recentWriting: "最近の文章",
       emptyState: "今後さらに文章を追加予定です。"
     },
     projectsPage: {
       description: "このページはリポジトリ一覧ではなく、意図的に整理したケーススタディに焦点を当てています。各プロジェクトは課題、設計、重要な技術判断、実務上の意味から説明しています。",
-      title: "研究主導の信頼できる AI、音声インテリジェンス、セキュリティ志向システムのケーススタディ。",
+      title: "研究主導の信頼できるAI、音声インテリジェンス、セキュリティ志向システムのケーススタディです。",
       filterTitle: "テーマで絞り込む",
-      filterDescription: "音声、AI システム、不正分析、セキュリティ関連のケーススタディへ直接移動できます。",
+      filterDescription: "音声、AIシステム、不正分析、セキュリティ関連のケーススタディへ直接移動できます。",
       showingSummary: "{total} 件中 {count} 件を表示",
       showingSummaryWithFilter: "{filter} で絞り込み: {total} 件中 {count} 件を表示",
-      filters: ["すべて", "音声", "AI システム", "不正分析", "セキュリティ"],
+      filters: ["すべて", "音声", "AIシステム", "不正分析", "セキュリティ"],
       broaderContextTitle: "より広い文脈が必要ですか？",
       broaderContextDescription: "ケーススタディが気になったら、次は研究テーマ、関連する文章、あるいは直接のご連絡を見ていただくのが自然です。"
     },
@@ -1611,21 +1611,21 @@ const pageCopy = {
       reviewDescription: "具体的な講演例をすぐ確認したい主催者向けです。",
       browseTitle: "テーマと対象読者を見る",
       browseDescription: "内容がイベントに合うかを確かめるときに便利です。",
-      readyTitle: "Jason に登壇を依頼したいですか？",
-      readyDescription: "最短ルートは連絡ページです。",
+      readyTitle: "Jason に登壇を依頼したい方へ",
+      readyDescription: "最短ルートはお問い合わせページです。",
       schedule: "日程",
       track: "トラック",
       location: "場所",
       format: "形式",
       narrativeVersion: "ナラティブ版",
-      narrativeVersionDescription: "この注目セッションには、サイト全体と同じトーンで読める 20 セクション構成の Web 版ロングフォームもあります。",
+      narrativeVersionDescription: "この注目セッションには、サイト全体と同じトーンで読める 20 セクション構成の Web版ロングフォームもあります。",
       englishSessionsEyebrow: "英語研究セッション",
       englishSessionsTitle: "会議論文活動",
       englishSessionsDescription: "CISC 2025 の英語論文 2 件が、技術分析、運用上の脅威モデル、継続評価、実践的な防御戦略をつないでいます。",
       venue: "会場",
       formatsTitle: "形式と対象読者の適合",
-      formatsDescription: "これらの講演は、研究グループ、技術会議、学際プログラム、そして信頼性とガバナンスが重要な AI 導入環境に向き合うチームに特に適しています。",
-      invitationBox: "信頼できる AI、音声インテリジェンス、RAG システム、高リスク導入に関するセミナー、会議セッション、ラボトーク、学際イベントを企画している場合は、形式と聴衆を添えてぜひご連絡ください。",
+      formatsDescription: "これらの講演は、研究グループ、技術会議、学際プログラム、そして信頼性とガバナンスが重要なAI導入環境に向き合うチームに特に適しています。",
+      invitationBox: "信頼できるAI、音声インテリジェンス、RAGシステム、高リスク導入に関するセミナー、会議セッション、ラボトーク、学際イベントを企画している場合は、形式と聴衆を添えてぜひご連絡ください。",
       inviteJason: "Jason に講演を依頼する"
     },
     linksPage: {
@@ -1634,10 +1634,10 @@ const pageCopy = {
       quickPathsTitle: "対象別のクイック導線",
       quickPathsDescription: "このページは最初の導線選びを短くするためのものです。目的が決まっているなら、ここから最短で必要な場所へ進めます。",
       selectedWorkTitle: "注目の内容",
-      selectedWorkDescription: "プロジェクト、執筆、講演から代表的な入口を少数選んでいます。",
+      selectedWorkDescription: "プロジェクト、文章、講演から代表的な入口を少数選んでいます。",
       profilesTitle: "プロフィールと外部リンク",
       profilesDescription: "所属背景、コードの可視性、登壇実績を補う外部リンクです。",
-      openContactPage: "連絡ページを開く",
+      openContactPage: "お問い合わせページを開く",
       lastUpdatedLabel: "最終更新 {date}"
     },
     notFoundPage: {
@@ -1664,7 +1664,7 @@ const categoryLabels = {
   "AI Systems": {
     en: "AI Systems",
     "zh-tw": "AI 系統",
-    ja: "AI システム"
+    ja: "AIシステム"
   },
   "Fraud Analysis": {
     en: "Fraud Analysis",
