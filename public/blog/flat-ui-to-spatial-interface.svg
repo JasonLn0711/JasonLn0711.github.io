@@ -1,0 +1,53 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#08101F"/>
+  <rect x="48" y="48" width="1504" height="804" rx="40" fill="url(#bg)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="1310" cy="170" r="220" fill="url(#orbA)" opacity="0.75"/>
+  <circle cx="1120" cy="500" r="300" fill="url(#orbB)" opacity="0.36"/>
+  <circle cx="320" cy="760" r="260" fill="url(#orbC)" opacity="0.24"/>
+  <rect x="126" y="128" width="430" height="56" rx="28" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="154" y="165" fill="#BFD7FF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="24" letter-spacing="6">ESSAY / SPATIAL INTERFACE</text>
+  <text x="126" y="292" fill="#F8FBFF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="82" font-weight="600">
+    <tspan x="126" dy="0">Flat UI to</tspan>
+    <tspan x="126" dy="100">Spatial Interface</tspan>
+  </text>
+  <text x="126" y="462" fill="#C7D7F6" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="34">
+    <tspan x="126" dy="0">Liquid Glass, visionOS, and AI</tspan>
+    <tspan x="126" dy="52">are rewriting the operating surface.</tspan>
+  </text>
+  <g opacity="0.95">
+    <rect x="126" y="586" width="482" height="176" rx="34" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="164" y="644" fill="#F8FBFF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="30" font-weight="600">Depth</text>
+    <text x="164" y="694" fill="#BFD7FF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="22">material, attachment, source-aware interaction</text>
+    <text x="164" y="736" fill="#8FA8D9" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="20">visionOS grammar flowing back to 2D devices</text>
+  </g>
+  <g opacity="0.95">
+    <rect x="662" y="586" width="382" height="176" rx="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+    <text x="700" y="644" fill="#F8FBFF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="30" font-weight="600">Workbench UI</text>
+    <text x="700" y="694" fill="#BFD7FF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="22">inspectable, delegated, reversible</text>
+    <text x="700" y="736" fill="#8FA8D9" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="20">AI collaboration drives IDE-like structure</text>
+  </g>
+  <g opacity="0.95">
+    <rect x="1098" y="586" width="350" height="176" rx="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+    <text x="1136" y="644" fill="#F8FBFF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="30" font-weight="600">OS Layer</text>
+    <text x="1136" y="694" fill="#BFD7FF" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="22">AI orchestrates actions across apps</text>
+    <text x="1136" y="736" fill="#8FA8D9" font-family="'IBM Plex Sans', 'Noto Sans TC', sans-serif" font-size="20">the interaction layer becomes programmable</text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="164" y1="96" x2="1436" y2="804" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1730"/>
+      <stop offset="1" stop-color="#0B1226"/>
+    </linearGradient>
+    <radialGradient id="orbA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1310 170) rotate(90) scale(220)">
+      <stop stop-color="#8AB5FF"/>
+      <stop offset="1" stop-color="#8AB5FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1120 500) rotate(90) scale(300)">
+      <stop stop-color="#54E0D8"/>
+      <stop offset="1" stop-color="#54E0D8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 760) rotate(90) scale(260)">
+      <stop stop-color="#6F8BFF"/>
+      <stop offset="1" stop-color="#6F8BFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

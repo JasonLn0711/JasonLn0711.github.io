@@ -7,12 +7,22 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
+    locale: z.enum(["en", "zh-tw", "ja"]).default("en"),
+    routeSlug: z.string().optional(),
+    translationKey: z.string().optional(),
     tags: z.array(z.string()).default([]),
     category: z.enum(["research-note", "engineering-note", "essay"]).default("research-note"),
     draft: z.boolean().default(false),
     featured: z.boolean().default(false),
     cover: z.string().default("/og/default.png"),
-    ogImage: z.string().optional()
+    ogImage: z.string().optional(),
+    references: z.array(
+      z.object({
+        title: z.string(),
+        url: z.string().url(),
+        publisher: z.string().optional()
+      })
+    ).default([])
   })
 });
 

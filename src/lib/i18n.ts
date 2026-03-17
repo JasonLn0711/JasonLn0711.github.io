@@ -842,6 +842,8 @@ const pageCopy = {
       backToWriting: "Back to writing",
       backToProjects: "Back to all projects",
       continueFromThisPiece: "Continue from this piece",
+      continueFromThisPieceDescription:
+        "If this note was useful, the next helpful step is usually to compare it with the research agenda, a project case study, or start a conversation.",
       projectSnapshot: "Project Snapshot",
       bestNextSteps: "Best next steps",
       seeResearch: "See research",
@@ -1141,6 +1143,8 @@ const pageCopy = {
       backToWriting: "回到文章列表",
       backToProjects: "回到全部專案",
       continueFromThisPiece: "從這篇延伸閱讀",
+      continueFromThisPieceDescription:
+        "如果這篇文章對你有幫助，下一個通常最有價值的動作，是把它和研究方向、案例研究，或一場具體對話放在一起看。",
       projectSnapshot: "專案摘要",
       bestNextSteps: "建議下一步",
       seeResearch: "查看研究",
@@ -1440,6 +1444,8 @@ const pageCopy = {
       backToWriting: "文章一覧に戻る",
       backToProjects: "プロジェクト一覧に戻る",
       continueFromThisPiece: "この記事から続けて読む",
+      continueFromThisPieceDescription:
+        "この記事が役に立ったなら、次の一歩としては研究ページやケーススタディと見比べるか、具体的な相談につなげるのがいちばん有効です。",
       projectSnapshot: "プロジェクト概要",
       bestNextSteps: "次に見るなら",
       seeResearch: "研究を見る",

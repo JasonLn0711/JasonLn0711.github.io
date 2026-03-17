@@ -1,0 +1,139 @@
+---
+title: 從 Flat UI 到 Spatial Interface
+description: Liquid Glass、visionOS 與 AI 指向的未來，未必是 AI 取代 kernel，而是由搜尋、編排、跨 app 協作與工作台式介面共同構成的新 operating surface。
+pubDate: 2026-03-17
+updatedDate: 2026-03-17
+locale: zh-tw
+routeSlug: flat-ui-to-spatial-interface
+translationKey: flat-ui-to-spatial-interface
+tags:
+  - 空間介面
+  - visionOS
+  - Liquid Glass
+  - AI UX
+category: essay
+draft: false
+featured: true
+cover: /blog/flat-ui-to-spatial-interface.svg
+ogImage: /og/default.png
+references:
+  - title: Introducing Apple Vision Pro
+    url: https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/
+    publisher: Apple
+  - title: Apple introduces a delightful and elegant new software design
+    url: https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+    publisher: Apple
+  - title: Apple Unveils iOS 7
+    url: https://www.apple.com/ci/newsroom/2013/06/10Apple-Unveils-iOS-7/
+    publisher: Apple
+  - title: Get to know the new design system
+    url: https://developer.apple.com/videos/play/wwdc2025/219/
+    publisher: Apple Developer
+  - title: Design for clarity and delight
+    url: https://developer.apple.com/videos/play/wwdc2025/356/
+    publisher: Apple Developer
+  - title: Human Interface Guidelines - Materials
+    url: https://developer.apple.com/design/human-interface-guidelines/materials
+    publisher: Apple Developer
+  - title: iPadOS 26 introduces powerful new features that push iPad even further
+    url: https://www.apple.com/newsroom/2025/06/ipados-26-introduces-powerful-new-features-that-push-ipad-even-further/
+    publisher: Apple
+  - title: Introducing canvas
+    url: https://openai.com/index/introducing-canvas/
+    publisher: OpenAI
+  - title: Replit Workspace
+    url: https://docs.replit.com/category/replit-workspace
+    publisher: Replit Docs
+  - title: Introducing Computer-Using Agent
+    url: https://openai.com/index/computer-using-agent/
+    publisher: OpenAI
+  - title: Explore app intents
+    url: https://developer.apple.com/videos/play/wwdc2024/10176/
+    publisher: Apple Developer
+  - title: Introducing Copilot agent mode
+    url: https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode
+    publisher: Visual Studio Code
+  - title: "Liquid Glass: A New Look, Same Old Problems"
+    url: https://www.nngroup.com/articles/liquid-glass/
+    publisher: Nielsen Norman Group
+---
+
+下文統一使用 Apple 的正式名稱 **visionOS**。我也想先把命題說得更精準一些。比較可能發生的，不是 AI 很快取代 kernel 層級的作業系統，而是 AI 逐步接管今天由 app 導覽、系統搜尋、快捷操作、跨 app 流程與工具編排所構成的**主要互動層**。使用者每天真正感受到的，往往正是這一層。([Apple][apple-vision-pro], [OpenAI][openai-cua])
+
+## 空間語法正在回流主流作業系統
+
+如果說 2013 年是 Flat UI 在主流行動介面全面定型的一年，那麼 2025 年更像是 Spatial Interface 開始回流主流作業系統的一年。Apple 在 2025 年把 Liquid Glass 帶進 iOS 26、iPadOS 26、macOS Tahoe 26、watchOS 26 與 tvOS 26，並明講這套新設計受 visionOS 的「depth and dimensionality」啟發。同時，Apple 對 Vision Pro 的定義本來就是 spatial computer，而 visionOS 也是建立在 macOS、iOS 與 iPadOS 基礎上的空間作業系統，提供無邊際畫布、全 3D 介面，以及以眼睛、雙手與聲音為核心的輸入方式。把這些訊號放在一起看，Liquid Glass 就不是一次單純的美術翻新，而是 Apple 正在把空間運算的語法回灌到傳統 2D 裝置。([Apple][apple-design], [Apple][apple-vision-pro])
+
+更準確的說法不是「Flat UI 已經死了」，而是 **Flat UI 作為唯一主導邏輯，已經不夠用了**。Apple 在 iOS 7 時代曾把重心放在 cleaner、simpler 的視覺秩序上，用 subtle motion、translucency 與 functional layers 取代更強烈的擬物隱喻；但再往前追，Mac OS X 的 Aqua 本來就大量使用半透明、流動與光澤。Apple 的設計史從來不是單線地從擬物走向扁平，而是不斷在抽象化與材質感之間重新分配比重。Liquid Glass 的意義，不在於回到老式 skeuomorphism，而在於把「材質」從視覺裝飾升級成互動語法。([Apple][apple-ios7], [Apple Developer][apple-materials])
+
+Apple 自己在 WWDC25 的說法其實已經很清楚。Liquid Glass 不是在重做玻璃貼圖，而是一種會即時彎折、塑形光線的 digital meta-material。它以 lensing、specular highlights、環境光溢散、real-time rendering 與形變，去表達焦點、層級、觸控回饋與表面之間的關係。這件事的重要性在於，UI 的層次不再只靠色塊、框線與陰影成立，而是開始靠**光學、材質與動態連續性**來成立。這不是「看起來更立體」而已，而是介面正在從排版邏輯轉向空間邏輯。([Apple Developer][wwdc-design-system], [Apple Developer][wwdc-clarity])
+
+在新的設計系統裡，Apple 反覆強調 Liquid Glass 是一個新的 functional layer。它應該浮在內容之上，為內容帶來結構與清晰度，但又不能搶走焦點。Action Sheets 不再只是從底部冒出來，而是從它所對應的操作來源長出來；scroll edge effects 也不是裝飾，而是用來說清楚「UI 在哪裡結束、內容從哪裡開始」。未來的介面不再只是一張張平面 screen，而是一組彼此有來源、有距離、有附著關係的表面。Apple 甚至直接把這種關係描述成「spatial yet grounded」。([Apple Developer][wwdc-clarity], [Apple Developer][wwdc-design-system])
+
+Apple 人機介面指南早已把 material 定義成建立 depth、layering 與 hierarchy 的視覺效果。光是這個定義本身，就足以看出主流介面語法正在離開只追求乾淨、平坦、無摩擦的極簡狀態，轉向更有身體感、更有動態感、也更有層次感的介面。([Apple Developer][apple-materials])
+
+## Flat UI 沒有死，只是不再足夠
+
+因此，我不會把 Liquid Glass 理解成一次對過去 skeuomorphism 的懷舊回潮。真正重要的，不是貼回「像真材質」，而是把 depth、attachment、optical response 與 material continuity 變成可以跨平台重複使用的互動原語。當材質是功能而不是裝飾時，介面就不再只是排版問題，而變成如何安排焦點、來源、可供性與信任感的問題。這比單純的造型翻新深得多。([Apple Developer][wwdc-design-system], [Apple Developer][wwdc-clarity])
+
+而這也帶來一個更高的設計門檻。在 Flat UI 主導的系統裡，清晰度通常靠對比、留白、對齊與有限的 elevation cue 建立；在受空間語法影響的系統裡，清晰度還會來自表面從哪裡長出來、如何回應動作、依附在哪裡，以及它如何和內容分離。這些線索若能降低理解成本，就很有力量；若不能，它們就只會變成噪音。
+
+## 為什麼 visionOS 是這次轉向的催化劑
+
+visionOS 之所以關鍵，不是因為它提出了一個新外觀，而是因為它把**空間本身**正式制度化成 OS 級別的 UI 原語。Apple 對 Vision Pro 的描述，是由 windows、volumes、3D objects、ornaments 與無邊際畫布共同構成使用體驗；visionOS 的 spatial layout 指南也明確把 depth 定義成傳達 hierarchy 的方法。更關鍵的是，Apple 把 volumes 定義為介於 2D windowed experience 與 fully 3D immersive app 之間的中間階段。這幾乎就是整個轉向的官方版本：空間介面不是一跳到位，而是透過過渡層進入主流。([Apple][apple-vision-pro])
+
+但我會再把這個命題修得更準一些。不是因為 visionOS 的存在，UI 才突然開始追求立體感；而是 visionOS 讓 Apple 第一次能把深度、材質、來源、附著與空間關係，整理成一整套可跨平台複用的互動語法。Liquid Glass 之所以成立，也同時仰賴更強的硬體、silicon、即時圖像處理、圓角螢幕幾何，以及跨裝置共享的設計基礎。真正發生的，是空間運算的語法開始反向影響整個 Apple 生態系。([Apple][apple-design], [Apple][apple-ipados26])
+
+## 為什麼 AI 介面會越來越像工作台
+
+接下來的轉向，是介面結構本身越來越 IDE 化。Apple 自己已經在鋪路。iPadOS 26 推出新的 windowing system，讓 app 視窗可以流暢縮放、精準擺放；UIKit 與 UISplitViewController 也強化了 inspector columns、動態欄寬調整與 menu bar。Apple 在 WWDC25 裡把 split views、inspectors、sidebars、search 與 toolbars 視為新設計系統的核心結構。這些元素湊在一起的結果，不再只是單一路徑頁，而是一個 workspace。([Apple][apple-ipados26], [Apple Developer][wwdc-design-system])
+
+AI 原生工具又把這個方向推得更明顯。OpenAI 的 Canvas 把 ChatGPT 從純聊天介面拉進一個獨立工作區，讓人和模型可以 side by side 編修文字與程式碼；Replit Workspace 把 agent 對話、live preview、console 與其他工具收斂到同一個 home base；GitHub Copilot agent mode 則把多步驟操作、terminal commands、tests、undo 與 approval flow 明確放進 UI。這些產品不是巧合地長得像 IDE，而是因為 IDE 本來就是人類意圖與機器執行之間最成熟的協作介面之一。([OpenAI][openai-canvas], [Replit Docs][replit-workspace], [Visual Studio Code][vscode-copilot-agent])
+
+所以，「UI 會 IDE 化」最精準的版本不是所有產品都會長得像 VS Code，而是：**凡是複雜、可迭代、可委派、可檢查的任務，介面都會朝 workbench 化靠攏。** 它們需要對話區、內容區、預覽區、工具列、狀態區、差異比對、執行紀錄、權限確認與回復機制。傳統 app UI 比較像一條設計好的路；未來的 AI UI 更像一個可協作、可觀察、可修正的工作台。
+
+## AI 不會很快取代 kernel，但會重寫主要互動層
+
+再往後推一步，就是 AI 是否最終會取代今天的 operating system。這裡我的答案很明確。如果你說的是 kernel、記憶體管理、驅動程式與低層安全基礎設施，短期內不是；但如果你說的是使用者每天真正碰到的那一層，也就是搜尋、啟動、跨 app 協調、快捷流程、工具調度與導引式操作，那麼答案很可能是會被 AI 重新定義。OpenAI 的 Computer-Using Agent 已經清楚展示了這個方向：模型不再只是回答提示，而是開始操作圖形介面、串接動作、完成任務。這不只是回答問題，而是在扮演新的任務協調層。([OpenAI][openai-cua])
+
+Apple 這一側的路徑同樣清楚。App Intents 的目的，就是把 app 內部能力表述成系統可以理解、呼叫與組合的動作。Apple 在 WWDC24 明講，App Intents 讓人可以在 app 之外完成行動；而當這個建議從「暴露少量 habitual tasks」逐步變成「凡是 app 會做的事，都應該成為 app intent」時，含義就很清楚了：app 的能力正在從封閉 UI 中被抽離，變成一種系統層可編排的能力。當功能開始被系統、AI、Shortcuts、Spotlight、Visual Intelligence 與 Siri 共同調用，使用者未來操作的，將越來越不是某一個 app，而是一個會動態組合 app 能力的智能表面。([Apple Developer][apple-app-intents])
+
+這也是為什麼 UI 與 OS 會重新綁在一起。過去我們很容易把 UI 理解成 OS 上面的一層 skin；但在 AI 與空間運算時代，這個關係反過來了。UI 必須依賴 OS 暴露語意化能力、權限邊界、視窗與多工結構；OS 也必須依賴 UI 把 agent 的行為、工具調用、狀態變更與使用者確認清楚表達出來。GitHub Copilot agent mode 特別強調 tool invocations 會透明地顯示在 UI 裡，而且 terminal actions 需要 approval。這說明未來好的 UI 不只是好看，而是要讓人理解系統正在做什麼、為什麼這樣做、接下來會做什麼，以及人類可以在哪裡介入。([Visual Studio Code][vscode-copilot-agent], [OpenAI][openai-cua])
+
+## Spatial 不是炫技，而是理解成本的重新分配
+
+這條路當然不是沒有代價。NN/g 在 2025 年晚些時候直接批評 iOS 26 的 Liquid Glass 可能遮蔽內容，並用新的、但不一定更好的 pattern 取代使用者熟悉的慣例。更大的教訓其實很清楚：當 UI 從 Flat 走向 Spatial，真正的挑戰不是把介面做得更炫，而是如何在深度、材質與沉浸感上升時，仍然維持 legibility、accessibility、predictability 與認知平靜。空間感若不能提升理解，就只是干擾。([Nielsen Norman Group][nng-liquid-glass], [Apple][apple-design])
+
+## 結論：被重寫的是 operating surface
+
+如果要把整件事濃縮成一句話，我會這樣寫：**Liquid Glass 不是 Apple 對 UI 造型的一次改版，而是 Apple 把 visionOS 中深度、材質、附著與來源導向互動的空間語法，逐步移植回 iPhone、iPad 與 Mac 的開始。下一步不是所有介面都變成玻璃，而是複雜任務介面會越來越工作台化、越來越像 IDE；再下一步，則不是 AI 必然取代作業系統本身，而是 AI 很可能取代今天由作業系統承擔的主要互動層。未來真正被重寫的，不只是 UI，也不是單獨的 OS，而是兩者之間那個新的 operating surface。** ([Apple][apple-design], [OpenAI][openai-cua], [Apple Developer][apple-app-intents])
+
+## 參考資料
+
+1. [Apple：Introducing Apple Vision Pro][apple-vision-pro]
+2. [Apple：Apple introduces a delightful and elegant new software design][apple-design]
+3. [Apple：Apple Unveils iOS 7][apple-ios7]
+4. [Apple Developer：Get to know the new design system][wwdc-design-system]
+5. [Apple Developer：Design for clarity and delight][wwdc-clarity]
+6. [Apple Developer：Human Interface Guidelines, Materials][apple-materials]
+7. [Apple：iPadOS 26 introduces powerful new features that push iPad even further][apple-ipados26]
+8. [OpenAI：Introducing canvas][openai-canvas]
+9. [Replit Docs：Replit Workspace][replit-workspace]
+10. [OpenAI：Introducing Computer-Using Agent][openai-cua]
+11. [Apple Developer：Explore app intents][apple-app-intents]
+12. [Visual Studio Code：Introducing Copilot agent mode][vscode-copilot-agent]
+13. [Nielsen Norman Group：Liquid Glass: A New Look, Same Old Problems][nng-liquid-glass]
+
+[apple-vision-pro]: https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/
+[apple-design]: https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+[apple-ios7]: https://www.apple.com/ci/newsroom/2013/06/10Apple-Unveils-iOS-7/
+[wwdc-design-system]: https://developer.apple.com/videos/play/wwdc2025/219/
+[wwdc-clarity]: https://developer.apple.com/videos/play/wwdc2025/356/
+[apple-materials]: https://developer.apple.com/design/human-interface-guidelines/materials
+[apple-ipados26]: https://www.apple.com/newsroom/2025/06/ipados-26-introduces-powerful-new-features-that-push-ipad-even-further/
+[openai-canvas]: https://openai.com/index/introducing-canvas/
+[replit-workspace]: https://docs.replit.com/category/replit-workspace
+[openai-cua]: https://openai.com/index/computer-using-agent/
+[apple-app-intents]: https://developer.apple.com/videos/play/wwdc2024/10176/
+[vscode-copilot-agent]: https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode
+[nng-liquid-glass]: https://www.nngroup.com/articles/liquid-glass/

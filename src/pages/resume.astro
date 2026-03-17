@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { sortBlogEntries, sortProjects } from "../lib/content";
+import { getBlogPath, getLocalizedBlogEntries, sortProjects } from "../lib/content";
 import {
   formatMessage,
   getLocaleFromPathname,
@@ -17,7 +17,7 @@ const profile = getLocalizedProfile(locale);
 const speaking = getLocalizedSpeaking(locale);
 const copy = getPageCopy(locale);
 const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
-const posts = sortBlogEntries(await getCollection("blog")).slice(0, 2);
+const posts = getLocalizedBlogEntries(await getCollection("blog"), locale).slice(0, 2);
 const professionalStrengths = copy.resumePage.professionalStrengths;
 const teamSignals = copy.resumePage.teamSignals;
 const resumeMetrics = copy.resumePage.metrics.map((item) => ({
@@ -235,7 +235,7 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
                 <h3 class="mt-2 text-lg font-semibold text-white">{post.data.title}</h3>
                 <p class="mt-2 text-sm leading-7 text-slate-300">{post.data.description}</p>
                 <div class="mt-4">
-                  <a href={localizePath(`/blog/${post.slug}/`, locale)} class="action-link">
+                  <a href={getBlogPath(post, locale)} class="action-link">
                     {copy.common.readArticle}
                     <span aria-hidden="true">→</span>
                   </a>

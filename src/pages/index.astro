@@ -9,12 +9,12 @@ import ResearchThemes from "../components/home/ResearchThemes.astro";
 import SpeakingPreview from "../components/home/SpeakingPreview.astro";
 import WritingPreview from "../components/home/WritingPreview.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { sortBlogEntries, sortProjects } from "../lib/content";
+import { getLocalizedBlogEntries, sortProjects } from "../lib/content";
 import { getLocaleFromPathname, getLocalizedSite } from "../lib/i18n";
 
-const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
-const posts = sortBlogEntries(await getCollection("blog")).slice(0, 3);
 const locale = getLocaleFromPathname(Astro.url.pathname);
+const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
+const posts = getLocalizedBlogEntries(await getCollection("blog"), locale).slice(0, 3);
 const localizedSite = getLocalizedSite(locale);
 ---
 

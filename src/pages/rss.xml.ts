@@ -1,11 +1,12 @@
 import type { APIRoute } from "astro";
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { sortBlogEntries } from "../lib/content";
+import { getBlogPath, getLocalizedBlogEntries } from "../lib/content";
+import { defaultLocale } from "../lib/i18n";
 import { site } from "../lib/site";
 
 export const GET: APIRoute = async (context) => {
-  const posts = sortBlogEntries(await getCollection("blog"));
+  const posts = getLocalizedBlogEntries(await getCollection("blog"), defaultLocale);
 
   return rss({
     title: "Jason Chia-Sheng Lin | Research Writing",
@@ -15,7 +16,7 @@ export const GET: APIRoute = async (context) => {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${post.slug}/`
+      link: getBlogPath(post, defaultLocale)
     }))
   });
 };

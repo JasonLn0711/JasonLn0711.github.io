@@ -1,0 +1,139 @@
+---
+title: Flat UI から Spatial Interface へ
+description: Liquid Glass、visionOS、AI が向かわせるのは、AI が kernel を置き換える未来ではなく、検索、オーケストレーション、cross-app 作業を束ねる新しい operating surface である。
+pubDate: 2026-03-17
+updatedDate: 2026-03-17
+locale: ja
+routeSlug: flat-ui-to-spatial-interface
+translationKey: flat-ui-to-spatial-interface
+tags:
+  - 空間インターフェース
+  - visionOS
+  - Liquid Glass
+  - AI UX
+category: essay
+draft: false
+featured: true
+cover: /blog/flat-ui-to-spatial-interface.svg
+ogImage: /og/default.png
+references:
+  - title: Introducing Apple Vision Pro
+    url: https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/
+    publisher: Apple
+  - title: Apple introduces a delightful and elegant new software design
+    url: https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+    publisher: Apple
+  - title: Apple Unveils iOS 7
+    url: https://www.apple.com/ci/newsroom/2013/06/10Apple-Unveils-iOS-7/
+    publisher: Apple
+  - title: Get to know the new design system
+    url: https://developer.apple.com/videos/play/wwdc2025/219/
+    publisher: Apple Developer
+  - title: Design for clarity and delight
+    url: https://developer.apple.com/videos/play/wwdc2025/356/
+    publisher: Apple Developer
+  - title: Human Interface Guidelines - Materials
+    url: https://developer.apple.com/design/human-interface-guidelines/materials
+    publisher: Apple Developer
+  - title: iPadOS 26 introduces powerful new features that push iPad even further
+    url: https://www.apple.com/newsroom/2025/06/ipados-26-introduces-powerful-new-features-that-push-ipad-even-further/
+    publisher: Apple
+  - title: Introducing canvas
+    url: https://openai.com/index/introducing-canvas/
+    publisher: OpenAI
+  - title: Replit Workspace
+    url: https://docs.replit.com/category/replit-workspace
+    publisher: Replit Docs
+  - title: Introducing Computer-Using Agent
+    url: https://openai.com/index/computer-using-agent/
+    publisher: OpenAI
+  - title: Explore app intents
+    url: https://developer.apple.com/videos/play/wwdc2024/10176/
+    publisher: Apple Developer
+  - title: Introducing Copilot agent mode
+    url: https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode
+    publisher: Visual Studio Code
+  - title: "Liquid Glass: A New Look, Same Old Problems"
+    url: https://www.nngroup.com/articles/liquid-glass/
+    publisher: Nielsen Norman Group
+---
+
+以下では Apple の正式表記である **visionOS** に統一する。あわせて最初に論点を少しだけ sharpen しておきたい。近い将来に起こりそうなのは、AI が kernel レベルの OS をすぐ置き換えることではない。むしろ、app ナビゲーション、システム検索、ショートカット、跨 app フロー、ツールの編成によって成り立っていた**主要な interaction layer**を、AI が段階的に引き受けていくことだ。ユーザーが毎日触れているのは、たいていこの層である。([Apple][apple-vision-pro], [OpenAI][openai-cua])
+
+## 空間の文法が主流 OS に戻ってきている
+
+2013 年が flat UI が主流モバイルソフトウェアの支配的な文法として定着した年だったとするなら、2025 年は spatial interface の論理が主流 OS に流れ戻り始めた年に見える。Apple は 2025 年に Liquid Glass を iOS 26、iPadOS 26、macOS Tahoe 26、watchOS 26、tvOS 26 に導入し、この新しいデザインが visionOS の「depth and dimensionality」に触発されたものだと明言した。同時に Apple は Vision Pro を spatial computer、visionOS を macOS、iOS、iPadOS の基盤上に構築された空間 OS と位置づけ続けている。そこには infinite canvas、完全な 3D UI、そして eyes、hands、voice を中心にした入力がある。これらをまとめて見ると、Liquid Glass は単なる見た目の更新ではない。空間コンピューティングの文法を、従来の 2D デバイスへ逆流させる試みだと言える。([Apple][apple-design], [Apple][apple-vision-pro])
+
+より正確なのは、「flat UI は死んだ」ということではなく、**flat UI だけではもう足りない**ということだ。Apple の iOS 7 は、重たい skeuomorphic metaphor の代わりに subtle motion、translucency、functional layering を前面に出した。さらにさかのぼれば、Mac OS X の Aqua も半透明、流動感、光学的な豊かさに支えられていた。Apple の設計史は、skeuomorphism から flatness への一方向の進化ではない。抽象化と materiality の配分を、何度も組み替えてきた歴史である。Liquid Glass が重要なのは、「material」を見た目ではなく interaction system に変える点にある。([Apple][apple-ios7], [Apple Developer][apple-materials])
+
+WWDC25 での Apple 自身の説明もその点を明確にしている。Liquid Glass は文字通りのガラス表現ではなく、光をリアルタイムに曲げ、整形する digital meta-material として語られる。lensing、specular highlights、ambient spill、surface morphing、real-time rendering によって、フォーカス、階層、タッチ反応、要素同士の関係が伝えられる。つまり階層は、もはや色面、枠線、影トークンだけで成立するものではない。むしろ optics、material behavior、motion continuity によって成立し始めている。これは「もっと 3D っぽく見える UI」というだけではない。layout logic から spatial logic への移行である。([Apple Developer][wwdc-design-system], [Apple Developer][wwdc-clarity])
+
+新しい design system の中で、Apple は Liquid Glass を content の上に浮かびながら clarity を与える functional layer として繰り返し説明している。Action Sheets は単に画面下部から現れるのではなく、トリガーとなった action から生える。scroll edge effects も装飾ではなく、UI と content の境界を明確にするためのものとして扱われる。ここでのインターフェースは、平面スクリーンの積み重ねではない。source relationship、attachment point、distance perception を持つ surface の集まりへと変わりつつある。Apple はこの関係性を「spatial yet grounded」と表現している。([Apple Developer][wwdc-clarity], [Apple Developer][wwdc-design-system])
+
+Apple の Human Interface Guidelines でも materials は depth、layering、hierarchy を生み出す効果として定義されている。この定義だけでも、主要な interface grammar が極端な flatness から離れ、より身体的で、より動的で、より層のある UI へ移っていることがわかる。([Apple Developer][apple-materials])
+
+## Flat UI は終わったのではなく、単独では足りなくなった
+
+だから私は、Liquid Glass を古い skeuomorphism への回帰とは見ない。重要なのはリアルな質感の復活ではなく、depth、attachment、optical response、material continuity を再利用可能な interaction primitive に引き上げたことだ。material が ornament ではなく function になると、UI は単なるレイアウトの問題ではなくなる。focus、origin、affordance、trust をどう演出するかという問題に変わる。これは単なる aesthetic refresh よりずっと大きい変化である。([Apple Developer][wwdc-design-system], [Apple Developer][wwdc-clarity])
+
+そしてこの変化は、設計の難易度も上げる。flat UI を前提にしたシステムでは、clarity は contrast、spacing、alignment、限られた elevation cue で作られることが多い。空間文法を取り込んだシステムでは、それに加えて、surface がどこから生えたように見えるか、動きにどう応答するか、何に付着しているように感じられるかが clarity を作る。これらが理解を助けるなら強力だが、助けなければすぐ noise になる。
+
+## なぜ visionOS が決定的な触媒なのか
+
+visionOS が重要なのは、新しい aesthetic を出したからではない。**space そのもの**を OS レベルの UI primitive として制度化したからだ。Apple は Vision Pro を windows、volumes、3D objects、ornaments、infinite canvas から成る体験として説明する。visionOS の spatial layout guidance は depth を hierarchy を伝える手段として明確に扱う。さらに決定的なのは、Apple が volumes を 2D の windowed experience と fully 3D immersive app のあいだにある中間段階として定義している点だ。これは、多くの人が今感じている移行そのものをほぼ公式に言語化している。spatial UI は一気に到来するのではなく、中間層を通って入ってくる。([Apple][apple-vision-pro])
+
+ただし、もう一歩だけ精密に言うなら、visionOS が単独で UI を立体化させたわけではない。visionOS は、depth、material、source、attachment、spatial relationship を、Apple が初めて一貫した cross-platform interaction language として体系化できる場だった。Liquid Glass は同時に、hardware、silicon、real-time graphics、rounded display geometry、shared design foundation に依存している。本当に起きているのは、空間コンピューティングの文法が Apple エコシステム全体を逆向きに変え始めている、ということだ。([Apple][apple-design], [Apple][apple-ipados26])
+
+## AI インターフェースが workbench 化していく理由
+
+次に重要なのは、インターフェース構造そのものが IDE 的になっていくことだ。Apple 自身がすでにその土台を敷いている。iPadOS 26 は fluid resizing と precise placement を備えた新しい windowing system を導入した。UIKit と UISplitViewController では inspector columns、dynamic column resizing、menu bar の表現が強化されている。Apple の WWDC25 guidance では split views、inspectors、sidebars、search、toolbars が新 design system の基礎構造として扱われる。これらをまとめると、もはや単一路線の app flow ではない。workspace の条件がそろっている。([Apple][apple-ipados26], [Apple Developer][wwdc-design-system])
+
+AI native software は、この傾向をさらに見えやすくしている。OpenAI の Canvas は chat を超えて、writing と coding のための専用 collaborative workspace へ踏み出した。Replit Workspace は agent conversation、live preview、console、tooling を単一の home base に集約する。GitHub Copilot agent mode は multi-step execution、terminal commands、approvals、undo、tests を UI の中に見える形で置く。これらの製品が IDE に似ているのは偶然ではない。IDE は、人間の意図と機械の実行が協調するための、最も成熟した interface pattern のひとつだからだ。([OpenAI][openai-canvas], [Replit Docs][replit-workspace], [Visual Studio Code][vscode-copilot-agent])
+
+だから「UI は IDE 化する」という命題の最良の言い方は、すべてが VS Code になるという意味ではない。**複雑で、反復的で、委譲可能で、検査可能な仕事を支える interface は、自然に workbench structure へ寄っていく**という意味だ。会話の場所、content の場所、preview の場所、tool の場所、state の場所、approval と reversal の場所が必要になる。従来の app UI は導線として設計されることが多かった。AI UI は、制御でき、観察でき、修正できる workspace に近づいている。
+
+## AI は kernel を置き換えなくても interaction layer を再定義できる
+
+ここで OS の話に戻る。もし「OS を置き換える」が kernel、memory management、driver、low-level security infrastructure を指すなら、短期的な話ではない。しかし、ユーザーが日常的に体験している層、つまり search、launching、cross-app coordination、shortcuts、tool orchestration、guided action の層を指すなら、その層はすでに再定義され始めている。OpenAI の Computer-Using Agent は、その方向をはっきり示している。model は prompt に答えるだけでなく、GUI を操作し、action を連ね、task を完了するようになりつつある。これは単なる回答生成ではない。orchestration である。([OpenAI][openai-cua])
+
+Apple の側も、別ルートから同じ方向へ向かっている。App Intents は app の能力を、system が理解し、invoke し、compose できる形で記述するための仕組みだ。WWDC24 で Apple は、App Intents によって app の外から action を完了できると語った。そして推奨はさらに強くなり、「少数の habitual tasks だけを公開する」から「app ができることは意図として表現すべきだ」へと近づいていく。これは、app capability が閉じた UI から切り出され、system-callable な能力へ変わっていることを意味する。するとユーザーが操作する対象は個々の app ではなく、必要に応じて app の能力を組み合わせる smart surface になる。([Apple Developer][apple-app-intents])
+
+だからこそ UI と OS は再び強く結びつく。以前は UI を OS の上に乗った skin と考えることができた。AI と spatial computing の時代には、その関係が反転する。UI は semantic action、permission boundary、windowing structure、tool boundary を OS に依存する。OS は、agent が何をしているか、なぜそうしているか、次に何をするか、どこで人が介入できるかを人間に理解させるために UI を必要とする。GitHub Copilot agent mode が tool invocation を可視化し、terminal action に approval を求めるのは象徴的だ。この時代の良い UI は、単に洗練された見た目ではなく、trust surface である。([Visual Studio Code][vscode-copilot-agent], [OpenAI][openai-cua])
+
+## Spatial であることは、理解を助けてはじめて意味を持つ
+
+もちろん、この移行には負の側面もある。Nielsen Norman Group は 2025 年後半、Liquid Glass が content を隠し、慣れ親しんだ interaction convention を必ずしも良くない新しい pattern に置き換えてしまうと批判した。ここで重要なのは、UI が flatness から spatiality へ向かうとき、本当に難しいのは software を magical に見せることではないという点だ。depth と materiality が増しても、legibility、accessibility、predictability、cognitive calm を守らなければならない。spatiality が理解を高めないなら、それは noise にすぎない。([Nielsen Norman Group][nng-liquid-glass], [Apple][apple-design])
+
+## 結論: 書き換えられているのは operating surface である
+
+この議論を一文に圧縮するなら、私はこう書く。**Liquid Glass は Apple が UI を再装飾しているだけではない。visionOS における depth、material、attachment、source-anchored interaction という空間文法を、iPhone、iPad、Mac へ戻し始めた最初の明確な合図である。次の段階は、すべてが glass になることではなく、複雑な interface がより workbench 的に、より IDE 的になることだ。その次の段階は、AI が OS 自体を必ず置き換えることではなく、OS の primary interaction layer を置き換えることかもしれない。書き換えられているのは UI だけでも、OS だけでもなく、そのあいだの operating surface である。** ([Apple][apple-design], [OpenAI][openai-cua], [Apple Developer][apple-app-intents])
+
+## 参考リンク
+
+1. [Apple: Introducing Apple Vision Pro][apple-vision-pro]
+2. [Apple: Apple introduces a delightful and elegant new software design][apple-design]
+3. [Apple: Apple Unveils iOS 7][apple-ios7]
+4. [Apple Developer: Get to know the new design system][wwdc-design-system]
+5. [Apple Developer: Design for clarity and delight][wwdc-clarity]
+6. [Apple Developer: Human Interface Guidelines, Materials][apple-materials]
+7. [Apple: iPadOS 26 introduces powerful new features that push iPad even further][apple-ipados26]
+8. [OpenAI: Introducing canvas][openai-canvas]
+9. [Replit Docs: Replit Workspace][replit-workspace]
+10. [OpenAI: Introducing Computer-Using Agent][openai-cua]
+11. [Apple Developer: Explore app intents][apple-app-intents]
+12. [Visual Studio Code: Introducing Copilot agent mode][vscode-copilot-agent]
+13. [Nielsen Norman Group: Liquid Glass: A New Look, Same Old Problems][nng-liquid-glass]
+
+[apple-vision-pro]: https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/
+[apple-design]: https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+[apple-ios7]: https://www.apple.com/ci/newsroom/2013/06/10Apple-Unveils-iOS-7/
+[wwdc-design-system]: https://developer.apple.com/videos/play/wwdc2025/219/
+[wwdc-clarity]: https://developer.apple.com/videos/play/wwdc2025/356/
+[apple-materials]: https://developer.apple.com/design/human-interface-guidelines/materials
+[apple-ipados26]: https://www.apple.com/newsroom/2025/06/ipados-26-introduces-powerful-new-features-that-push-ipad-even-further/
+[openai-canvas]: https://openai.com/index/introducing-canvas/
+[replit-workspace]: https://docs.replit.com/category/replit-workspace
+[openai-cua]: https://openai.com/index/computer-using-agent/
+[apple-app-intents]: https://developer.apple.com/videos/play/wwdc2024/10176/
+[vscode-copilot-agent]: https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode
+[nng-liquid-glass]: https://www.nngroup.com/articles/liquid-glass/

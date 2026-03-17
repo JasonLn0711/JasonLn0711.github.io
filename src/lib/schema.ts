@@ -1,6 +1,8 @@
 import type { CollectionEntry } from "astro:content";
 import type { Profile } from "../data/profile";
 import { profile } from "../data/profile";
+import { getBlogLocale, getBlogPath } from "./content";
+import { getLocaleMeta, type SiteLocale } from "./i18n";
 import { absoluteUrl, site } from "./site";
 
 type JsonLd = Record<string, unknown>;
@@ -114,18 +116,21 @@ export function itemListSchema(name: string, items: ItemListSchemaItem[]): JsonL
   };
 }
 
-export function blogSchema(entry: CollectionEntry<"blog">): JsonLd {
+export function blogSchema(entry: CollectionEntry<"blog">, locale: SiteLocale = "en"): JsonLd {
+  const actualLocale = getBlogLocale(entry);
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: entry.data.title,
     description: entry.data.description,
-    url: absoluteUrl(`/blog/${entry.slug}/`),
+    url: absoluteUrl(getBlogPath(entry, locale)),
     datePublished: entry.data.pubDate.toISOString(),
     dateModified: (entry.data.updatedDate ?? entry.data.pubDate).toISOString(),
     image: absoluteUrl(entry.data.ogImage ?? entry.data.cover),
     keywords: entry.data.tags.join(", "),
-    mainEntityOfPage: absoluteUrl(`/blog/${entry.slug}/`),
+    inLanguage: getLocaleMeta(actualLocale).htmlLang,
+    mainEntityOfPage: absoluteUrl(getBlogPath(entry, locale)),
     author: {
       "@type": "Person",
       name: profile.name
@@ -134,7 +139,17 @@ export function blogSchema(entry: CollectionEntry<"blog">): JsonLd {
       "@type": "Person",
       name: profile.name,
       url: site.url
-    }
+    },
+    ...(entry.data.references.length > 0
+      ? {
+          citation: entry.data.references.map((reference) => ({
+            "@type": "CreativeWork",
+            name: reference.title,
+            url: reference.url,
+            ...(reference.publisher ? { publisher: reference.publisher } : {})
+          }))
+        }
+      : {})
   };
 }
 

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { formatDate, formatLabel, sortBlogEntries, sortProjects } from "../lib/content";
+import { formatDate, formatLabel, getBlogPath, getLocalizedBlogEntries, sortProjects } from "../lib/content";
 import {
   formatMessage,
   getLocaleFromPathname,
@@ -19,7 +19,7 @@ const profile = getLocalizedProfile(locale);
 const speaking = getLocalizedSpeaking(locale);
 const copy = getPageCopy(locale);
 const projects = sortProjects(await getCollection("projects")).filter((entry) => entry.data.featured).slice(0, 3);
-const posts = sortBlogEntries(await getCollection("blog"));
+const posts = getLocalizedBlogEntries(await getCollection("blog"), locale);
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
 const lastUpdated = formatDate(new Date(), locale);
 
@@ -33,7 +33,7 @@ const selectedWork = [
   ...(featuredPost
     ? [
         {
-          href: localizePath(`/blog/${featuredPost.slug}/`, locale),
+          href: getBlogPath(featuredPost, locale),
           label: featuredPost.data.title,
           description: featuredPost.data.description,
           kind: formatLabel(featuredPost.data.category, locale)
