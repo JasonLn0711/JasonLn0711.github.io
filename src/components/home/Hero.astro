@@ -33,12 +33,12 @@ const copy = getPageCopy(locale);
       </div>
 
       <div class="max-w-3xl rounded-[2rem] border border-white/[0.1] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent p-4 shadow-panel sm:p-5">
-        <div class="grid gap-4 sm:grid-cols-[112px_minmax(0,1fr)] sm:items-center">
-          <div class="overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-slate-950/40">
+        <div class="grid gap-4 sm:grid-cols-[116px_minmax(0,1fr)] sm:items-stretch">
+          <div class="overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-slate-950/40 sm:h-full sm:min-h-[15rem]">
             <img
               src={profile.avatar}
               alt={profile.name}
-              class="aspect-[4/5] h-full w-full object-cover object-[center_32%]"
+              class="aspect-[4/5] h-full w-full object-cover object-[center_24%] sm:aspect-auto"
               loading="eager"
               fetchpriority="high"
             />
