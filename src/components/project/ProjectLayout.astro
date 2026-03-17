@@ -14,10 +14,10 @@ const { project, previousProject, nextProject, locale = defaultLocale } = Astro.
 const copy = getPageCopy(locale);
 
 const links = [
-  project.data.repo ? { label: "Repository", href: project.data.repo, eventName: "project_repo_click" } : undefined,
-  project.data.demo ? { label: "Demo", href: project.data.demo, eventName: "project_demo_click" } : undefined,
-  project.data.paper ? { label: "Paper", href: project.data.paper, eventName: "project_paper_click" } : undefined
-].filter((link): link is { label: string; href: string; eventName: string } => Boolean(link));
+  project.data.repo ? { label: "Repository", href: project.data.repo, kind: "repository" } : undefined,
+  project.data.demo ? { label: "Demo", href: project.data.demo, kind: "demo" } : undefined,
+  project.data.paper ? { label: "Paper", href: project.data.paper, kind: "paper" } : undefined
+].filter((link): link is { label: string; href: string; kind: string } => Boolean(link));
 ---
 
 <section class="page-frame">
@@ -40,16 +40,17 @@ const links = [
           <span class="pill">{project.data.role}</span>
         </div>
         {links.length > 0 && (
-          <div class="page-actions">
+          <div class="page-actions" data-analytics-location="project_detail_primary_links">
             {links.map((link) => (
               <a
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
                 class="button-secondary px-4 py-2"
-                data-plausible-event={link.eventName}
                 data-plausible-project={project.data.title}
                 data-plausible-slug={project.slug}
+                data-analytics-link-kind={link.kind}
+                data-analytics-label={`${project.data.title} ${link.label}`}
               >
                 {link.label}
               </a>
@@ -88,7 +89,7 @@ const links = [
           </dl>
         </div>
 
-        <div class="surface-card space-y-3">
+        <div class="surface-card space-y-3" data-analytics-location="project_detail_next_steps">
           <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.bestNextSteps}</h2>
           <p class="text-sm leading-7 text-slate-300">
             If this work is relevant to your research, team, or event, the next useful move is usually to compare it with the broader agenda or reach out directly.
@@ -111,7 +112,7 @@ const links = [
     </div>
 
     {(previousProject || nextProject) && (
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 sm:grid-cols-2" data-analytics-location="project_detail_pagination">
         {previousProject ? (
           <a href={localizePath(`/projects/${previousProject.slug}/`, locale)} class="panel block p-6 transition hover:border-white/20">
             <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.previousProject}</p>

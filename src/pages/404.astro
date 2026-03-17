@@ -21,17 +21,18 @@ const copy = getPageCopy(locale);
         <p class="text-base leading-8 text-slate-300">
           {copy.notFoundPage.body}
         </p>
-        <div class="page-actions">
-          <a href={localizePath("/", locale)} class="button-primary" data-plausible-event="404_recovery_click">{copy.notFoundPage.backHome}</a>
-          <a href={localizePath("/projects/", locale)} class="button-secondary" data-plausible-event="404_recovery_click">{copy.notFoundPage.viewProjects}</a>
+        <div class="page-actions" data-analytics-location="404_recovery_actions">
+          <a href={localizePath("/", locale)} class="button-primary" data-plausible-event="404_recovery" data-analytics-destination="home">{copy.notFoundPage.backHome}</a>
+          <a href={localizePath("/projects/", locale)} class="button-secondary" data-plausible-event="404_recovery" data-analytics-destination="projects">{copy.notFoundPage.viewProjects}</a>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-analytics-location="404_recovery_grid">
           {site.nav.map((item) => (
             <a
               href={localizePath(item.href, locale)}
               class="surface-link py-5"
-              data-plausible-event="404_recovery_click"
+              data-plausible-event="404_recovery"
+              data-analytics-destination={item.href}
             >
               <span class="block text-sm font-semibold text-white">{item.label}</span>
               <span class="mt-2 block text-sm leading-6 text-slate-400">{item.description}</span>

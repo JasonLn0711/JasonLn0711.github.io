@@ -59,6 +59,7 @@ const baseSchemas: JsonLd[] = noindex
     : [webPageSchema({ name: pageName, description, pathname, image })];
 const allSchemas: JsonLd[] = [...baseSchemas, ...extraSchemas];
 const plausibleSnippet = localizedSite.analytics.plausibleSnippet.trim();
+const clarityProjectId = localizedSite.analytics.clarityProjectId.trim();
 const googleSiteVerificationToken = localizedSite.verification.googleSiteVerificationToken.trim();
 const alternateLocaleLinks = getAlternateLocaleLinks(pathname);
 const defaultAlternate = absoluteUrl(localizePath(stripLocaleFromPathname(pathname), defaultLocale));
@@ -89,6 +90,22 @@ const defaultAlternate = absoluteUrl(localizePath(stripLocaleFromPathname(pathna
 {type === "article" && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 {allSchemas.map((entry) => <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />)}
 {plausibleSnippet && <Fragment set:html={plausibleSnippet} />}
+{clarityProjectId && (
+  <script is:inline define:vars={{ clarityProjectId }}>
+    (function(c, l, a, r, i, t, y) {
+      c[a] =
+        c[a] ||
+        function() {
+          (c[a].q = c[a].q || []).push(arguments);
+        };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", clarityProjectId);
+  </script>
+)}
 {pathname === "/404.html" && (
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {

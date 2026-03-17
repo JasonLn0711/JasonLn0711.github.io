@@ -29,7 +29,7 @@ const copy = getPageCopy(locale);
         </p>
       </div>
 
-      <section class="section-card grid gap-4 sm:grid-cols-3">
+      <section class="section-card grid gap-4 sm:grid-cols-3" data-analytics-location="blog_index_intro">
         <a href="#featured-writing" class="surface-link">
           <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.featuredTitle}</span>
           <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.featuredDescription}</span>
@@ -45,17 +45,17 @@ const copy = getPageCopy(locale);
       </section>
 
       {featuredPost && (
-        <section id="featured-writing" class="space-y-5 scroll-mt-28">
+        <section id="featured-writing" class="space-y-5 scroll-mt-28" data-analytics-location="blog_featured">
           <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.blogIndexPage.featuredPiece}</h2>
-          <BlogCard post={featuredPost} featured={true} locale={locale} />
+          <BlogCard post={featuredPost} featured={true} analyticsLocation="blog_featured" locale={locale} />
         </section>
       )}
 
-      <section id="recent-writing" class="space-y-5 scroll-mt-28">
+      <section id="recent-writing" class="space-y-5 scroll-mt-28" data-analytics-location="blog_index_grid">
         <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.blogIndexPage.recentWriting}</h2>
         {remainingPosts.length > 0 ? (
           <div class="grid gap-6 lg:grid-cols-2">
-            {remainingPosts.map((post) => <BlogCard post={post} locale={locale} />)}
+            {remainingPosts.map((post) => <BlogCard post={post} analyticsLocation="blog_index_grid" locale={locale} />)}
           </div>
         ) : (
           <div class="panel p-8">

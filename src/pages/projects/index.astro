@@ -46,7 +46,7 @@ const filters = [
         </p>
       </section>
 
-      <div class="flex flex-wrap gap-3" aria-label="Project filters" role="toolbar">
+      <div class="flex flex-wrap gap-3" aria-label="Project filters" role="toolbar" data-analytics-location="projects_filters">
         {filters.map((filter, index) => (
           <button
             type="button"
@@ -58,17 +58,21 @@ const filters = [
             data-filter-label={filter.label}
             aria-controls="project-grid"
             aria-pressed={index === 0 ? "true" : "false"}
+            data-plausible-event="content_filter_use"
+            data-analytics-page-type="projects_index"
+            data-analytics-filter={filter.id}
+            data-analytics-label={filter.label}
           >
             {filter.label}
           </button>
         ))}
       </div>
 
-      <div id="project-grid" class="grid gap-6 xl:grid-cols-3">
-        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} locale={locale} />)}
+      <div id="project-grid" class="grid gap-6 xl:grid-cols-3" data-analytics-location="projects_index_grid">
+        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} analyticsLocation="projects_index_grid" locale={locale} />)}
       </div>
 
-      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between" data-analytics-location="projects_broader_context">
         <div class="space-y-2">
           <h2 class="text-2xl font-semibold text-white">{copy.projectsPage.broaderContextTitle}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">

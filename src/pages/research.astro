@@ -122,7 +122,7 @@ const copy = getPageCopy(locale);
         </div>
       </section>
 
-      <section id="research-pillars" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 scroll-mt-28">
+      <section id="research-pillars" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 scroll-mt-28" data-analytics-location="research_overview_directions">
         {research.pillars.map((pillar) => (
           <a
             href={localizePath(`/research/${pillar.slug}/`, locale)}

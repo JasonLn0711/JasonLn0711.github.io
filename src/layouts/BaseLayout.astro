@@ -2,14 +2,12 @@
 import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Head from "../components/seo/Head.astro";
-import { absoluteUrl, normalizePathname } from "../lib/site";
+import { normalizePathname } from "../lib/site";
 import {
   getLocaleFromPathname,
   getLocaleMeta,
-  getLocalizedProfile,
-  getLocalizedSpeaking,
-  getPageCopy,
-  localizePath
+  getLocalizedSite,
+  getPageCopy
 } from "../lib/i18n";
 import "../styles/global.css";
 
@@ -40,12 +38,9 @@ const {
 const currentPathname = normalizePathname(pathname);
 const locale = getLocaleFromPathname(currentPathname);
 const localeInfo = getLocaleMeta(locale);
-const localizedProfile = getLocalizedProfile(locale);
-const localizedSpeaking = getLocalizedSpeaking(locale);
+const localizedSite = getLocalizedSite(locale);
 const copy = getPageCopy(locale);
-const officialSessionUrl = localizedSpeaking.featuredEngagement.url;
-const speakerProfileUrl = localizedProfile.externalProfiles.cybersecSpeaker.url;
-const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngagement.storyHref, locale));
+const scrollDepthThresholds = localizedSite.analytics.scrollDepthThresholds;
 ---
 
 <!doctype html>
@@ -97,17 +92,108 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
       </main>
       <Footer locale={locale} pathname={currentPathname} />
     </div>
-    <script is:inline define:vars={{ officialSessionUrl, speakerProfileUrl, talkStoryUrl }}>
+    <script is:inline define:vars={{ currentPathname, locale, scrollDepthThresholds }}>
       const normalizeHref = (href) => {
         try {
-          return new URL(href, window.location.origin).toString();
+          return new URL(href, window.location.origin);
         } catch {
-          return href;
+          return null;
         }
       };
 
-      const collectProps = (target) => {
+      const trimValue = (value) => String(value).replace(/\s+/g, " ").trim();
+
+      const toSnakeCase = (value) =>
+        value
+          .replace(/^[A-Z]/, (match) => match.toLowerCase())
+          .replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`);
+
+      const stripLocaleFromPath = (pathname) => {
+        const normalized = pathname.replace(/\/{2,}/g, "/").replace(/\/index\.html$/i, "/");
+        const stripped = normalized.replace(/^\/(zh-tw|ja)(?=\/|$)/i, "");
+        return stripped === "" ? "/" : stripped.endsWith("/") ? stripped : `${stripped}/`;
+      };
+
+      const getPageType = (pathname) => {
+        const strippedPath = stripLocaleFromPath(pathname);
+
+        if (/^\/projects\/[^/]+\/$/i.test(strippedPath)) return "project_detail";
+        if (strippedPath === "/projects/") return "projects_index";
+        if (/^\/blog\/[^/]+\/$/i.test(strippedPath)) return "blog_detail";
+        if (strippedPath === "/blog/") return "blog_index";
+        if (/^\/research\/[^/]+\/$/i.test(strippedPath)) return "research_direction";
+        if (strippedPath === "/research/") return "research_index";
+        if (/^\/talks\/[^/]+\/$/i.test(strippedPath)) return "talk_detail";
+        if (strippedPath === "/talks/") return "talks_index";
+        if (strippedPath === "/contact/") return "contact";
+        if (strippedPath === "/links/") return "links";
+        if (strippedPath === "/resume/") return "resume";
+        if (strippedPath === "/about/") return "about";
+        return strippedPath === "/" ? "home" : "page";
+      };
+
+      const getLocation = (target) => {
+        const scopedLocation = target.closest("[data-analytics-location]")?.dataset.analyticsLocation;
+
+        if (scopedLocation) {
+          return scopedLocation;
+        }
+
+        if (target.closest("header")) return "header";
+        if (target.closest("footer")) return "footer";
+        if (target.closest("aside")) return "sidebar";
+        return "content";
+      };
+
+      const getReadableLabel = (target) => {
+        const explicitLabel = target.dataset.analyticsLabel || target.getAttribute("aria-label") || target.getAttribute("title");
+
+        if (explicitLabel) {
+          return trimValue(explicitLabel);
+        }
+
+        const structuredLabel = target.querySelector("h1, h2, h3, strong");
+
+        if (structuredLabel?.textContent) {
+          return trimValue(structuredLabel.textContent).slice(0, 120);
+        }
+
+        const text = trimValue(target.textContent || "");
+        return text ? text.slice(0, 120) : undefined;
+      };
+
+      const sanitizeProps = (rawProps) => {
         const props = {};
+
+        Object.entries(rawProps).forEach(([key, value]) => {
+          if (value === undefined || value === null) {
+            return;
+          }
+
+          const trimmed = trimValue(value);
+
+          if (!trimmed) {
+            return;
+          }
+
+          props[key] = trimmed.slice(0, 180);
+        });
+
+        return Object.keys(props).length > 0 ? props : undefined;
+      };
+
+      const collectProps = (target, url) => {
+        const props = {
+          location: getLocation(target)
+        };
+
+        Object.entries(target.dataset).forEach(([key, value]) => {
+          if (!key.startsWith("analytics") || key === "analyticsLocation") {
+            return;
+          }
+
+          props[toSnakeCase(key.slice("analytics".length))] = value;
+        });
 
         if (target.dataset.plausibleProject) {
           props.project = target.dataset.plausibleProject;
@@ -117,7 +203,180 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
           props.slug = target.dataset.plausibleSlug;
         }
 
-        return Object.keys(props).length > 0 ? props : undefined;
+        if (url && url.origin !== window.location.origin) {
+          props.domain = url.hostname.replace(/^www\./i, "");
+        }
+
+        const label = getReadableLabel(target);
+
+        if (label && !props.label) {
+          props.label = label;
+        }
+
+        return sanitizeProps(props);
+      };
+
+      const withBaseProps = (target, url, baseProps = {}) =>
+        sanitizeProps({
+          ...baseProps,
+          ...(collectProps(target, url) || {})
+        });
+
+      const track = (eventName, { props, interactive = true, clarityEvent = true } = {}) => {
+        const payload = {};
+
+        if (props) {
+          payload.props = props;
+        }
+
+        if (interactive === false) {
+          payload.interactive = false;
+        }
+
+        if (typeof window.plausible === "function") {
+          window.plausible(eventName, Object.keys(payload).length > 0 ? payload : undefined);
+        }
+
+        if (clarityEvent && typeof window.clarity === "function") {
+          window.clarity("event", eventName);
+        }
+      };
+
+      window.__siteAnalytics = { track };
+
+      const currentPageType = getPageType(currentPathname);
+
+      const applyClarityTags = () => {
+        if (typeof window.clarity !== "function") {
+          return false;
+        }
+
+        window.clarity("set", "locale", locale);
+        window.clarity("set", "page_type", currentPageType);
+        window.clarity("set", "path", stripLocaleFromPath(currentPathname));
+        window.clarity("set", "device_profile", document.documentElement.dataset.device || "unknown");
+        return true;
+      };
+
+      applyClarityTags();
+      window.addEventListener("load", applyClarityTags, { once: true });
+      window.setTimeout(applyClarityTags, 1500);
+
+      const isInternalLink = (url) => Boolean(url) && url.origin === window.location.origin;
+      const isCta = (target) =>
+        target.classList.contains("button-primary") ||
+        target.classList.contains("button-secondary") ||
+        target.classList.contains("surface-link") ||
+        target.classList.contains("panel") ||
+        target.classList.contains("action-link");
+      const isNavigationLink = (target) => {
+        const location = getLocation(target);
+        return location.startsWith("navbar") || location.startsWith("footer_");
+      };
+
+      const deriveDestination = (pathname) => {
+        const strippedPath = stripLocaleFromPath(pathname);
+        if (strippedPath === "/") return "home";
+        const [firstSegment] = strippedPath.split("/").filter(Boolean);
+        return firstSegment || "page";
+      };
+
+      const resolveTrackedEvent = (target) => {
+        const url = target instanceof HTMLAnchorElement ? normalizeHref(target.href) : null;
+        const explicitEventName = target.dataset.plausibleEvent;
+
+        if (explicitEventName) {
+          return {
+            eventName: explicitEventName,
+            props: collectProps(target, url),
+            interactive: target.dataset.analyticsInteractive !== "false"
+          };
+        }
+
+        if (!(target instanceof HTMLAnchorElement) || !url) {
+          return null;
+        }
+
+        if (target.href.startsWith("mailto:")) {
+          return {
+            eventName: "contact_click",
+            props: withBaseProps(target, url, { method: "email" })
+          };
+        }
+
+        if (!isInternalLink(url)) {
+          return {
+            eventName: "external_link_click",
+            props: collectProps(target, url)
+          };
+        }
+
+        if (url.pathname === window.location.pathname && url.hash) {
+          return null;
+        }
+
+        const strippedPath = stripLocaleFromPath(url.pathname);
+        const projectMatch = strippedPath.match(/^\/projects\/([^/]+)\/$/i);
+        const blogMatch = strippedPath.match(/^\/blog\/([^/]+)\/$/i);
+        const researchDirectionMatch = strippedPath.match(/^\/research\/([^/]+)\/$/i);
+        const talkMatch = strippedPath.match(/^\/talks\/([^/]+)\/$/i);
+
+        if (strippedPath === "/contact/") {
+          return {
+            eventName: "contact_click",
+            props: withBaseProps(target, url, { method: "internal_page" })
+          };
+        }
+
+        if (projectMatch) {
+          return {
+            eventName: "project_open",
+            props: withBaseProps(target, url, { slug: projectMatch[1] })
+          };
+        }
+
+        if (blogMatch) {
+          return {
+            eventName: "blog_open",
+            props: withBaseProps(target, url, { slug: blogMatch[1] })
+          };
+        }
+
+        if (researchDirectionMatch) {
+          return {
+            eventName: "research_direction_open",
+            props: withBaseProps(target, url, { slug: researchDirectionMatch[1] })
+          };
+        }
+
+        if (talkMatch) {
+          return {
+            eventName: "talk_open",
+            props: withBaseProps(target, url, { slug: talkMatch[1] })
+          };
+        }
+
+        if (isCta(target)) {
+          return {
+            eventName: "cta_click",
+            props: withBaseProps(target, url, {
+              destination: deriveDestination(url.pathname),
+              label: getReadableLabel(target)
+            })
+          };
+        }
+
+        if (isNavigationLink(target)) {
+          return {
+            eventName: "navigation_click",
+            props: withBaseProps(target, url, {
+              destination: deriveDestination(url.pathname),
+              label: getReadableLabel(target)
+            })
+          };
+        }
+
+        return null;
       };
 
       document.addEventListener(
@@ -129,37 +388,76 @@ const talkStoryUrl = absoluteUrl(localizePath(localizedSpeaking.featuredEngageme
             return;
           }
 
-          let eventName = target.dataset.plausibleEvent;
+          const trackedEvent = resolveTrackedEvent(target);
 
-          if (!eventName && target instanceof HTMLAnchorElement) {
-            const href = normalizeHref(target.href);
-
-            if (target.href.startsWith("mailto:")) {
-              eventName = "email_click";
-            } else if (href === officialSessionUrl) {
-              eventName = "official_session_click";
-            } else if (href === speakerProfileUrl) {
-              eventName = "speaker_profile_click";
-            } else if (href === talkStoryUrl) {
-              eventName = "talk_story_click";
-            }
-          }
-
-          if (!eventName || typeof window.plausible !== "function") {
+          if (!trackedEvent) {
             return;
           }
 
-          const props = collectProps(target);
-
-          if (props) {
-            window.plausible(eventName, { props });
-            return;
-          }
-
-          window.plausible(eventName);
+          track(trackedEvent.eventName, {
+            props: trackedEvent.props,
+            interactive: trackedEvent.interactive
+          });
         },
         { capture: true }
       );
+
+      const trackedScrollDepths = new Set();
+      const normalizedThresholds = Array.isArray(scrollDepthThresholds)
+        ? scrollDepthThresholds
+            .map((value) => Number(value))
+            .filter((value) => Number.isFinite(value) && value > 0 && value < 100)
+            .sort((left, right) => left - right)
+        : [];
+
+      let scrollTicking = false;
+
+      const reportScrollDepth = () => {
+        if (normalizedThresholds.length === 0) {
+          return;
+        }
+
+        const scrollRoot = document.documentElement;
+        const scrollableHeight = scrollRoot.scrollHeight - window.innerHeight;
+
+        if (scrollableHeight <= 0) {
+          return;
+        }
+
+        const depth = Math.min(100, Math.round(((window.scrollY + window.innerHeight) / scrollRoot.scrollHeight) * 100));
+
+        normalizedThresholds.forEach((threshold) => {
+          if (depth < threshold || trackedScrollDepths.has(threshold)) {
+            return;
+          }
+
+          trackedScrollDepths.add(threshold);
+          track("scroll_depth", {
+            props: sanitizeProps({
+              depth: threshold,
+              page_type: currentPageType
+            }),
+            interactive: false,
+            clarityEvent: false
+          });
+        });
+      };
+
+      const queueScrollDepthReport = () => {
+        if (scrollTicking) {
+          return;
+        }
+
+        scrollTicking = true;
+        window.requestAnimationFrame(() => {
+          scrollTicking = false;
+          reportScrollDepth();
+        });
+      };
+
+      reportScrollDepth();
+      window.addEventListener("scroll", queueScrollDepthReport, { passive: true });
+      window.addEventListener("resize", queueScrollDepthReport, { passive: true });
 
       (() => {
         const root = document.documentElement;

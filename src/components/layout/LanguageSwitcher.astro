@@ -19,9 +19,13 @@ const copy = getPageCopy(locale);
 const options = getLanguageOptions(pathname);
 const currentPath = normalizePathnameFromSite(pathname);
 const showLabel = mobile ? !compact : alwaysVisible;
+const analyticsLocation = mobile ? "mobile_language_switch" : alwaysVisible ? "footer_language_switch" : "language_switch";
 ---
 
-<div class:list={[showLabel ? "space-y-3" : "", mobile || alwaysVisible ? "" : "hidden lg:flex"]}>
+<div
+  class:list={[showLabel ? "space-y-3" : "", mobile || alwaysVisible ? "" : "hidden lg:flex"]}
+  data-analytics-location={analyticsLocation}
+>
   {showLabel ? (
     <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.common.language}</p>
   ) : (
@@ -53,6 +57,10 @@ const showLabel = mobile ? !compact : alwaysVisible;
           aria-current={isCurrent ? "page" : undefined}
           aria-label={option.label}
           title={option.label}
+          data-plausible-event={isCurrent ? undefined : "language_switch"}
+          data-analytics-from-locale={isCurrent ? undefined : locale}
+          data-analytics-to-locale={isCurrent ? undefined : option.locale}
+          data-analytics-path={isCurrent ? undefined : currentPath}
         >
           {option.shortLabel}
         </a>

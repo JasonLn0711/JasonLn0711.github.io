@@ -64,11 +64,11 @@ const copy = getPageCopy(locale);
         </div>
       </div>
 
-      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary w-full sm:w-auto" data-plausible-event="hero_primary_cta_click">
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4" data-analytics-location="hero_actions">
+        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary w-full sm:w-auto">
           {home.hero.primaryCta.label}
         </a>
-        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary w-full sm:w-auto" data-plausible-event="hero_secondary_cta_click">
+        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary w-full sm:w-auto">
           {home.hero.secondaryCta.label}
         </a>
         <a href={localizePath("/contact/", locale)} class="action-link">
@@ -95,7 +95,7 @@ const copy = getPageCopy(locale);
             <h2 class="text-2xl font-semibold tracking-tight text-white">{copy.home.choosePath}</h2>
           </div>
 
-          <div class="grid gap-3">
+          <div class="grid gap-3" data-analytics-location="hero_routes">
             {home.hero.routes.map((route) => (
               <a href={localizePath(route.href, locale)} class="surface-link">
                 <span class="block text-sm font-semibold text-white">{route.title}</span>

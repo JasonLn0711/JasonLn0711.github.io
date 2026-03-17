@@ -7,21 +7,28 @@ interface Props {
   project: CollectionEntry<"projects">;
   filters?: string[];
   eventName?: string;
+  analyticsLocation?: string;
   locale?: SiteLocale;
 }
 
-const { project, filters = [project.data.category], eventName, locale = defaultLocale } = Astro.props;
+const { project, filters = [project.data.category], eventName, analyticsLocation, locale = defaultLocale } = Astro.props;
 const tags = Array.from(new Set(filters));
 const copy = getPageCopy(locale);
 ---
 
-<article data-project-card data-category={tags.join(",")} class="panel overflow-hidden transition hover:border-white/20 hover:bg-white/[0.05]">
+<article
+  data-project-card
+  data-category={tags.join(",")}
+  data-analytics-location={analyticsLocation}
+  class="panel overflow-hidden transition hover:border-white/20 hover:bg-white/[0.05]"
+>
   <a
     href={localizePath(`/projects/${project.slug}/`, locale)}
     class="group flex h-full flex-col focus-visible:outline-none"
     data-plausible-event={eventName}
-    data-plausible-project={eventName ? project.data.title : undefined}
-    data-plausible-slug={eventName ? project.slug : undefined}
+    data-plausible-project={project.data.title}
+    data-plausible-slug={project.slug}
+    data-analytics-label={project.data.title}
   >
     <img
       src={project.data.cover}

@@ -52,7 +52,7 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
             ))}
           </div>
 
-          <div class="page-actions">
+          <div class="page-actions" data-analytics-location="contact_primary_actions">
             <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
               LinkedIn
@@ -91,7 +91,7 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
               lab: profile.lab.name
             })}
           </p>
-          <div class="page-actions">
+          <div class="page-actions" data-analytics-location="contact_profile_links">
             <a href={profile.lab.url} target="_blank" rel="noreferrer" class="button-secondary">
               {copy.common.labWebsite}
             </a>
@@ -107,7 +107,7 @@ const currentWorkTitles = research.ongoingWork.map((item) => item.title);
         </div>
       </section>
 
-      <div class="grid gap-6 lg:grid-cols-3">
+      <div class="grid gap-6 lg:grid-cols-3" data-analytics-location="contact_cards">
         <article class="section-card flex flex-col gap-5">
           <span class="pill w-fit">{copy.common.research}</span>
           <h2 class="text-2xl font-semibold text-white">{copy.contactPage.collaborationCardTitle}</h2>

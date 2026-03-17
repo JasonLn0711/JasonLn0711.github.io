@@ -158,36 +158,58 @@ This repository contains the source for my personal website and research portfol
 - Verified that `robots.txt` points to the generated sitemap index at `/sitemap-index.xml`.
 - Added RSS discovery in the shared head as an absolute `alternate` feed link.
 - Improved factual image metadata for the shared headshot by adding dimensions and clearer alt text without changing the visual design.
-- Added a shared Plausible analytics integration point plus safe custom-event hooks for:
-  - `email_click`
-  - `official_session_click`
-  - `speaker_profile_click`
-  - `talk_story_click`
-  - `project_repo_click`
-  - `project_demo_click`
-  - `project_paper_click`
-  - `404`
+- Added a centralized analytics layer in the shared layout so tracking logic is defined once and reused across pages.
+- Added optimized high-value events for:
+  - `cta_click`
+  - `project_open`
+  - `blog_open`
+  - `contact_click`
+  - `external_link_click`
+  - `scroll_depth`
+  - `language_switch`
+  - `404_recovery`
+  - `navigation_click`
+  - `research_direction_open`
+  - `talk_open`
+  - `content_filter_use`
+- Added section-level location metadata so analytics can distinguish hero, navbar, footer, grid, card, and detail-page interactions.
+- Added optional Microsoft Clarity support for heatmaps and session replays without changing the site design.
 - Confirmed that the site remains visually unchanged and that `npm run build` passes after the refactor.
 
 ### Files Updated for This Refactor
 
+- `.env.example`
 - `src/lib/site.ts`
-- `src/lib/schema.ts`
 - `src/components/seo/Head.astro`
 - `src/layouts/BaseLayout.astro`
+- `src/components/layout/LanguageSwitcher.astro`
+- `src/components/layout/Navbar.astro`
+- `src/components/layout/Footer.astro`
+- `src/components/home/Hero.astro`
+- `src/components/home/ResearchThemes.astro`
+- `src/components/home/FeaturedProjects.astro`
+- `src/components/home/WritingPreview.astro`
+- `src/components/project/ProjectCard.astro`
 - `src/components/project/ProjectLayout.astro`
-- `src/pages/about.astro`
+- `src/components/blog/BlogCard.astro`
 - `src/pages/contact.astro`
-- `src/pages/research.astro`
-- `src/pages/talks.astro`
-- `src/pages/talks/regulated-ai-cybersecurity.astro`
+- `src/pages/links.astro`
 - `src/pages/blog/index.astro`
-- `src/pages/blog/[slug].astro`
 - `src/pages/projects/index.astro`
-- `src/pages/projects/[slug].astro`
+- `src/pages/research.astro`
+- `src/pages/research/[slug].astro`
 - `src/pages/404.astro`
 
-### Manual TODOs
+### Analytics Setup
 
-- Paste the exact Plausible "Review Installation" snippet into `src/lib/site.ts`.
-- Paste the optional Google Search Console verification token into `src/lib/site.ts` if Search Console verification is needed.
+1. Copy `.env.example` to `.env`.
+2. Paste the exact Plausible "Review Installation" snippet into `PUBLIC_PLAUSIBLE_SNIPPET`.
+3. Optionally add `PUBLIC_CLARITY_PROJECT_ID` for Microsoft Clarity.
+4. Optionally add `PUBLIC_GOOGLE_SITE_VERIFICATION_TOKEN` for Search Console.
+5. Run `npm run build` or redeploy.
+
+### Dashboard Notes
+
+- `scroll_depth` is intentionally tracked at `50` and `90` percent to keep the signal useful and lower-noise.
+- Plausible is the primary event layer; Clarity is optional and intended for replay/heatmap debugging rather than KPI reporting.
+- If you use the custom `external_link_click` event as your main outbound-link metric, avoid duplicating that with another outbound-link event source in your analytics dashboard.

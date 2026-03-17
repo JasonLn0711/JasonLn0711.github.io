@@ -1,5 +1,11 @@
 import { home } from "../data/home";
 
+const publicEnv = {
+  googleSiteVerificationToken: import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION_TOKEN ?? "",
+  plausibleSnippet: import.meta.env.PUBLIC_PLAUSIBLE_SNIPPET ?? "",
+  clarityProjectId: import.meta.env.PUBLIC_CLARITY_PROJECT_ID ?? ""
+} as const;
+
 export const site = {
   name: "Jason Chia-Sheng Lin",
   url: "https://jasonln0711.github.io",
@@ -8,12 +14,17 @@ export const site = {
   ogImage: "/og/default.png",
   locale: "en_US",
   verification: {
-    // TODO: Paste the Google Search Console verification token here if available.
-    googleSiteVerificationToken: ""
+    // You can keep this empty or provide PUBLIC_GOOGLE_SITE_VERIFICATION_TOKEN in .env.
+    googleSiteVerificationToken: publicEnv.googleSiteVerificationToken
   },
   analytics: {
-    // TODO: Paste the exact Plausible "Review Installation" snippet here.
-    plausibleSnippet: ""
+    // Paste the exact Plausible "Review Installation" snippet here,
+    // or provide it via PUBLIC_PLAUSIBLE_SNIPPET.
+    plausibleSnippet: publicEnv.plausibleSnippet,
+    // Optional: enable Microsoft Clarity heatmaps and session replays.
+    clarityProjectId: publicEnv.clarityProjectId,
+    // Optimized for lower-noise engagement tracking.
+    scrollDepthThresholds: [50, 90]
   },
   nav: [
     { href: "/research/", label: "Research", description: "Agenda, active work, and recent papers." },

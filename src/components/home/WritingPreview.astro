@@ -13,7 +13,7 @@ const home = getLocalizedHome(locale);
 const copy = getPageCopy(locale);
 ---
 
-<section class="section">
+<section class="section" data-analytics-location="home_writing">
   <div class="shell space-y-8">
     <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div class="max-w-3xl">
@@ -27,8 +27,8 @@ const copy = getPageCopy(locale);
     </div>
 
     {posts.length > 0 ? (
-      <div class="grid gap-6 lg:grid-cols-3">
-        {posts.map((post) => <BlogCard post={post} eventName="writing_card_click" locale={locale} />)}
+      <div class="grid gap-6 lg:grid-cols-3" data-analytics-location="home_writing_preview">
+        {posts.map((post) => <BlogCard post={post} analyticsLocation="home_writing_preview" locale={locale} />)}
       </div>
     ) : (
       <div class="panel p-8">
