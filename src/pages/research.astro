@@ -8,6 +8,7 @@ import {
   getPageCopy,
   localizePath
 } from "../lib/i18n";
+import { itemListSchema } from "../lib/schema";
 
 const locale = getLocaleFromPathname(Astro.url.pathname);
 const profile = getLocalizedProfile(locale);
@@ -19,6 +20,10 @@ const copy = getPageCopy(locale);
   title={getLocalizedPageTitle(locale, copy.common.research)}
   description={research.page.description}
   pathname={Astro.url.pathname}
+  schema={itemListSchema("Research directions", research.pillars.map((pillar) => ({
+    name: pillar.title,
+    pathname: localizePath(`/research/${pillar.slug}/`, locale)
+  })))}
 >
   <section class="page-frame">
     <div class="page-stack">
@@ -119,13 +124,22 @@ const copy = getPageCopy(locale);
 
       <section id="research-pillars" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 scroll-mt-28">
         {research.pillars.map((pillar) => (
-          <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
+          <a
+            href={localizePath(`/research/${pillar.slug}/`, locale)}
+            class="panel group flex h-full flex-col gap-5 p-6 transition hover:border-white/20 hover:bg-white/[0.06] sm:p-7"
+          >
             <h2 class="text-2xl font-semibold tracking-tight text-white">{pillar.title}</h2>
             <p class="text-sm leading-7 text-slate-300">{pillar.description}</p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              {pillar.tags.map((tag) => <span class="pill">{tag}</span>)}
+            <div class="mt-auto space-y-4">
+              <div class="flex flex-wrap gap-2">
+                {pillar.tags.map((tag) => <span class="pill">{tag}</span>)}
+              </div>
+              <span class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] transition group-hover:text-[var(--color-accent-strong)]">
+                {copy.researchDirectionPage.openDirection}
+                <span aria-hidden="true">→</span>
+              </span>
             </div>
-          </article>
+          </a>
         ))}
       </section>
 

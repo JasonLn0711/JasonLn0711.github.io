@@ -1,0 +1,14 @@
+---
+import { research } from "../../../data/research";
+import Page from "../../research/[slug].astro";
+
+const LocalizedPage = Page as any;
+
+export async function getStaticPaths() {
+  return research.pillars.map((pillar) => ({
+    params: { slug: pillar.slug }
+  }));
+}
+---
+
+<LocalizedPage />

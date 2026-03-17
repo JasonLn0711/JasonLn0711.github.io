@@ -3,7 +3,7 @@ import { getPageCopy, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
   locale: SiteLocale;
-  kind: "blog" | "project" | "talk";
+  kind: "blog" | "project" | "research" | "talk";
 }
 
 const { locale, kind } = Astro.props;
@@ -14,6 +14,8 @@ const message =
     ? copy.common.untranslatedBlog
     : kind === "project"
       ? copy.common.untranslatedProject
+      : kind === "research"
+        ? copy.common.untranslatedResearch
       : copy.common.untranslatedTalk;
 ---
 

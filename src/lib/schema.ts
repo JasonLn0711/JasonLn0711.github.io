@@ -11,6 +11,16 @@ interface WebPageSchemaInput {
   image?: string;
 }
 
+interface BreadcrumbSchemaItem {
+  name: string;
+  pathname: string;
+}
+
+interface ItemListSchemaItem {
+  name: string;
+  pathname: string;
+}
+
 export function personSchema(profile: Profile): JsonLd {
   return {
     "@context": "https://schema.org",
@@ -74,6 +84,33 @@ export function webPageSchema({ name, description, pathname, image }: WebPageSch
           }
         }
       : {})
+  };
+}
+
+export function breadcrumbSchema(items: BreadcrumbSchemaItem[]): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.pathname)
+    }))
+  };
+}
+
+export function itemListSchema(name: string, items: ItemListSchemaItem[]): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.pathname)
+    }))
   };
 }
 

@@ -1,0 +1,231 @@
+---
+import UntranslatedNotice from "../../components/layout/UntranslatedNotice.astro";
+import { research } from "../../data/research";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  defaultLocale,
+  getLocaleFromPathname,
+  getLocalizedPageTitle,
+  getLocalizedResearch,
+  getPageCopy,
+  localizePath
+} from "../../lib/i18n";
+import { breadcrumbSchema } from "../../lib/schema";
+
+export async function getStaticPaths() {
+  return research.pillars.map((pillar) => ({
+    params: { slug: pillar.slug }
+  }));
+}
+
+const slug = Astro.params.slug ?? "";
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const localizedResearch = getLocalizedResearch(locale);
+const copy = getPageCopy(locale);
+const directionIndex = localizedResearch.pillars.findIndex((pillar) => pillar.slug === slug);
+
+if (directionIndex === -1) {
+  throw new Error(`Unknown research direction: ${slug}`);
+}
+
+const direction = localizedResearch.pillars[directionIndex];
+const previousDirection = localizedResearch.pillars[directionIndex - 1];
+const nextDirection = localizedResearch.pillars[directionIndex + 1];
+const pageDescription = locale === defaultLocale ? direction.seoDescription : direction.description;
+const onThisPageLinks = [
+  { href: "#why-now", label: copy.researchDirectionPage.whyNowTitle },
+  { href: "#priorities", label: copy.researchDirectionPage.prioritiesTitle },
+  { href: "#principles", label: copy.researchDirectionPage.principlesTitle },
+  { href: "#human-factors", label: copy.researchDirectionPage.humanFactorsSectionTitle },
+  { href: "#evaluation", label: copy.researchDirectionPage.evaluationTitle },
+  { href: "#questions", label: copy.researchDirectionPage.questionsTitle },
+  { href: "#signals", label: copy.researchDirectionPage.signalsTitle }
+];
+---
+
+<BaseLayout
+  title={getLocalizedPageTitle(locale, direction.title, copy.common.research)}
+  description={pageDescription}
+  pathname={Astro.url.pathname}
+  schema={[
+    breadcrumbSchema([
+      { name: copy.common.research, pathname: localizePath("/research/", locale) },
+      { name: direction.title, pathname: Astro.url.pathname }
+    ])
+  ]}
+>
+  <section class="page-frame">
+    <div class="page-stack">
+      <a href={localizePath("/research/", locale)} class="action-link">
+        <span aria-hidden="true">←</span>
+        {copy.researchDirectionPage.backToResearch}
+      </a>
+
+      <div class="space-y-6">
+        <div class="page-intro">
+          <span class="eyebrow">{copy.researchDirectionPage.directionEyebrow}</span>
+          <h1 class="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            {direction.title}
+          </h1>
+          <p class="page-summary">{direction.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {direction.tags.map((tag) => <span class="pill">{tag}</span>)}
+          </div>
+          <div class="page-actions">
+            <a href={localizePath("/contact/", locale)} class="button-primary">{copy.researchDirectionPage.discussDirection}</a>
+            <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.researchDirectionPage.browseProjects}</a>
+          </div>
+        </div>
+
+        <section class="section-card">
+          <div class="grid gap-4 lg:grid-cols-3">
+            <article class="surface-card">
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.researchDirectionPage.currentThesisTitle}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-300">{direction.thesis}</p>
+            </article>
+            <article class="surface-card">
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.researchDirectionPage.yearViewTitle}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-300">{direction.yearPerspective}</p>
+            </article>
+            <article class="surface-card">
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.researchDirectionPage.humanFactorsTitle}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-300">{direction.humanFactorsSummary}</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+        <aside class="section-card h-fit space-y-6 lg:sticky lg:top-28">
+          <div class="space-y-3">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.onThisPage}</h2>
+            <nav aria-label={copy.common.onThisPage}>
+              <ul class="space-y-3 text-sm text-slate-300">
+                {onThisPageLinks.map((item) => (
+                  <li>
+                    <a href={item.href} class="transition hover:text-white">{item.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          <div class="space-y-3">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.researchDirectionPage.focusTagsTitle}</h2>
+            <div class="flex flex-wrap gap-2">
+              {direction.tags.map((tag) => <span class="pill">{tag}</span>)}
+            </div>
+          </div>
+
+          <div class="surface-card space-y-3">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.bestNextSteps}</h2>
+            <p class="text-sm leading-7 text-slate-300">
+              {localizedResearch.collaboration.description}
+            </p>
+            <div class="page-actions">
+              <a href={localizePath("/contact/", locale)} class="button-primary px-4 py-2">{copy.researchDirectionPage.discussDirection}</a>
+              <a href={localizePath("/research/", locale)} class="button-secondary px-4 py-2">{copy.researchDirectionPage.allDirections}</a>
+            </div>
+          </div>
+        </aside>
+
+        <article class="space-y-6">
+          {locale !== "en" && <UntranslatedNotice locale={locale} kind="research" />}
+
+          <section id="why-now" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.whyNowTitle}</h2>
+            <p class="mt-5 text-base leading-8 text-slate-300">{direction.whyNow}</p>
+          </section>
+
+          <section id="priorities" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.prioritiesTitle}</h2>
+            <ul class="mt-6 compact-list">
+              {direction.currentPriorities.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+            </ul>
+          </section>
+
+          <section id="principles" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.principlesTitle}</h2>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              {direction.systemPrinciples.map((item) => (
+                <article class="surface-card">
+                  <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="human-factors" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.humanFactorsSectionTitle}</h2>
+            <ul class="mt-6 compact-list">
+              {direction.humanFactors.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+            </ul>
+          </section>
+
+          <section id="evaluation" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.evaluationTitle}</h2>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              {direction.evaluationAgenda.map((item) => (
+                <article class="surface-card">
+                  <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="questions" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.questionsTitle}</h2>
+            <ul class="mt-6 compact-list">
+              {direction.questions.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+            </ul>
+          </section>
+
+          <section id="signals" class="section-card scroll-mt-28">
+            <h2 class="text-2xl font-semibold text-white">{copy.researchDirectionPage.signalsTitle}</h2>
+            <div class="mt-6 grid gap-4 xl:grid-cols-2">
+              {direction.signals.map((signal) => (
+                <a
+                  href={signal.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="surface-link block"
+                >
+                  <h3 class="text-lg font-semibold text-white">{signal.label}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">{signal.note}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {previousDirection ? (
+          <a href={localizePath(`/research/${previousDirection.slug}/`, locale)} class="panel block p-6 transition hover:border-white/20">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.researchDirectionPage.previousDirection}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{previousDirection.title}</p>
+          </a>
+        ) : (
+          <a href={localizePath("/research/", locale)} class="panel block p-6 transition hover:border-white/20">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.browse}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{copy.researchDirectionPage.allDirections}</p>
+          </a>
+        )}
+
+        {nextDirection ? (
+          <a href={localizePath(`/research/${nextDirection.slug}/`, locale)} class="panel block p-6 text-left transition hover:border-white/20 sm:text-right">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.researchDirectionPage.nextDirection}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{nextDirection.title}</p>
+          </a>
+        ) : (
+          <a href={localizePath("/projects/", locale)} class="panel block p-6 text-left transition hover:border-white/20 sm:text-right">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.projects}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{copy.researchDirectionPage.browseProjects}</p>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
