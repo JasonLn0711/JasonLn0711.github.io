@@ -146,7 +146,7 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 
 ## About This Repository
 
-This repository contains the source for my personal website and research portfolio, built with Astro and used as a public platform for my research profile, writing, project case studies, and speaking activity.
+This repository contains the Astro source for my personal website and research portfolio, covering trustworthy AI, speech intelligence, cybersecurity, and regulated AI systems through research pages, project case studies, writing, and talks.
 
 ## Recent SEO and Analytics Updates
 

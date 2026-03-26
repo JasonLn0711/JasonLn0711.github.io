@@ -1,5 +1,6 @@
 {
   "name": "research-portfolio",
+  "description": "Astro-powered personal website and research portfolio for Jason Chia-Sheng Lin, covering trustworthy AI, speech intelligence, cybersecurity, and regulated AI systems.",
   "version": "0.1.0",
   "private": true,
   "type": "module",
