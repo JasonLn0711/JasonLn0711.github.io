@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/ui/CTASection.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import SectionIntro from "../components/ui/SectionIntro.astro";
 import { formatDate, formatLabel, getBlogPath, getLocalizedBlogEntries, sortProjects } from "../lib/content";
 import {
   formatMessage,
@@ -57,130 +60,75 @@ const selectedWork = [
 >
   <section class="page-frame">
     <div class="page-stack">
-      <div class="page-intro">
-        <span class="eyebrow">{linksPage.page.eyebrow}</span>
-        <div class="space-y-3">
-          <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{linksPage.page.title}</h1>
-          <p class="text-lg leading-8 text-slate-200">{profile.title}</p>
-          <p class="page-summary text-base">{profile.shortBio}</p>
-        </div>
-        <div class="page-actions">
-          <span class="pill">{profile.institutionShort}</span>
-          <span class="pill">{formatMessage(copy.linksPage.basedIn, { location: profile.location })}</span>
-          <span class="pill">{profile.credibility[0]}</span>
-        </div>
-      </div>
+      <PageHero
+        eyebrow={linksPage.page.eyebrow}
+        title={linksPage.page.title}
+        summary={profile.shortBio}
+        titleClass="display-title-sm"
+        actions={[
+          { href: `mailto:${profile.email}`, label: copy.common.emailJason },
+          { href: localizePath("/contact/", locale), label: copy.linksPage.openContactPage, variant: "secondary" }
+        ]}
+        stats={[
+          { label: copy.common.institution, value: profile.institutionShort },
+          { label: copy.linksPage.basedIn.replace("{location}", "").trim(), value: profile.location },
+          { label: copy.common.research, value: profile.credibility[0] }
+        ]}
+      />
 
       <section class="space-y-5" aria-labelledby="links-primary-actions" data-analytics-location="links_primary_actions">
-        <h2 id="links-primary-actions" class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-          {copy.linksPage.primaryPaths}
-        </h2>
+        <SectionIntro title={copy.linksPage.primaryPaths} />
         <div class="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {linksPage.primaryActions.map((item) => (
-            <a
-              href={localizePath(item.href, locale)}
-              class="panel flex h-full flex-col gap-3 p-4 transition hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-            >
-              <h3 class="text-base font-semibold text-white sm:text-lg">{item.label}</h3>
-              <p class="text-sm leading-6 text-slate-300">{item.description}</p>
-              <span class="mt-auto text-sm font-semibold text-[var(--color-accent)]">{item.label} →</span>
+            <a href={localizePath(item.href, locale)} class="surface-link flex h-full flex-col gap-3 p-4">
+              <h3 class="text-base font-semibold sm:text-lg">{item.label}</h3>
+              <p class="text-sm leading-6">{item.description}</p>
+              <span class="action-link mt-auto">{item.label} →</span>
             </a>
           ))}
         </div>
       </section>
 
-      <section class="panel p-7 sm:p-8" aria-labelledby="links-audience-paths" data-analytics-location="links_audience_paths">
-        <div class="max-w-3xl space-y-3">
-          <h2 id="links-audience-paths" class="text-2xl font-semibold text-white">{copy.linksPage.quickPathsTitle}</h2>
-          <p class="text-base leading-8 text-slate-300">
-            {copy.linksPage.quickPathsDescription}
-          </p>
-        </div>
-
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
-          {linksPage.audiencePaths.map((item) => (
-            <a
-              href={localizePath(item.href, locale)}
-              class="surface-link p-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-            >
-              <h3 class="text-lg font-semibold text-white">{item.label}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section class="panel p-7 sm:p-8" aria-labelledby="links-selected-work" data-analytics-location="links_selected_work">
-        <div class="max-w-3xl space-y-3">
-          <h2 id="links-selected-work" class="text-2xl font-semibold text-white">{copy.linksPage.selectedWorkTitle}</h2>
-          <p class="text-base leading-8 text-slate-300">
-            {copy.linksPage.selectedWorkDescription}
-          </p>
-        </div>
+      <section class="section-card" aria-labelledby="links-selected-work" data-analytics-location="links_selected_work">
+        <SectionIntro title={copy.linksPage.selectedWorkTitle} copy={copy.linksPage.selectedWorkDescription} />
 
         <div class="mt-8 grid gap-4">
           {selectedWork.map((item) => (
-            <a
-              href={item.href}
-              class="surface-link p-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-            >
-              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.kind}</p>
-              <h3 class="mt-3 text-lg font-semibold text-white">{item.label}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+            <a href={item.href} class="surface-link p-5">
+              <p class="muted-label">{item.kind}</p>
+              <h3 class="mt-3 text-lg font-semibold">{item.label}</h3>
+              <p class="mt-3 text-sm leading-7">{item.description}</p>
             </a>
           ))}
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <article class="panel p-7 sm:p-8" aria-labelledby="links-profiles" data-analytics-location="links_profiles">
-          <div class="max-w-3xl space-y-3">
-            <h2 id="links-profiles" class="text-2xl font-semibold text-white">{copy.linksPage.profilesTitle}</h2>
-            <p class="text-base leading-8 text-slate-300">
-              {copy.linksPage.profilesDescription}
-            </p>
-          </div>
+      <div class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <article class="section-card" aria-labelledby="links-profiles" data-analytics-location="links_profiles">
+          <SectionIntro title={copy.linksPage.profilesTitle} copy={copy.linksPage.profilesDescription} />
 
           <div class="mt-8 grid gap-4">
             {linksPage.profileLinks.map((item) => (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                class="surface-link p-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-              >
-                <h3 class="text-lg font-semibold text-white">{item.label}</h3>
-                <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+              <a href={item.href} target="_blank" rel="noreferrer" class="surface-link p-5">
+                <h3 class="text-lg font-semibold">{item.label}</h3>
+                <p class="mt-3 text-sm leading-7">{item.description}</p>
               </a>
             ))}
           </div>
         </article>
 
-        <article class="panel flex flex-col gap-6 p-7 sm:p-8" aria-labelledby="links-contact" data-analytics-location="links_contact">
-          <div class="space-y-3">
-            <h2 id="links-contact" class="text-2xl font-semibold text-white">{linksPage.contact.title}</h2>
-            <p class="text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
-            <p class="text-sm leading-7 text-slate-400">{linksPage.contact.description}</p>
-          </div>
+        <CTASection
+          title={linksPage.contact.title}
+          copy={profile.contactPrompt}
+          actions={[
+            { href: `mailto:${profile.email}`, label: linksPage.contact.ctaLabel },
+            { href: localizePath("/contact/", locale), label: copy.linksPage.openContactPage, variant: "secondary" }
+          ]}
+          className="h-full"
+        />
+      </div>
 
-          <div class="surface-card">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.email}</p>
-            <a
-              href={`mailto:${profile.email}`}
-              class="mt-3 inline-flex text-lg font-semibold text-white transition hover:text-[var(--color-accent-strong)]"
-            >
-              {profile.email}
-            </a>
-          </div>
-
-          <div class="page-actions" data-analytics-location="links_contact_actions">
-            <a href={`mailto:${profile.email}`} class="button-primary">{linksPage.contact.ctaLabel}</a>
-            <a href={localizePath("/contact/", locale)} class="button-secondary">{copy.linksPage.openContactPage}</a>
-          </div>
-
-          <p class="mt-auto text-xs uppercase tracking-[0.18em] text-slate-500">{formatMessage(copy.linksPage.lastUpdatedLabel, { date: lastUpdated })}</p>
-        </article>
-      </section>
+      <p class="muted-label">{formatMessage(copy.linksPage.lastUpdatedLabel, { date: lastUpdated })}</p>
     </div>
   </section>
 </BaseLayout>

@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/ui/CTASection.astro";
+import MediaFrame from "../components/ui/MediaFrame.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import QuoteBlock from "../components/ui/QuoteBlock.astro";
+import SectionIntro from "../components/ui/SectionIntro.astro";
 import {
   getLocaleFromPathname,
   getLocalizedPageTitle,
@@ -23,152 +28,130 @@ const copy = getPageCopy(locale);
 >
   <section class="page-frame">
     <div class="page-stack">
-      <div class="page-intro">
-        <span class="eyebrow">{copy.common.about}</span>
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          {copy.aboutPage.title}
-        </h1>
-        <p class="page-summary">
-          {copy.aboutPage.description}
-        </p>
-      </div>
+      <PageHero
+        eyebrow={copy.common.about}
+        title={copy.aboutPage.title}
+        summary={copy.aboutPage.description}
+        split={true}
+        titleClass="display-title-sm"
+        actions={[
+          { href: localizePath("/research/", locale), label: copy.aboutPage.actionResearch, variant: "secondary" },
+          { href: localizePath("/projects/", locale), label: copy.aboutPage.actionProjects, variant: "secondary" },
+          { href: localizePath("/contact/", locale), label: copy.aboutPage.actionContact }
+        ]}
+      >
+        <MediaFrame
+          slot="media"
+          src={profile.avatar}
+          alt={`Portrait of ${profile.name}`}
+          width="1693"
+          height="2540"
+          imageClass="aspect-[4/5] w-full object-cover object-[center_24%]"
+          caption={profile.shortBio}
+        />
+      </PageHero>
 
-      <div class="page-actions">
-        <a href={localizePath("/research/", locale)} class="button-secondary">{copy.aboutPage.actionResearch}</a>
-        <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.aboutPage.actionProjects}</a>
-        <a href={localizePath("/blog/", locale)} class="button-secondary">{copy.aboutPage.actionWriting}</a>
-        <a href={localizePath("/talks/", locale)} class="button-secondary">{copy.aboutPage.actionTalks}</a>
-        <a href={localizePath("/contact/", locale)} class="button-primary">{copy.aboutPage.actionContact}</a>
-      </div>
-
-      <dl class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.currentRole}</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">{copy.aboutPage.currentRoleValue}</dd>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div class="surface-card">
+          <p class="muted-label">{copy.common.currentRole}</p>
+          <p class="mt-3 text-base leading-7 text-[var(--color-charcoal)]">{copy.aboutPage.currentRoleValue}</p>
         </div>
-        <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.institution}</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">{profile.institution}</dd>
+        <div class="surface-card">
+          <p class="muted-label">{copy.common.institution}</p>
+          <p class="mt-3 text-base leading-7 text-[var(--color-charcoal)]">{profile.institution}</p>
         </div>
-        <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.researchLab}</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">
-            <a href={profile.lab.url} target="_blank" rel="noreferrer" class="transition hover:text-white">
+        <div class="surface-card">
+          <p class="muted-label">{copy.common.researchLab}</p>
+          <p class="mt-3 text-base leading-7 text-[var(--color-charcoal)]">
+            <a href={profile.lab.url} target="_blank" rel="noreferrer" class="action-link">
               {profile.lab.name}
             </a>
-          </dd>
+          </p>
         </div>
-        <div class="panel p-6">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.primaryLens}</dt>
-          <dd class="mt-3 text-base leading-7 text-slate-200">{copy.aboutPage.primaryLensValue}</dd>
+        <div class="surface-card">
+          <p class="muted-label">{copy.common.primaryLens}</p>
+          <p class="mt-3 text-base leading-7 text-[var(--color-charcoal)]">{copy.aboutPage.primaryLensValue}</p>
         </div>
-      </dl>
+      </div>
 
-      <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+      <QuoteBlock quote={profile.shortBio} note={profile.contactPrompt} />
+
+      <div class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.currentAreasOfWork}</h2>
+          <SectionIntro title={copy.common.professionalNarrative} />
+          <div class="mt-6 space-y-5">
+            {profile.about.map((paragraph) => <p class="text-base leading-8">{paragraph}</p>)}
+          </div>
+        </section>
+
+        <section class="section-card">
+          <SectionIntro title={copy.common.professionalPath} />
+          <div class="mt-6 space-y-6">
+            {profile.experience.map((item) => (
+              <div class="border-l border-[rgba(31,27,23,0.12)] pl-5">
+                <p class="muted-label">{item.period}</p>
+                <h3 class="mt-2 text-lg font-semibold">{item.title}</h3>
+                <p class="mt-2 text-sm leading-7">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div class="grid gap-8 xl:grid-cols-[1fr_1fr]">
+        <section class="section-card">
+          <SectionIntro title={copy.common.currentAreasOfWork} />
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
               <div class="surface-card">
-                <p class="text-base leading-7 text-slate-300">{item}</p>
+                <p class="text-base leading-7">{item}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.professionalPath}</h2>
-          <div class="mt-6 space-y-6">
-            {profile.experience.map((item) => (
-              <div class="border-l border-white/10 pl-5">
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
-                <h3 class="mt-2 text-lg font-semibold text-white">{item.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{item.detail}</p>
+          <SectionIntro title={copy.common.currentSpeakingAndPaperActivity} />
+          <div class="mt-6 space-y-5">
+            <div class="surface-card">
+              <p class="muted-label">{speaking.featuredEngagement.event}</p>
+              <h3 class="mt-3 text-xl font-semibold">{speaking.featuredEngagement.title}</h3>
+              <p class="mt-3 text-sm leading-7">{speaking.featuredEngagement.summary}</p>
+              <div class="mt-4 flex flex-wrap gap-4">
+                <a href={speaking.featuredEngagement.url} target="_blank" rel="noreferrer" class="action-link">
+                  {copy.aboutPage.currentSpeakingActivityLinks.official} →
+                </a>
+                <a href={profile.externalProfiles.cybersecSpeaker.url} target="_blank" rel="noreferrer" class="action-link">
+                  {copy.aboutPage.currentSpeakingActivityLinks.profile} →
+                </a>
+              </div>
+            </div>
+
+            {speaking.additionalEngagements.map((engagement) => (
+              <div class="surface-card">
+                <p class="muted-label">{engagement.event}</p>
+                <h4 class="mt-2 text-lg font-semibold">{engagement.title}</h4>
+                <p class="mt-2 text-sm leading-7">{engagement.summary}</p>
               </div>
             ))}
           </div>
         </section>
-      </div>
-
-      <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-        <div class="panel overflow-hidden">
-          <img
-            src={profile.avatar}
-            alt={`Portrait of ${profile.name}`}
-            width="1693"
-            height="2540"
-            class="aspect-[2/3] w-full object-cover"
-          />
-        </div>
-
-        <div class="section-card space-y-6">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.professionalNarrative}</h2>
-          {profile.about.map((paragraph) => <p class="text-base leading-8 text-slate-300">{paragraph}</p>)}
-          <div class="surface-card">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.currentSpeakingAndPaperActivity}</p>
-
-            <div class="mt-3 space-y-5">
-              <div class="space-y-2">
-                <h3 class="text-lg font-semibold text-white">{speaking.featuredEngagement.event}</h3>
-                <p class="text-sm leading-7 text-slate-300">{speaking.featuredEngagement.title}</p>
-                <div class="flex flex-wrap gap-4">
-                  <a
-                    href={speaking.featuredEngagement.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="inline-flex text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
-                  >
-                    {copy.aboutPage.currentSpeakingActivityLinks.official} →
-                  </a>
-                  <a
-                    href={profile.externalProfiles.cybersecSpeaker.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="inline-flex text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
-                  >
-                    {copy.aboutPage.currentSpeakingActivityLinks.profile} →
-                  </a>
-                </div>
-              </div>
-
-              {speaking.additionalEngagements.map((engagement) => (
-                <div class="border-t border-white/10 pt-5">
-                  <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{engagement.event}</p>
-                  <h4 class="mt-2 text-lg font-semibold text-white">{engagement.title}</h4>
-                  <p class="mt-2 text-sm leading-7 text-slate-300">{engagement.summary}</p>
-                  <div class="mt-4 flex flex-wrap gap-4">
-                    {(engagement.links ?? [{ label: engagement.ctaLabel, url: engagement.url }]).map((link) => (
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        class="inline-flex text-sm font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-strong)]"
-                      >
-                        {link.label} →
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
 
       <section class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
         <div class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.selectedSignals}</h2>
-          <ul class="mt-6 space-y-4">
-            {profile.achievements.map((item) => <li class="text-base leading-7 text-slate-300">{item}</li>)}
+          <SectionIntro title={copy.common.selectedSignals} />
+          <ul class="mt-6 compact-list">
+            {profile.achievements.map((item) => <li class="text-base leading-7">{item}</li>)}
           </ul>
         </div>
 
         <div class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.methodsAndToolkit}</h2>
+          <SectionIntro title={copy.common.methodsAndToolkit} />
           <div class="mt-6 grid gap-5 md:grid-cols-2">
             {profile.toolkit.map((group) => (
               <div class="surface-card">
-                <h3 class="text-lg font-semibold text-white">{group.title}</h3>
+                <h3 class="text-lg font-semibold">{group.title}</h3>
                 <div class="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => <span class="pill">{item}</span>)}
                 </div>
@@ -178,17 +161,15 @@ const copy = getPageCopy(locale);
         </div>
       </section>
 
-      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-        <div class="space-y-3">
-          <h2 class="text-2xl font-semibold text-white">{copy.common.workTogether}</h2>
-          <p class="max-w-2xl text-base leading-8 text-slate-300">{profile.contactPrompt}</p>
-        </div>
-        <div class="page-actions">
-          <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
-          <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.common.projects}</a>
-          <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.email}</a>
-        </div>
-      </section>
+      <CTASection
+        title={copy.common.workTogether}
+        copy={profile.contactPrompt}
+        actions={[
+          { href: localizePath("/research/", locale), label: copy.common.research, variant: "secondary" },
+          { href: localizePath("/projects/", locale), label: copy.common.projects, variant: "secondary" },
+          { href: `mailto:${profile.email}`, label: copy.common.email }
+        ]}
+      />
     </div>
   </section>
 </BaseLayout>

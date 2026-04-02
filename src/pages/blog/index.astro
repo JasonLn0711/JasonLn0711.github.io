@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BlogCard from "../../components/blog/BlogCard.astro";
+import CTASection from "../../components/ui/CTASection.astro";
+import PageHero from "../../components/ui/PageHero.astro";
+import SectionIntro from "../../components/ui/SectionIntro.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLocalizedBlogEntries } from "../../lib/content";
 import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy, localizePath } from "../../lib/i18n";
@@ -19,50 +22,61 @@ const copy = getPageCopy(locale);
 >
   <section class="page-frame">
     <div class="page-stack">
-      <div class="page-intro">
-        <span class="eyebrow">{copy.common.writing}</span>
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          {copy.blogIndexPage.title}
-        </h1>
-        <p class="page-summary">
-          {copy.blogIndexPage.description}
-        </p>
-      </div>
+      <PageHero
+        eyebrow={copy.common.writing}
+        title={copy.blogIndexPage.title}
+        summary={copy.blogIndexPage.description}
+        titleClass="display-title-sm"
+        actions={[
+          { href: localizePath("/projects/", locale), label: copy.blogIndexPage.implementationTitle, variant: "secondary" },
+          { href: localizePath("/contact/", locale), label: copy.common.contact }
+        ]}
+      />
 
-      <section class="section-card grid gap-4 sm:grid-cols-3" data-analytics-location="blog_index_intro">
+      <section class="grid gap-4 sm:grid-cols-3" data-analytics-location="blog_index_intro">
         <a href="#featured-writing" class="surface-link">
-          <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.featuredTitle}</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.featuredDescription}</span>
+          <span class="block text-sm font-semibold">{copy.blogIndexPage.featuredTitle}</span>
+          <span class="mt-2 block text-sm leading-6">{copy.blogIndexPage.featuredDescription}</span>
         </a>
         <a href="#recent-writing" class="surface-link">
-          <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.recentTitle}</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.recentDescription}</span>
+          <span class="block text-sm font-semibold">{copy.blogIndexPage.recentTitle}</span>
+          <span class="mt-2 block text-sm leading-6">{copy.blogIndexPage.recentDescription}</span>
         </a>
         <a href={localizePath("/projects/", locale)} class="surface-link">
-          <span class="block text-sm font-semibold text-white">{copy.blogIndexPage.implementationTitle}</span>
-          <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.blogIndexPage.implementationDescription}</span>
+          <span class="block text-sm font-semibold">{copy.blogIndexPage.implementationTitle}</span>
+          <span class="mt-2 block text-sm leading-6">{copy.blogIndexPage.implementationDescription}</span>
         </a>
       </section>
 
       {featuredPost && (
         <section id="featured-writing" class="space-y-5 scroll-mt-28" data-analytics-location="blog_featured">
-          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.blogIndexPage.featuredPiece}</h2>
+          <p class="muted-label">{copy.blogIndexPage.featuredPiece}</p>
           <BlogCard post={featuredPost} featured={true} analyticsLocation="blog_featured" locale={locale} />
         </section>
       )}
 
       <section id="recent-writing" class="space-y-5 scroll-mt-28" data-analytics-location="blog_index_grid">
-        <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.blogIndexPage.recentWriting}</h2>
+        <SectionIntro title={copy.blogIndexPage.recentWriting} />
         {remainingPosts.length > 0 ? (
           <div class="grid gap-6 lg:grid-cols-2">
             {remainingPosts.map((post) => <BlogCard post={post} analyticsLocation="blog_index_grid" locale={locale} />)}
           </div>
         ) : (
-          <div class="panel p-8">
-            <p class="text-base leading-7 text-slate-300">{copy.blogIndexPage.emptyState}</p>
+          <div class="section-card">
+            <p class="text-base leading-7">{copy.blogIndexPage.emptyState}</p>
           </div>
         )}
       </section>
+
+      <CTASection
+        title={copy.common.continueFromThisPiece}
+        copy={copy.common.continueFromThisPieceDescription}
+        actions={[
+          { href: localizePath("/research/", locale), label: copy.common.research, variant: "secondary" },
+          { href: localizePath("/projects/", locale), label: copy.common.projects, variant: "secondary" },
+          { href: localizePath("/contact/", locale), label: copy.common.contact }
+        ]}
+      />
     </div>
   </section>
 </BaseLayout>

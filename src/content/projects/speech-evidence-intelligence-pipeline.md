@@ -1,9 +1,12 @@
 ---
 title: Speech Evidence Intelligence Pipeline
+subtitle: Turning long-form audio into grounded, reviewable evidence for analyst-facing work.
 summary: An evidence-aware speech intelligence pipeline using ASR, retrieval, and LLM extraction to turn long-form conversational audio into structured, reviewable outputs.
 year: 2026
 role: Doctoral Researcher
 category: AI Systems
+location: Taiwan
+scope: Research pipeline design, retrieval, extraction, and review UX
 stack:
   - Python
   - ASR
@@ -13,6 +16,7 @@ stack:
 featured: true
 status: Active Research
 cover: /projects/speech-evidence-intelligence-pipeline.svg
+quote: Evidence should survive every transformation from raw audio to final insight.
 ---
 
 ## Long-form conversational audio is hard to turn into evidence

@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  copy?: string;
+  className?: string;
+}
+
+const { eyebrow, title, copy, className = "" } = Astro.props;
+const hasActions = Astro.slots.has("actions");
+---
+
+<div class:list={["section-header", className]}>
+  <div class="section-header__copy">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h2 class="section-title">{title}</h2>
+    {copy && <p class="section-copy">{copy}</p>}
+  </div>
+
+  {hasActions && <div class="page-actions"><slot name="actions" /></div>}
+</div>

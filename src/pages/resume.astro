@@ -1,6 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/project/ProjectCard.astro";
+import CTASection from "../components/ui/CTASection.astro";
+import MediaFrame from "../components/ui/MediaFrame.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import SectionIntro from "../components/ui/SectionIntro.astro";
 import { getBlogPath, getLocalizedBlogEntries, sortProjects } from "../lib/content";
 import {
   formatMessage,
@@ -37,97 +42,57 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
 >
   <section class="page-frame">
     <div class="page-stack">
-      <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
-        <div class="page-intro space-y-6">
-          <span class="eyebrow">{copy.common.resume}</span>
-          <div class="space-y-5">
-            <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              {copy.resumePage.title}
-            </h1>
-            <p class="page-summary">
-              {formatMessage(copy.resumePage.intro, {
-                name: profile.name,
-                institution: profile.institution
-              })}
-            </p>
-          </div>
+      <PageHero
+        eyebrow={copy.common.resume}
+        title={copy.resumePage.title}
+        summary={formatMessage(copy.resumePage.intro, {
+          name: profile.name,
+          institution: profile.institution
+        })}
+        split={true}
+        titleClass="display-title-sm"
+        actions={[
+          { href: `mailto:${profile.email}`, label: copy.common.emailJason },
+          { href: profile.linkedin, label: "LinkedIn", variant: "secondary", external: true },
+          { href: localizePath("/projects/", locale), label: copy.resumePage.selectedProjects, variant: "secondary" }
+        ]}
+      >
+        <MediaFrame
+          slot="media"
+          src={profile.avatar}
+          alt={`Portrait of ${profile.name}`}
+          width="1693"
+          height="2540"
+          imageClass="aspect-[4/5] w-full object-cover object-[center_24%]"
+        />
+      </PageHero>
 
-          <div class="page-actions">
-            <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" class="button-secondary">
-              LinkedIn
-            </a>
-            <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.resumePage.selectedProjects}</a>
-            <a href={localizePath("/about/", locale)} class="button-secondary">{copy.common.about}</a>
-          </div>
-        </div>
-
-        <aside class="section-card overflow-hidden p-6 sm:p-7">
-          <div class="space-y-6">
-            <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
-              <img
-                src={profile.avatar}
-                alt={`Portrait of ${profile.name}`}
-                width="1693"
-                height="2540"
-                class="aspect-[4/5] w-full object-cover object-[center_32%]"
-              />
-            </div>
-
-            <div class="space-y-3">
-              <div>
-                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Name</p>
-                <p class="mt-2 text-xl font-semibold text-white">{profile.name}</p>
-              </div>
-              <div>
-                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Current position</p>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{profile.title}</p>
-              </div>
-              <div>
-                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Institution</p>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{profile.institution}</p>
-              </div>
-              <div>
-                <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Location</p>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{profile.location}</p>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <dl class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {resumeMetrics.map((item) => (
-          <div class="panel p-6">
-            <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.label}</dt>
-            <dd class="mt-3 text-base leading-7 text-slate-200">{item.value}</dd>
+          <div class="surface-card">
+            <p class="muted-label">{item.label}</p>
+            <p class="mt-3 text-base leading-7 text-[var(--color-charcoal)]">{item.value}</p>
           </div>
         ))}
-      </dl>
+      </div>
 
-      <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+      <div class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.professionalSummary}</h2>
+          <SectionIntro title={copy.resumePage.professionalSummary} />
           <div class="mt-6 space-y-5">
-            <p class="text-base leading-8 text-slate-300">
-              {profile.shortBio}
-            </p>
-            <p class="text-base leading-8 text-slate-300">
-              {copy.resumePage.summaryParagraphTwo}
-            </p>
-            <p class="text-base leading-8 text-slate-300">
-              {copy.resumePage.summaryParagraphThree}
-            </p>
+            <p class="text-base leading-8">{profile.shortBio}</p>
+            <p class="text-base leading-8">{copy.resumePage.summaryParagraphTwo}</p>
+            <p class="text-base leading-8">{copy.resumePage.summaryParagraphThree}</p>
           </div>
         </section>
 
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.whatBrings}</h2>
+          <SectionIntro title={copy.resumePage.whatBrings} />
           <div class="mt-6 grid gap-4">
             {professionalStrengths.map((item) => (
               <div class="surface-card">
-                <h3 class="text-lg font-semibold text-white">{item.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{item.description}</p>
+                <h3 class="text-lg font-semibold">{item.title}</h3>
+                <p class="mt-2 text-sm leading-7">{item.description}</p>
               </div>
             ))}
           </div>
@@ -136,24 +101,24 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
 
       <div class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr]">
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.experience}</h2>
+          <SectionIntro title={copy.resumePage.experience} />
           <div class="mt-6 space-y-6">
             {profile.experience.map((item) => (
-              <div class="border-l border-white/10 pl-5">
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
-                <h3 class="mt-2 text-lg font-semibold text-white">{item.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{item.detail}</p>
+              <div class="border-l border-[rgba(31,27,23,0.12)] pl-5">
+                <p class="muted-label">{item.period}</p>
+                <h3 class="mt-2 text-lg font-semibold">{item.title}</h3>
+                <p class="mt-2 text-sm leading-7">{item.detail}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.currentWork}</h2>
+          <SectionIntro title={copy.resumePage.currentWork} />
           <div class="mt-6 grid gap-4">
             {profile.interests.map((item) => (
               <div class="surface-card">
-                <p class="text-base leading-7 text-slate-300">{item}</p>
+                <p class="text-base leading-7">{item}</p>
               </div>
             ))}
           </div>
@@ -161,51 +126,29 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
       </div>
 
       <section class="space-y-6">
-        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div class="max-w-3xl">
-            <span class="eyebrow">{copy.resumePage.selectedWorkEyebrow}</span>
-            <h2 class="section-title">{copy.resumePage.selectedWorkTitle}</h2>
-            <p class="section-copy">
-              {copy.resumePage.selectedWorkDescription}
-            </p>
-          </div>
-          <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.resumePage.browseAllProjects}</a>
-        </div>
+        <SectionIntro
+          eyebrow={copy.resumePage.selectedWorkEyebrow}
+          title={copy.resumePage.selectedWorkTitle}
+          copy={copy.resumePage.selectedWorkDescription}
+        >
+          <Fragment slot="actions">
+            <a href={localizePath("/projects/", locale)} class="button-secondary">{copy.resumePage.browseAllProjects}</a>
+          </Fragment>
+        </SectionIntro>
 
         <div class="grid gap-6 xl:grid-cols-3">
-          {projects.map((project) => (
-            <article class="panel flex h-full flex-col p-6 sm:p-7">
-              <div class="meta-row text-xs uppercase tracking-[0.2em]">
-                <span>{project.data.category}</span>
-                <span class="h-1 w-1 rounded-full bg-white/20"></span>
-                <span>{project.data.year}</span>
-                <span class="h-1 w-1 rounded-full bg-white/20"></span>
-                <span>{project.data.status}</span>
-              </div>
-              <h3 class="mt-4 text-2xl font-semibold tracking-tight text-white">{project.data.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-300">{project.data.summary}</p>
-              <div class="mt-5 flex flex-wrap gap-2">
-                {project.data.stack.slice(0, 5).map((item) => <span class="pill">{item}</span>)}
-              </div>
-              <div class="mt-auto pt-6">
-                <a href={localizePath(`/projects/${project.slug}/`, locale)} class="action-link">
-                  {copy.common.openCaseStudy}
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </article>
-          ))}
+          {projects.map((project) => <ProjectCard project={project} analyticsLocation="resume_selected_projects" locale={locale} />)}
         </div>
       </section>
 
       <div class="grid gap-8 xl:grid-cols-2">
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.speakingSignals}</h2>
+          <SectionIntro title={copy.resumePage.speakingSignals} />
           <div class="mt-6 space-y-5">
-            <div class="surface-card border-[var(--color-accent)]/20 bg-[color:rgba(99,164,255,0.1)]">
-              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{speaking.featuredEngagement.event}</p>
-              <h3 class="mt-2 text-lg font-semibold text-white">{speaking.featuredEngagement.title}</h3>
-              <p class="mt-2 text-sm leading-7 text-slate-300">{speaking.featuredEngagement.summary}</p>
+            <div class="surface-card">
+              <p class="muted-label">{speaking.featuredEngagement.event}</p>
+              <h3 class="mt-2 text-lg font-semibold">{speaking.featuredEngagement.title}</h3>
+              <p class="mt-2 text-sm leading-7">{speaking.featuredEngagement.summary}</p>
               <div class="page-actions mt-4">
                 <a href={localizePath("/talks/", locale)} class="button-secondary">{copy.resumePage.talksPage}</a>
                 <a href={profile.externalProfiles.cybersecSpeaker.url} target="_blank" rel="noreferrer" class="button-secondary">
@@ -216,24 +159,22 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
 
             {speaking.additionalEngagements.map((engagement) => (
               <div class="surface-card">
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">
-                  {engagement.event} · {engagement.format}
-                </p>
-                <h3 class="mt-2 text-lg font-semibold text-white">{engagement.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{engagement.summary}</p>
+                <p class="muted-label">{engagement.event}</p>
+                <h3 class="mt-2 text-lg font-semibold">{engagement.title}</h3>
+                <p class="mt-2 text-sm leading-7">{engagement.summary}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.writingCommunication}</h2>
+          <SectionIntro title={copy.resumePage.writingCommunication} />
           <div class="mt-6 space-y-5">
             {posts.map((post) => (
               <article class="surface-card">
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{post.data.category}</p>
-                <h3 class="mt-2 text-lg font-semibold text-white">{post.data.title}</h3>
-                <p class="mt-2 text-sm leading-7 text-slate-300">{post.data.description}</p>
+                <p class="muted-label">{post.data.category}</p>
+                <h3 class="mt-2 text-lg font-semibold">{post.data.title}</h3>
+                <p class="mt-2 text-sm leading-7">{post.data.description}</p>
                 <div class="mt-4">
                   <a href={getBlogPath(post, locale)} class="action-link">
                     {copy.common.readArticle}
@@ -244,62 +185,40 @@ const resumeMetrics = copy.resumePage.metrics.map((item) => ({
             ))}
 
             <div class="surface-card">
-              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.resumePage.professionalSignals}</p>
-              <ul class="mt-4 space-y-4">
-                {teamSignals.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
+              <p class="muted-label">{copy.resumePage.professionalSignals}</p>
+              <ul class="mt-4 compact-list">
+                {teamSignals.map((item) => <li class="text-sm leading-7">{item}</li>)}
               </ul>
             </div>
           </div>
         </section>
       </div>
 
-      <div class="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
-        <section class="section-card">
-          <h2 class="text-2xl font-semibold text-white">{copy.resumePage.methodsAndToolkit}</h2>
+      <section class="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
+        <div class="section-card">
+          <SectionIntro title={copy.resumePage.methodsAndToolkit} />
           <div class="mt-6 grid gap-5">
             {profile.toolkit.map((group) => (
               <div class="surface-card">
-                <h3 class="text-lg font-semibold text-white">{group.title}</h3>
+                <h3 class="text-lg font-semibold">{group.title}</h3>
                 <div class="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => <span class="pill">{item}</span>)}
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        <section class="section-card flex flex-col gap-6">
-          <div class="space-y-3">
-            <h2 class="text-2xl font-semibold text-white">{copy.resumePage.openToConversations}</h2>
-            <p class="max-w-2xl text-base leading-8 text-slate-300">
-              {copy.resumePage.openToConversationsDescription}
-            </p>
-          </div>
-
-          <div class="grid gap-3 sm:grid-cols-3">
-            {profile.contactTopics.map((topic) => (
-              <div class="surface-card p-4">
-                <p class="text-sm leading-7 text-slate-300">{topic}</p>
-              </div>
-            ))}
-          </div>
-
-          <div class="surface-card">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.contact}</p>
-            <p class="mt-3 text-base leading-8 text-slate-300">
-              {copy.resumePage.contactCardDescription}
-            </p>
-          </div>
-
-          <div class="page-actions mt-auto">
-            <a href={`mailto:${profile.email}`} class="button-primary">{copy.common.emailJason}</a>
-            <a href={localizePath("/contact/", locale)} class="button-secondary">{copy.resumePage.contactPage}</a>
-            <a href={profile.github} target="_blank" rel="noreferrer" class="button-secondary">
-              GitHub
-            </a>
-          </div>
-        </section>
-      </div>
+        <CTASection
+          title={copy.resumePage.openToConversations}
+          copy={copy.resumePage.openToConversationsDescription}
+          actions={[
+            { href: `mailto:${profile.email}`, label: copy.common.emailJason },
+            { href: localizePath("/contact/", locale), label: copy.resumePage.contactPage, variant: "secondary" },
+            { href: profile.github, label: "GitHub", variant: "secondary", external: true }
+          ]}
+        />
+      </section>
     </div>
   </section>
 </BaseLayout>

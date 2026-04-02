@@ -38,30 +38,6 @@ function readPackageVersion() {
   }
 }
 
-const connectItems = [
-  {
-    href: `mailto:${profile.email}`,
-    label: copy.common.email,
-    value: profile.email,
-    icon: "email",
-    external: false
-  },
-  {
-    href: profile.github,
-    label: "GitHub",
-    value: profile.handle,
-    icon: "github",
-    external: true
-  },
-  {
-    href: profile.linkedin,
-    label: "LinkedIn",
-    value: profile.shortName,
-    icon: "linkedin",
-    external: true
-  }
-];
-
 const footerMetaCache = globalThis as typeof globalThis & { __footerMeta?: FooterMeta };
 const footerMeta =
   footerMetaCache.__footerMeta ??
@@ -80,103 +56,119 @@ const lastUpdated = footerMeta.commitDate
     }).format(new Date(`${footerMeta.commitDate}T00:00:00Z`))
   : null;
 
-const footerMetaItems = [
+const primaryLinks = localizedSite.nav.filter((item) => item.href !== "/resume/");
+const utilityLinks = [
   {
-    label: copy.footer.versionLabel,
-    value: footerMeta.packageVersion ? `v${footerMeta.packageVersion}` : "N/A"
+    href: localizePath("/resume/", locale),
+    label: copy.common.resume
   },
   {
-    label: copy.common.lastUpdated,
-    value: lastUpdated ?? "N/A"
+    href: localizePath("/links/", locale),
+    label: copy.common.links
   }
 ];
+const connectItems = [
+  {
+    href: `mailto:${profile.email}`,
+    label: copy.common.email,
+    value: profile.email,
+    external: false
+  },
+  {
+    href: profile.github,
+    label: "GitHub",
+    value: profile.handle,
+    external: true
+  },
+  {
+    href: profile.linkedin,
+    label: "LinkedIn",
+    value: profile.shortName,
+    external: true
+  }
+];
+
+function displayLabel(href: string, fallback: string) {
+  if (href === "/projects/") {
+    return locale === "en" ? "Work" : locale === "zh-tw" ? "作品" : "実績";
+  }
+
+  return fallback;
+}
 ---
 
-<footer class="border-t border-white/[0.08] py-10">
+<footer class="site-footer border-t border-[rgba(31,27,23,0.08)] py-10">
   <div class="shell">
-    <div class="panel px-6 py-8 lg:px-8">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,0.95fr)]">
-        <section class="space-y-4">
-          <p class="eyebrow mb-0">{profile.name}</p>
-          <p class="max-w-xl text-sm leading-7 text-slate-300">{copy.footer.description}</p>
-          <div class="flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-slate-200" data-analytics-location="footer_intro">
-            <a href={localizePath("/contact/", locale)} class="transition hover:text-white">
+    <div class="section-card">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,0.9fr)]">
+        <section class="space-y-5">
+          <span class="eyebrow">{profile.name}</span>
+          <p class="max-w-xl text-base leading-8">{copy.footer.description}</p>
+          <div class="page-actions">
+            <a href={localizePath("/contact/", locale)} class="button-primary">
               {copy.footer.contactCta}
             </a>
-            <a href={localizePath("/about/", locale)} class="transition hover:text-white">
+            <a href={localizePath("/about/", locale)} class="button-secondary">
               {copy.footer.aboutCta}
             </a>
           </div>
         </section>
 
-        <section>
-          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.common.explore}</h2>
-          <nav class="mt-4 space-y-3" aria-label="Footer" data-analytics-location="footer_explore">
-            {localizedSite.nav.map((item) => (
-              <a href={localizePath(item.href, locale)} class="block text-sm text-slate-300 transition hover:text-white">
-                {item.label}
+        <section class="space-y-4">
+          <p class="muted-label">{copy.common.explore}</p>
+          <nav class="grid gap-3" aria-label="Footer" data-analytics-location="footer_explore">
+            {primaryLinks.map((item) => (
+              <a href={localizePath(item.href, locale)} class="quiet-link">
+                {displayLabel(item.href, item.label)}
               </a>
             ))}
           </nav>
         </section>
 
-        <section>
-          <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.common.connect}</h2>
-          <ul class="mt-4 space-y-4" data-analytics-location="footer_connect">
+        <section class="space-y-4">
+          <p class="muted-label">{copy.common.connect}</p>
+          <div class="grid gap-4" data-analytics-location="footer_connect">
             {connectItems.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noreferrer" : undefined}
-                  class="block transition hover:text-white"
-                >
-                  <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    {item.icon === "email" && (
-                      <svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5 shrink-0 fill-none stroke-current stroke-[1.8]">
-                        <path d="M3.75 6.75h16.5v10.5H3.75z" />
-                        <path d="m4.5 7.5 7.5 6 7.5-6" />
-                      </svg>
-                    )}
-                    {item.icon === "github" && (
-                      <svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5 shrink-0 fill-current">
-                        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56 0-.28-.01-1.2-.02-2.17-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.14 1.17A10.9 10.9 0 0 1 12 6.03c.97 0 1.95.13 2.87.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.37-5.24 5.66.41.36.77 1.08.77 2.19 0 1.58-.01 2.85-.01 3.24 0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
-                      </svg>
-                    )}
-                    {item.icon === "linkedin" && (
-                      <svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5 shrink-0 fill-current">
-                        <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9.75h3.96V21H3V9.75ZM9.46 9.75h3.8v1.54h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.04V21h-3.96v-5.06c0-1.2-.02-2.76-1.68-2.76-1.69 0-1.95 1.31-1.95 2.67V21H9.46V9.75Z" />
-                      </svg>
-                    )}
-                    <span>{item.label}</span>
-                  </span>
-                  <span class="mt-1 block text-sm leading-6 text-slate-200">{item.value}</span>
-                </a>
-              </li>
+              <a
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noreferrer" : undefined}
+                class="surface-link"
+              >
+                <p class="muted-label">{item.label}</p>
+                <p class="mt-2 text-sm font-medium leading-7 text-[var(--color-charcoal)]">{item.value}</p>
+              </a>
             ))}
-          </ul>
+          </div>
         </section>
       </div>
 
-      <div class="mt-10 grid gap-6 border-t border-white/[0.08] pt-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-        <div class="space-y-5">
+      <div class="mt-10 grid gap-8 border-t border-[rgba(31,27,23,0.08)] pt-6 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div class="space-y-6">
           <LanguageSwitcher locale={locale} pathname={pathname} alwaysVisible={true} />
 
-          <div class="space-y-1">
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.footer.copyrightLabel}</p>
-            <p class="text-sm text-slate-300">
-              © {year} {profile.name}. {copy.footer.rightsReserved}
-            </p>
+          <div class="flex flex-wrap gap-3">
+            {utilityLinks.map((item) => (
+              <a href={item.href} class="button-quiet">
+                {item.label}
+              </a>
+            ))}
           </div>
+
+          <p class="text-sm leading-7">
+            © {year} {profile.name}. {copy.footer.rightsReserved}
+          </p>
         </div>
 
-        <div class="flex flex-wrap gap-x-8 gap-y-3">
-          {footerMetaItems.map((item) => (
-            <div class="space-y-1">
-              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{item.label}</p>
-              <p class="text-sm text-slate-300">{item.value}</p>
-            </div>
-          ))}
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <p class="muted-label">{copy.footer.versionLabel}</p>
+            <p class="mt-2 text-sm">{footerMeta.packageVersion ? `v${footerMeta.packageVersion}` : "N/A"}</p>
+          </div>
+          <div>
+            <p class="muted-label">{copy.common.lastUpdated}</p>
+            <p class="mt-2 text-sm">{lastUpdated ?? "N/A"}</p>
+          </div>
         </div>
       </div>
     </div>

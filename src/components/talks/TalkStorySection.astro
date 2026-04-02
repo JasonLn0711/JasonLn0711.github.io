@@ -43,7 +43,7 @@ const useSplit = hasVisual && variant === "split";
       ]}
     >
       <div class:list={["min-w-0 space-y-4", !isCenter ? "max-w-3xl" : "", introClass]}>
-        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{chapter} · {navLabel}</p>
+        <p class="muted-label">{chapter} · {navLabel}</p>
         {eyebrow && <span class="eyebrow mb-0">{eyebrow}</span>}
         <h2 id={headingId} class:list={["section-title", isCenter ? "mx-auto max-w-3xl" : ""]}>
           {title}

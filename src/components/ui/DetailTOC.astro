@@ -1,0 +1,25 @@
+---
+interface Item {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  items: Item[];
+  className?: string;
+}
+
+const { title, items, className = "" } = Astro.props;
+---
+
+<aside class:list={["toc-card", className]}>
+  <p class="muted-label">{title}</p>
+  <ol class="mt-4">
+    {items.map((item) => (
+      <li>
+        <a href={item.href}>{item.label}</a>
+      </li>
+    ))}
+  </ol>
+</aside>

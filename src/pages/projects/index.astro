@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "../../components/project/ProjectCard.astro";
+import CTASection from "../../components/ui/CTASection.astro";
+import PageHero from "../../components/ui/PageHero.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projectFilters, sortProjects } from "../../lib/content";
 import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy, localizePath } from "../../lib/i18n";
@@ -24,24 +26,23 @@ const filters = [
 >
   <section class="page-frame">
     <div class="page-stack">
-      <div class="page-intro">
-        <span class="eyebrow">{copy.common.projects}</span>
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          {copy.projectsPage.title}
-        </h1>
-        <p class="page-summary">
-          {copy.projectsPage.description}
-        </p>
-      </div>
+      <PageHero
+        eyebrow={copy.common.projects}
+        title="Selected work shaped by research, evidence, and deployment reality."
+        summary={copy.projectsPage.description}
+        titleClass="display-title-sm"
+        actions={[
+          { href: localizePath("/research/", locale), label: copy.common.research, variant: "secondary" },
+          { href: localizePath("/contact/", locale), label: copy.common.contact }
+        ]}
+      />
 
       <section class="section-card flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="max-w-2xl space-y-2">
-          <h2 class="text-lg font-semibold text-white">{copy.projectsPage.filterTitle}</h2>
-          <p class="text-sm leading-7 text-slate-300">
-            {copy.projectsPage.filterDescription}
-          </p>
+          <h2 class="text-lg font-semibold">{copy.projectsPage.filterTitle}</h2>
+          <p class="text-sm leading-7">{copy.projectsPage.filterDescription}</p>
         </div>
-        <p class="text-sm text-slate-400" aria-live="polite" data-project-results-summary>
+        <p class="text-sm" aria-live="polite" data-project-results-summary>
           {copy.projectsPage.showingSummary.replace("{count}", String(projects.length)).replace("{total}", String(projects.length))}
         </p>
       </section>
@@ -52,7 +53,7 @@ const filters = [
             type="button"
             class:list={[
               "button-secondary px-4 py-2",
-              index === 0 && "border-white/20 bg-white/[0.08] text-white"
+              index === 0 && "border-[rgba(31,27,23,0.18)] bg-[rgba(31,27,23,0.04)]"
             ]}
             data-filter={filter.id}
             data-filter-label={filter.label}
@@ -68,23 +69,23 @@ const filters = [
         ))}
       </div>
 
-      <div id="project-grid" class="grid gap-6 xl:grid-cols-3" data-analytics-location="projects_index_grid">
-        {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} analyticsLocation="projects_index_grid" locale={locale} />)}
+      <div id="project-grid" class="grid gap-6 xl:grid-cols-2" data-analytics-location="projects_index_grid">
+        {projects.map((project, index) => (
+          <div class:list={[index === 0 && "xl:col-span-2"]} data-project-wrap>
+            <ProjectCard project={project} filters={projectFilters(project)} analyticsLocation="projects_index_grid" locale={locale} />
+          </div>
+        ))}
       </div>
 
-      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between" data-analytics-location="projects_broader_context">
-        <div class="space-y-2">
-          <h2 class="text-2xl font-semibold text-white">{copy.projectsPage.broaderContextTitle}</h2>
-          <p class="max-w-2xl text-base leading-8 text-slate-300">
-            {copy.projectsPage.broaderContextDescription}
-          </p>
-        </div>
-        <div class="page-actions">
-          <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.research}</a>
-          <a href={localizePath("/blog/", locale)} class="button-secondary">{copy.common.writing}</a>
-          <a href={localizePath("/contact/", locale)} class="button-primary">{copy.common.contact}</a>
-        </div>
-      </section>
+      <CTASection
+        title={copy.projectsPage.broaderContextTitle}
+        copy={copy.projectsPage.broaderContextDescription}
+        actions={[
+          { href: localizePath("/research/", locale), label: copy.common.research, variant: "secondary" },
+          { href: localizePath("/blog/", locale), label: copy.common.writing, variant: "secondary" },
+          { href: localizePath("/contact/", locale), label: copy.common.contact }
+        ]}
+      />
     </div>
   </section>
 
@@ -123,15 +124,17 @@ const filters = [
         let visibleCount = 0;
 
         buttons.forEach((item) => {
-          item.setAttribute("aria-pressed", String(item === button));
-          item.classList.toggle("text-white", item === button);
-          item.classList.toggle("border-white/20", item === button);
-          item.classList.toggle("bg-white/[0.08]", item === button);
+          const isActive = item === button;
+          item.setAttribute("aria-pressed", String(isActive));
+          item.classList.toggle("border-[rgba(31,27,23,0.18)]", isActive);
+          item.classList.toggle("bg-[rgba(31,27,23,0.04)]", isActive);
         });
 
         cards.forEach((card) => {
           const categories = (card.dataset.category || "").split(",");
           const visible = filter === "All" || categories.includes(filter);
+          const wrapper = card.closest("[data-project-wrap]");
+          wrapper?.toggleAttribute("hidden", !visible);
           card.toggleAttribute("hidden", !visible);
           if (visible) {
             visibleCount += 1;

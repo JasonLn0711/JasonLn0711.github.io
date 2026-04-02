@@ -7,6 +7,8 @@ import {
   localizePath,
   type SiteLocale
 } from "../../lib/i18n";
+import MediaFrame from "../ui/MediaFrame.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
 
 interface Props {
   locale?: SiteLocale;
@@ -20,21 +22,23 @@ const copy = getPageCopy(locale);
 
 <section class="section">
   <div class="shell">
-    <div class="panel grid gap-8 overflow-hidden p-6 sm:p-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:p-10">
-      <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
-        <img src={profile.avatar} alt={profile.name} class="aspect-[4/5] h-full w-full object-cover" />
-      </div>
+    <div class="section-card grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
+      <MediaFrame
+        src={profile.avatar}
+        alt={profile.name}
+        width="1693"
+        height="2540"
+        imageClass="aspect-[4/5] h-full w-full object-cover object-[center_24%]"
+      />
 
       <div class="flex flex-col justify-center gap-5">
-        <span class="eyebrow">{home.about.eyebrow}</span>
-        <h2 class="section-title">{home.about.title}</h2>
-        <p class="max-w-3xl text-base leading-8 text-slate-300">{home.about.description}</p>
-        <p class="max-w-3xl text-base leading-8 text-slate-300">{profile.shortBio}</p>
+        <SectionIntro eyebrow={home.about.eyebrow} title={home.about.title} copy={home.about.description} />
+        <p class="max-w-3xl text-base leading-8">{profile.shortBio}</p>
         <div class="grid gap-3 sm:grid-cols-3">
           {profile.quickFacts.map((fact) => (
-            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{fact.label}</p>
-              <p class="mt-2 text-sm leading-7 text-slate-200">{fact.value}</p>
+            <div class="surface-card">
+              <p class="muted-label">{fact.label}</p>
+              <p class="mt-2 text-sm leading-7 text-[var(--color-charcoal)]">{fact.value}</p>
             </div>
           ))}
         </div>
