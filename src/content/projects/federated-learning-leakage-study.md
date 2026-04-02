@@ -1,12 +1,9 @@
 ---
 title: Federated Learning Leakage Study
-subtitle: A privacy-first case study on where collaborative training assumptions begin to fail.
 summary: A research case study on federated learning privacy leakage, gradient inversion risk, and defense trade-offs for sensitive collaborative training.
 year: 2026
 role: Doctoral Researcher
 category: Cybersecurity
-location: Taiwan
-scope: Threat modeling, privacy evaluation, and secure aggregation trade-offs
 stack:
   - PyTorch
   - Federated Learning
@@ -16,7 +13,6 @@ stack:
 featured: true
 status: Active Study
 cover: /projects/federated-learning-leakage-study.svg
-quote: Distributed training changes the data path, not the obligation to prove privacy under pressure.
 ---
 
 ## Privacy leakage in federated learning is still an operational problem

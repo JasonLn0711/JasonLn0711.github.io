@@ -15,37 +15,35 @@ const { post, featured = false, eventName, analyticsLocation, locale = defaultLo
 const copy = getPageCopy(locale);
 ---
 
-<article class="panel h-full transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]" data-analytics-location={analyticsLocation}>
+<article class="panel h-full overflow-hidden transition hover:border-white/20 hover:bg-white/[0.05]" data-analytics-location={analyticsLocation}>
   <a
     href={getBlogPath(post, locale)}
-    class:list={["group flex h-full flex-col focus-visible:outline-none", featured && "lg:grid lg:grid-cols-[1fr_1.05fr]"]}
+    class:list={["group flex h-full flex-col focus-visible:outline-none", featured && "lg:grid lg:grid-cols-[1fr_1.1fr]"]}
     data-plausible-event={eventName}
     data-plausible-slug={post.data.routeSlug ?? post.slug}
     data-analytics-label={post.data.title}
   >
-    <div class:list={["image-frame", featured ? "m-4" : "m-4 mb-0"]}>
-      <img
-        src={post.data.cover}
-        alt={`${post.data.title} cover`}
-        class:list={[
-          "w-full object-cover transition duration-500 ease-out group-hover:scale-[1.03]",
-          featured ? "h-full min-h-[18rem]" : "aspect-[4/3]"
-        ]}
-        loading="lazy"
-      />
-    </div>
+    <img
+      src={post.data.cover}
+      alt={`${post.data.title} cover`}
+      class:list={[
+        "w-full object-cover",
+        featured ? "h-full min-h-[16rem]" : "aspect-[16/9]"
+      ]}
+      loading="lazy"
+    />
     <div class="flex h-full flex-col gap-4 p-6 sm:p-7">
-      <div class="meta-row">
+      <div class="meta-row text-xs uppercase tracking-[0.2em]">
         <span>{formatLabel(post.data.category, locale)}</span>
-        <span class="dot"></span>
+        <span class="h-1 w-1 rounded-full bg-white/20"></span>
         <span>{formatDate(post.data.pubDate, locale)}</span>
       </div>
-      <h3 class="font-[var(--font-display)] text-[2rem] leading-[0.98] tracking-[-0.03em] transition group-hover:text-[var(--color-bark)]">
+      <h3 class="text-2xl font-semibold tracking-tight text-white transition group-hover:text-[var(--color-accent-strong)]">
         {post.data.title}
       </h3>
-      <p class="max-w-[54ch] text-sm leading-7">{post.data.description}</p>
+      <p class="max-w-[54ch] text-sm leading-7 text-slate-300">{post.data.description}</p>
       <div class="mt-auto flex flex-wrap gap-2">
-        {post.data.tags.slice(0, 2).map((tag) => <span class="pill">{tag}</span>)}
+        {post.data.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
       </div>
       <span class="action-link mt-2">
         {copy.common.readArticle}

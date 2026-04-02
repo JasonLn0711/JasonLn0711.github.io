@@ -27,16 +27,15 @@ const analyticsLocation = mobile ? "mobile_language_switch" : alwaysVisible ? "f
   data-analytics-location={analyticsLocation}
 >
   {showLabel ? (
-    <p class="muted-label">{copy.common.language}</p>
+    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.common.language}</p>
   ) : (
     <span class="sr-only">{copy.common.language}</span>
   )}
   <div
     class:list={[
-      "inline-flex items-center rounded-full border p-1",
+      "inline-flex items-center rounded-full border border-white/[0.1] bg-white/[0.03] p-1",
       mobile || alwaysVisible ? (compact ? "flex-nowrap gap-1" : "flex-wrap gap-1.5") : "flex-nowrap gap-1"
     ]}
-    style="border-color: rgba(31, 27, 23, 0.12); background: rgba(255, 252, 247, 0.7);"
     aria-label={copy.common.languageSwitcherAria}
     role="group"
   >
@@ -50,10 +49,9 @@ const analyticsLocation = mobile ? "mobile_language_switch" : alwaysVisible ? "f
             "inline-flex min-h-9 items-center justify-center rounded-full border px-3.5 text-sm font-medium whitespace-nowrap transition",
             mobile || alwaysVisible ? (compact ? "min-h-8 min-w-0 px-2.5 text-xs" : "min-w-[4.5rem]") : "min-w-[3.75rem]",
             isCurrent
-              ? "text-[var(--color-ink)]"
-              : "text-[rgba(31,27,23,0.54)] hover:text-[var(--color-ink)]"
+              ? "border-white/[0.14] bg-white/[0.1] text-white"
+              : "border-transparent text-slate-400 hover:bg-white/[0.05] hover:text-white"
           ]}
-          style={isCurrent ? "border-color: rgba(31, 27, 23, 0.16); background: rgba(31, 27, 23, 0.04);" : "border-color: transparent;"}
           hreflang={option.locale === "en" ? "en" : option.locale === "zh-tw" ? "zh-TW" : "ja"}
           lang={option.locale === "en" ? "en" : option.locale === "zh-tw" ? "zh-Hant-TW" : "ja"}
           aria-current={isCurrent ? "page" : undefined}

@@ -1,12 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import UntranslatedNotice from "../layout/UntranslatedNotice.astro";
-import CTASection from "../ui/CTASection.astro";
-import MediaFrame from "../ui/MediaFrame.astro";
-import MetaRail from "../ui/MetaRail.astro";
-import PageHero from "../ui/PageHero.astro";
-import QuoteBlock from "../ui/QuoteBlock.astro";
-import { formatLabel } from "../../lib/content";
 import { defaultLocale, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
@@ -24,115 +18,124 @@ const links = [
   project.data.demo ? { label: "Demo", href: project.data.demo, kind: "demo" } : undefined,
   project.data.paper ? { label: "Paper", href: project.data.paper, kind: "paper" } : undefined
 ].filter((link): link is { label: string; href: string; kind: string } => Boolean(link));
-
-const metaItems = [
-  { label: "Category", value: formatLabel(project.data.category, locale) },
-  { label: "Year", value: String(project.data.year) },
-  { label: "Status", value: project.data.status },
-  { label: "Role", value: project.data.role },
-  ...(project.data.location ? [{ label: "Location", value: project.data.location }] : []),
-  ...(project.data.scope ? [{ label: "Scope", value: project.data.scope }] : []),
-  { label: "Stack", value: project.data.stack }
-];
 ---
 
 <section class="page-frame">
   <div class="page-stack">
-    <a href={localizePath("/projects/", locale)} class="quiet-link">
+    <a href={localizePath("/projects/", locale)} class="action-link">
       <span aria-hidden="true">←</span>
       {copy.common.backToProjects}
     </a>
 
-    <PageHero
-      eyebrow={`${formatLabel(project.data.category, locale)} case study`}
-      kicker={`${project.data.year} · ${project.data.status}`}
-      title={project.data.title}
-      titleClass="display-title-sm"
-      summary={project.data.subtitle ?? project.data.summary}
-      split={true}
-      actions={[
-        ...links.map((link) => ({
-          href: link.href,
-          label: link.label,
-          variant: "secondary" as const,
-          external: true
-        }))
-      ]}
-    >
-      <MediaFrame
-        slot="media"
-        src={project.data.cover}
-        alt={`${project.data.title} hero visual`}
-        imageClass="aspect-[16/11] w-full object-cover"
-        caption={project.data.summary}
-      />
-    </PageHero>
+    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+      <div class="page-intro">
+        <span class="eyebrow">{project.data.category} Case Study</span>
+        <h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          {project.data.title}
+        </h1>
+        <p class="page-summary">{project.data.summary}</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill">{project.data.status}</span>
+          <span class="pill">{project.data.year}</span>
+          <span class="pill">{project.data.role}</span>
+        </div>
+        {links.length > 0 && (
+          <div class="page-actions" data-analytics-location="project_detail_primary_links">
+            {links.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                class="button-secondary px-4 py-2"
+                data-plausible-project={project.data.title}
+                data-plausible-slug={project.slug}
+                data-analytics-link-kind={link.kind}
+                data-analytics-label={`${project.data.title} ${link.label}`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+      <div class="panel overflow-hidden">
+        <img src={project.data.cover} alt={`${project.data.title} hero visual`} class="aspect-[16/10] w-full object-cover" />
+      </div>
+    </div>
 
-    <div class="detail-shell">
-      <aside class="detail-aside lg:sticky lg:top-28 lg:h-fit">
-        <div class="toc-card">
-          <p class="muted-label">{copy.common.projectSnapshot}</p>
-          <MetaRail items={metaItems} className="mt-4" />
+    <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
+      <aside class="section-card h-fit space-y-6 lg:sticky lg:top-28">
+        <div class="space-y-3">
+          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.projectSnapshot}</h2>
+          <dl class="space-y-3 text-sm text-slate-300">
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Role</dt>
+              <dd>{project.data.role}</dd>
+            </div>
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Year</dt>
+              <dd>{project.data.year}</dd>
+            </div>
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Status</dt>
+              <dd>{project.data.status}</dd>
+            </div>
+            <div class="space-y-1">
+              <dt class="text-xs uppercase tracking-[0.18em] text-slate-500">Stack</dt>
+              <dd class="flex flex-wrap gap-2">
+                {project.data.stack.map((item) => <span class="pill">{item}</span>)}
+              </dd>
+            </div>
+          </dl>
         </div>
 
         <div class="surface-card space-y-3" data-analytics-location="project_detail_next_steps">
-          <p class="muted-label">{copy.common.bestNextSteps}</p>
-          <p class="text-sm leading-7">
-            If this work overlaps with your research, product direction, or event, the most useful next step is usually a comparison with the broader agenda or a direct conversation.
+          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-200">{copy.common.bestNextSteps}</h2>
+          <p class="text-sm leading-7 text-slate-300">
+            If this work is relevant to your research, team, or event, the next useful move is usually to compare it with the broader agenda or reach out directly.
           </p>
           <div class="page-actions">
-            <a href={localizePath("/research/", locale)} class="button-secondary">{copy.common.seeResearch}</a>
-            <a href={localizePath("/contact/", locale)} class="button-primary">{copy.common.discussThisWork}</a>
+            <a href={localizePath("/research/", locale)} class="button-secondary px-4 py-2">{copy.common.seeResearch}</a>
+            <a href={localizePath("/contact/", locale)} class="button-primary px-4 py-2">{copy.common.discussThisWork}</a>
           </div>
         </div>
       </aside>
 
-      <article class="space-y-6 min-w-0">
+      <article class="space-y-6">
         {locale !== "en" && <UntranslatedNotice locale={locale} kind="project" />}
-        {project.data.quote && <QuoteBlock quote={project.data.quote} />}
         <div class="reading-panel">
           <div class="article-body">
             <slot />
           </div>
         </div>
-
-        <CTASection
-          title={copy.common.continueFromThisPiece}
-          copy="Case studies are most useful in relation to the broader agenda. Compare the work with the research direction, adjacent writing, or reach out if the fit looks promising."
-          actions={[
-            { href: localizePath("/research/", locale), label: copy.common.research, variant: "secondary" },
-            { href: localizePath("/blog/", locale), label: copy.common.writing, variant: "secondary" },
-            { href: localizePath("/contact/", locale), label: copy.common.contact }
-          ]}
-        />
       </article>
     </div>
 
     {(previousProject || nextProject) && (
       <div class="grid gap-4 sm:grid-cols-2" data-analytics-location="project_detail_pagination">
         {previousProject ? (
-          <a href={localizePath(`/projects/${previousProject.slug}/`, locale)} class="surface-link block p-6">
-            <p class="muted-label">{copy.common.previousProject}</p>
-            <p class="mt-3 text-lg font-semibold">{previousProject.data.title}</p>
+          <a href={localizePath(`/projects/${previousProject.slug}/`, locale)} class="panel block p-6 transition hover:border-white/20">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.previousProject}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{previousProject.data.title}</p>
           </a>
         ) : (
-          <a href={localizePath("/projects/", locale)} class="surface-link block p-6">
-            <p class="muted-label">{copy.common.browse}</p>
-            <p class="mt-3 text-lg font-semibold">{copy.common.allProjects}</p>
+          <a href={localizePath("/projects/", locale)} class="panel block p-6 transition hover:border-white/20">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.browse}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{copy.common.allProjects}</p>
           </a>
         )}
 
         {nextProject && (
-          <a href={localizePath(`/projects/${nextProject.slug}/`, locale)} class="surface-link block p-6 text-left sm:text-right">
-            <p class="muted-label">{copy.common.nextProject}</p>
-            <p class="mt-3 text-lg font-semibold">{nextProject.data.title}</p>
+          <a href={localizePath(`/projects/${nextProject.slug}/`, locale)} class="panel block p-6 text-left transition hover:border-white/20 sm:text-right">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.nextProject}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{nextProject.data.title}</p>
           </a>
         )}
 
         {!nextProject && (
-          <a href={localizePath("/contact/", locale)} class="surface-link block p-6 text-left sm:text-right">
-            <p class="muted-label">{copy.common.needContext}</p>
-            <p class="mt-3 text-lg font-semibold">{copy.common.contactJason}</p>
+          <a href={localizePath("/contact/", locale)} class="panel block p-6 text-left transition hover:border-white/20 sm:text-right">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.common.needContext}</p>
+            <p class="mt-3 text-lg font-semibold text-white">{copy.common.contactJason}</p>
           </a>
         )}
       </div>

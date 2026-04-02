@@ -8,7 +8,6 @@ import {
   localizePath,
   type SiteLocale
 } from "../../lib/i18n";
-import SectionIntro from "../ui/SectionIntro.astro";
 
 interface Props {
   locale?: SiteLocale;
@@ -23,22 +22,25 @@ const copy = getPageCopy(locale);
 
 <section class="section">
   <div class="shell space-y-8">
-    <SectionIntro eyebrow={home.speaking.eyebrow} title={home.speaking.title} copy={home.speaking.description}>
-      <Fragment slot="actions">
-        <a href={localizePath("/talks/", locale)} class="button-secondary">
-          {home.speaking.browseLabel}
-        </a>
-      </Fragment>
-    </SectionIntro>
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-3xl">
+        <span class="eyebrow">{home.speaking.eyebrow}</span>
+        <h2 class="section-title">{home.speaking.title}</h2>
+        <p class="section-copy">{home.speaking.description}</p>
+      </div>
+      <a href={localizePath("/talks/", locale)} class="button-secondary">
+        {home.speaking.browseLabel}
+      </a>
+    </div>
 
-    <article class="section-card flex flex-col gap-5 p-6 sm:p-7">
+    <article class="panel flex flex-col gap-4 p-6 sm:p-7">
       <div class="flex flex-wrap items-center gap-3">
         <span class="pill">{speaking.featuredEngagement.label}</span>
-        <span class="muted-label">{speaking.featuredEngagement.event}</span>
+        <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{speaking.featuredEngagement.event}</span>
       </div>
-      <h3 class="font-[var(--font-display)] text-[2.2rem] leading-[0.98] tracking-[-0.03em]">{speaking.featuredEngagement.title}</h3>
-      <p class="max-w-4xl text-sm leading-7">{speaking.featuredEngagement.summary}</p>
-      <div class="meta-row">
+      <h3 class="text-xl font-semibold tracking-tight text-white">{speaking.featuredEngagement.title}</h3>
+      <p class="text-sm leading-7 text-slate-300">{speaking.featuredEngagement.summary}</p>
+      <div class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] text-slate-500">
         <span>{speaking.featuredEngagement.schedule}</span>
         <span>{speaking.featuredEngagement.track}</span>
       </div>
@@ -67,14 +69,14 @@ const copy = getPageCopy(locale);
     {speaking.additionalEngagements.length > 0 && (
       <div class="grid gap-6 xl:grid-cols-2">
         {speaking.additionalEngagements.map((engagement) => (
-          <article class="surface-card flex h-full flex-col gap-4 p-6 sm:p-7">
+          <article class="panel flex h-full flex-col gap-4 p-6 sm:p-7">
             <div class="flex flex-wrap items-center gap-3">
               <span class="pill">{engagement.label}</span>
-              <span class="muted-label">{engagement.event}</span>
+              <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{engagement.event}</span>
             </div>
-            <h3 class="text-xl font-semibold tracking-tight">{engagement.title}</h3>
-            <p class="text-sm leading-7">{engagement.summary}</p>
-            <div class="meta-row">
+            <h3 class="text-xl font-semibold tracking-tight text-white">{engagement.title}</h3>
+            <p class="text-sm leading-7 text-slate-300">{engagement.summary}</p>
+            <div class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] text-slate-500">
               <span>{engagement.schedule}</span>
               <span>{engagement.track}</span>
             </div>
@@ -98,10 +100,10 @@ const copy = getPageCopy(locale);
 
     <div class="grid gap-6 xl:grid-cols-3">
       {speaking.topics.map((topic) => (
-        <article class="surface-card flex h-full flex-col gap-5 p-6 sm:p-7">
-          <h3 class="font-[var(--font-display)] text-[1.9rem] leading-[1] tracking-[-0.03em]">{topic.title}</h3>
-          <p class="text-sm leading-7">{topic.description}</p>
-          <p class="mt-auto muted-label">{topic.audience}</p>
+        <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
+          <h3 class="text-2xl font-semibold tracking-tight text-white">{topic.title}</h3>
+          <p class="text-sm leading-7 text-slate-300">{topic.description}</p>
+          <p class="mt-auto text-xs uppercase tracking-[0.18em] text-slate-500">{topic.audience}</p>
         </article>
       ))}
     </div>

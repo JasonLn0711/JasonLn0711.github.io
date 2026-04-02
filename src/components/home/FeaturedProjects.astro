@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 import { defaultLocale, getLocalizedHome, localizePath, type SiteLocale } from "../../lib/i18n";
 import ProjectCard from "../project/ProjectCard.astro";
-import SectionIntro from "../ui/SectionIntro.astro";
 
 interface Props {
   projects: CollectionEntry<"projects">[];
@@ -15,13 +14,16 @@ const home = getLocalizedHome(locale);
 
 <section class="section" data-analytics-location="home_projects">
   <div class="shell space-y-8">
-    <SectionIntro eyebrow={home.projects.eyebrow} title={home.projects.title} copy={home.projects.description}>
-      <Fragment slot="actions">
-        <a href={localizePath("/projects/", locale)} class="button-secondary">
-          {home.projects.browseLabel}
-        </a>
-      </Fragment>
-    </SectionIntro>
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-3xl">
+        <span class="eyebrow">{home.projects.eyebrow}</span>
+        <h2 class="section-title">{home.projects.title}</h2>
+        <p class="section-copy">{home.projects.description}</p>
+      </div>
+      <a href={localizePath("/projects/", locale)} class="button-secondary">
+        {home.projects.browseLabel}
+      </a>
+    </div>
 
     <div class="grid gap-6 xl:grid-cols-3" data-analytics-location="home_featured_projects">
       {projects.map((project) => <ProjectCard project={project} analyticsLocation="home_featured_projects" locale={locale} />)}

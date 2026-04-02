@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import AboutPreview from "../components/home/AboutPreview.astro";
 import ContactCTA from "../components/home/ContactCTA.astro";
+import CredibilityStrip from "../components/home/CredibilityStrip.astro";
 import FeaturedProjects from "../components/home/FeaturedProjects.astro";
 import Hero from "../components/home/Hero.astro";
 import ResearchThemes from "../components/home/ResearchThemes.astro";
@@ -19,8 +20,9 @@ const localizedSite = getLocalizedSite(locale);
 
 <BaseLayout title={localizedSite.defaultTitle} description={localizedSite.description} pathname={Astro.url.pathname}>
   <Hero locale={locale} />
-  <FeaturedProjects projects={projects} locale={locale} />
+  <CredibilityStrip locale={locale} />
   <ResearchThemes locale={locale} />
+  <FeaturedProjects projects={projects} locale={locale} />
   <WritingPreview posts={posts} locale={locale} />
   <SpeakingPreview locale={locale} />
   <AboutPreview locale={locale} />

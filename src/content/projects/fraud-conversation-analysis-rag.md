@@ -1,12 +1,9 @@
 ---
 title: Fraud Conversation Analysis with RAG
-subtitle: Grounded transcript intelligence for high-stakes conversational review.
 summary: A research-led case study on retrieval-augmented fraud conversation analysis, designed to keep LLM outputs grounded in transcript evidence for high-stakes review.
 year: 2026
 role: Doctoral Researcher
 category: Fraud Analysis
-location: Taiwan
-scope: Transcript retrieval, evidence grounding, and analyst-facing reasoning
 stack:
   - Python
   - RAG
@@ -16,7 +13,6 @@ stack:
 featured: true
 status: Active Research
 cover: /projects/fraud-conversation-analysis-rag.svg
-quote: In high-stakes review, a useful answer is one that can still point back to the evidence that earned it.
 ---
 
 ## Fraud conversation analysis needs more than fluent summaries

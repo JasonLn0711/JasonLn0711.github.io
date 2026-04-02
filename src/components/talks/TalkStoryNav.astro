@@ -15,16 +15,16 @@ const isDesktop = mode === "desktop";
 ---
 
 {isDesktop ? (
-  <nav aria-label="Talk chapters" class="toc-card">
-    <p class="muted-label">Talk chapters</p>
+  <nav aria-label="Talk chapters" class="panel p-5">
+    <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Talk chapters</p>
     <ol class="mt-4 space-y-2">
       {sections.map((section) => (
         <li>
           <a
             href={`#${section.id}`}
-            class="flex items-start gap-3 rounded-2xl border border-transparent px-3 py-3 text-[var(--color-muted)] transition hover:border-[rgba(31,27,23,0.12)] hover:bg-[rgba(31,27,23,0.03)] hover:text-[var(--color-ink)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+            class="flex items-start gap-3 rounded-2xl border border-transparent px-3 py-3 text-slate-300 transition hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
           >
-            <span class="min-w-10 muted-label">{section.chapter}</span>
+            <span class="min-w-10 text-xs uppercase tracking-[0.2em] text-slate-500">{section.chapter}</span>
             <span class="text-sm leading-6">{section.navLabel}</span>
           </a>
         </li>
@@ -32,11 +32,11 @@ const isDesktop = mode === "desktop";
     </ol>
   </nav>
 ) : (
-  <div class="toc-card xl:hidden">
+  <div class="panel p-4 xl:hidden">
     <details class="group">
-      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-2 py-1 text-sm font-semibold text-[var(--color-ink)]">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-2 py-1 text-sm font-semibold text-white">
         <span>Jump to a chapter</span>
-        <span class="muted-label">{sections.length} sections</span>
+        <span class="text-xs uppercase tracking-[0.2em] text-slate-500">{sections.length} sections</span>
       </summary>
 
       <ol class="mt-4 grid gap-2 sm:grid-cols-2">
@@ -44,9 +44,9 @@ const isDesktop = mode === "desktop";
           <li>
             <a
               href={`#${section.id}`}
-              class="flex items-start gap-3 rounded-2xl border border-[rgba(31,27,23,0.08)] bg-[rgba(255,252,247,0.6)] px-3 py-3 text-[var(--color-muted)] transition hover:border-[rgba(31,27,23,0.14)] hover:text-[var(--color-ink)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+              class="flex items-start gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.03] px-3 py-3 text-slate-300 transition hover:border-white/[0.12] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
             >
-              <span class="min-w-10 muted-label">{section.chapter}</span>
+              <span class="min-w-10 text-xs uppercase tracking-[0.2em] text-slate-500">{section.chapter}</span>
               <span class="text-sm leading-6">{section.navLabel}</span>
             </a>
           </li>

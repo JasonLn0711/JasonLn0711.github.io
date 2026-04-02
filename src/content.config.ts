@@ -30,25 +30,14 @@ const projects = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    subtitle: z.string().optional(),
     summary: z.string(),
     year: z.number(),
     role: z.string().default("Research Engineer"),
     category: z.enum(["AI Systems", "Cybersecurity", "Forensics", "Fraud Analysis"]),
-    location: z.string().optional(),
-    scope: z.string().optional(),
     stack: z.array(z.string()).min(1),
     featured: z.boolean().default(false),
     status: z.string().default("Completed"),
     cover: z.string().default("/og/default.png"),
-    quote: z.string().optional(),
-    gallery: z.array(
-      z.object({
-        src: z.string(),
-        alt: z.string(),
-        caption: z.string().optional()
-      })
-    ).default([]),
     repo: z.string().url().optional(),
     demo: z.string().url().optional(),
     paper: z.string().url().optional()

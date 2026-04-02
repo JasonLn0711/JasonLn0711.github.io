@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 import { defaultLocale, getLocalizedHome, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 import BlogCard from "../blog/BlogCard.astro";
-import SectionIntro from "../ui/SectionIntro.astro";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
@@ -12,33 +11,29 @@ interface Props {
 const { posts, locale = defaultLocale } = Astro.props;
 const home = getLocalizedHome(locale);
 const copy = getPageCopy(locale);
-const featuredPost = posts[0];
-const remainingPosts = posts.slice(1);
 ---
 
 <section class="section" data-analytics-location="home_writing">
   <div class="shell space-y-8">
-    <SectionIntro eyebrow={home.writing.eyebrow} title={home.writing.title} copy={home.writing.description}>
-      <Fragment slot="actions">
-        <a href={localizePath("/blog/", locale)} class="button-secondary">
-          {home.writing.browseLabel}
-        </a>
-      </Fragment>
-    </SectionIntro>
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-3xl">
+        <span class="eyebrow">{home.writing.eyebrow}</span>
+        <h2 class="section-title">{home.writing.title}</h2>
+        <p class="section-copy">{home.writing.description}</p>
+      </div>
+      <a href={localizePath("/blog/", locale)} class="button-secondary">
+        {home.writing.browseLabel}
+      </a>
+    </div>
 
     {posts.length > 0 ? (
-      <div class="space-y-6" data-analytics-location="home_writing_preview">
-        {featuredPost && <BlogCard post={featuredPost} featured={true} analyticsLocation="home_writing_preview" locale={locale} />}
-        {remainingPosts.length > 0 && (
-          <div class="grid gap-6 lg:grid-cols-2">
-            {remainingPosts.map((post) => <BlogCard post={post} analyticsLocation="home_writing_preview" locale={locale} />)}
-          </div>
-        )}
+      <div class="grid gap-6 lg:grid-cols-3" data-analytics-location="home_writing_preview">
+        {posts.map((post) => <BlogCard post={post} analyticsLocation="home_writing_preview" locale={locale} />)}
       </div>
     ) : (
-      <div class="section-card">
-        <h3 class="font-[var(--font-display)] text-[2rem] leading-none tracking-[-0.03em]">{copy.home.writingInProgress}</h3>
-        <p class="mt-4 max-w-2xl text-sm leading-7">
+      <div class="panel p-8">
+        <h3 class="text-2xl font-semibold text-white">{copy.home.writingInProgress}</h3>
+        <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
           {copy.home.writingInProgressCopy}
         </p>
       </div>
