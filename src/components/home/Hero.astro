@@ -3,11 +3,9 @@ import {
   defaultLocale,
   getLocalizedHome,
   getLocalizedProfile,
-  getPageCopy,
   localizePath,
   type SiteLocale
 } from "../../lib/i18n";
-import HeroScene from "../three/HeroScene";
 
 interface Props {
   locale?: SiteLocale;
@@ -16,131 +14,73 @@ interface Props {
 const { locale = defaultLocale } = Astro.props;
 const home = getLocalizedHome(locale);
 const profile = getLocalizedProfile(locale);
-const copy = getPageCopy(locale);
+const trace = home.hero.trace.map((item, index) => ({
+  ...item,
+  number: String(index + 1).padStart(2, "0")
+}));
 ---
 
-<section class="page-frame pt-8 sm:pt-12">
-  <div class="shell grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_360px] xl:items-start">
-    <div class="space-y-7">
-      <span class="eyebrow">{home.hero.eyebrow}</span>
-      <div class="page-intro">
-        <h1 class="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {home.hero.headline}
+<section class="home-hero" style={`--hero-image: url("${profile.avatar}")`} data-analytics-location="home_hero">
+  <div class="home-hero__pattern" aria-hidden="true"></div>
+  <div class="home-hero__image" aria-hidden="true"></div>
+
+  <div class="shell relative z-10 grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.46fr)] lg:items-end lg:py-20">
+    <div class="max-w-4xl space-y-7">
+      <div class="space-y-4">
+        <span class="eyebrow">{home.hero.eyebrow}</span>
+        <p class="max-w-2xl text-sm font-semibold text-emerald-100/90">{profile.title}</p>
+      </div>
+
+      <div class="space-y-5">
+        <h1 class="max-w-4xl text-5xl font-semibold text-white sm:text-6xl lg:text-7xl">
+          {profile.name}
         </h1>
-        <p class="page-summary">
+        <p class="max-w-3xl text-2xl font-semibold leading-9 text-emerald-50 sm:text-3xl">
+          {home.hero.headline}
+        </p>
+        <p class="max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
           {home.hero.description}
         </p>
       </div>
 
-      <div class="max-w-3xl rounded-[2rem] border border-white/[0.1] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent p-4 shadow-panel sm:p-5">
-        <div class="grid gap-4 sm:grid-cols-[116px_minmax(0,1fr)] sm:items-stretch">
-          <div class="overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-slate-950/40 sm:h-full sm:min-h-[15rem]">
-            <img
-              src={profile.avatar}
-              alt={profile.name}
-              class="aspect-[4/5] h-full w-full object-cover object-[center_24%] sm:aspect-auto"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-
-          <div class="min-w-0 space-y-3">
-            <div class="flex flex-wrap gap-2">
-              {copy.home.heroPills.map((pill) => <span class="pill">{pill}</span>)}
-            </div>
-
-            <div class="space-y-1">
-              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.home.meetJason}</p>
-              <h2 class="text-2xl font-semibold tracking-tight text-white">{profile.name}</h2>
-              <p class="text-sm leading-7 text-slate-300">
-                {copy.home.heroInstitutionSummary}
-              </p>
-            </div>
-
-            <p class="text-sm leading-7 text-slate-300">
-              {copy.home.heroSummary}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4" data-analytics-location="hero_actions">
-        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary w-full sm:w-auto">
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-analytics-location="hero_actions">
+        <a href={localizePath(home.hero.primaryCta.href, locale)} class="button-primary">
           {home.hero.primaryCta.label}
         </a>
-        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary w-full sm:w-auto">
+        <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary">
           {home.hero.secondaryCta.label}
         </a>
-        <a href={localizePath("/contact/", locale)} class="action-link">
-          {copy.home.heroContact}
-          <span aria-hidden="true">→</span>
+        <a href={localizePath(home.hero.tertiaryCta.href, locale)} class="button-secondary">
+          {home.hero.tertiaryCta.label}
         </a>
       </div>
 
-      <dl class="grid max-w-4xl gap-4 rounded-4xl border border-white/10 bg-white/[0.03] p-6 sm:grid-cols-3">
-        {home.hero.metrics.map((metric) => (
-          <div>
-            <dt class="text-xs uppercase tracking-[0.2em] text-slate-500">{metric.label}</dt>
-            <dd class="mt-2 text-sm leading-7 text-slate-200">{metric.value}</dd>
-          </div>
+      <ul class="grid max-w-4xl gap-3 md:grid-cols-3">
+        {home.hero.capabilities.map((capability) => (
+          <li class="hero-capability">
+            <span class="hero-capability__mark" aria-hidden="true"></span>
+            <span>{capability}</span>
+          </li>
         ))}
-      </dl>
+      </ul>
     </div>
 
-    <div class="space-y-4">
-      <section class="section-card">
-        <div class="space-y-5">
-          <div class="space-y-2">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">{copy.home.startHere}</p>
-            <h2 class="text-2xl font-semibold tracking-tight text-white">{copy.home.choosePath}</h2>
-          </div>
-
-          <div class="grid gap-3" data-analytics-location="hero_routes">
-            {home.hero.routes.map((route) => (
-              <a href={localizePath(route.href, locale)} class="surface-link">
-                <span class="block text-sm font-semibold text-white">{route.title}</span>
-                <span class="mt-2 block text-sm leading-6 text-slate-400">{route.description}</span>
-              </a>
-            ))}
-          </div>
-
-          <div class="surface-card">
-            <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.whatYouWillFind}</p>
-            <ul class="mt-3 space-y-3">
-              {home.hero.siteMap.map((item) => <li class="text-sm leading-7 text-slate-300">{item}</li>)}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <div class="panel relative hidden h-[280px] overflow-hidden md:block" aria-hidden="true">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(99,164,255,0.24),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(143,184,255,0.16),transparent_26%)]"></div>
-        <div class="absolute left-6 top-6 z-10">
-          <span class="pill">{copy.home.signalMesh}</span>
-        </div>
-        <div class="absolute inset-0 grid place-items-center px-10 py-8">
-          <div class="grid h-full w-full max-w-[18rem] grid-cols-4 gap-3 opacity-80">
-            {Array.from({ length: 16 }).map(() => <span class="rounded-full border border-white/[0.12] bg-white/[0.04]"></span>)}
-          </div>
-        </div>
-        <div class="absolute inset-0">
-          <HeroScene client:media="(min-width: 80rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)" />
-        </div>
+    <aside class="hero-console" aria-label="Homepage system trace">
+      <div class="hero-console__header">
+        <span>{profile.handle}</span>
+        <span>{profile.institutionShort}</span>
       </div>
-
-      <div class="panel flex min-h-[220px] flex-col justify-between overflow-hidden p-8 md:hidden" aria-hidden="true">
-        <div class="flex items-center justify-between">
-          <span class="pill">{copy.home.signalMesh}</span>
-          <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.home.staticFallback}</span>
-        </div>
-        <div class="relative mt-8 flex-1">
-          <div class="absolute left-4 top-2 h-20 w-20 rounded-full bg-sky-400/20 blur-3xl"></div>
-          <div class="absolute bottom-4 right-6 h-28 w-28 rounded-full bg-sky-300/10 blur-3xl"></div>
-          <div class="grid h-full grid-cols-4 gap-3">
-            {Array.from({ length: 12 }).map(() => <span class="rounded-full border border-white/[0.12] bg-white/[0.04]"></span>)}
-          </div>
-        </div>
-      </div>
-    </div>
+      <ol class="hero-console__trace">
+        {trace.map((item) => (
+          <li>
+            <span>{item.number}</span>
+            <div>
+              <strong>{item.label}</strong>
+              <p>{item.value}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </aside>
   </div>
 </section>
