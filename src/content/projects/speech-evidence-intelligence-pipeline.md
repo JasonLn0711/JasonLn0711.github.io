@@ -13,6 +13,11 @@ stack:
 featured: true
 status: Active Research
 cover: /projects/speech-evidence-intelligence-pipeline.svg
+readiness:
+  level: Prototype
+  summary: A public case study for an evidence-aware ASR, retrieval, and LLM extraction workflow.
+  updated: 2026-05-07
+  next: Expand evaluation notes for transcript quality, retrieval grounding, and analyst review effort.
 ---
 
 ## Long-form conversational audio is hard to turn into evidence

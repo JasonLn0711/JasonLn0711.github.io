@@ -13,6 +13,11 @@ stack:
 featured: true
 status: Active Research
 cover: /projects/fraud-conversation-analysis-rag.svg
+readiness:
+  level: Research seed
+  summary: A research-led case study framing grounded RAG as an analyst review workflow.
+  updated: 2026-05-07
+  next: Add more explicit retrieval-quality and evidence-support evaluation artifacts.
 ---
 
 ## Fraud conversation analysis needs more than fluent summaries

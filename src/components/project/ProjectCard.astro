@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { formatLabel } from "../../lib/content";
+import { formatDate, formatLabel } from "../../lib/content";
 import { defaultLocale, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
 const { project, filters = [project.data.category], eventName, analyticsLocation, locale = defaultLocale } = Astro.props;
 const tags = Array.from(new Set(filters));
 const copy = getPageCopy(locale);
+const readiness = project.data.readiness;
 ---
 
 <article
@@ -50,6 +51,18 @@ const copy = getPageCopy(locale);
         </h3>
         <p class="max-w-[54ch] text-sm leading-7 text-slate-300">{project.data.summary}</p>
       </div>
+      {readiness && (
+        <div class="readiness-cardlet">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{copy.common.readiness}</p>
+            <span>{readiness.level}</span>
+          </div>
+          <p>{readiness.summary}</p>
+          <p class="readiness-cardlet__date">
+            {copy.common.lastReviewed}: {formatDate(readiness.updated, locale)}
+          </p>
+        </div>
+      )}
       <div class="flex flex-wrap gap-2">
         {project.data.stack.slice(0, 5).map((item) => <span class="pill">{item}</span>)}
       </div>
