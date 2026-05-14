@@ -38,6 +38,14 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     status: z.string().default("Completed"),
     cover: z.string().default("/og/default.png"),
+    readiness: z
+      .object({
+        level: z.enum(["Research seed", "Prototype", "Paper-backed", "Production-style case study", "Archived"]),
+        summary: z.string(),
+        updated: z.coerce.date(),
+        next: z.string()
+      })
+      .optional(),
     repo: z.string().url().optional(),
     demo: z.string().url().optional(),
     paper: z.string().url().optional()

@@ -1,0 +1,40 @@
+---
+import { defaultLocale, getLocalizedHome, localizePath, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const home = getLocalizedHome(locale);
+const evidence = home.evidence;
+const [claimColumn, evidenceColumn, artifactColumn, statusColumn] = evidence.columns;
+---
+
+<section class="section technical-band" data-analytics-location="home_evidence_ledger">
+  <div class="shell space-y-8">
+    <div class="section-intro">
+      <span class="eyebrow">{evidence.eyebrow}</span>
+      <h2 class="section-title">{evidence.title}</h2>
+      <p class="section-copy">{evidence.description}</p>
+    </div>
+
+    <div class="evidence-ledger" role="table" aria-label={evidence.title}>
+      <div class="evidence-ledger__head" role="row">
+        <span role="columnheader">{claimColumn}</span>
+        <span role="columnheader">{evidenceColumn}</span>
+        <span role="columnheader">{artifactColumn}</span>
+        <span role="columnheader">{statusColumn}</span>
+      </div>
+
+      {evidence.claims.map((item) => (
+        <a href={localizePath(item.href, locale)} class="evidence-ledger__row" role="row">
+          <span role="cell">{item.claim}</span>
+          <span role="cell">{item.evidence}</span>
+          <strong role="cell">{item.artifact}</strong>
+          <em role="cell">{item.status}</em>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

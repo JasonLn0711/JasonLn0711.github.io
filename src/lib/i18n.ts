@@ -78,28 +78,50 @@ const siteOverrides = {
 const homeOverrides = {
   "zh-tw": {
     hero: {
-      eyebrow: "Jason Chia-Sheng Lin｜NYCU 博士生",
-      headline: "我打造能在語音、安全與受規範場域中真正落地的 AI 系統。",
+      eyebrow: "研究資料庫｜AI Agents｜資安",
+      headline: "為重視證據的工作打造值得信賴的 AI 系統。",
       description:
-        "這是我的研究與作品網站，整理我在值得信賴的 AI、語音智能、資安，以及重視證據、可審查性與部署現實的系統工作。",
+        "這是一個技術型研究與作品網站，讓研究合作夥伴、招募團隊與活動主辦方，可以快速檢視我在 AI agents、語音智能、資安與受規範部署中的研究脈絡、系統案例、演講與文章。",
       primaryCta: {
         label: "瀏覽研究"
       },
       secondaryCta: {
-        label: "查看專案"
+        label: "查看系統案例"
       },
+      tertiaryCta: {
+        label: "查看演講"
+      },
+      capabilities: [
+        "保留證據與人工審查控制權的 agent 工作流程",
+        "為長音訊與對話分析而設計的語音與逐字稿管線",
+        "面向受規範場域的安全導向部署思維"
+      ],
+      trace: [
+        {
+          label: "來源",
+          value: "音訊、逐字稿、威脅紀錄、研究筆記"
+        },
+        {
+          label: "管線",
+          value: "ASR、RAG、agents、評估、威脅建模"
+        },
+        {
+          label: "審查",
+          value: "可讀的證據、決策與交接"
+        }
+      ],
       metrics: [
         {
           label: "目前身分",
           value: "NYCU 博士生"
         },
         {
-          label: "主要領域",
-          value: "值得信賴的 AI、語音智能與資安"
+          label: "系統焦點",
+          value: "AI agents、語音智能與安全導向系統"
         },
         {
-          label: "建議入口",
-          value: "想先看研究方向可從研究頁開始，想看實作證據可先看專案，想邀請演講可直接看演講頁"
+          label: "公開訊號",
+          value: "CYBERSEC 2026 演講與 CISC 2025 論文"
         }
       ],
       routes: [
@@ -123,27 +145,168 @@ const homeOverrides = {
         "演講、網頁版講稿與聯絡方式"
       ]
     },
+    architecture: {
+      eyebrow: "網站架構",
+      title: "這個網站會像技術系統一樣被組織，而不是鬆散的作品集。",
+      description:
+        "新版借用 Triton 頁面的清楚結構：明確的技術定位、精簡能力列表、清楚的進入路徑，以及可以檢視研究、實作與公開發表的證據區塊。",
+      diagramTitle: "工作模型",
+      diagramDescription: "證據從語音、文字、威脅與研究來源進入，經過 grounded AI 工作流程，再走向人工審查或部署判斷。",
+      layers: [
+        {
+          label: "擷取",
+          value: "音訊、逐字稿、證據、威脅訊號"
+        },
+        {
+          label: "推理",
+          value: "檢索、agents、抽取、系統評估"
+        },
+        {
+          label: "審查",
+          value: "可追溯性、不確定性、人工核准"
+        },
+        {
+          label: "部署",
+          value: "安全、治理、受規範工作流程"
+        }
+      ],
+      capabilities: [
+        {
+          title: "證據導向的 AI agents",
+          description: "Agent 工作流程應該揭露它用了什麼、改了什麼、仍然不確定什麼，以及人應該在哪裡介入。",
+          tags: ["Agents", "評估", "審查"]
+        },
+        {
+          title: "語音智能管線",
+          description: "長音訊需要的不只是逐字稿，時間戳、說話者、檢索、抽取與可審閱輸出都必須保持連接。",
+          tags: ["ASR", "RAG", "逐字稿"]
+        },
+        {
+          title: "安全導向部署",
+          description: "高風險 AI 工作從一開始就需要威脅模型、隱私假設、稽核軌跡、回復路徑與治理設計。",
+          tags: ["資安", "隱私", "治理"]
+        }
+      ]
+    },
+    gettingStarted: {
+      eyebrow: "如何開始",
+      title: "依照你的來訪目的選擇入口。",
+      description:
+        "Triton 讓開發者很容易知道下一步要去哪裡。這個網站也應該讓合作夥伴、審閱者、招募團隊與活動主辦方快速找到入口。",
+      cards: [
+        {
+          title: "研究合作夥伴",
+          description: "先看研究主軸，再打開與你的實驗室或專案最接近的方向與案例研究。",
+          cta: "打開研究"
+        },
+        {
+          title: "招募團隊",
+          description: "先看精選系統案例，再用履歷與關於頁快速理解技術範圍與合作契合度。",
+          cta: "打開系統案例"
+        },
+        {
+          title: "活動主辦方",
+          description: "演講頁整理了可邀請主題、公開場次、會議論文與網頁版 keynote。",
+          cta: "打開演講"
+        },
+        {
+          title: "讀者",
+          description: "文章區整理了 essay 與技術筆記，用來說明這些工作的判斷脈絡。",
+          cta: "打開文章"
+        }
+      ]
+    },
+    evidence: {
+      eyebrow: "證據軌跡",
+      title: "專案、論文、演講與文章應該互相支撐。",
+      description:
+        "首頁現在把每個成果都視為同一個資料庫的一部分：案例研究展示實作證據，演講展示公開技術框架，文章則留下連接兩者的推理過程。",
+      systemsLabel: "精選系統",
+      writingLabel: "研究筆記與文章",
+      speakingLabel: "論文與演講",
+      columns: ["主張", "證據", "成果", "狀態"],
+      claims: [
+        {
+          claim: "以值得信賴 AI 與部署敏感系統為核心的博士研究基礎。",
+          evidence: "NYCU 實驗室脈絡、專業簡介與目前研究主軸。",
+          artifact: "關於 / 履歷頁",
+          status: "目前"
+        },
+        {
+          claim: "針對受規範 AI 與 AI SaMD 資安的公開技術框架。",
+          evidence: "CYBERSEC 2026 官方場次與網頁版 keynote 敘事。",
+          artifact: "受規範 AI 資安演講",
+          status: "已發布"
+        },
+        {
+          claim: "橫跨勒索軟體防禦與 Threat Pulse Modeling 的資安研究溝通。",
+          evidence: "兩場 CISC 2025 英文會議論文場次已整理於演講頁。",
+          artifact: "演講總覽",
+          status: "已發布"
+        },
+        {
+          claim: "長音訊與可審閱證據流程的實作思維。",
+          evidence: "ASR + 檢索 + LLM 抽取案例研究，並具備明確評估視角。",
+          artifact: "語音證據管線",
+          status: "進行中"
+        },
+        {
+          claim: "詐欺對話分析中的 grounded RAG 架構。",
+          evidence: "以逐字稿檢索為核心，面向分析師審查的工作流程。",
+          artifact: "詐欺 RAG 案例",
+          status: "進行中"
+        }
+      ]
+    },
+    projectReadiness: {
+      eyebrow: "專案成熟度",
+      title: "每個精選系統都會標出目前成熟度。",
+      description:
+        "這些標籤把早期研究、具體原型、論文支撐工作、接近產品敘事的案例，以及封存成果分開，讓訪客知道應該如何閱讀每個專案。",
+      levels: [
+        {
+          level: "Research seed",
+          description: "已形成問題、參考文獻與下一步評估方向的研究種子。"
+        },
+        {
+          level: "Prototype",
+          description: "已具備足夠具體度，可以討論實作路徑的系統或管線方向。"
+        },
+        {
+          level: "Paper-backed",
+          description: "與論文、正式投稿或會議型成果連結的專案。"
+        },
+        {
+          level: "Production-style case study",
+          description: "具備部署假設、使用者流程與風險控制說明的完整案例。"
+        },
+        {
+          level: "Archived",
+          description: "作為參考保留的已完成或歷史成果。"
+        }
+      ]
+    },
     research: {
       eyebrow: "研究方向",
-      title: "以部署現實、證據與安全為核心的研究主軸。",
+      title: "核心研究方向。",
       description: "這些工作圍繞幾個核心問題展開，關心的是當可靠性、可追溯性與營運限制被當成一級需求時，AI 系統該如何被設計。",
       browseLabel: "查看完整研究總覽"
     },
     projects: {
-      eyebrow: "精選專案",
-      title: "值得信賴的 AI、語音智能與安全導向系統的案例研究。",
-      description: "每個專案都用案例研究的方式呈現，讓訪客看見問題定義、系統選擇，以及它在真實場域中的意義。",
-      browseLabel: "瀏覽全部專案"
+      eyebrow: "精選系統",
+      title: "讓架構可以被檢視的案例研究。",
+      description: "每個專案都說明問題、系統設計，以及真實工作中真正重要的證據。",
+      browseLabel: "瀏覽全部系統"
     },
     writing: {
-      eyebrow: "精選文章",
-      title: "關於值得信賴的 AI、有據可循的系統，以及實務判斷的文章。",
-      description: "透過文章與研究筆記，把技術判斷背後的思路整理清楚。",
+      eyebrow: "研究筆記",
+      title: "保留推理層的文章。",
+      description: "透過文章與研究筆記，把技術判斷與系統設計背後的思路整理清楚。",
       browseLabel: "查看全部文章"
     },
     speaking: {
-      eyebrow: "演講 / 分享",
-      title: "歡迎研究演講、技術分享與跨領域對談邀請。",
+      eyebrow: "論文 / 演講",
+      title: "面向嚴肅部署的公開技術框架。",
       description:
         "近期公開活動涵蓋官方場次與英文會議論文，主題橫跨值得信賴的 AI、資安、威脅情報、語音系統，以及 AI 在重視可靠性與可追溯性場域中的落地問題。",
       browseLabel: "瀏覽演講與主題"
@@ -161,28 +324,50 @@ const homeOverrides = {
   },
   ja: {
     hero: {
-      eyebrow: "Jason Chia-Sheng Lin | NYCU博士課程",
-      headline: "音声・セキュリティ・規制環境でも、現実に運用できるAIシステムを設計しています。",
+      eyebrow: "Research Library | AI Agents | Cybersecurity",
+      headline: "証拠が重要な仕事のための、信頼できるAIシステム。",
       description:
-        "このサイトは、信頼できるAI、音声インテリジェンス、サイバーセキュリティ、そして証拠性・レビュー可能性・導入現実を重視するシステム研究をまとめた個人サイトです。",
+        "AIエージェント、音声インテリジェンス、サイバーセキュリティ、規制環境での導入に関する研究テーマ、システム事例、講演、文章を、共同研究者・採用担当・イベント主催者が確認しやすい形で整理した技術ポートフォリオです。",
       primaryCta: {
         label: "研究を見る"
       },
       secondaryCta: {
-        label: "プロジェクトを見る"
+        label: "システム事例を見る"
       },
+      tertiaryCta: {
+        label: "講演を見る"
+      },
+      capabilities: [
+        "証拠と人間レビューの制御を保つエージェントワークフロー",
+        "長時間音声と会話分析に向けた音声・文字起こしパイプライン",
+        "規制環境を見据えたセキュリティ志向の導入設計"
+      ],
+      trace: [
+        {
+          label: "Source",
+          value: "音声、文字起こし、脅威記録、研究ノート"
+        },
+        {
+          label: "Pipeline",
+          value: "ASR、RAG、agents、評価、脅威モデリング"
+        },
+        {
+          label: "Review",
+          value: "読みやすい証拠、判断、引き継ぎ"
+        }
+      ],
       metrics: [
         {
           label: "現在の所属",
           value: "NYCU 博士課程"
         },
         {
-          label: "主な領域",
-          value: "信頼できるAI、音声インテリジェンス、サイバーセキュリティ"
+          label: "システムの焦点",
+          value: "AIエージェント、音声インテリジェンス、セキュリティ志向システム"
         },
         {
-          label: "おすすめの見方",
-          value: "研究の方向は研究ページ、実装例はプロジェクト、登壇相談は講演ページからどうぞ"
+          label: "公開シグナル",
+          value: "CYBERSEC 2026 セッションと CISC 2025 論文"
         }
       ],
       routes: [
@@ -206,27 +391,168 @@ const homeOverrides = {
         "講演、Web版講演記録、連絡先"
       ]
     },
+    architecture: {
+      eyebrow: "サイト構造",
+      title: "このサイトは、単なるポートフォリオではなく技術システムのように整理しています。",
+      description:
+        "Triton の明快さを参考に、技術的な約束、能力リスト、入口、研究・実装・発表を確認できる証拠セクションを中心に構成しています。",
+      diagramTitle: "Working model",
+      diagramDescription: "証拠は音声、テキスト、脅威、研究ソースから入り、grounded AI ワークフローを通って人間レビューや導入判断へ進みます。",
+      layers: [
+        {
+          label: "Capture",
+          value: "音声、文字起こし、証拠、脅威シグナル"
+        },
+        {
+          label: "Reason",
+          value: "検索、agents、抽出、システム評価"
+        },
+        {
+          label: "Review",
+          value: "追跡可能性、不確実性、人間の承認"
+        },
+        {
+          label: "Deploy",
+          value: "セキュリティ、ガバナンス、規制ワークフロー"
+        }
+      ],
+      capabilities: [
+        {
+          title: "証拠志向のAIエージェント",
+          description: "エージェントワークフローは、何を使い、何を変更し、何が不確かで、人がどこで介入すべきかを見えるようにする必要があります。",
+          tags: ["Agents", "評価", "レビュー"]
+        },
+        {
+          title: "音声インテリジェンス・パイプライン",
+          description: "長時間音声には文字起こしだけでなく、時刻、話者、検索、抽出、レビュー可能な出力の接続が必要です。",
+          tags: ["ASR", "RAG", "文字起こし"]
+        },
+        {
+          title: "セキュリティ志向の導入",
+          description: "高リスクなAIには、脅威モデル、プライバシー前提、監査ログ、ロールバック、ガバナンスが最初から必要です。",
+          tags: ["セキュリティ", "プライバシー", "ガバナンス"]
+        }
+      ]
+    },
+    gettingStarted: {
+      eyebrow: "Getting Started",
+      title: "訪問目的に合わせて入口を選べます。",
+      description:
+        "Triton が開発者に次の一歩を示すように、このサイトも共同研究者、レビュー担当、採用チーム、イベント主催者がすぐに目的地へ進める構造にしています。",
+      cards: [
+        {
+          title: "共同研究者",
+          description: "研究アジェンダから入り、ラボやプロジェクトに近い研究方向と事例を開けます。",
+          cta: "研究を開く"
+        },
+        {
+          title: "採用チーム",
+          description: "代表的なシステム事例を確認し、経歴とプロフィールで技術範囲と適合性を見られます。",
+          cta: "システム事例を開く"
+        },
+        {
+          title: "イベント主催者",
+          description: "講演ページには登壇テーマ、公開セッション、会議論文、Web版 keynote を整理しています。",
+          cta: "講演を開く"
+        },
+        {
+          title: "読者",
+          description: "文章アーカイブでは、技術的判断の背景を説明するエッセイとノートを読めます。",
+          cta: "文章を開く"
+        }
+      ]
+    },
+    evidence: {
+      eyebrow: "Evidence Trail",
+      title: "プロジェクト、論文、講演、文章が互いに補強し合う構造です。",
+      description:
+        "ホームページでは各成果物を同じライブラリの一部として扱います。事例は実装の証拠を示し、講演は公開された技術的枠組みを示し、文章はその reasoning を残します。",
+      systemsLabel: "代表システム",
+      writingLabel: "研究ノートと文章",
+      speakingLabel: "論文と講演",
+      columns: ["主張", "証拠", "成果物", "状態"],
+      claims: [
+        {
+          claim: "信頼できるAIと導入制約を意識したシステム研究を土台にしています。",
+          evidence: "NYCU 研究室の文脈、プロフィール、現在の研究アジェンダ。",
+          artifact: "プロフィール / 経歴ページ",
+          status: "現在"
+        },
+        {
+          claim: "規制AIとAI SaMDサイバーセキュリティに関する公開技術フレーミング。",
+          evidence: "CYBERSEC 2026 公式セッションとWeb版 keynote narrative。",
+          artifact: "規制AIサイバーセキュリティ講演",
+          status: "公開済み"
+        },
+        {
+          claim: "ランサムウェア防御と Threat Pulse Modeling を横断するセキュリティ研究発信。",
+          evidence: "CISC 2025 英語会議論文2件を講演ページで整理。",
+          artifact: "講演概要",
+          status: "公開済み"
+        },
+        {
+          claim: "長時間音声とレビュー可能な証拠を扱う実装志向。",
+          evidence: "ASR + retrieval + LLM extraction のケーススタディと評価観点。",
+          artifact: "音声証拠パイプライン",
+          status: "進行中"
+        },
+        {
+          claim: "不正会話分析のための grounded RAG フレーミング。",
+          evidence: "文字起こし検索を中心にした、分析者レビュー向けワークフロー。",
+          artifact: "不正RAGケーススタディ",
+          status: "進行中"
+        }
+      ]
+    },
+    projectReadiness: {
+      eyebrow: "プロジェクト成熟度",
+      title: "代表システムには、それぞれ成熟度の目印を付けています。",
+      description:
+        "初期研究、具体的なプロトタイプ、論文に支えられた成果、実運用に近いケーススタディ、アーカイブ済み成果を分けて、読み方がわかるようにしています。",
+      levels: [
+        {
+          level: "Research seed",
+          description: "問い、参考文献、次の評価作業が明確になった研究の種です。"
+        },
+        {
+          level: "Prototype",
+          description: "実装パスとして議論できる具体度を持ったシステムまたはパイプラインです。"
+        },
+        {
+          level: "Paper-backed",
+          description: "論文、投稿、会議向け成果物とつながっているプロジェクトです。"
+        },
+        {
+          level: "Production-style case study",
+          description: "導入前提、ユーザーワークフロー、リスク制御まで説明するケーススタディです。"
+        },
+        {
+          level: "Archived",
+          description: "参照用に残している完了済みまたは過去の成果です。"
+        }
+      ]
+    },
     research: {
       eyebrow: "研究方向",
-      title: "実装、証拠性、安全性から組み立てている研究テーマです。",
+      title: "中心となる研究方向。",
       description: "信頼性、追跡可能性、運用制約を設計の中心に置いたとき、AIシステムはどうあるべきかを、いくつかの軸に分けて追っています。",
       browseLabel: "研究全体を見る"
     },
     projects: {
-      eyebrow: "代表プロジェクト",
-      title: "信頼できるAI、音声インテリジェンス、セキュリティ志向のシステムに関するケーススタディ。",
-      description: "各プロジェクトは、課題設定、設計判断、実務上の意味が伝わるようケーススタディとしてまとめています。",
-      browseLabel: "すべてのプロジェクト"
+      eyebrow: "代表システム",
+      title: "アーキテクチャを確認できるケーススタディ。",
+      description: "各プロジェクトは、課題、システム設計、実務で重要な証拠を説明します。",
+      browseLabel: "すべてのシステム"
     },
     writing: {
-      eyebrow: "注目の文章",
-      title: "信頼できるAI、根拠をたどれるシステム、実務判断についての文章です。",
-      description: "エッセイや研究ノートを通じて、技術判断の背景が見えるようにしています。",
+      eyebrow: "研究ノート",
+      title: "reasoning の層を残す文章。",
+      description: "エッセイや研究ノートを通じて、技術判断とシステム設計の背景が見えるようにしています。",
       browseLabel: "すべての文章"
     },
     speaking: {
-      eyebrow: "講演 / 登壇",
-      title: "研究講演、技術共有、分野横断の対話に対応しています。",
+      eyebrow: "論文 / 講演",
+      title: "真剣な導入に向けた公開技術フレーミング。",
       description:
         "最近の登壇には公式セッションと英語会議論文の発表があり、主題は信頼できるAI、サイバーセキュリティ、脅威インテリジェンス、音声システム、そして信頼性と追跡可能性が求められる現場でのAI導入です。",
       browseLabel: "講演テーマを見る"
@@ -845,6 +1171,9 @@ const pageCopy = {
       continueFromThisPieceDescription:
         "If this note was useful, the next helpful step is usually to compare it with the research agenda, a project case study, or start a conversation.",
       projectSnapshot: "Project Snapshot",
+      readiness: "Readiness",
+      lastReviewed: "Last reviewed",
+      nextStep: "Next step",
       bestNextSteps: "Best next steps",
       seeResearch: "See research",
       discussThisWork: "Discuss this work",
@@ -1146,6 +1475,9 @@ const pageCopy = {
       continueFromThisPieceDescription:
         "如果這篇文章對你有幫助，下一個通常最有價值的動作，是把它和研究方向、案例研究，或一場具體對話放在一起看。",
       projectSnapshot: "專案摘要",
+      readiness: "成熟度",
+      lastReviewed: "最後檢視",
+      nextStep: "下一步",
       bestNextSteps: "建議下一步",
       seeResearch: "查看研究",
       discussThisWork: "討論這項工作",
@@ -1447,6 +1779,9 @@ const pageCopy = {
       continueFromThisPieceDescription:
         "この記事が役に立ったなら、次の一歩としては研究ページやケーススタディと見比べるか、具体的な相談につなげるのがいちばん有効です。",
       projectSnapshot: "プロジェクト概要",
+      readiness: "成熟度",
+      lastReviewed: "最終確認",
+      nextStep: "次のステップ",
       bestNextSteps: "次に見るなら",
       seeResearch: "研究を見る",
       discussThisWork: "この取り組みについて話す",

@@ -13,6 +13,11 @@ stack:
 featured: true
 status: Active Study
 cover: /projects/federated-learning-leakage-study.svg
+readiness:
+  level: Research seed
+  summary: A security research direction with public threat-model framing and supporting references.
+  updated: 2026-05-07
+  next: Compare attack and defense assumptions across collaborative training scenarios.
 ---
 
 ## Privacy leakage in federated learning is still an operational problem
