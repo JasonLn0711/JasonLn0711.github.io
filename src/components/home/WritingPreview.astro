@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { formatDate, formatLabel, getBlogPath } from "../../lib/content";
 import { defaultLocale, getLocalizedHome, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
-import BlogCard from "../blog/BlogCard.astro";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
@@ -15,9 +15,9 @@ const copy = getPageCopy(locale);
 
 <section class="section" data-analytics-location="home_writing">
   <div class="shell space-y-8">
-    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div class="max-w-3xl">
-        <span class="eyebrow">{home.writing.eyebrow}</span>
+    <div class="grid gap-5 lg:grid-cols-[minmax(0,0.82fr)_auto] lg:items-end">
+      <div class="section-intro">
+        <span class="section-kicker">{home.writing.eyebrow}</span>
         <h2 class="section-title">{home.writing.title}</h2>
         <p class="section-copy">{home.writing.description}</p>
       </div>
@@ -27,8 +27,29 @@ const copy = getPageCopy(locale);
     </div>
 
     {posts.length > 0 ? (
-      <div class="grid gap-6 lg:grid-cols-3" data-analytics-location="home_writing_preview">
-        {posts.map((post) => <BlogCard post={post} analyticsLocation="home_writing_preview" locale={locale} />)}
+      <div class="publication-rail" data-analytics-location="home_writing_preview">
+        {posts.map((post) => (
+          <a href={getBlogPath(post, locale)} class="publication-row group" data-analytics-label={post.data.title}>
+            <img src={post.data.cover} alt={`${post.data.title} cover`} loading="lazy" />
+            <div class="flex h-full flex-col gap-4">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="mono-label">{formatLabel(post.data.category, locale)}</span>
+                <span class="status-token">{formatDate(post.data.pubDate, locale)}</span>
+              </div>
+              <h3 class="text-2xl font-semibold tracking-tight text-white transition group-hover:text-[var(--color-accent-strong)]">
+                {post.data.title}
+              </h3>
+              <p class="max-w-[70ch] text-sm leading-7 text-slate-300">{post.data.description}</p>
+              <div class="mt-auto flex flex-wrap gap-2">
+                {post.data.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
+              </div>
+              <span class="action-link">
+                {copy.common.readArticle}
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
     ) : (
       <div class="panel p-8">

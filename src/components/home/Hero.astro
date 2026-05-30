@@ -18,24 +18,23 @@ const trace = home.hero.trace.map((item, index) => ({
   ...item,
   number: String(index + 1).padStart(2, "0")
 }));
+const [primaryMetric, ...supportMetrics] = home.hero.metrics;
 ---
 
 <section class="home-hero" style={`--hero-image: url("${profile.avatar}")`} data-analytics-location="home_hero">
   <div class="home-hero__pattern" aria-hidden="true"></div>
   <div class="home-hero__image" aria-hidden="true"></div>
 
-  <div class="shell relative z-10 grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.46fr)] lg:items-end lg:py-20">
-    <div class="max-w-4xl space-y-7">
-      <div class="space-y-4">
-        <span class="eyebrow">{home.hero.eyebrow}</span>
-        <p class="max-w-2xl text-sm font-semibold text-emerald-100/90">{profile.title}</p>
-      </div>
+  <div class="shell relative z-10 grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-end lg:py-20">
+    <div class="max-w-5xl space-y-7">
+      <p class="eyebrow">{home.hero.eyebrow}</p>
 
       <div class="space-y-5">
-        <h1 class="max-w-4xl text-5xl font-semibold text-white sm:text-6xl lg:text-7xl">
+        <p class="max-w-2xl text-sm font-semibold text-[var(--color-accent-strong)]">{profile.title}</p>
+        <h1 class="hero-display max-w-5xl text-5xl font-semibold text-white sm:text-6xl lg:text-7xl">
           {profile.name}
         </h1>
-        <p class="max-w-3xl text-2xl font-semibold leading-9 text-emerald-50 sm:text-3xl">
+        <p class="max-w-3xl text-2xl font-semibold leading-tight text-white sm:text-3xl">
           {home.hero.headline}
         </p>
         <p class="max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
@@ -50,37 +49,56 @@ const trace = home.hero.trace.map((item, index) => ({
         <a href={localizePath(home.hero.secondaryCta.href, locale)} class="button-secondary">
           {home.hero.secondaryCta.label}
         </a>
-        <a href={localizePath(home.hero.tertiaryCta.href, locale)} class="button-secondary">
-          {home.hero.tertiaryCta.label}
-        </a>
       </div>
 
-      <ul class="grid max-w-4xl gap-3 md:grid-cols-3">
+      <div class="grid max-w-4xl gap-3 md:grid-cols-3" aria-label="Homepage capability summary">
         {home.hero.capabilities.map((capability) => (
-          <li class="hero-capability">
+          <p class="hero-capability">
             <span class="hero-capability__mark" aria-hidden="true"></span>
             <span>{capability}</span>
-          </li>
+          </p>
         ))}
-      </ul>
+      </div>
     </div>
 
-    <aside class="hero-console" aria-label="Homepage system trace">
-      <div class="hero-console__header">
-        <span>{profile.handle}</span>
-        <span>{profile.institutionShort}</span>
+    <aside class="hero-briefing" aria-label="Homepage inspection briefing">
+      <div class="hero-console">
+        <div class="hero-console__header">
+          <span>{profile.handle}</span>
+          <span>{profile.institutionShort}</span>
+        </div>
+        <ol class="hero-console__trace">
+          {trace.map((item) => (
+            <li>
+              <span>{item.number}</span>
+              <div>
+                <strong>{item.label}</strong>
+                <p>{item.value}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-      <ol class="hero-console__trace">
-        {trace.map((item) => (
-          <li>
-            <span>{item.number}</span>
+
+      <div class="surface-card">
+        <p class="mono-label">{primaryMetric.label}</p>
+        <p class="mt-3 text-xl font-semibold leading-tight text-white">{primaryMetric.value}</p>
+        <div class="mt-5 grid gap-3">
+          {supportMetrics.map((metric) => (
             <div>
-              <strong>{item.label}</strong>
-              <p>{item.value}</p>
+              <p class="mono-label">{metric.label}</p>
+              <p class="mt-1 text-sm leading-6 text-slate-200">{metric.value}</p>
             </div>
-          </li>
-        ))}
-      </ol>
+          ))}
+        </div>
+      </div>
+
+      <nav class="hero-route-list" aria-label="Homepage routes">
+        <a href={localizePath(home.hero.tertiaryCta.href, locale)} class="surface-link">
+          <span class="block text-sm font-semibold text-white">{home.hero.tertiaryCta.label}</span>
+          <span class="mt-2 block text-xs leading-5 text-slate-400">{home.hero.routes[2]?.description}</span>
+        </a>
+      </nav>
     </aside>
   </div>
 </section>
