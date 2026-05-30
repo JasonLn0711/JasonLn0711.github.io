@@ -33,8 +33,8 @@ const eventHighlights = [
       <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
         <div class="space-y-7">
           <div class="space-y-4">
-            <span class="eyebrow mb-0">{talkStory.eyebrow}</span>
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500">
+            <span class="section-kicker">{talkStory.eyebrow}</span>
+            <p class="mono-label">
               {heroSection.chapter} · {heroSection.navLabel}
             </p>
           </div>
@@ -65,11 +65,11 @@ const eventHighlights = [
           </dl>
         </div>
 
-        <aside class="panel p-7 sm:p-8">
+        <aside class="dossier-panel p-7 sm:p-8">
           <div class="space-y-6">
             <div class="flex flex-wrap items-center gap-3">
               <span class="pill">{featured.label}</span>
-              <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{featured.event}</span>
+              <span class="mono-label">{featured.event}</span>
             </div>
 
             <div class="space-y-3">
@@ -81,15 +81,15 @@ const eventHighlights = [
 
             <div class="grid gap-3 sm:grid-cols-2">
               {eventHighlights.map((item) => (
-                <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4">
-                  <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{item.label}</p>
+                <div class="surface-card p-4">
+                  <p class="mono-label">{item.label}</p>
                   <p class="mt-2 text-sm leading-7 text-slate-200">{item.value}</p>
                 </div>
               ))}
             </div>
 
-            <div class="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-5">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Through-line</p>
+            <div class="surface-card">
+              <p class="mono-label">Through-line</p>
               <p class="mt-3 text-base leading-8 text-slate-300">
                 The keynote moves from a single hospital incident to a broader systems claim: trustworthy medical AI depends on hardware, runtime, protocols, governance, and operational control, not only on model performance.
               </p>
@@ -426,9 +426,9 @@ const eventHighlights = [
                 >
                   <defs>
                     <linearGradient id="federated-flow-line" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#63a4ff" stop-opacity="0.2"></stop>
-                      <stop offset="50%" stop-color="#63a4ff" stop-opacity="0.95"></stop>
-                      <stop offset="100%" stop-color="#8fb8ff" stop-opacity="0.5"></stop>
+                      <stop offset="0%" stop-color="#65d6bb" stop-opacity="0.2"></stop>
+                      <stop offset="50%" stop-color="#65d6bb" stop-opacity="0.95"></stop>
+                      <stop offset="100%" stop-color="#9be8d4" stop-opacity="0.5"></stop>
                     </linearGradient>
                     <marker
                       id="federated-flow-arrow"
@@ -438,7 +438,7 @@ const eventHighlights = [
                       refY="6"
                       orient="auto-start-reverse"
                     >
-                      <path d="M1,1 L11,6 L1,11 Z" fill="#8fb8ff"></path>
+                      <path d="M1,1 L11,6 L1,11 Z" fill="#9be8d4"></path>
                     </marker>
                   </defs>
 

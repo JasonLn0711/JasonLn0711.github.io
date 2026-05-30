@@ -22,13 +22,13 @@ function MeshCloud() {
     <group ref={group}>
       <mesh>
         <icosahedronGeometry args={[1.35, 1]} />
-        <meshBasicMaterial color="#6ea8ff" transparent opacity={0.24} wireframe />
+        <meshBasicMaterial color="#65d6bb" transparent opacity={0.24} wireframe />
       </mesh>
       <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[points, 3]} />
         </bufferGeometry>
-        <PointMaterial color="#d8e8ff" transparent size={0.04} sizeAttenuation depthWrite={false} />
+        <PointMaterial color="#eef4f0" transparent size={0.04} sizeAttenuation depthWrite={false} />
       </points>
     </group>
   );
@@ -37,9 +37,9 @@ function MeshCloud() {
 export default function HeroScene() {
   return (
     <Canvas camera={{ position: [0, 0, 4.2], fov: 45 }} dpr={[1, 1.6]}>
-      <color attach="background" args={["#0b1020"]} />
+      <color attach="background" args={["#0b0f0f"]} />
       <ambientLight intensity={1.1} />
-      <directionalLight position={[2, 2, 3]} intensity={1.1} color="#9ec5ff" />
+      <directionalLight position={[2, 2, 3]} intensity={1.1} color="#9be8d4" />
       <MeshCloud />
     </Canvas>
   );
