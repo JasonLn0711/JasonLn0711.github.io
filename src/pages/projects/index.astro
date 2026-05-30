@@ -25,7 +25,7 @@ const filters = [
   <section class="page-frame">
     <div class="page-stack">
       <div class="page-intro">
-        <span class="eyebrow">{copy.common.projects}</span>
+        <span class="section-kicker">{copy.common.projects}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
           {copy.projectsPage.title}
         </h1>
@@ -34,7 +34,7 @@ const filters = [
         </p>
       </div>
 
-      <section class="section-card flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <section class="dossier-panel flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div class="max-w-2xl space-y-2">
           <h2 class="text-lg font-semibold text-white">{copy.projectsPage.filterTitle}</h2>
           <p class="text-sm leading-7 text-slate-300">
@@ -68,11 +68,11 @@ const filters = [
         ))}
       </div>
 
-      <div id="project-grid" class="grid gap-6 xl:grid-cols-3" data-analytics-location="projects_index_grid">
+      <div id="project-grid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3" data-analytics-location="projects_index_grid">
         {projects.map((project) => <ProjectCard project={project} filters={projectFilters(project)} analyticsLocation="projects_index_grid" locale={locale} />)}
       </div>
 
-      <section class="section-card flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between" data-analytics-location="projects_broader_context">
+      <section class="dossier-panel flex flex-col gap-5 p-7 lg:flex-row lg:items-center lg:justify-between" data-analytics-location="projects_broader_context">
         <div class="space-y-2">
           <h2 class="text-2xl font-semibold text-white">{copy.projectsPage.broaderContextTitle}</h2>
           <p class="max-w-2xl text-base leading-8 text-slate-300">

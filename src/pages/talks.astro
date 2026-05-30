@@ -24,12 +24,12 @@ const copy = getPageCopy(locale);
   <section class="page-frame">
     <div class="page-stack">
       <div class="page-intro">
-        <span class="eyebrow">{speaking.page.eyebrow}</span>
+        <span class="section-kicker">{speaking.page.eyebrow}</span>
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{speaking.page.title}</h1>
         <p class="page-summary">{speaking.page.description}</p>
       </div>
 
-      <section class="section-card grid gap-4 sm:grid-cols-3">
+      <section class="route-board">
         <a href="#featured-talk" class="surface-link">
           <span class="block text-sm font-semibold text-white">{copy.talksPage.reviewTitle}</span>
           <span class="mt-2 block text-sm leading-6 text-slate-400">{copy.talksPage.reviewDescription}</span>
@@ -44,8 +44,8 @@ const copy = getPageCopy(locale);
         </a>
       </section>
 
-      <article id="featured-talk" class="section-card grid gap-8 overflow-hidden lg:grid-cols-[280px_minmax(0,1fr)]">
-        <div class="overflow-hidden rounded-3xl border border-white/[0.08]">
+      <article id="featured-talk" class="dossier-panel grid gap-8 overflow-hidden p-7 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <div class="overflow-hidden rounded-[var(--radius-panel)] border border-white/[0.08]">
           <img
             src={profile.avatar}
             alt={`Portrait of ${profile.name}`}
@@ -57,7 +57,7 @@ const copy = getPageCopy(locale);
         <div class="flex flex-col justify-center gap-5">
           <div class="flex flex-wrap items-center gap-3">
             <span class="pill w-fit">{speaking.featuredEngagement.label}</span>
-            <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{speaking.featuredEngagement.event}</span>
+            <span class="mono-label">{speaking.featuredEngagement.event}</span>
           </div>
 
           <div class="space-y-3">
@@ -67,19 +67,19 @@ const copy = getPageCopy(locale);
 
           <div class="grid gap-3 sm:grid-cols-2">
             <div class="surface-card p-4">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.schedule}</p>
+              <p class="mono-label">{copy.talksPage.schedule}</p>
               <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.schedule}</p>
             </div>
             <div class="surface-card p-4">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.track}</p>
+              <p class="mono-label">{copy.talksPage.track}</p>
               <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.track}</p>
             </div>
             <div class="surface-card p-4">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.location}</p>
+              <p class="mono-label">{copy.talksPage.location}</p>
               <p class="mt-2 text-sm leading-7 text-slate-200">{speaking.featuredEngagement.venue}</p>
             </div>
             <div class="surface-card p-4">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.format}</p>
+              <p class="mono-label">{copy.talksPage.format}</p>
               <p class="mt-2 text-sm leading-7 text-slate-200">
                 {speaking.featuredEngagement.format} · {speaking.featuredEngagement.language}
               </p>
@@ -95,7 +95,7 @@ const copy = getPageCopy(locale);
           </div>
 
           <div class="surface-card">
-            <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.narrativeVersion}</p>
+            <p class="mono-label">{copy.talksPage.narrativeVersion}</p>
             <p class="mt-3 text-sm leading-7 text-slate-300">
               {copy.talksPage.narrativeVersionDescription}
             </p>
@@ -128,19 +128,19 @@ const copy = getPageCopy(locale);
       {speaking.additionalEngagements.length > 0 && (
         <section class="space-y-6">
           <div class="max-w-4xl space-y-3">
-            <span class="eyebrow">{copy.talksPage.englishSessionsEyebrow}</span>
+            <span class="section-kicker">{copy.talksPage.englishSessionsEyebrow}</span>
             <h2 class="text-3xl font-semibold tracking-tight text-white">{copy.talksPage.englishSessionsTitle}</h2>
             <p class="text-base leading-8 text-slate-300">
               {copy.talksPage.englishSessionsDescription}
             </p>
           </div>
 
-          <div class="grid gap-6">
+          <div class="timeline-stack">
             {speaking.additionalEngagements.map((engagement) => (
-              <article class="section-card flex flex-col gap-6">
+              <article class="timeline-item flex flex-col gap-6">
                 <div class="flex flex-wrap items-center gap-3">
                   <span class="pill">{engagement.label}</span>
-                  <span class="text-xs uppercase tracking-[0.18em] text-slate-500">{engagement.event}</span>
+                  <span class="mono-label">{engagement.event}</span>
                 </div>
 
                 <div class="space-y-3">
@@ -150,19 +150,19 @@ const copy = getPageCopy(locale);
 
                 <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   <div class="surface-card p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.schedule}</p>
+                    <p class="mono-label">{copy.talksPage.schedule}</p>
                     <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.schedule}</p>
                   </div>
                   <div class="surface-card p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.track}</p>
+                    <p class="mono-label">{copy.talksPage.track}</p>
                     <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.track}</p>
                   </div>
                   <div class="surface-card p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.venue}</p>
+                    <p class="mono-label">{copy.talksPage.venue}</p>
                     <p class="mt-2 text-sm leading-7 text-slate-200">{engagement.venue}</p>
                   </div>
                   <div class="surface-card p-4">
-                    <p class="text-xs uppercase tracking-[0.18em] text-slate-500">{copy.talksPage.format}</p>
+                    <p class="mono-label">{copy.talksPage.format}</p>
                     <p class="mt-2 text-sm leading-7 text-slate-200">
                       {engagement.format} · {engagement.language}
                     </p>
@@ -197,10 +197,10 @@ const copy = getPageCopy(locale);
 
       <section id="topics" class="grid gap-6 xl:grid-cols-3 scroll-mt-28">
         {speaking.topics.map((topic) => (
-          <article class="panel flex h-full flex-col gap-5 p-6 sm:p-7">
+          <article class="surface-card flex h-full flex-col gap-5">
             <h2 class="text-2xl font-semibold tracking-tight text-white">{topic.title}</h2>
             <p class="text-sm leading-7 text-slate-300">{topic.description}</p>
-            <p class="mt-auto text-xs uppercase tracking-[0.18em] text-slate-500">{topic.audience}</p>
+            <p class="mono-label mt-auto">{topic.audience}</p>
           </article>
         ))}
       </section>
