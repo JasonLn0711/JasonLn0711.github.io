@@ -1,5 +1,6 @@
 # Jason Chia-Sheng Lin
 
+<img src="http://estruyf-github.azurewebsites.net/api/VisitorHit?user=JasonLn0711&repo=JasonLn0711.github.io&countColor=%237B1E7B" alt="Visitor count"/>
 Doctoral Researcher, Artificial Intelligence in Medical Imaging / Signal Analysis Lab  
 National Yang Ming Chiao Tung University
 
