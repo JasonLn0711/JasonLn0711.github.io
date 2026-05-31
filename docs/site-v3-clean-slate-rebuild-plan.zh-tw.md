@@ -26,6 +26,45 @@ visual language must be rebuilt from design sources
 - 哪些邊界需要被保護；
 - 哪種技術棧最適合承載互動與視覺語言。
 
+## Implementation Checkpoint
+
+2026-05-31 已將 v3.0 從決策記錄推進為可建置的 clean-slate SvelteKit static site。
+
+目前事實狀態：
+
+- 已從 Astro app foundation 轉為 `SvelteKit + @sveltejs/adapter-static + TypeScript + GSAP + native CSS tokens`。
+- 主要 public route 已由 `src/routes/` 重新實作，內容集中在 `src/lib/content/site.ts`。
+- v3 concept images 已複製到 `public/design/v3-concepts/`，並由 `/design/` 作為公開 design-source gallery。
+- `/blog/` 與 `/blog/[slug]/` 保留為 writing archive 的 continuity aliases。
+- Traditional Chinese 最小公開表面已落在 `/zh-tw/` 與 `/zh-tw/contact/`。
+- `robots.txt` 已指向 `/sitemap.xml`，並加入 `public/.nojekyll` 以支援 GitHub Pages static output。
+
+Implementation 的 FIRST PRINCIPLE 決策：
+
+```text
+Trust must not depend on animation finishing.
+```
+
+因此目前 motion 只做非關鍵的 transform / connector movement。內容在無 JS、慢載入、reduced motion、headless screenshot、或動畫尚未完成時都必須維持可讀，不再讓 reveal 控制透明度或清晰度。
+
+已驗證：
+
+```bash
+npm run check
+npm run build
+```
+
+已用 headless Chromium 檢查重點頁：
+
+```text
+/
+/design/
+/research/
+/projects/
+/contact/
+/zh-tw/
+```
+
 ## Design Read
 
 Reading this as: a clean-slate personal research website rebuild for academic reviewers, collaborators, regulated AI / medical cybersecurity stakeholders, students, builders, organizers, and people with early unclear ideas, with a warm evidence-led atlas language, leaning toward an image-first, high-art-direction static site rather than an incremental Astro redesign.

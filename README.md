@@ -147,103 +147,73 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 
 ## About This Repository
 
-This repository contains the Astro source for my personal website and research portfolio, covering trustworthy AI, speech intelligence, cybersecurity, and regulated AI systems through research pages, project case studies, writing, and talks.
+This repository contains the SvelteKit static source for my personal website and research portfolio. The current public direction is **Living Research Atlas v3.0**: a clean-slate rebuild around trustworthy AI systems, speech intelligence, cybersecurity, regulated AI deployment, talks, writing, and low-pressure collaboration routes.
 
-## Website v3.0 Clean-Slate Rebuild Direction
-
-The next major direction is **Living Research Atlas / Warm Evidence Studio v3.0**: a full rebuild of the personal website from first principles, not an incremental Astro interface pass.
-
-The current source should be treated as a public content inventory and fallback baseline. The v3.0 effort may replace the framework, routing model, styling system, component architecture, and motion layer if that better serves the final site.
-
-Core design principle:
+The rebuild follows this first-principles chain:
 
 ```text
 visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action
 ```
 
-Durable v3.0 record:
+## Current v3.0 Implementation
+
+- Framework: SvelteKit with `@sveltejs/adapter-static`.
+- Styling: native CSS tokens and route-level Svelte styles.
+- Motion: GSAP-enhanced progressive movement with readable static fallbacks and reduced-motion support.
+- Content layer: `src/lib/content/site.ts`.
+- Static output: `build/`.
+- GitHub Pages support: `public/.nojekyll`, `robots.txt`, `/sitemap.xml`, and `/rss.xml`.
+
+Key routes:
+
+- `/`
+- `/design/`
+- `/audiences/`
+- `/research/` and `/research/[slug]/`
+- `/projects/` and `/projects/[slug]/`
+- `/talks/` and `/talks/regulated-ai-cybersecurity/`
+- `/writing/` and `/writing/[slug]/`
+- `/blog/` and `/blog/[slug]/` as continuity aliases
+- `/about/`
+- `/contact/`
+- `/resume/`
+- `/links/`
+- `/zh-tw/`
+- `/zh-tw/contact/`
+
+## Design And Content Records
+
+Durable v3.0 records:
 
 - [`docs/site-v3-clean-slate-rebuild-plan.zh-tw.md`](docs/site-v3-clean-slate-rebuild-plan.zh-tw.md)
+- [`docs/site-v3-design-source.zh-tw.md`](docs/site-v3-design-source.zh-tw.md)
+- [`docs/site-v3-content-inventory.zh-tw.md`](docs/site-v3-content-inventory.zh-tw.md)
 
-## Website v2.0 Direction
-
-The v2.0 redesign direction was **Warm Evidence Studio**: a calm, warm, evidence-led personal research portfolio that helps different visitors understand what they need to inspect next.
-
-The v2.0 interface routes visitors by intent, then keeps each page close to the same public reasoning chain:
+The section concept images used by `/design/` live in:
 
 ```text
-visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action
+public/design/v3-concepts/
 ```
 
-Implemented v2.0 surfaces include the homepage audience navigator, the `/audiences/` route, shared Warm Evidence Studio flows across research, project, talk, about, contact, resume, and blog pages, an about-page working-style proof, and intent-based contact cards for low-pressure outreach.
-
-Design records:
+Earlier v2.0 records remain useful as historical design context:
 
 - [`docs/site-v2-information-architecture.zh-tw.md`](docs/site-v2-information-architecture.zh-tw.md)
 - [`docs/site-v2-warm-evidence-studio-interface.zh-tw.md`](docs/site-v2-warm-evidence-studio-interface.zh-tw.md)
 
-## Recent SEO and Analytics Updates
+## Commands
 
-- Standardized the site's shared SEO pipeline through the Astro layout and head components instead of adding a second SEO framework.
-- Added unique, route-specific titles, meta descriptions, canonical URLs, Open Graph tags, and Twitter tags for the main public pages and detail pages.
-- Normalized canonical URL handling around the production domain: [https://jasonln0711.github.io](https://jasonln0711.github.io).
-- Refined structured data so the home page uses `Person`, `WebSite`, and `WebPage`; blog posts use `BlogPosting`; project pages use `ResearchProject`; and other public pages use `WebPage`.
-- Kept the 404 page accessible but marked it `noindex, follow`, and verified that it does not appear in the sitemap.
-- Verified that `robots.txt` points to the generated sitemap index at `/sitemap-index.xml`.
-- Added RSS discovery in the shared head as an absolute `alternate` feed link.
-- Improved factual image metadata for the shared headshot by adding dimensions and clearer alt text without changing the visual design.
-- Added a centralized analytics layer in the shared layout so tracking logic is defined once and reused across pages.
-- Added optimized high-value events for:
-  - `cta_click`
-  - `project_open`
-  - `blog_open`
-  - `contact_click`
-  - `external_link_click`
-  - `scroll_depth`
-  - `language_switch`
-  - `404_recovery`
-  - `navigation_click`
-  - `research_direction_open`
-  - `talk_open`
-  - `content_filter_use`
-- Added section-level location metadata so analytics can distinguish hero, navbar, footer, grid, card, and detail-page interactions.
-- Added optional Microsoft Clarity support for heatmaps and session replays without changing the site design.
-- Confirmed that the site remains visually unchanged and that `npm run build` passes after the refactor.
+```bash
+npm run check
+npm run build
+npm run preview
+```
 
-### Files Updated for This Refactor
+`npm run check` runs SvelteKit sync plus `svelte-check`. `npm run build` writes the static site to `build/`.
 
-- `.env.example`
-- `src/lib/site.ts`
-- `src/components/seo/Head.astro`
-- `src/layouts/BaseLayout.astro`
-- `src/components/layout/LanguageSwitcher.astro`
-- `src/components/layout/Navbar.astro`
-- `src/components/layout/Footer.astro`
-- `src/components/home/Hero.astro`
-- `src/components/home/ResearchThemes.astro`
-- `src/components/home/FeaturedProjects.astro`
-- `src/components/home/WritingPreview.astro`
-- `src/components/project/ProjectCard.astro`
-- `src/components/project/ProjectLayout.astro`
-- `src/components/blog/BlogCard.astro`
-- `src/pages/contact.astro`
-- `src/pages/links.astro`
-- `src/pages/blog/index.astro`
-- `src/pages/projects/index.astro`
-- `src/pages/research.astro`
-- `src/pages/research/[slug].astro`
-- `src/pages/404.astro`
+## Validation Snapshot
 
-### Analytics Setup
+Last verified during the v3.0 rebuild:
 
-1. Copy `.env.example` to `.env`.
-2. Paste the exact Plausible "Review Installation" snippet into `PUBLIC_PLAUSIBLE_SNIPPET`.
-3. Optionally add `PUBLIC_CLARITY_PROJECT_ID` for Microsoft Clarity.
-4. Optionally add `PUBLIC_GOOGLE_SITE_VERIFICATION_TOKEN` for Search Console.
-5. Run `npm run build` or redeploy.
-
-### Dashboard Notes
-
-- `scroll_depth` is intentionally tracked at `50` and `90` percent to keep the signal useful and lower-noise.
-- Plausible is the primary event layer; Clarity is optional and intended for replay/heatmap debugging rather than KPI reporting.
-- If you use the custom `external_link_click` event as your main outbound-link metric, avoid duplicating that with another outbound-link event source in your analytics dashboard.
+- `npm run check`
+- `npm run build`
+- Headless Chromium screenshots for `/`, `/design/`, `/research/`, `/projects/`, `/contact/`, and `/zh-tw/` on desktop/mobile viewports.

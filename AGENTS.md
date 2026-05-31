@@ -1,25 +1,34 @@
 # Repository Notes
 
-## Talk Story Page
+## Current Site
 
-- Route: `src/pages/talks/regulated-ai-cybersecurity.astro`
-- Content source: `src/data/talkStory.ts`
-- Landing page entry point: `src/pages/talks.astro`
-
-## How It Is Structured
-
-- The one-page keynote uses the shared site layout in `src/layouts/BaseLayout.astro`.
-- It reuses the global site primitives from `src/styles/global.css`, especially `shell`, `section`, `panel`, `eyebrow`, `pill`, and button classes.
-- Shared talk-specific wrappers live in `src/components/talks/TalkStorySection.astro` and `src/components/talks/TalkStoryNav.astro`.
-- The 20 sections are ordered by the `sections` array in `src/data/talkStory.ts`, with supporting labels and diagram data stored alongside it.
+- Current version: Living Research Atlas v3.0.
+- Framework: SvelteKit with static adapter.
+- Primary content source: `src/lib/content/site.ts`.
+- Routes: `src/routes/`.
+- Shared shell: `src/routes/+layout.svelte`.
+- Shared global styles: `src/app.css` and `src/lib/styles/tokens.css`.
+- Shared components: `src/lib/components/`.
+- Generated design references: `public/design/v3-concepts/`.
+- Design/source records: `docs/site-v3-*.zh-tw.md`.
 
 ## Editing Content
 
-- Update section labels, chapter ids, and diagram lists in `src/data/talkStory.ts`.
-- Update event metadata or the talks landing-page card in `src/data/speaking.ts` and `src/pages/talks.astro`.
-- Keep the page aligned with the existing site language instead of introducing a separate microsite style.
+- Update public identity, research, projects, talks, writing, routes, and localized copy in `src/lib/content/site.ts`.
+- Keep old `src/data/` and `src/content/` material as migration/source inventory unless a later cleanup explicitly removes it.
+- Update `/design/` source references when concept images change.
+- Keep public claims evidence-led and bounded. Do not publish private planning notes, raw contact context, credentials, tokens, patient-like data, or patent-sensitive mechanics.
+
+## Design Direction
+
+- First principle: visitor trust under limited attention.
+- Core chain: `visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action`.
+- Tone: warm, relaxed, rigorous, and helpful.
+- Interface language: deep graphite research atlas, cyan action states, restrained amber evidence markers, readable type, visible evidence surfaces, and low-pressure CTAs.
+- Motion should support orientation and must never make content unreadable. Reduced-motion users should get a static readable layout.
 
 ## Commands
 
 - `npm run check`
 - `npm run build`
+- `npm run preview`
