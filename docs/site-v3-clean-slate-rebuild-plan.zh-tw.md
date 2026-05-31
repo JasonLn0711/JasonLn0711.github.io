@@ -65,6 +65,38 @@ npm run build
 /zh-tw/
 ```
 
+## 2026-06-01 Live Smoke Follow-Up
+
+2026-06-01 已確認 GitHub Pages deploy pipeline 使用 SvelteKit static output：
+
+- `.github/workflows/deploy.yml` 透過 `npm ci`、`npm run check`、`npm run build` 建置網站。
+- GitHub Pages artifact 來源為 `build/`，不是舊 Astro action。
+- GitHub Actions run for `51a10c4` completed successfully.
+- Live site smoke checks returned HTTP `200` for:
+
+```text
+/
+/design/
+/research/
+/projects/
+/contact/
+/zh-tw/
+/sitemap.xml
+/rss.xml
+```
+
+FIRST PRINCIPLE follow-up:
+
+```text
+The release is complete only when the public route, not only local build output, preserves visitor trust.
+```
+
+因此此 release gate 狀態為：
+
+```text
+implemented -> deployed -> live-smoke verified -> monitoring mode
+```
+
 ## Design Read
 
 Reading this as: a clean-slate personal research website rebuild for academic reviewers, collaborators, regulated AI / medical cybersecurity stakeholders, students, builders, organizers, and people with early unclear ideas, with a warm evidence-led atlas language, leaning toward an image-first, high-art-direction static site rather than an incremental Astro redesign.
