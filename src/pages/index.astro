@@ -1,13 +1,13 @@
 ---
 import { getCollection } from "astro:content";
 import AboutPreview from "../components/home/AboutPreview.astro";
-import CapabilityMap from "../components/home/CapabilityMap.astro";
+import AudienceNavigator from "../components/home/AudienceNavigator.astro";
 import ContactCTA from "../components/home/ContactCTA.astro";
 import CredibilityStrip from "../components/home/CredibilityStrip.astro";
 import EvidenceLedger from "../components/home/EvidenceLedger.astro";
 import FeaturedProjects from "../components/home/FeaturedProjects.astro";
-import GettingStarted from "../components/home/GettingStarted.astro";
 import Hero from "../components/home/Hero.astro";
+import OperatingTracks from "../components/home/OperatingTracks.astro";
 import ResearchThemes from "../components/home/ResearchThemes.astro";
 import SpeakingPreview from "../components/home/SpeakingPreview.astro";
 import WritingPreview from "../components/home/WritingPreview.astro";
@@ -24,8 +24,8 @@ const localizedSite = getLocalizedSite(locale);
 <BaseLayout title={localizedSite.defaultTitle} description={localizedSite.description} pathname={Astro.url.pathname}>
   <Hero locale={locale} />
   <CredibilityStrip locale={locale} />
-  <GettingStarted locale={locale} />
-  <CapabilityMap locale={locale} />
+  <AudienceNavigator locale={locale} />
+  <OperatingTracks locale={locale} />
   <EvidenceLedger locale={locale} />
   <ResearchThemes locale={locale} />
   <FeaturedProjects projects={projects} locale={locale} />

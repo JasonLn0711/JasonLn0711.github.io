@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BlogCard from "../../components/blog/BlogCard.astro";
+import WarmEvidenceFlow from "../../components/v2/WarmEvidenceFlow.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLocalizedBlogEntries } from "../../lib/content";
 import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy, localizePath } from "../../lib/i18n";
@@ -28,6 +29,8 @@ const copy = getPageCopy(locale);
           {copy.blogIndexPage.description}
         </p>
       </div>
+
+      <WarmEvidenceFlow locale={locale} page="blog" />
 
       <section class="section-card grid gap-4 sm:grid-cols-3" data-analytics-location="blog_index_intro">
         <a href="#featured-writing" class="surface-link">

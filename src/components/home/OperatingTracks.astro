@@ -1,0 +1,64 @@
+---
+import { getSiteV2 } from "../../data/siteV2";
+import { defaultLocale, localizePath, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const siteV2 = getSiteV2(locale);
+const content = siteV2.operatingTracks;
+const protocol = siteV2.protocol;
+---
+
+<section class="section operating-tracks technical-band" data-analytics-location="home_operating_tracks">
+  <div class="shell space-y-8">
+    <div class="operating-tracks__header">
+      <div class="section-intro">
+        <p class="section-kicker">Public operating map</p>
+        <h2 class="section-title">{content.title}</h2>
+        <p class="section-copy">{content.description}</p>
+      </div>
+
+      <div class="evidence-protocol-card">
+        <h3>{protocol.title}</h3>
+        <p>{protocol.description}</p>
+        <ol>
+          {protocol.steps.map((step) => (
+            <li>
+              <span>{step.label}</span>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+
+    <div class="track-map">
+      {content.tracks.map((track, index) => (
+        <a href={localizePath(track.route, locale)} class="track-map__item">
+          <span class="track-map__index">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{track.title}</h3>
+            <p>{track.source}</p>
+          </div>
+          <dl>
+            <div>
+              <dt>{siteV2.labels.surface}</dt>
+              <dd>{track.publicSurface}</dd>
+            </div>
+            <div>
+              <dt>{siteV2.labels.audience}</dt>
+              <dd>{track.audience}</dd>
+            </div>
+            <div>
+              <dt>{siteV2.labels.maturity}</dt>
+              <dd>{track.maturity}</dd>
+            </div>
+          </dl>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

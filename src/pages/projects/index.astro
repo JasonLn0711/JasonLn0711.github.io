@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "../../components/project/ProjectCard.astro";
+import WarmEvidenceFlow from "../../components/v2/WarmEvidenceFlow.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projectFilters, sortProjects } from "../../lib/content";
 import { getLocaleFromPathname, getLocalizedPageTitle, getPageCopy, localizePath } from "../../lib/i18n";
@@ -33,6 +34,8 @@ const filters = [
           {copy.projectsPage.description}
         </p>
       </div>
+
+      <WarmEvidenceFlow locale={locale} page="projects" />
 
       <section class="dossier-panel flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div class="max-w-2xl space-y-2">

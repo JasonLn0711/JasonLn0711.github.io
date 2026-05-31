@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import UntranslatedNotice from "../layout/UntranslatedNotice.astro";
+import WarmEvidenceFlow from "../v2/WarmEvidenceFlow.astro";
 import { formatDate } from "../../lib/content";
 import { defaultLocale, getPageCopy, localizePath, type SiteLocale } from "../../lib/i18n";
 
@@ -64,6 +65,8 @@ const links = [
         <img src={project.data.cover} alt={`${project.data.title} hero visual`} class="aspect-[16/10] w-full object-cover" />
       </div>
     </div>
+
+    <WarmEvidenceFlow locale={locale} page="projects" />
 
     <div class="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
       <aside class="dossier-panel h-fit space-y-6 p-6 lg:sticky lg:top-28">

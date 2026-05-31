@@ -1,0 +1,57 @@
+---
+import { getSiteV2 } from "../../data/siteV2";
+import { defaultLocale, localizePath, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const siteV2 = getSiteV2(locale);
+const content = siteV2.audience;
+const leadAudience = content.cards[0];
+const supportAudiences = content.cards.slice(1);
+---
+
+<section class="section audience-navigator" data-analytics-location="home_audience_navigator">
+  <div class="shell">
+    <div class="audience-navigator__grid">
+      <div class="audience-navigator__intro">
+        <p class="section-kicker">Website v2.0</p>
+        <h2 class="section-title">{content.title}</h2>
+        <p class="section-copy">{content.description}</p>
+        <div class="audience-principle">
+          <p>{content.note}</p>
+          <a href={localizePath("/audiences/", locale)} class="action-link">
+            {siteV2.labels.fullMap}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <a href={localizePath(leadAudience.route, locale)} class="audience-card audience-card--lead">
+        <span class="audience-card__label">{leadAudience.label}</span>
+        <h3>{leadAudience.question}</h3>
+        <p>{leadAudience.humanFactor}</p>
+        <ul>
+          {leadAudience.evidence.map((item) => <li>{item}</li>)}
+        </ul>
+        <span class="action-link">
+          {leadAudience.routeLabel}
+          <span aria-hidden="true">→</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="audience-strip" aria-label="Audience paths">
+      {supportAudiences.map((item) => (
+        <a href={localizePath(item.route, locale)} class="audience-card">
+          <span class="audience-card__label">{item.label}</span>
+          <h3>{item.question}</h3>
+          <p>{item.humanFactor}</p>
+          <span class="audience-card__route">{item.routeLabel}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

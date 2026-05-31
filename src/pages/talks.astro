@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WarmEvidenceFlow from "../components/v2/WarmEvidenceFlow.astro";
 import {
   getLocaleFromPathname,
   getLocalizedPageTitle,
@@ -28,6 +29,8 @@ const copy = getPageCopy(locale);
         <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">{speaking.page.title}</h1>
         <p class="page-summary">{speaking.page.description}</p>
       </div>
+
+      <WarmEvidenceFlow locale={locale} page="talks" />
 
       <section class="route-board">
         <a href="#featured-talk" class="surface-link">

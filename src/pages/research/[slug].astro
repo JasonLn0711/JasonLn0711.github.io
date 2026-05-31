@@ -1,5 +1,6 @@
 ---
 import UntranslatedNotice from "../../components/layout/UntranslatedNotice.astro";
+import WarmEvidenceFlow from "../../components/v2/WarmEvidenceFlow.astro";
 import { research } from "../../data/research";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
@@ -94,6 +95,8 @@ const onThisPageLinks = [
           </div>
         </section>
       </div>
+
+      <WarmEvidenceFlow locale={locale} page="research" />
 
       <div class="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
         <aside class="section-card h-fit space-y-6 lg:sticky lg:top-28">

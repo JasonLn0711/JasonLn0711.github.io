@@ -1,0 +1,29 @@
+---
+import { getWarmStudio } from "../../data/siteV2";
+import { defaultLocale, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const content = getWarmStudio(locale).workingWithMe;
+---
+
+<section class="working-with-me" data-analytics-location="working_with_me">
+  <div class="working-with-me__intro">
+    <p class="section-kicker">{content.eyebrow}</p>
+    <h2>{content.title}</h2>
+    <p>{content.description}</p>
+  </div>
+
+  <div class="working-with-me__grid">
+    {content.items.map((item, index) => (
+      <article class="working-with-me__item">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </div>
+</section>

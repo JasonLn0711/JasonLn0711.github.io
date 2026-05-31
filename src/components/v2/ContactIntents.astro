@@ -1,0 +1,37 @@
+---
+import { getWarmStudio } from "../../data/siteV2";
+import { defaultLocale, getLocalizedProfile, type SiteLocale } from "../../lib/i18n";
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const content = getWarmStudio(locale).contactIntents;
+const profile = getLocalizedProfile(locale);
+---
+
+<section class="contact-intents" data-analytics-location="contact_intents">
+  <div class="contact-intents__intro">
+    <p class="section-kicker">{content.eyebrow}</p>
+    <h2>{content.title}</h2>
+    <p>{content.description}</p>
+  </div>
+
+  <div class="contact-intents__grid">
+    {content.cards.map((card) => (
+      <article class="contact-intent-card">
+        <h3>{card.title}</h3>
+        <p>{card.situation}</p>
+        <div>
+          <span class="mono-label">{content.helpfulContextLabel}</span>
+          <p>{card.helpfulContext}</p>
+        </div>
+        <a href={`mailto:${profile.email}`} class="action-link">
+          {profile.email}
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
