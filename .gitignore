@@ -4,6 +4,9 @@ node_modules/
 # build output and caches
 .astro/
 dist/
+.svelte-kit/
+build/
+.local/
 *.tsbuildinfo
 
 # local environment files

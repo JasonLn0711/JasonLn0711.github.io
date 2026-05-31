@@ -1,0 +1,29 @@
+:root {
+  color-scheme: dark;
+  --bg: #030807;
+  --bg-soft: #071210;
+  --surface: rgba(11, 22, 21, 0.78);
+  --surface-strong: rgba(17, 33, 31, 0.94);
+  --ink: #eef6f3;
+  --ink-strong: #ffffff;
+  --muted: #aab9b5;
+  --muted-2: #7f918c;
+  --line: rgba(164, 248, 229, 0.18);
+  --line-strong: rgba(164, 248, 229, 0.34);
+  --accent: #69e6cc;
+  --accent-soft: rgba(105, 230, 204, 0.16);
+  --amber: #e2a83e;
+  --amber-soft: rgba(226, 168, 62, 0.14);
+  --danger: #ff8a70;
+  --radius-sm: 0.65rem;
+  --radius-md: 1.1rem;
+  --radius-lg: 1.65rem;
+  --radius-xl: 2rem;
+  --font-sans:
+    "Aptos", "SF Pro Display", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono:
+    "SFMono-Regular", "Cascadia Code", "JetBrains Mono", "IBM Plex Mono", Consolas,
+    monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
