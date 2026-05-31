@@ -21,12 +21,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Build Astro site
-        uses: withastro/action@v5
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          path: .
           node-version: 22
-          package-manager: npm
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check SvelteKit site
+        run: npm run check
+
+      - name: Build SvelteKit static site
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build
 
   deploy:
     needs: build

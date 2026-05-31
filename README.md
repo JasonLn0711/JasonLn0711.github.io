@@ -162,7 +162,7 @@ visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next
 - Motion: GSAP-enhanced progressive movement with readable static fallbacks and reduced-motion support.
 - Content layer: `src/lib/content/site.ts`.
 - Static output: `build/`.
-- GitHub Pages support: `public/.nojekyll`, `robots.txt`, `/sitemap.xml`, and `/rss.xml`.
+- GitHub Pages support: `public/.nojekyll`, `robots.txt`, `/sitemap.xml`, `/rss.xml`, and `.github/workflows/deploy.yml` uploading `build/`.
 
 Key routes:
 
