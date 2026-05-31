@@ -149,6 +149,23 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 
 This repository contains the Astro source for my personal website and research portfolio, covering trustworthy AI, speech intelligence, cybersecurity, and regulated AI systems through research pages, project case studies, writing, and talks.
 
+## Website v2.0 Direction
+
+The current redesign direction is **Warm Evidence Studio**: a calm, warm, evidence-led personal research portfolio that helps different visitors understand what they need to inspect next.
+
+The v2.0 interface routes visitors by intent, then keeps each page close to the same public reasoning chain:
+
+```text
+visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action
+```
+
+Implemented v2.0 surfaces include the homepage audience navigator, the `/audiences/` route, shared Warm Evidence Studio flows across research, project, talk, about, contact, resume, and blog pages, an about-page working-style proof, and intent-based contact cards for low-pressure outreach.
+
+Design records:
+
+- [`docs/site-v2-information-architecture.zh-tw.md`](docs/site-v2-information-architecture.zh-tw.md)
+- [`docs/site-v2-warm-evidence-studio-interface.zh-tw.md`](docs/site-v2-warm-evidence-studio-interface.zh-tw.md)
+
 ## Recent SEO and Analytics Updates
 
 - Standardized the site's shared SEO pipeline through the Astro layout and head components instead of adding a second SEO framework.
