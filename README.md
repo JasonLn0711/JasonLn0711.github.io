@@ -149,9 +149,25 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 
 This repository contains the Astro source for my personal website and research portfolio, covering trustworthy AI, speech intelligence, cybersecurity, and regulated AI systems through research pages, project case studies, writing, and talks.
 
+## Website v3.0 Clean-Slate Rebuild Direction
+
+The next major direction is **Living Research Atlas / Warm Evidence Studio v3.0**: a full rebuild of the personal website from first principles, not an incremental Astro interface pass.
+
+The current source should be treated as a public content inventory and fallback baseline. The v3.0 effort may replace the framework, routing model, styling system, component architecture, and motion layer if that better serves the final site.
+
+Core design principle:
+
+```text
+visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action
+```
+
+Durable v3.0 record:
+
+- [`docs/site-v3-clean-slate-rebuild-plan.zh-tw.md`](docs/site-v3-clean-slate-rebuild-plan.zh-tw.md)
+
 ## Website v2.0 Direction
 
-The current redesign direction is **Warm Evidence Studio**: a calm, warm, evidence-led personal research portfolio that helps different visitors understand what they need to inspect next.
+The v2.0 redesign direction was **Warm Evidence Studio**: a calm, warm, evidence-led personal research portfolio that helps different visitors understand what they need to inspect next.
 
 The v2.0 interface routes visitors by intent, then keeps each page close to the same public reasoning chain:
 
