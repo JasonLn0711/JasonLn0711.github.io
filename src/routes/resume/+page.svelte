@@ -69,7 +69,7 @@
       <h2>Teaching and public work</h2>
       <div class="link-list">
         {#each teachingHighlights as item}
-          <span>{item.title} · {item.status}</span>
+          <a href={item.href}>{item.title} · {item.status}</a>
         {/each}
       </div>
     </section>
@@ -173,7 +173,6 @@
   }
 
   .link-list a,
-  .link-list span,
   .tag-list span {
     color: var(--muted);
     line-height: 1.6;

@@ -19,6 +19,7 @@
       <a href="/now/">Recent work</a>
       <a href="/research/">Research</a>
       <a href="/projects/">Systems</a>
+      <a href="/teaching/">Teaching</a>
       <a href="/blog/">Writing</a>
       <a href="/resume/">CV</a>
     </div>
@@ -66,7 +67,7 @@
     <div class="start-list">
       <p><strong>For research collaborators:</strong> start with <a href="/research/">Research</a> and the recent evidence surfaces.</p>
       <p><strong>For healthcare or regulated-AI partners:</strong> start with <a href="/projects/">Systems</a> and the scope controls on each prototype.</p>
-      <p><strong>For AI systems learners:</strong> start with <a href="/talks/">Talks and teaching</a>, then read the handbook-facing notes.</p>
+      <p><strong>For AI systems learners:</strong> start with <a href="/teaching/">Teaching</a>, then read the AI Gateway accelerator handout.</p>
       <p><strong>For hiring or review:</strong> start with <a href="/now/">Now</a> and <a href="/resume/">CV</a> for the fastest current map.</p>
     </div>
   </div>

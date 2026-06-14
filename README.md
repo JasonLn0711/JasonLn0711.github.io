@@ -75,6 +75,12 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 - [From Cybercrime Investigation to Trustworthy AI](https://jasonln0711.github.io/blog/investigation-and-trustworthy-ai/)
 - [Designing Speech Evidence Pipelines with ASR and LLMs](https://jasonln0711.github.io/blog/speech-evidence-pipelines/)
 
+## Selected Teaching
+
+- [Teaching](https://jasonln0711.github.io/teaching/)
+- [Enterprise AI Architecture Sprint](https://jasonln0711.github.io/teaching/enterprise-ai-architecture-sprint/)
+- [Day 1: AI Gateway Architecture Evidence](https://jasonln0711.github.io/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/)
+
 ## Speaking
 
 ### [CYBERSEC 2026 Official Session](https://cybersec.ithome.com.tw/2026/session/4284)
@@ -88,6 +94,7 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 - Venue: Taipei Nangang Exhibition Center Hall 2, 4F Conference Room 4A
 - Speaker page: [CYBERSEC 2026 Speaker Profile](https://cybersec.ithome.com.tw/en/2026/speaker/2060)
 - Talks page: [jasonln0711.github.io/talks](https://jasonln0711.github.io/talks/)
+- Teaching page: [jasonln0711.github.io/teaching](https://jasonln0711.github.io/teaching/)
 
 This session focuses on cybersecurity design for AI software medical devices, using FDA 524B as a practical anchor for threat modeling, SBOM, Zero Trust design, and auditable risk governance in heavily regulated environments.
 
@@ -164,6 +171,7 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 This repository contains the SvelteKit static source for my personal website, research pages, and MDX blog. The current public direction is a minimal academic/personal site: plain navigation, a readable homepage, chronological writing, and long-form article pages for trustworthy AI systems, speech intelligence, cybersecurity, regulated AI deployment, talks, and project notes.
 
 The site keeps the older research/project/talk URLs available, while `/blog/` is the canonical writing surface and `/writing/` remains as a compatibility alias.
+Teaching accelerators are published under `/teaching/`, with the AI Systems Engineering Handbook repo kept as the canonical source for worksheets, instructor guides, rubrics, reference answers, and later day packages.
 
 ## Current Implementation
 
@@ -183,6 +191,7 @@ Key routes:
 - `/audiences/`
 - `/research/` and `/research/[slug]/`
 - `/projects/` and `/projects/[slug]/`
+- `/teaching/`, `/teaching/[accelerator]/`, and `/teaching/[accelerator]/[day]/`
 - `/talks/` and `/talks/regulated-ai-cybersecurity/`
 - `/blog/` and `/blog/[slug]/`
 - `/writing/` and `/writing/[slug]/` as compatibility aliases
@@ -245,10 +254,21 @@ ogImage: /og/default.png
 
 The route defaults to the filename slug, so the example publishes at `/blog/new-note/`. Add `routeSlug: custom-slug` only when the public URL should differ from the filename. Use normal Markdown/MDX headings; `h2` and `h3` headings become the article table of contents.
 
+## Add An Accelerator Day
+
+Keep canonical course material in the sibling `ai-systems-engineering-handbook` repo. For the website, add a compact public-facing day entry in `src/lib/content/site.ts` under `teachingAccelerators`.
+
+For a future Day 2 or Day 3:
+
+1. Add or update the `days` object with a stable `slug`, `title`, `sourcePath`, `sourceHref`, public summary, learning outcomes, deliverables, sections, lifecycle, vocabulary, risk controls, worksheet prompts, and next gate.
+2. Set `published: true` and give it a stable `href` such as `/teaching/enterprise-ai-architecture-sprint/day-02-agent-governance/`.
+3. `routePaths` and the dynamic SvelteKit routes will include the page automatically.
+4. Keep instructor-only reference answers, grading details, and private planning context in the handbook repo, not on the public site.
+
 ## Validation Snapshot
 
-Last verified during the recent-work refactor:
+Last verified after adding the teaching accelerator routes:
 
 - `npm run check`
 - `npm run build`
-- Production preview smoke checks for `/`, `/now/`, `/research/`, `/projects/`, `/research/counterfactual-decision-stability-asr/`, `/projects/ai-triage-kiosk-demo/`, `/blog/recent-work-apr-jun-2026/`, `/writing/recent-work-apr-jun-2026/`, `/talks/`, `/resume/`, `/zh-tw/`, `/sitemap.xml`, and `/rss.xml`.
+- Production preview smoke checks for `/teaching/`, `/teaching/enterprise-ai-architecture-sprint/`, `/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/`, and `/sitemap.xml`.

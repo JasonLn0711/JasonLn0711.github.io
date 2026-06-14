@@ -30,7 +30,7 @@
               <span>{item.date}</span>
               <span>{item.audience}</span>
             </div>
-            <h3>{item.title}</h3>
+            <h3><a href={item.href}>{item.title}</a></h3>
             <p>{item.summary}</p>
             <span class="status">{item.status}</span>
           </article>

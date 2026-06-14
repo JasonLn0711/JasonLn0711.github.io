@@ -16,6 +16,7 @@ export const site = {
     { href: "/now/", label: "Now" },
     { href: "/research/", label: "Research" },
     { href: "/projects/", label: "Systems" },
+    { href: "/teaching/", label: "Teaching" },
     { href: "/blog/", label: "Writing" },
     { href: "/about/", label: "About" },
     { href: "/resume/", label: "CV" }
@@ -53,7 +54,7 @@ export const workTracks = [
     title: "Teaching and translation",
     summary:
       "Packaging AI systems engineering into practical learning artifacts: AI Gateway, agent governance, model serving, voice AI, cybersecurity, and enterprise delivery.",
-    href: "/talks/"
+    href: "/teaching/"
   }
 ] as const;
 
@@ -66,7 +67,7 @@ export const recentHighlights = [
     summary:
       "Built a tutorial-first handbook around enterprise AI systems: foundations, Linux/cloud/K8s/GPU, LLM apps, RAG, AI Gateway, agent governance, voice AI, security, delivery, and AI-assisted engineering.",
     status: "13 modules, accelerator packages, teacher packets, and validation checks",
-    href: "/talks/"
+    href: "/teaching/enterprise-ai-architecture-sprint/"
   },
   {
     date: "2026-06",
@@ -418,7 +419,8 @@ export const teachingHighlights = [
     audience: "Engineers, learners, and enterprise AI teams",
     summary:
       "A modular tutorial system for enterprise AI: foundations, infrastructure, LLM applications, RAG, AI Gateway, agent governance, voice AI, security, delivery, and AI-assisted engineering.",
-    status: "13 modules, master knowledge base, templates, references, and validation scripts."
+    status: "13 modules, master knowledge base, templates, references, and validation scripts.",
+    href: "/teaching/"
   },
   {
     title: "Enterprise AI Architecture Sprint",
@@ -426,7 +428,8 @@ export const teachingHighlights = [
     audience: "Course designers and technical mentors",
     summary:
       "Day packages for AI Gateway, Agent Governance, and model-serving curriculum, including vLLM/SGLang, inference lifecycle, KV cache, prefill/decode, and governance boundaries.",
-    status: "Teacher packets and accelerator course materials published in the handbook repo."
+    status: "Teacher packets and accelerator course materials published in the handbook repo.",
+    href: "/teaching/enterprise-ai-architecture-sprint/"
   },
   {
     title: "Medical AI cybersecurity teaching package",
@@ -434,7 +437,265 @@ export const teachingHighlights = [
     audience: "Medical-device and regulated-AI teams",
     summary:
       "Slide, audio, transcript, and test-question support around AI software medical-device cybersecurity, FDA 524B, threat modeling, SBOM, Zero Trust, and Patch SLA.",
-    status: "CYBERSEC talk delivered; CDE teaching handoff prepared."
+    status: "CYBERSEC talk delivered; CDE teaching handoff prepared.",
+    href: "/talks/regulated-ai-cybersecurity/"
+  }
+] as const;
+
+export const teachingAccelerators = [
+  {
+    slug: "enterprise-ai-architecture-sprint",
+    title: "Enterprise AI Architecture Sprint",
+    date: "June 2026",
+    audience: "Students, builders, course designers, and technical mentors",
+    summary:
+      "A public-safe accelerator that converts enterprise AI potential into reviewable system evidence: architecture, governance, security, validation, and customer-delivery readiness.",
+    thesis:
+      "Enterprise AI delivery is proven by a system package with architecture, governance, deployment, security, validation, and customer-delivery evidence, not by a model demo alone.",
+    sourceRepo: "ai-systems-engineering-handbook",
+    sourcePath: "accelerators/enterprise-ai-architecture-sprint/",
+    sourceHref:
+      "https://github.com/JasonLn0711/ai-systems-engineering-handbook/tree/main/accelerators/enterprise-ai-architecture-sprint",
+    boundary:
+      "The website publishes the student-facing learning path and public-safe summaries. The handbook repo remains the canonical home for worksheets, instructor guides, rubrics, reference answers, handoffs, and detailed source packages.",
+    evidenceDefinition: [
+      "architecture view",
+      "minimum viable output",
+      "validation checklist",
+      "failure modes",
+      "linked module or lab path",
+      "next implementation gate"
+    ],
+    expansionModel: [
+      "Each course day lives in one `day-NN-topic/` directory inside the handbook accelerator.",
+      "Student-facing website pages are generated from the `days` entries in `src/lib/content/site.ts`.",
+      "Future Day 2, Day 3, and later pages become public when their day object is marked `published: true` and given a stable route."
+    ],
+    days: [
+      {
+        number: 1,
+        day: "Day 1",
+        slug: "day-01-ai-gateway",
+        title: "AI Gateway Architecture Evidence",
+        status: "Published student handout",
+        published: true,
+        href: "/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/",
+        sourcePath:
+          "accelerators/enterprise-ai-architecture-sprint/day-01-ai-gateway/student-handout.md",
+        sourceHref:
+          "https://github.com/JasonLn0711/ai-systems-engineering-handbook/blob/main/accelerators/enterprise-ai-architecture-sprint/day-01-ai-gateway/student-handout.md",
+        description:
+          "Day 1 turns a model-centric LLM demo into a system-centric enterprise AI architecture exercise. The learner produces architecture evidence before Day 2 implementation.",
+        firstConclusion:
+          "A demo that calls an LLM API is not the same as an enterprise AI system.",
+        outcomes: [
+          "Distinguish a model demo, AI application, AI system, and enterprise-deliverable AI system.",
+          "Read an HTTP/JSON AI request as a system contract with identity, route, action, resource, environment, and trace fields.",
+          "Explain why AI Gateway is the control plane for identity, policy, routing, quota, audit, review, and model-serving boundaries.",
+          "Map free text into structured action proposals that still pass schema validation, policy evaluation, tool brokering, and audit.",
+          "Design a request lifecycle, component responsibility table, and risk-control map for a public-safe enterprise scenario."
+        ],
+        deliverables: [
+          "AI Gateway architecture diagram.",
+          "Component responsibility table.",
+          "Request lifecycle with 10-15 steps.",
+          "Risk-control map.",
+          "One paragraph explaining why prompt-only governance is insufficient."
+        ],
+        sections: [
+          {
+            id: "gateway-questions",
+            title: "Gateway questions",
+            body: [
+              "The first move is to read one AI interaction as a system request, not as a chat transcript. A deliverable architecture must explain who sent the request, what the caller may access, which agent can handle the task, which data and tools are allowed, and which audit record proves the lifecycle later."
+            ],
+            bullets: [
+              "Who sent the request?",
+              "What can this user access?",
+              "Which agent is allowed to handle the task?",
+              "Which data sources can the agent retrieve?",
+              "Which tools can the agent call?",
+              "Which tool calls create side effects?",
+              "Which output checks run before the answer returns?",
+              "Which actions require human review?",
+              "Which audit record proves the request lifecycle later?"
+            ]
+          },
+          {
+            id: "http-json-contract",
+            title: "HTTP and JSON contract",
+            body: [
+              "The gateway treats an HTTP request as one AI task entering the system. The request body is more than a user message; it carries trusted server-side identity, role, requested agent, requested tools, task type, metadata, and trace context.",
+              "Client-provided fields are useful hints, but the gateway resolves identity, permission, agent scope, policy, and allowed tools from trusted sources."
+            ],
+            bullets: [
+              "HTTP gives a shared boundary for web apps, mobile apps, Slack bots, webhooks, load balancers, security tools, and logs.",
+              "JSON gives the gateway inspectable fields for policy, schema validation, tool contracts, and audit.",
+              "Status codes distinguish malformed input, missing login, denied access, rate limits, service failures, and successful review states."
+            ]
+          },
+          {
+            id: "serverless-boundary",
+            title: "Serverless is hosting, not trust",
+            body: [
+              "For Day 1, serverless API is treated as a hosting pattern for a trusted gateway handler. It changes the execution model, but it does not remove backend responsibility.",
+              "The handler still verifies tokens, resolves permissions, validates schemas, evaluates policy, protects secrets, writes audit events, and returns explicit status or review state."
+            ],
+            bullets: [
+              "Serverless API fits short gateway entrypoints, webhooks, audit writes, job creation, and lightweight automation.",
+              "Containers, Kubernetes, and managed services fit long-running gateway cores, streaming sessions, memory services, and GPU inference.",
+              "Mature enterprise AI systems usually use both."
+            ]
+          },
+          {
+            id: "action-extraction",
+            title: "Free text becomes actions",
+            body: [
+              "Human input can remain natural language, but gateway decisions require structured data. An LLM may propose intent, slots, and actions; it must not replace the policy engine.",
+              "A useful gateway produces multi-label intent labels, action candidates, risk labels, missing slots, ambiguity signals, and a recommended next step."
+            ],
+            bullets: [
+              "Low-risk, high-confidence requests can execute read-only actions.",
+              "Low-risk, low-confidence requests should ask one minimal clarification question.",
+              "High-risk, high-confidence requests should create a draft or preview before confirmation.",
+              "High-risk, low-confidence requests should clarify, deny, or escalate to human review."
+            ]
+          },
+          {
+            id: "serving-boundary",
+            title: "Model serving behind the gateway",
+            body: [
+              "vLLM and SGLang are model-serving engines in the inference data plane. They load model weights, manage batching, KV cache, streaming, latency, and GPU memory.",
+              "The AI Gateway remains the control plane in front of serving: identity, role, permission, quota, policy, retrieval boundaries, guardrails, audit, and review."
+            ],
+            bullets: [
+              "vLLM is a strong first tool for general OpenAI-compatible local or private serving.",
+              "SGLang is a strong candidate for structured generation, prefix-heavy prompts, and complex LLM workflows.",
+              "Neither engine replaces enterprise gateway governance."
+            ]
+          },
+          {
+            id: "submission-packet",
+            title: "Submission packet",
+            body: [
+              "The Day 1 artifact is reviewable architecture evidence, not a finished backend. A good packet makes the control boundaries inspectable before implementation starts."
+            ],
+            bullets: [
+              "Architecture diagram.",
+              "Component responsibility table.",
+              "Request lifecycle.",
+              "Risk-control map.",
+              "Prompt-only governance critique."
+            ]
+          }
+        ],
+        requestLifecycle: [
+          "Client sends `POST /gateway/requests` with a JSON body.",
+          "Gateway route receives the request and calls the handler.",
+          "Handler creates `trace_id`.",
+          "Gateway authenticates caller.",
+          "Gateway resolves trusted identity, role, permissions, and agent scope.",
+          "Gateway validates schema and normalizes free text or form hints into actions.",
+          "Gateway classifies task risk and evaluates policy.",
+          "Gateway selects an agent from registry.",
+          "Connector filters data by permission and metadata.",
+          "RAG returns allowed source IDs and active document versions.",
+          "Model generates response from allowed context.",
+          "Tool broker validates schema, permission, timeout, and side effects.",
+          "Review-required actions enter human review; denied actions are not executed.",
+          "Audit log records trace, policy, sources, tools, guardrail, review, and outcome.",
+          "Server returns HTTP status plus JSON response or review status."
+        ],
+        vocabulary: [
+          {
+            term: "AI Gateway",
+            meaning: "Unified AI request entrypoint for routing, policy, data, tools, guardrails, audit, and review."
+          },
+          {
+            term: "Policy gate",
+            meaning: "The decision point that returns allow, deny, or review_required from structured input."
+          },
+          {
+            term: "Tool broker",
+            meaning: "The enforcement point for tool schemas, permissions, side effects, timeouts, approval, and audit."
+          },
+          {
+            term: "Model serving engine",
+            meaning: "The inference layer, such as vLLM or SGLang, that runs model requests efficiently behind the gateway."
+          },
+          {
+            term: "Audit log",
+            meaning: "Lifecycle evidence that records identity, role, policy, source IDs, tool decisions, guardrails, review state, and outcome."
+          }
+        ],
+        riskControls: [
+          "Prompt injection -> retrieval filter, instruction hierarchy, output guardrail, and red-team test log.",
+          "PII leakage -> PII detector, masking, log minimization, and masked audit event.",
+          "Tool abuse -> tool broker, schema validation, approval gate, and tool decision log.",
+          "Permission bypass -> RBAC, metadata filtering before retrieval, and policy decision log.",
+          "Missing audit trail -> trace ID, source IDs, audit schema, and complete audit event."
+        ],
+        worksheetPrompts: [
+          "Fill the HTTP method, route path, authentication signal, input mode, raw message, controlled hints, trusted server-side fields, requested agent, read-only tool, side-effect tool, and audit fields.",
+          "Normalize the request into trace, channel, actor, task, requested actions, environment, and policy inputs.",
+          "Choose one public-safe scenario such as campus IT helpdesk, bank internal knowledge assistant, medical intake support, or manufacturing audio monitoring.",
+          "Write one allow example, one deny example, and one review_required example."
+        ],
+        nextGate:
+          "Day 2 uses the Day 1 gateway lifecycle as the control surface for agent registration, tool/data/memory boundaries, policy gates, audit events, and red-team seeds."
+      },
+      {
+        number: 2,
+        day: "Day 2",
+        slug: "day-02-agent-governance",
+        title: "Agent Governance Framework",
+        status: "Canonical package exists in the handbook; website page can be published next",
+        published: false,
+        href: "",
+        sourcePath:
+          "accelerators/enterprise-ai-architecture-sprint/day-02-agent-governance/student-handout.md",
+        sourceHref:
+          "https://github.com/JasonLn0711/ai-systems-engineering-handbook/tree/main/accelerators/enterprise-ai-architecture-sprint/day-02-agent-governance",
+        description:
+          "Day 2 extends AI Gateway evidence into agent registration, ownership, task scope, tool/data/memory boundaries, policy gates, message mediation, audit events, evaluation hooks, and red-team seeds.",
+        firstConclusion:
+          "An enterprise agent is governed by registry, policy, tool boundaries, memory scope, audit events, evaluation hooks, and review states.",
+        outcomes: [],
+        deliverables: [],
+        sections: [],
+        requestLifecycle: [],
+        vocabulary: [],
+        riskControls: [],
+        worksheetPrompts: [],
+        nextGate:
+          "Publish after the student-facing summary is condensed into website sections and the Day 3 red-team handoff route is ready."
+      },
+      {
+        number: 3,
+        day: "Day 3",
+        slug: "day-03-red-teaming",
+        title: "Red Teaming Framework",
+        status: "Planned from the accelerator sequence",
+        published: false,
+        href: "",
+        sourcePath: "accelerators/enterprise-ai-architecture-sprint/03-red-teaming-framework.md",
+        sourceHref:
+          "https://github.com/JasonLn0711/ai-systems-engineering-handbook/blob/main/accelerators/enterprise-ai-architecture-sprint/03-red-teaming-framework.md",
+        description:
+          "Day 3 is reserved for turning gateway and agent governance assumptions into red-team test cases, regression checks, and reviewable safety evidence.",
+        firstConclusion:
+          "Governance assumptions become useful when they can be tested, broken, repaired, and audited.",
+        outcomes: [],
+        deliverables: [],
+        sections: [],
+        requestLifecycle: [],
+        vocabulary: [],
+        riskControls: [],
+        worksheetPrompts: [],
+        nextGate:
+          "Publish after Day 2 red-team seeds and the red-team framework are consolidated into a student-safe handout."
+      }
+    ]
   }
 ] as const;
 
@@ -522,7 +783,7 @@ export const talkHighlights = [
     schedule: "June 2026",
     venue: "Public learning repository",
     format: "Teaching system",
-    href: "/talks/"
+    href: "/teaching/enterprise-ai-architecture-sprint/"
   },
   {
     slug: "cisc-2025-ransomware",
@@ -628,8 +889,8 @@ export const audienceRoutes = [
     title: "I want to learn from the work.",
     audience: "Students, builders, and early researchers.",
     pain: "You need readable explanations and reusable learning paths.",
-    helps: "Use Writing and Talks for long-form notes, teaching surfaces, and public framing.",
-    href: "/blog/"
+    helps: "Use Teaching and Writing for long-form notes, course surfaces, and public framing.",
+    href: "/teaching/"
   }
 ] as const;
 
@@ -713,6 +974,20 @@ export function findWriting(slug: string) {
   return writings.find((item) => item.slug === slug);
 }
 
+export function findTeachingAccelerator(slug: string) {
+  return teachingAccelerators.find((item) => item.slug === slug);
+}
+
+export function findTeachingDay(acceleratorSlug: string, daySlug: string) {
+  const accelerator = findTeachingAccelerator(acceleratorSlug);
+
+  if (!accelerator) {
+    return undefined;
+  }
+
+  return accelerator.days.find((day) => day.slug === daySlug);
+}
+
 export const routePaths = [
   "/",
   "/now/",
@@ -722,6 +997,11 @@ export const routePaths = [
   ...researchPillars.map((item) => `/research/${item.slug}/`),
   "/projects/",
   ...projects.map((item) => `/projects/${item.slug}/`),
+  "/teaching/",
+  ...teachingAccelerators.map((item) => `/teaching/${item.slug}/`),
+  ...teachingAccelerators.flatMap((accelerator) =>
+    accelerator.days.filter((day) => day.published).map((day) => day.href)
+  ),
   "/talks/",
   "/talks/regulated-ai-cybersecurity/",
   "/writing/",

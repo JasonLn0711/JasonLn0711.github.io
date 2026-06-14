@@ -16,6 +16,7 @@
       <a href="/now/">Now</a>
       <a href="/research/">Research</a>
       <a href="/projects/">Systems</a>
+      <a href="/teaching/">Teaching</a>
       <a href="/blog/">Writing</a>
       <a href="/about/">About</a>
       <a href="/resume/">CV</a>
