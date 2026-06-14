@@ -1,16 +1,22 @@
 import { error } from "@sveltejs/kit";
-import { findWriting, writings } from "$lib/content/site";
+import { blogPosts, findBlogPost } from "$lib/content/blog";
+
+export const prerender = true;
 
 export function entries() {
-  return writings.map((writing) => ({ slug: writing.slug }));
+  return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
 export function load({ params }) {
-  const writing = findWriting(params.slug);
+  const post = findBlogPost(params.slug);
 
-  if (!writing) {
-    error(404, "Writing not found");
+  if (!post) {
+    error(404, "Blog post not found");
   }
 
-  return { writing };
+  return {
+    post,
+    canonicalPath: `/blog/${post.slug}/`,
+    indexPath: "/writing/"
+  };
 }
