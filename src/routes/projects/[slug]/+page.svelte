@@ -13,42 +13,48 @@
   image={project.cover}
 />
 
-<section class="section project-detail">
-  <div class="page-shell detail-grid">
-    <aside class="panel detail-rail" data-reveal>
-      <span class="kicker">Project Bench</span>
-      <h1>{project.title}</h1>
-      <p>{project.summary}</p>
-      <span class="maturity">{project.readiness}</span>
-    </aside>
-    <article class="detail-body">
-      <img src={project.cover} alt={`${project.title} visual summary`} data-reveal />
-      <section class="panel block" data-reveal>
-        <p class="kicker">Human pain</p>
+<section class="detail-page">
+  <div class="content-shell">
+    <nav class="back-nav" aria-label="Back navigation">
+      <a href="/projects/">Systems</a>
+    </nav>
+    <article>
+      <header class="detail-head">
+        <p class="kicker">{project.category} · {project.readiness}</p>
+        <h1>{project.title}</h1>
+        <p class="lead">{project.summary}</p>
+      </header>
+
+      <section class="plain-section">
+        <h2>Problem</h2>
         <p>{project.humanPain}</p>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">System response</p>
+
+      <section class="plain-section">
+        <h2>System response</h2>
         <p>{project.systemResponse}</p>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Evidence surface</p>
-        <div class="rows">
+
+      <section class="plain-section">
+        <h2>Evidence surface</h2>
+        <ul>
           {#each project.evidence as item}
-            <span>{item}</span>
+            <li>{item}</li>
           {/each}
-        </div>
+        </ul>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Toolkit</p>
-        <div class="chips">
+
+      <section class="plain-section">
+        <h2>Toolkit</h2>
+        <div class="tag-list">
           {#each project.stack as item}
             <span>{item}</span>
           {/each}
         </div>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Next validation layer</p>
+
+      <section class="plain-section">
+        <h2>Next validation layer</h2>
         <p>{project.next}</p>
       </section>
     </article>
@@ -56,79 +62,81 @@
 </section>
 
 <style>
-  .project-detail {
-    padding-top: 10.5rem;
+  .detail-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .detail-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
+  .back-nav {
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  .detail-rail {
-    position: sticky;
-    top: 7.5rem;
-    display: grid;
-    gap: 1rem;
-    padding: clamp(1.25rem, 3vw, 2rem);
+  .detail-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
   h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .lead {
     margin: 0;
-    font-size: clamp(2.1rem, 4.4vw, 4.8rem);
-    line-height: 0.96;
+    color: var(--ink-strong);
+    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+    line-height: 1.72;
+  }
+
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(1.8rem, 5vw, 3rem);
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  p,
+  li {
+    color: var(--muted);
+    line-height: 1.74;
   }
 
   p {
-    color: var(--muted);
-    line-height: 1.7;
+    margin: 0;
   }
 
-  .detail-body {
+  ul {
     display: grid;
-    gap: 1rem;
+    gap: 0.65rem;
+    margin: 0;
+    padding-left: 1.25rem;
   }
 
-  img {
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-lg);
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .block {
-    padding: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  .rows,
-  .chips {
+  .tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.7rem;
+    gap: 0.55rem;
   }
 
-  .rows span,
-  .chips span {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.75rem;
-    padding: 0.75rem;
+  .tag-list span {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 0.24rem 0.46rem;
     color: var(--muted);
-    background: rgba(255, 255, 255, 0.035);
-  }
-
-  @media (max-width: 960px) {
-    .project-detail {
-      padding-top: 8rem;
-    }
-
-    .detail-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .detail-rail {
-      position: static;
-    }
+    background: var(--surface-strong);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 </style>

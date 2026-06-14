@@ -4,10 +4,26 @@
 
   const talk = talkHighlights[0];
   const chapters = [
-    "Regulatory pressure makes cybersecurity design a product requirement.",
-    "Threat modeling turns a vague AI SaMD risk into a reviewable system map.",
-    "Patch SLA, SBOM, and Zero Trust create the operational evidence trail.",
-    "The useful governance question is how teams keep the system inspectable after launch."
+    {
+      title: "Regulatory pressure makes cybersecurity design a product requirement.",
+      body:
+        "The talk frames AI software medical-device cybersecurity as an engineering and governance requirement, not as a compliance appendix added after product design."
+    },
+    {
+      title: "Threat modeling turns vague AI SaMD risk into a reviewable system map.",
+      body:
+        "Threat modeling gives teams a shared way to discuss model, data, workflow, vendor, update, and monitoring risk before deployment pressure compresses the conversation."
+    },
+    {
+      title: "Patch SLA, SBOM, and Zero Trust create the operational evidence trail.",
+      body:
+        "The practical goal is a system that can be maintained, audited, and updated with clear responsibility instead of a one-time security document."
+    },
+    {
+      title: "The useful governance question is inspectability after launch.",
+      body:
+        "The session closes on how teams preserve logs, review paths, ownership, and change control once AI behavior, model versions, and security conditions continue moving."
+    }
   ];
 </script>
 
@@ -17,28 +33,23 @@
   path="/talks/regulated-ai-cybersecurity/"
 />
 
-<section class="section story-page">
-  <div class="page-shell story-grid">
-    <aside class="story-hero panel" data-reveal>
-      <p class="kicker">CYBERSEC 2026</p>
-      <h1>{talk.title}</h1>
-      <p>{talk.summary}</p>
-      <div class="meta-line">
-        <span class="status-dot"></span>
-        <span>{talk.schedule}</span>
-      </div>
-      <span class="muted">{talk.venue}</span>
-    </aside>
-    <article class="chapter-list">
-      {#each chapters as chapter, index}
-        <section class="chapter panel" data-reveal>
-          <span class="maturity">0{index + 1}</span>
-          <h2>{chapter}</h2>
-          <p>
-            This chapter connects regulatory expectation, engineering practice,
-            and human review so the audience can see what must be designed,
-            validated, and maintained.
-          </p>
+<section class="detail-page">
+  <div class="content-shell">
+    <nav class="back-nav" aria-label="Back navigation">
+      <a href="/talks/">Talks</a>
+    </nav>
+    <article>
+      <header class="detail-head">
+        <p class="kicker">{talk.event}</p>
+        <h1>{talk.title}</h1>
+        <p class="lead">{talk.summary}</p>
+        <p class="talk-meta">{talk.format} · {talk.schedule} · {talk.venue}</p>
+      </header>
+
+      {#each chapters as chapter}
+        <section class="plain-section">
+          <h2>{chapter.title}</h2>
+          <p>{chapter.body}</p>
         </section>
       {/each}
     </article>
@@ -46,63 +57,62 @@
 </section>
 
 <style>
-  .story-page {
-    padding-top: 10.5rem;
+  .detail-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .story-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.48fr) minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
+  .back-nav {
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  .story-hero {
-    position: sticky;
-    top: 7.5rem;
-    display: grid;
-    gap: 1rem;
-    padding: clamp(1.3rem, 3vw, 2rem);
+  .detail-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
   h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    font-weight: 500;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .lead {
     margin: 0;
-    font-size: clamp(2rem, 4.5vw, 4.8rem);
-    line-height: 0.95;
+    color: var(--ink-strong);
+    font-size: clamp(1.1rem, 2vw, 1.28rem);
+    line-height: 1.72;
   }
 
-  .story-hero p,
-  .chapter p {
+  .talk-meta {
+    margin: 1rem 0 0;
     color: var(--muted);
-    line-height: 1.7;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
   }
 
-  .chapter-list {
-    display: grid;
-    gap: 1rem;
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(1.8rem, 5vw, 3rem);
   }
 
-  .chapter {
-    padding: clamp(1.3rem, 3vw, 2rem);
+  h2 {
+    margin: 0 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
   }
 
-  .chapter h2 {
-    margin: 0.8rem 0 0;
-    font-size: clamp(1.8rem, 3vw, 3.5rem);
-    line-height: 1;
-  }
-
-  @media (max-width: 960px) {
-    .story-page {
-      padding-top: 8rem;
-    }
-
-    .story-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .story-hero {
-      position: static;
-    }
+  p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.74;
   }
 </style>

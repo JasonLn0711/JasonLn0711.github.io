@@ -12,41 +12,58 @@
   path={`/research/${pillar.slug}/`}
 />
 
-<section class="section detail">
-  <div class="page-shell detail-grid">
-    <aside class="detail-rail panel" data-reveal>
-      <span class="kicker">Research Territory</span>
-      <h1>{pillar.title}</h1>
-      <p>{pillar.summary}</p>
-      <a class="button primary" href="/contact/">Discuss fit <span class="button-mark">→</span></a>
-    </aside>
-    <article class="detail-body">
-      <section class="panel block" data-reveal>
-        <p class="kicker">Thesis</p>
-        <h2>{pillar.thesis}</h2>
+<section class="detail-page">
+  <div class="content-shell">
+    <nav class="back-nav" aria-label="Back navigation">
+      <a href="/research/">Research</a>
+    </nav>
+    <article>
+      <header class="detail-head">
+        <p class="kicker">{pillar.maturity}</p>
+        <h1>{pillar.title}</h1>
+        <p class="lead">{pillar.summary}</p>
+      </header>
+
+      <section class="plain-section">
+        <h2>Thesis</h2>
+        <p>{pillar.thesis}</p>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Why it matters now</p>
+
+      <section class="plain-section">
+        <h2>Why it matters now</h2>
         <p>{pillar.why}</p>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Evidence Ledger</p>
-        <div class="rows">
+
+      <section class="plain-section">
+        <h2>Evidence surface</h2>
+        <ul>
           {#each pillar.evidence as item}
-            <span>{item}</span>
+            <li>{item}</li>
           {/each}
-        </div>
+        </ul>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Validation Path</p>
-        <div class="steps">
+
+      <section class="plain-section">
+        <h2>Validation path</h2>
+        <ol>
           {#each pillar.validation as step}
-            <span>{step}</span>
+            <li>{step}</li>
           {/each}
-        </div>
+        </ol>
       </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Questions</p>
+
+      <section class="plain-section">
+        <h2>Current outputs</h2>
+        <p>{pillar.outputs}</p>
+      </section>
+
+      <section class="plain-section">
+        <h2>Scope control</h2>
+        <p>{pillar.boundary}</p>
+      </section>
+
+      <section class="plain-section">
+        <h2>Questions</h2>
         <ul>
           {#each pillar.questions as question}
             <li>{question}</li>
@@ -58,88 +75,66 @@
 </section>
 
 <style>
-  .detail {
-    padding-top: 10.5rem;
+  .detail-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .detail-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
+  .back-nav {
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  .detail-rail {
-    position: sticky;
-    top: 7.5rem;
-    display: grid;
-    gap: 1.2rem;
-    padding: clamp(1.25rem, 3vw, 2rem);
+  .detail-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
   h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .lead {
     margin: 0;
-    font-size: clamp(2.2rem, 4.8vw, 5.2rem);
-    line-height: 0.94;
+    color: var(--ink-strong);
+    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+    line-height: 1.72;
+  }
+
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(1.8rem, 5vw, 3rem);
   }
 
   h2 {
-    margin: 0;
-    font-size: clamp(1.7rem, 3vw, 3.4rem);
-    line-height: 1.04;
+    margin: 0 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
   }
 
   p,
   li {
     color: var(--muted);
-    line-height: 1.7;
+    line-height: 1.74;
   }
 
-  .detail-body {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .block {
-    padding: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  .rows,
-  .steps {
-    display: grid;
-    gap: 0.7rem;
-  }
-
-  .rows span,
-  .steps span {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.75rem;
-    padding: 0.85rem;
-    color: var(--muted);
-    background: rgba(255, 255, 255, 0.035);
-  }
-
-  .steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  ul {
+  p {
     margin: 0;
-    padding-left: 1.2rem;
   }
 
-  @media (max-width: 960px) {
-    .detail {
-      padding-top: 8rem;
-    }
-
-    .detail-grid,
-    .steps {
-      grid-template-columns: 1fr;
-    }
-
-    .detail-rail {
-      position: static;
-    }
+  ul,
+  ol {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding-left: 1.25rem;
   }
 </style>

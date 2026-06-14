@@ -1,0 +1,106 @@
+---
+title: "Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice"
+description: "A public-safe synthesis of recent work across speech decision stability, clinical workflow support, AI triage demos, realtime voice systems, runtime governance, and AI systems engineering education."
+pubDate: 2026-06-14
+tags:
+  - Recent Work
+  - AI Systems
+  - Trustworthy AI
+  - Speech
+  - Governance
+category: update
+draft: false
+featured: true
+ogImage: /og/default.png
+---
+
+The last few months have clarified the kind of work I want my public site to make legible quickly: evidence-aware AI systems for high-stakes work.
+
+That phrase is deliberately specific. I am not only interested in models that answer fluently. I am interested in systems where the claim, source, workflow state, review path, and scope boundary remain visible enough for people to trust the right parts and challenge the rest.
+
+From April to June 2026, my work moved across four connected surfaces:
+
+1. Research evidence for speech decision stability, provenance-bounded evidence packets, runtime governance, and security case evidence.
+2. Public-safe prototypes for urology previsit support, vital-aware kiosk intake, realtime voice interaction, and local meeting-summary trust.
+3. Teaching packages for AI Gateway, agent governance, model serving, voice AI, cybersecurity, and enterprise AI delivery.
+4. Operating discipline around public-safe summaries, controlled evidence, and clear scope controls.
+
+## Research evidence
+
+### Speech decision stability
+
+The CDS-ASR / JANUS research line asks a question that word error rate alone does not answer: when an ASR transcript changes in a plausible way, does the downstream decision remain stable?
+
+The current public framing is speech-to-decision stability. Audio becomes ASR hypotheses, confidence, n-best alternatives, and timestamps. Those become risk atoms and plausible counterfactual transcript variants. The research question is whether downstream labels, escalation choices, and recovery policies remain stable under those alternatives.
+
+The recent work strengthened the aggregate evidence surface and manuscript route. The public claim remains intentionally bounded: I can describe the research object, aggregate readiness, and validation direction, while raw audio, transcripts, row-level content, hypotheses, reviewer notes, and private sheets stay out of the website.
+
+### Provenance-bounded evidence packets
+
+The PB-EGP / STV line focuses on small-model decision support. The core question is whether provenance-bounded evidence graph packets help sub-10B models make more stable, better-grounded decisions under the same token budget.
+
+This is not a broad GraphRAG claim. The useful object is narrower: a packet that keeps evidence boundaries, source validity, decision correctness, and decision stability visible. The first public-benchmark direction uses SciFact and FEVEROUS-style records because they support reproducible evaluation without requiring private evidence.
+
+Recent work moved this line into clearer release and validation gates. Public pages describe the research design and readiness level, while benchmark rows, gold files, prompts, packet views, and validator internals remain in the execution repo until a deliberate public release channel exists.
+
+### Runtime governance and false governability
+
+The TFSC manuscript line reframes high-audit AI governance around false governability: the point where visible governance signals remain, but evidence, authority, review, trace, and claim bridges fail underneath.
+
+The practical mechanism is review scarcity. AI-mediated alerts, classifications, recommendations, drafts, and bounded actions can scale faster than qualified review. When that happens, a workflow can appear successful while reconstructable accountability degrades.
+
+The public-safe contribution is the governance mechanism: action-capable AI needs runtime traces and review paths that preserve reconstructability. Legal, clinical, deployment, or institution-specific outcome claims require separate authorized evidence.
+
+### Security evidence and CaseTrace
+
+The WISA / CaseTrace direction turns reviewer feedback into a concrete security-evidence method. Instead of broad threat narrative, the path emphasizes public-source case evidence, uncertainty labels, baseline comparison, and explicit defense-control mapping.
+
+This is also connected to public teaching work. The CYBERSEC 2026 medical AI cybersecurity talk translated FDA 524B, threat modeling, SBOM, Zero Trust, and Patch SLA into an auditable engineering frame for AI software medical devices.
+
+## Systems and prototypes
+
+### UroPrevisit Navigator
+
+UroPrevisit Navigator is a synthetic-data urology previsit workflow. It supports adaptive governed questions, missing-field repair, role-separated outputs, and clinician-review summaries.
+
+The current contribution is not autonomous clinical decision-making. The useful claim is narrower and stronger: after a patient answer, the system can select the next useful governed previsit question from the current state and stop before drifting into diagnostic questioning.
+
+That makes the prototype useful as a proposal-facing evidence module for PSA follow-up, previsit support, clinician-review summaries, and CRM-ready follow-up fields.
+
+### AI Triage Kiosk demo
+
+The AI Triage Kiosk demo is a synthetic vital-aware intake and staff-review summary system for a June market demonstration.
+
+The important design decision is the boundary. It is not production clinical triage, autonomous diagnosis, treatment recommendation, emergency ordering, or HIS/EMR/FHIR writeback. It is a narrow product-capability demo: synthetic vital payload, governed English choice-only follow-up questions, session continuity, safe fallback behavior, and staff-review summary.
+
+That boundary makes the demo more credible, not less. It names exactly what the system can show and what would require a separate validation and governance path.
+
+### Jarvis Voice Sight
+
+Jarvis Voice Sight is a mock-first realtime voice agent prototype. The recent work focused on the interaction loop: always-listening mode, VAD, barge-in, turn isolation, stale-audio discard, sentence-level streaming TTS, bounded long-form synthesis, and configurable Ollama / vLLM runtime support.
+
+The product metric is simple: average turns per session. If a user stops after one exchange, the voice system has not earned the interaction. If the system can handle interruption, latency, and longer replies without losing turn state, it becomes a better foundation for coaching, practice, and assisted reflection.
+
+### Project AURA
+
+Project AURA is a local meeting-summary trust workflow. It consumes corrected transcripts, performs layered extraction, renders structured JSON to Markdown, and keeps local runtime state visible.
+
+Recent hardening focused on local Ollama preflight, exact model-tag checking, user-confirmed model pull behavior, non-blocking UI runtime threads, and separated error states. The design goal is not a cloud summarizer. It is a local workflow where the user can see what input was used, what model path is active, and how the output structure was produced.
+
+## Teaching and translation
+
+The AI Systems Engineering Handbook became the largest teaching surface from this period. It is structured as a master knowledge base plus 13 knowledge modules covering foundations, deployment, Linux, cloud, containers, GPU infrastructure, LLM applications, RAG, AI Gateway, agent governance, voice AI, security, enterprise delivery, and AI-assisted engineering discipline.
+
+The enterprise architecture sprint packages translate the same work into short learning paths. Day 1 focuses on AI Gateway and model-serving boundaries. Day 2 focuses on agent governance, registry, tool boundaries, memory scope, policy gates, audit events, and risk controls.
+
+This teaching work matters because many AI failures are not model failures alone. They are failures of architecture, deployment, ownership, review, observability, security, and handoff.
+
+## Operating principle
+
+The public version of this work should be useful without being careless. That is why I separate public-safe summaries from raw evidence.
+
+Planning notes, private contact context, controlled source material, patient-like data, raw transcripts, credentials, and patent-sensitive mechanics do not belong on the public website. What does belong here is the contribution: the research question, system capability, evidence surface, scope control, and next validation layer.
+
+That is the standard I want this website to make clear. The work spans several domains, but the central question is consistent:
+
+> How can AI systems help people reason and act in complex settings without breaking the evidence path they need to trust, review, and govern the result?

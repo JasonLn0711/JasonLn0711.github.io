@@ -1,137 +1,197 @@
 <script lang="ts">
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { projects, researchPillars, site, talkHighlights } from "$lib/content/site";
+  import { projects, recentHighlights, researchPillars, site, teachingHighlights } from "$lib/content/site";
 </script>
 
 <PageMeta
-  title={`Resume | ${site.name}`}
-  description="Professional evidence route for Jason Chia-Sheng Lin: research focus, selected systems, talks, toolkit, and collaboration fit."
+  title={`CV / Resume | ${site.name}`}
+  description="A concise evidence route for Jason Chia-Sheng Lin's research, systems, teaching, and public work."
   path="/resume/"
 />
 
-<section class="section resume-page">
-  <div class="page-shell resume-grid">
-    <aside class="resume-card panel" data-reveal>
-      <p class="kicker">Resume</p>
+<section class="resume-page">
+  <div class="content-shell">
+    <header class="resume-head">
+      <p class="kicker">CV / Resume</p>
       <h1>{site.name}</h1>
-      <p>{site.title}</p>
-      <span>{site.institution}</span>
-      <a class="button primary" href={`mailto:${site.email}`}>Contact <span class="button-mark">→</span></a>
-    </aside>
-    <div class="resume-sections">
-      <section class="panel block" data-reveal>
-        <p class="kicker">Research focus</p>
-        <div class="rows">
-          {#each researchPillars as pillar}
-            <a href={`/research/${pillar.slug}/`}>{pillar.title}</a>
-          {/each}
-        </div>
-      </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Selected systems</p>
-        <div class="rows">
-          {#each projects as project}
-            <a href={`/projects/${project.slug}/`}>{project.title} · {project.readiness}</a>
-          {/each}
-        </div>
-      </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Public signals</p>
-        <div class="rows">
-          {#each talkHighlights as talk}
-            <a href={talk.href}>{talk.event} · {talk.title}</a>
-          {/each}
-        </div>
-      </section>
-      <section class="panel block" data-reveal>
-        <p class="kicker">Toolkit</p>
-        <div class="chips">
-          {#each ["AI Agents", "ASR", "RAG", "LLM Pipelines", "Cybersecurity", "Threat Modeling", "Evaluation", "Python"] as item}
-            <span>{item}</span>
-          {/each}
-        </div>
-      </section>
-    </div>
+      <p class="lead">{site.title}</p>
+      <p>{site.institution}</p>
+      <div class="contact-line">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.github} rel="noreferrer" target="_blank">GitHub</a>
+        <a href={site.linkedin} rel="noreferrer" target="_blank">LinkedIn</a>
+      </div>
+    </header>
+
+    <section class="plain-section">
+      <h2>Current positioning</h2>
+      <p>
+        Doctoral researcher and AI systems builder focused on evidence-aware
+        AI for speech decision stability, clinical workflow support, agent
+        governance, cybersecurity, and enterprise AI systems education.
+      </p>
+    </section>
+
+    <section class="plain-section">
+      <h2>Recent public proof</h2>
+      <div class="row-list">
+        {#each recentHighlights.slice(0, 6) as item}
+          <article class="resume-row">
+            <time datetime={item.date}>{item.period}</time>
+            <div>
+              <h3><a href={item.href}>{item.title}</a></h3>
+              <p>{item.status}</p>
+            </div>
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>Research programs</h2>
+      <div class="link-list">
+        {#each researchPillars as pillar}
+          <a href={`/research/${pillar.slug}/`}>{pillar.title} · {pillar.maturity}</a>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>Selected systems</h2>
+      <div class="link-list">
+        {#each projects.slice(0, 4) as project}
+          <a href={`/projects/${project.slug}/`}>{project.title} · {project.readiness}</a>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>Teaching and public work</h2>
+      <div class="link-list">
+        {#each teachingHighlights as item}
+          <span>{item.title} · {item.status}</span>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>Toolkit</h2>
+      <div class="tag-list">
+        {#each ["AI systems engineering", "ASR", "RAG", "LLM pipelines", "Voice AI", "Agent governance", "Cybersecurity", "Threat modeling", "Evaluation", "Python", "TypeScript"] as item}
+          <span>{item}</span>
+        {/each}
+      </div>
+    </section>
   </div>
 </section>
 
 <style>
   .resume-page {
-    padding-top: 10.5rem;
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .resume-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
+  .resume-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
-  .resume-card {
-    position: sticky;
-    top: 7.5rem;
-    display: grid;
-    gap: 1rem;
-    padding: clamp(1.3rem, 3vw, 2rem);
+  h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 9vw, 5rem);
+    font-weight: 500;
+    line-height: 1.04;
+    text-wrap: balance;
   }
 
-  .resume-card h1 {
+  .lead {
     margin: 0;
-    font-size: clamp(2.1rem, 4.5vw, 4.8rem);
-    line-height: 0.95;
+    color: var(--ink-strong);
+    font-size: clamp(1.08rem, 2vw, 1.25rem);
+    line-height: 1.7;
   }
 
-  .resume-card p,
-  .resume-card span {
+  .resume-head p:not(.kicker):not(.lead),
+  p {
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.72;
   }
 
-  .resume-sections {
+  .resume-head p:not(.kicker):not(.lead) {
+    margin: 0.45rem 0 0;
+  }
+
+  .contact-line,
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+    margin-top: 1.4rem;
+  }
+
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(1.9rem, 5vw, 3rem);
+  }
+
+  h2 {
+    margin: 0 0 1.2rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .row-list,
+  .link-list {
     display: grid;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
-  .block {
-    padding: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  .rows,
-  .chips {
+  .resume-row {
     display: grid;
-    gap: 0.7rem;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 1.4rem;
   }
 
-  .rows a,
-  .chips span {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.75rem;
-    padding: 0.85rem;
+  h3 {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .resume-row p {
+    margin: 0.3rem 0 0;
+  }
+
+  time {
     color: var(--muted);
-    background: rgba(255, 255, 255, 0.035);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  .rows a:hover {
-    color: var(--accent);
-    border-color: var(--line-strong);
+  .link-list a,
+  .link-list span,
+  .tag-list span {
+    color: var(--muted);
+    line-height: 1.6;
   }
 
-  .chips {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .tag-list span {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 0.24rem 0.46rem;
+    background: var(--surface-strong);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  @media (max-width: 960px) {
-    .resume-page {
-      padding-top: 8rem;
-    }
-
-    .resume-grid,
-    .chips {
+  @media (max-width: 700px) {
+    .resume-row {
       grid-template-columns: 1fr;
-    }
-
-    .resume-card {
-      position: static;
+      gap: 0.3rem;
     }
   }
 </style>

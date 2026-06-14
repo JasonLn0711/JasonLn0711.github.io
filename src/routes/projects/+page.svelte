@@ -4,116 +4,122 @@
 </script>
 
 <PageMeta
-  title={`Project Evidence Lab | ${site.name}`}
-  description="Inspectable project benches for speech evidence, grounded fraud analysis, and federated-learning leakage risk."
+  title={`Systems | ${site.name}`}
+  description="Public-safe systems and prototypes for clinical workflow support, voice AI, speech evidence, fraud analysis, and cybersecurity."
   path="/projects/"
 />
 
-<section class="section projects-page">
-  <div class="page-shell">
-    <div class="grid-two project-head">
-      <div data-reveal>
-        <p class="kicker">Project Evidence Lab</p>
-        <h1 class="headline">Systems you can inspect.</h1>
-      </div>
-      <p class="subhead" data-reveal>
-        Each project is framed by human pain, system response, evidence surface,
-        readiness, and the next useful validation step.
+<section class="index-page">
+  <div class="content-shell">
+    <header class="index-head">
+      <p class="kicker">Systems</p>
+      <h1>Small honest demos, explicit evidence, clear scope.</h1>
+      <p>
+        These projects are framed by the problem they address, the capability
+        they demonstrate, the evidence surface behind them, and the next
+        validation layer. Clinical and regulated systems stay synthetic,
+        staff-review oriented, and deliberately bounded unless a separate
+        governance path exists.
       </p>
-    </div>
+    </header>
 
-    <div class="bench-grid">
-      {#each projects as project, index}
-        <a class:featured={index === 0} class="bench panel" href={`/projects/${project.slug}/`} data-reveal>
-          <div class="bench-copy">
-            <span class="maturity">{project.readiness}</span>
-            <h2>{project.title}</h2>
+    <div class="system-list">
+      {#each projects as project}
+        <article class="system-row">
+          <div class="system-meta">
+            <span>{project.category}</span>
+            <span>{project.readiness}</span>
+          </div>
+          <div>
+            <h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2>
             <p>{project.summary}</p>
+            <div class="evidence-list">
+              {#each project.evidence.slice(0, 2) as item}
+                <span>{item}</span>
+              {/each}
+            </div>
           </div>
-          <img src={project.cover} alt="" loading={index === 0 ? "eager" : "lazy"} />
-          <div class="evidence-list">
-            {#each project.evidence as item}
-              <span>{item}</span>
-            {/each}
-          </div>
-        </a>
+        </article>
       {/each}
     </div>
   </div>
 </section>
 
 <style>
-  .projects-page {
-    padding-top: 10.5rem;
+  .index-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .project-head {
-    margin-bottom: 2rem;
+  .index-head {
+    margin-bottom: clamp(2.4rem, 7vw, 4rem);
   }
 
-  .bench-grid {
+  h1 {
+    margin: 1rem 0 0.85rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .index-head p:last-child,
+  p {
+    color: var(--muted);
+    line-height: 1.72;
+  }
+
+  .system-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.7rem;
   }
 
-  .bench {
+  .system-row {
     display: grid;
-    gap: 1.2rem;
-    padding: 1.2rem;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 1.6rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
   }
 
-  .bench.featured {
-    grid-row: span 2;
-  }
-
-  .bench-copy {
+  .system-meta {
     display: grid;
-    gap: 0.7rem;
+    gap: 0.35rem;
+    align-content: start;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
   h2 {
     margin: 0;
-    font-size: clamp(1.7rem, 3vw, 3.5rem);
-    line-height: 0.98;
+    color: var(--ink-strong);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    line-height: 1.3;
   }
 
   p {
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  img {
-    width: 100%;
-    border-radius: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(0, 0, 0, 0.2);
+    margin: 0.5rem 0 0;
   }
 
   .evidence-list {
     display: grid;
-    gap: 0.65rem;
+    gap: 0.55rem;
+    margin-top: 1rem;
   }
 
   .evidence-list span {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.75rem;
-    padding: 0.75rem;
+    border-left: 2px solid var(--line-strong);
+    padding-left: 0.8rem;
     color: var(--muted);
-    background: rgba(255, 255, 255, 0.035);
+    line-height: 1.62;
   }
 
-  @media (max-width: 900px) {
-    .projects-page {
-      padding-top: 8rem;
-    }
-
-    .bench-grid {
+  @media (max-width: 760px) {
+    .system-row {
       grid-template-columns: 1fr;
-    }
-
-    .bench.featured {
-      grid-row: auto;
+      gap: 0.7rem;
     }
   }
 </style>

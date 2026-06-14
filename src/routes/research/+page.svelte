@@ -4,146 +4,125 @@
 </script>
 
 <PageMeta
-  title={`Research Atlas | ${site.name}`}
-  description="Three evidence-aware research territories for trustworthy AI, speech workflows, and high-stakes deployment."
+  title={`Research | ${site.name}`}
+  description="Research programs on speech decision stability, provenance-bounded evidence packets, runtime governance, and security evidence."
   path="/research/"
 />
 
-<section class="section research-page">
-  <div class="page-shell research-layout">
-    <aside class="research-rail" data-reveal>
-      <p class="kicker">Research Atlas</p>
-      <h1 class="headline">Evidence-aware directions for real-world AI systems.</h1>
-      <p class="subhead">
-        Every territory is organized around problem class, public evidence,
-        validation path, and scope boundary.
+<section class="index-page">
+  <div class="content-shell">
+    <header class="index-head">
+      <p class="kicker">Research</p>
+      <h1>Evidence-aware AI systems for high-stakes work.</h1>
+      <p>
+        My research asks how AI systems preserve evidence, human review,
+        reconstructability, and public-safe scope when they move from fluent
+        outputs into decisions, workflows, and action.
       </p>
-      <div class="read-guide panel-soft">
-        <strong>How to read this atlas</strong>
-        <span>Evidence ledgers -> validation paths -> outputs.</span>
-      </div>
-    </aside>
-    <div class="territory-list">
-      {#each researchPillars as pillar, index}
-        <a class="territory panel" href={`/research/${pillar.slug}/`} data-reveal>
-          <div class="territory-head">
-            <span class="mono">0{index + 1}</span>
-            <span class="maturity">{pillar.maturity}</span>
+    </header>
+
+    <div class="program-list">
+      {#each researchPillars as pillar}
+        <article class="program-row">
+          <div class="program-meta">
+            <span>{pillar.shortTitle}</span>
+            <span>{pillar.maturity}</span>
           </div>
-          <h2>{pillar.title}</h2>
-          <p>{pillar.thesis}</p>
-          <div class="evidence-ledger">
-            {#each pillar.evidence as item}
-              <span>{item}</span>
-            {/each}
+          <div>
+            <h2><a href={`/research/${pillar.slug}/`}>{pillar.title}</a></h2>
+            <p>{pillar.summary}</p>
+            <p class="thesis">{pillar.thesis}</p>
+            <div class="evidence-list">
+              {#each pillar.evidence.slice(0, 2) as item}
+                <span>{item}</span>
+              {/each}
+            </div>
           </div>
-          <div class="validation">
-            {#each pillar.validation as step}
-              <small>{step}</small>
-            {/each}
-          </div>
-        </a>
+        </article>
       {/each}
     </div>
   </div>
 </section>
 
 <style>
-  .research-page {
-    padding-top: 10.5rem;
+  .index-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .research-layout {
+  .index-head {
+    margin-bottom: clamp(2.4rem, 7vw, 4rem);
+  }
+
+  h1 {
+    margin: 1rem 0 0.85rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .index-head p:last-child,
+  p {
+    color: var(--muted);
+    line-height: 1.72;
+  }
+
+  .program-list {
     display: grid;
-    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 4rem);
+    gap: 1.7rem;
   }
 
-  .research-rail {
-    position: sticky;
-    top: 7.5rem;
-    align-self: start;
+  .program-row {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 1.6rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
   }
 
-  .read-guide {
+  .program-meta {
     display: grid;
     gap: 0.35rem;
-    margin-top: 2rem;
-    padding: 1rem;
+    align-content: start;
     color: var(--muted);
-  }
-
-  .read-guide strong {
-    color: var(--ink);
-  }
-
-  .territory-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .territory {
-    display: grid;
-    gap: 1.2rem;
-    padding: clamp(1.2rem, 3vw, 2rem);
-  }
-
-  .territory-head,
-  .validation {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
   h2 {
     margin: 0;
-    font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 0.96;
+    color: var(--ink-strong);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    line-height: 1.3;
   }
 
   p {
-    max-width: 78ch;
-    color: var(--muted);
-    line-height: 1.7;
+    margin: 0.5rem 0 0;
   }
 
-  .evidence-ledger {
+  .thesis {
+    color: var(--ink);
+  }
+
+  .evidence-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.7rem;
+    gap: 0.55rem;
+    margin-top: 1rem;
   }
 
-  .evidence-ledger span,
-  .validation small {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.8rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.035);
+  .evidence-list span {
+    border-left: 2px solid var(--line-strong);
+    padding-left: 0.8rem;
     color: var(--muted);
+    line-height: 1.62;
   }
 
-  .validation {
-    justify-content: flex-start;
-  }
-
-  .validation small {
-    color: var(--accent);
-  }
-
-  @media (max-width: 1000px) {
-    .research-page {
-      padding-top: 8rem;
-    }
-
-    .research-layout,
-    .evidence-ledger {
+  @media (max-width: 760px) {
+    .program-row {
       grid-template-columns: 1fr;
-    }
-
-    .research-rail {
-      position: static;
+      gap: 0.7rem;
     }
   }
 </style>

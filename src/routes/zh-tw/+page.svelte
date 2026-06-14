@@ -1,99 +1,156 @@
 <script lang="ts">
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { audienceRoutes, researchPillars, site, zhTw } from "$lib/content/site";
+  import { audienceRoutes, currentSnapshot, recentHighlights, researchPillars, site, zhTw } from "$lib/content/site";
 </script>
 
 <PageMeta
-  title={`Jason Chia-Sheng Lin | Living Research Atlas`}
+  title={`Jason Chia-Sheng Lin | 研究與寫作`}
   description={zhTw.homeLead}
   path="/zh-tw/"
   lang="zh-tw"
 />
 
-<section class="section zh-home">
-  <div class="page-shell grid-two">
-    <div data-reveal>
-      <p class="kicker">Living Research Atlas</p>
-      <h1 class="headline">{zhTw.homeTitle}</h1>
-      <p class="subhead">{zhTw.homeLead}</p>
-      <div class="btn-row">
-        <a class="button primary" href="/zh-tw/contact/">開始對話 <span class="button-mark">→</span></a>
-        <a class="button" href="/research/">看研究地圖 <span class="button-mark">→</span></a>
+<section class="zh-page">
+  <div class="content-shell">
+    <header class="zh-head">
+      <p class="kicker">研究與寫作</p>
+      <h1>{zhTw.homeTitle}</h1>
+      <p class="lead">{zhTw.homeLead}</p>
+      <p>{currentSnapshot.boundary}</p>
+      <div class="intro-links">
+        <a href="/now/">近期進展</a>
+        <a href="/research/">研究</a>
+        <a href="/projects/">系統</a>
+        <a href="/blog/">文章</a>
+        <a href={`mailto:${site.email}`}>聯絡</a>
       </div>
-    </div>
-    <div class="panel zh-card" data-reveal>
-      <h2>你可以從這裡開始</h2>
-      {#each audienceRoutes.slice(0, 4) as route}
-        <a href={route.href}>{route.title}</a>
-      {/each}
-    </div>
-  </div>
-</section>
+    </header>
 
-<section class="section-tight">
-  <div class="page-shell zh-research">
-    {#each researchPillars as pillar}
-      <a class="panel-soft" href={`/research/${pillar.slug}/`} data-reveal>
-        <span class="maturity">{pillar.maturity}</span>
-        <strong>{pillar.title}</strong>
-        <small>{pillar.summary}</small>
-      </a>
-    {/each}
+    <section class="plain-section">
+      <h2>可以從這裡開始</h2>
+      <div class="plain-list">
+        {#each audienceRoutes as route}
+          <article>
+            <h3><a href={route.href}>{route.title}</a></h3>
+            <p>{route.helps}</p>
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>近期重點</h2>
+      <div class="plain-list">
+        {#each recentHighlights.slice(0, 5) as item}
+          <article>
+            <p class="meta">{item.period} · {item.category}</p>
+            <h3><a href={item.href}>{item.title}</a></h3>
+            <p>{item.summary}</p>
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section class="plain-section">
+      <h2>研究方向</h2>
+      <div class="plain-list">
+        {#each researchPillars as pillar}
+          <article>
+            <h3><a href={`/research/${pillar.slug}/`}>{pillar.title}</a></h3>
+            <p>{pillar.summary}</p>
+          </article>
+        {/each}
+      </div>
+    </section>
   </div>
 </section>
 
 <style>
-  .zh-home {
-    min-height: 100dvh;
-    display: grid;
-    align-items: center;
-    padding-top: 8rem;
+  .zh-page {
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .zh-card {
-    display: grid;
-    gap: 0.8rem;
-    padding: 1.3rem;
+  .zh-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
-  .zh-card h2 {
+  h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .lead {
     margin: 0;
+    color: var(--ink-strong);
+    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+    line-height: 1.72;
   }
 
-  .zh-card a,
-  .zh-research a {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.8rem;
-    padding: 0.9rem;
+  .zh-head p:not(.kicker):not(.lead),
+  p {
     color: var(--muted);
-    background: rgba(255, 255, 255, 0.035);
+    line-height: 1.74;
   }
 
-  .zh-card a:hover,
-  .zh-research a:hover {
-    color: var(--accent);
-    border-color: var(--line-strong);
+  .zh-head p:not(.kicker):not(.lead) {
+    margin: 1rem 0 0;
   }
 
-  .zh-research {
+  .intro-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(2rem, 6vw, 3.2rem);
+  }
+
+  h2 {
+    margin: 0 0 1.35rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.18;
+  }
+
+  .plain-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.3rem;
   }
 
-  .zh-research a {
-    display: grid;
-    gap: 0.55rem;
+  .plain-list article {
+    border-top: 1px solid var(--line);
+    padding-top: 1.1rem;
   }
 
-  .zh-research small {
-    color: var(--muted);
-    line-height: 1.55;
+  .plain-list article:first-child {
+    border-top: 0;
+    padding-top: 0;
   }
 
-  @media (max-width: 900px) {
-    .zh-research {
-      grid-template-columns: 1fr;
-    }
+  h3 {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 1.08rem;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 0.45rem 0 0;
+  }
+
+  .meta {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 </style>

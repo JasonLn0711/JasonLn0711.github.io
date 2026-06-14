@@ -4,7 +4,7 @@
 Doctoral Researcher, Artificial Intelligence in Medical Imaging / Signal Analysis Lab  
 National Yang Ming Chiao Tung University
 
-I build trustworthy AI systems for real-world, security-critical, and regulated environments. My work brings together AI systems, speech intelligence, LLM/RAG pipelines, medical cybersecurity, and investigation-informed thinking to design systems that remain useful when evidence, reliability, and deployment constraints matter.
+I build evidence-aware AI systems for high-stakes work. My work brings together speech intelligence, clinical workflow support, agent governance, cybersecurity, LLM/RAG pipelines, and investigation-informed thinking to design systems that remain useful when evidence, review, reliability, and deployment constraints matter.
 
 ## Professional Profile
 
@@ -22,12 +22,12 @@ I build trustworthy AI systems for real-world, security-critical, and regulated 
 
 - I am a doctoral researcher in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at NYCU, where I work across trustworthy AI, AI Software as a Medical Device (SaMD), speech and language pipelines, and security-aware evaluation.
 - Before doctoral research, I worked in cybercrime investigation. That background continues to shape how I think about evidence, adversarial behavior, failure analysis, and the difference between a strong model demo and a system that can actually be trusted in practice.
-- My current work focuses on trustworthy AI systems, medical cybersecurity governance, ASR + LLM + RAG workflows, and deployable AI for high-stakes environments.
+- My current work focuses on evidence-aware AI systems, medical cybersecurity governance, ASR + LLM + RAG workflows, runtime governance, and deployable AI for high-stakes environments.
 - I am especially interested in collaborations that value technical depth, careful evaluation, human review, and realistic deployment conditions.
 
 ## Core Focus Areas
 
-### Trustworthy AI Systems
+### Evidence-Aware AI Systems
 
 Designing AI systems where reliability, evaluation, human review, and traceability are built into the architecture rather than treated as afterthoughts.
 
@@ -45,6 +45,18 @@ Current work includes cybersecurity risk management and governance for AI softwa
 
 ## Selected Projects
 
+### [UroPrevisit Navigator](https://jasonln0711.github.io/projects/uroprevisit-navigator/)
+
+A synthetic urology previsit workflow for adaptive governed questions, missing-field repair, clinician-review summaries, and PSA / CRM-ready proposal support.
+
+### [AI Triage Kiosk Demo](https://jasonln0711.github.io/projects/ai-triage-kiosk-demo/)
+
+A synthetic vital-aware kiosk intake demo with governed English follow-up questions and staff-review summary output for a narrow market-demo scope.
+
+### [Jarvis Voice Sight](https://jasonln0711.github.io/projects/jarvis-voice-sight/)
+
+A realtime voice-agent prototype with always-listening interaction, VAD, barge-in, turn isolation, sentence-level streaming TTS, and Ollama / vLLM runtime support.
+
 ### [Speech Evidence Intelligence Pipeline](https://jasonln0711.github.io/projects/speech-evidence-intelligence-pipeline/)
 
 An evidence-aware ASR + LLM workflow for turning long-form conversational audio into structured, reviewable outputs for high-stakes analysis. The pipeline emphasizes traceability between generated outputs and source transcript evidence.
@@ -59,8 +71,9 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 
 ## Selected Writing
 
-- [Designing Speech Evidence Pipelines with ASR and LLMs](https://jasonln0711.github.io/blog/speech-evidence-pipelines/)
+- [Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice](https://jasonln0711.github.io/blog/recent-work-apr-jun-2026/)
 - [From Cybercrime Investigation to Trustworthy AI](https://jasonln0711.github.io/blog/investigation-and-trustworthy-ai/)
+- [Designing Speech Evidence Pipelines with ASR and LLMs](https://jasonln0711.github.io/blog/speech-evidence-pipelines/)
 
 ## Speaking
 
@@ -141,39 +154,38 @@ Experiment Design, Evaluation Frameworks, Reproducible Workflows, Python, GitHub
 
 I welcome thoughtful conversations around research collaboration, trustworthy AI, speech and language systems, and AI deployment in security-sensitive or regulated environments.
 
+- Recent work: [jasonln0711.github.io/now](https://jasonln0711.github.io/now/)
 - Research: [jasonln0711.github.io/research](https://jasonln0711.github.io/research/)
-- Projects: [jasonln0711.github.io/projects](https://jasonln0711.github.io/projects/)
+- Systems: [jasonln0711.github.io/projects](https://jasonln0711.github.io/projects/)
 - Contact: [jasonln0711.github.io/contact](https://jasonln0711.github.io/contact/)
 
 ## About This Repository
 
-This repository contains the SvelteKit static source for my personal website and research portfolio. The current public direction is **Living Research Atlas v3.0**: a clean-slate rebuild around trustworthy AI systems, speech intelligence, cybersecurity, regulated AI deployment, talks, writing, and low-pressure collaboration routes.
+This repository contains the SvelteKit static source for my personal website, research pages, and MDX blog. The current public direction is a minimal academic/personal site: plain navigation, a readable homepage, chronological writing, and long-form article pages for trustworthy AI systems, speech intelligence, cybersecurity, regulated AI deployment, talks, and project notes.
 
-The rebuild follows this first-principles chain:
+The site keeps the older research/project/talk URLs available, while `/blog/` is the canonical writing surface and `/writing/` remains as a compatibility alias.
 
-```text
-visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action
-```
-
-## Current v3.0 Implementation
+## Current Implementation
 
 - Framework: SvelteKit with `@sveltejs/adapter-static`.
 - Styling: native CSS tokens and route-level Svelte styles.
-- Motion: GSAP-enhanced progressive movement with readable static fallbacks and reduced-motion support.
-- Content layer: `src/lib/content/site.ts`.
+- Blog content: top-level `src/content/blog/*.mdx` files compiled with `mdsvex`.
+- Content layer: `src/lib/content/site.ts` for profile, recent-work, research, systems, teaching, and contact data, plus `src/lib/content/blog.ts` for blog metadata.
+- Article UI: semantic long-form layout with generated `h2`/`h3` heading IDs and a hydrated desktop table of contents.
 - Static output: `build/`.
 - GitHub Pages support: `public/.nojekyll`, `robots.txt`, `/sitemap.xml`, `/rss.xml`, and `.github/workflows/deploy.yml` uploading `build/`.
 
 Key routes:
 
 - `/`
+- `/now/`
 - `/design/`
 - `/audiences/`
 - `/research/` and `/research/[slug]/`
 - `/projects/` and `/projects/[slug]/`
 - `/talks/` and `/talks/regulated-ai-cybersecurity/`
-- `/writing/` and `/writing/[slug]/`
-- `/blog/` and `/blog/[slug]/` as continuity aliases
+- `/blog/` and `/blog/[slug]/`
+- `/writing/` and `/writing/[slug]/` as compatibility aliases
 - `/about/`
 - `/contact/`
 - `/resume/`
@@ -183,13 +195,13 @@ Key routes:
 
 ## Design And Content Records
 
-Durable v3.0 records:
+Historical v3.0 design records:
 
 - [`docs/site-v3-clean-slate-rebuild-plan.zh-tw.md`](docs/site-v3-clean-slate-rebuild-plan.zh-tw.md)
 - [`docs/site-v3-design-source.zh-tw.md`](docs/site-v3-design-source.zh-tw.md)
 - [`docs/site-v3-content-inventory.zh-tw.md`](docs/site-v3-content-inventory.zh-tw.md)
 
-The section concept images used by `/design/` live in:
+The older section concept images used by `/design/` live in:
 
 ```text
 public/design/v3-concepts/
@@ -210,10 +222,33 @@ npm run preview
 
 `npm run check` runs SvelteKit sync plus `svelte-check`. `npm run build` writes the static site to `build/`.
 
+## Add A Blog Post
+
+Create a top-level `.mdx` file in `src/content/blog/`, for example `src/content/blog/new-note.mdx`.
+
+Use frontmatter like this:
+
+```yaml
+---
+title: New note title
+description: One sentence summary for the index, RSS, and metadata.
+pubDate: 2026-06-14
+tags:
+  - Trustworthy AI
+  - Systems
+category: essay
+draft: false
+featured: false
+ogImage: /og/default.png
+---
+```
+
+The route defaults to the filename slug, so the example publishes at `/blog/new-note/`. Add `routeSlug: custom-slug` only when the public URL should differ from the filename. Use normal Markdown/MDX headings; `h2` and `h3` headings become the article table of contents.
+
 ## Validation Snapshot
 
-Last verified during the v3.0 rebuild:
+Last verified during the recent-work refactor:
 
 - `npm run check`
 - `npm run build`
-- Headless Chromium screenshots for `/`, `/design/`, `/research/`, `/projects/`, `/contact/`, and `/zh-tw/` on desktop/mobile viewports.
+- Production preview smoke checks for `/`, `/now/`, `/research/`, `/projects/`, `/research/counterfactual-decision-stability-asr/`, `/projects/ai-triage-kiosk-demo/`, `/blog/recent-work-apr-jun-2026/`, `/writing/recent-work-apr-jun-2026/`, `/talks/`, `/resume/`, `/zh-tw/`, `/sitemap.xml`, and `/rss.xml`.

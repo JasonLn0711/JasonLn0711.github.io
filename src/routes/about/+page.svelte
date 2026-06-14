@@ -5,123 +5,132 @@
 
 <PageMeta
   title={`About | ${site.name}`}
-  description="A calm, evidence-led working model for trustworthy AI, speech intelligence, cybersecurity, and regulated systems."
+  description="A concise profile of Jason Chia-Sheng Lin's evidence-aware AI research, systems work, and collaboration style."
   path="/about/"
 />
 
-<section class="section about-page">
-  <div class="page-shell about-grid">
-    <div class="portrait" data-reveal>
-      <img src={site.avatar} alt={site.name} />
-      <div class="panel caption">
-        <strong>Researcher · Builder · Steward</strong>
-        <span>Calm human core. Evidence in hand. Systems in service.</span>
+<section class="about-page">
+  <div class="content-shell">
+    <header class="about-head">
+      <p class="kicker">About</p>
+      <h1>I build evidence-aware AI systems for high-stakes work.</h1>
+      <p class="lead">
+        I am a doctoral researcher at National Yang Ming Chiao Tung University,
+        working across trustworthy AI, speech intelligence, clinical workflow
+        support, cybersecurity, agent governance, and AI systems engineering.
+      </p>
+      <p>
+        My work is shaped by research training and earlier cybercrime
+        investigation experience. I care about systems where claims stay
+        grounded, boundaries are visible, and humans can review what the AI did
+        before it becomes an operational decision.
+      </p>
+    </header>
+
+    <section class="plain-section">
+      <h2>Working model</h2>
+      <div class="principle-list">
+        {#each workingPrinciples as item}
+          <article>
+            <h3>{item.title}</h3>
+            <p class="subtitle">{item.subtitle}</p>
+            <p>{item.body}</p>
+          </article>
+        {/each}
       </div>
-    </div>
-    <div class="about-copy" data-reveal>
-      <p class="kicker">About / Working With Me</p>
-      <h1 class="headline">A calm, evidence-led approach to serious AI systems.</h1>
-      <p class="subhead">
-        I work at the intersection of AI agents, speech intelligence, and
-        cybersecurity, where uncertainty is high and the margin for error is
-        low. I care about helping people clarify hard problems without making
-        the conversation feel heavy.
+    </section>
+
+    <section class="plain-section">
+      <h2>Where the work points</h2>
+      <p>
+        The common thread is practical trust: speech systems that preserve
+        decision evidence, clinical demos that stay synthetic and staff-review
+        oriented, governance work that preserves reconstructability, and
+        teaching materials that help teams deploy AI with infrastructure,
+        security, evaluation, and delivery discipline.
       </p>
-      <p class="subhead">
-        My working model blends investigation-informed thinking, human judgment,
-        rigorous evidence, clear boundaries, and practical system design.
-      </p>
-    </div>
-    <div class="principles">
-      {#each workingPrinciples as item, index}
-        <article class="panel principle" data-reveal>
-          <span class="maturity">0{index + 1}</span>
-          <h2>{item.title}</h2>
-          <p class="accent">{item.subtitle}</p>
-          <p>{item.body}</p>
-        </article>
-      {/each}
-    </div>
+    </section>
   </div>
 </section>
 
 <style>
   .about-page {
-    padding-top: 10.5rem;
+    padding-block: clamp(3.5rem, 9vw, 6rem);
   }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.58fr 0.62fr 1fr;
-    gap: 1rem;
-    align-items: start;
+  .about-head {
+    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
   }
 
-  .portrait {
-    position: relative;
+  h1 {
+    margin: 1rem 0 1rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.06;
+    text-wrap: balance;
   }
 
-  img {
-    width: 100%;
-    min-height: 620px;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
+  .lead {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+    line-height: 1.72;
   }
 
-  .caption {
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
-    left: 1rem;
-    display: grid;
-    gap: 0.35rem;
-    padding: 1rem;
-  }
-
-  .caption span,
-  .principle p {
+  .about-head p:not(.kicker):not(.lead),
+  .plain-section p {
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.74;
   }
 
-  .about-copy {
+  .about-head p:not(.kicker):not(.lead) {
+    margin: 1rem 0 0;
+  }
+
+  .plain-section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(2rem, 6vw, 3.2rem);
+  }
+
+  h2 {
+    margin: 0 0 1.35rem;
+    color: var(--ink-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.18;
+  }
+
+  .principle-list {
     display: grid;
-    gap: 1rem;
+    gap: 1.35rem;
   }
 
-  .principles {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+  .principle-list article {
+    border-top: 1px solid var(--line);
+    padding-top: 1.1rem;
   }
 
-  .principle {
-    padding: 1.2rem;
+  .principle-list article:first-child {
+    border-top: 0;
+    padding-top: 0;
   }
 
-  .principle h2 {
-    margin: 0.8rem 0 0;
-    font-size: clamp(1.35rem, 2.5vw, 2.2rem);
-    line-height: 1.02;
+  h3 {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 1.08rem;
+    line-height: 1.35;
   }
 
-  .accent {
+  .subtitle {
+    margin: 0.35rem 0 0;
     color: var(--accent) !important;
   }
 
-  @media (max-width: 1120px) {
-    .about-page {
-      padding-top: 8rem;
-    }
-
-    .about-grid,
-    .principles {
-      grid-template-columns: 1fr;
-    }
-
-    img {
-      min-height: auto;
-      aspect-ratio: 4 / 5;
-    }
+  .principle-list p:last-child {
+    margin: 0.45rem 0 0;
   }
 </style>
