@@ -5,7 +5,7 @@
 
 <PageMeta
   title={`Design Source | ${site.name}`}
-  description="The v3.0 Living Research Atlas concept gallery and implementation source record."
+  description="Archived design references and source records for earlier Jason Lin website concepts."
   path="/design/"
 />
 
@@ -13,13 +13,13 @@
   <div class="page-shell grid-two">
     <div data-reveal>
       <p class="kicker">Design Source</p>
-      <h1 class="headline">The v3.0 site is built from section references, not a template.</h1>
+      <h1 class="headline">Archived design references for earlier site concepts.</h1>
     </div>
     <div data-reveal>
       <p class="subhead">
-        These images are implementation references for the Living Research Atlas.
-        They are not final screenshots, and their generated text is not a source
-        of factual claims.
+        These images are retained as design-source history. The current public
+        site now uses a lighter academic blog style, and generated image text is
+        not a source of factual claims.
       </p>
       <div class="btn-row">
         <a class="button primary" href="https://github.com/JasonLn0711/JasonLn0711.github.io/blob/main/docs/site-v3-design-source.zh-tw.md" rel="noreferrer" target="_blank">Read source record <span class="button-mark">→</span></a>
@@ -93,7 +93,7 @@
   .concept img {
     width: 100%;
     border-radius: calc(var(--radius-lg) - 0.45rem);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--line);
   }
 
   @media (max-width: 900px) {

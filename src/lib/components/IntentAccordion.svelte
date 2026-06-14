@@ -49,9 +49,9 @@
 
   .intent:hover,
   .intent.open {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     border-color: var(--line-strong);
-    background: rgba(15, 32, 30, 0.88);
+    background: var(--surface-strong);
   }
 
   .intent-number {
@@ -86,7 +86,7 @@
     height: 2rem;
     place-items: center;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
   }
 
   @media (max-width: 640px) {

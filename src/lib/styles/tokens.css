@@ -1,27 +1,33 @@
 :root {
-  color-scheme: dark;
-  --bg: #030807;
-  --bg-soft: #071210;
-  --surface: rgba(11, 22, 21, 0.78);
-  --surface-strong: rgba(17, 33, 31, 0.94);
-  --ink: #eef6f3;
-  --ink-strong: #ffffff;
-  --muted: #aab9b5;
-  --muted-2: #7f918c;
-  --line: rgba(164, 248, 229, 0.18);
-  --line-strong: rgba(164, 248, 229, 0.34);
-  --accent: #69e6cc;
-  --accent-soft: rgba(105, 230, 204, 0.16);
-  --amber: #e2a83e;
-  --amber-soft: rgba(226, 168, 62, 0.14);
-  --danger: #ff8a70;
-  --radius-sm: 0.65rem;
-  --radius-md: 1.1rem;
-  --radius-lg: 1.65rem;
-  --radius-xl: 2rem;
+  color-scheme: light;
+  --bg: #fbfaf7;
+  --bg-soft: #f3f0ea;
+  --surface: #ffffff;
+  --surface-strong: #f7f5f0;
+  --ink: #24211d;
+  --ink-strong: #141210;
+  --muted: #706b63;
+  --muted-2: #908a80;
+  --line: #e2ded6;
+  --line-strong: #cfc8bc;
+  --accent: #6f3f2d;
+  --accent-soft: #f1e4dc;
+  --amber: #8b641f;
+  --amber-soft: #f6ecd4;
+  --danger: #9f2f2d;
+  --content-width: 44rem;
+  --page-width: 70rem;
+  --article-width: 46rem;
+  --toc-width: 13.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.4rem;
+  --radius-lg: 0.55rem;
+  --radius-xl: 0.7rem;
   --font-sans:
     "Aptos", "SF Pro Display", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial,
     sans-serif;
+  --font-serif:
+    Georgia, "Times New Roman", Times, serif;
   --font-mono:
     "SFMono-Regular", "Cascadia Code", "JetBrains Mono", "IBM Plex Mono", Consolas,
     monospace;
