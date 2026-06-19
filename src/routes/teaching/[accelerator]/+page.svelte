@@ -78,12 +78,6 @@
       <section class="plain-section">
         <h2>Source boundary</h2>
         <p>{accelerator.boundary}</p>
-        <p class="source-link">
-          Canonical source:
-          <a href={accelerator.sourceHref} rel="noreferrer" target="_blank">
-            {accelerator.sourceRepo}/{accelerator.sourcePath}
-          </a>
-        </p>
       </section>
     </article>
   </div>
@@ -195,12 +189,6 @@
     gap: 0.65rem;
     margin: 0;
     padding-left: 1.25rem;
-  }
-
-  .source-link {
-    margin-top: 0.9rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
   }
 
   @media (max-width: 760px) {

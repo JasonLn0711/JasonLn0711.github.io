@@ -321,6 +321,27 @@ button {
   background: transparent;
 }
 
+.longform table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.longform th,
+.longform td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.7rem;
+  vertical-align: top;
+}
+
+.longform th {
+  color: var(--ink-strong);
+  background: var(--surface-strong);
+  text-align: left;
+}
+
 .longform hr {
   border: 0;
   border-top: 1px solid var(--line);
