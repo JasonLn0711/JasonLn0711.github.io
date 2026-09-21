@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArticleConnections from "$lib/components/ArticleConnections.svelte";
   import ArticleToc from "$lib/components/ArticleToc.svelte";
   import PageMeta from "$lib/components/PageMeta.svelte";
   import { getBlogComponent, type BlogPost } from "$lib/content/blog";
@@ -23,17 +24,18 @@
   description={post.description}
   path={data.canonicalPath}
   image={post.ogImage}
+  lang={post.languages.includes("zh-Hant") ? "zh-tw" : "en"}
   type="article"
   publishedTime={post.date}
   modifiedTime={post.updatedDate}
 />
 
 <div class="article-shell page-shell">
-  <ArticleToc contentId="article-content" />
+  {#key post.slug}<ArticleToc contentId="article-content" />{/key}
 
   <article class="article-main">
     <header class="article-header">
-      <p class="kicker">{post.categoryLabel}</p>
+      <p class="kicker">{post.kind === "daily-learning" ? "Daily learning · 每日學習" : post.categoryLabel}</p>
       <h1>{post.title}</h1>
       <p>{post.description}</p>
       <div class="meta-line">
@@ -42,6 +44,13 @@
           <span>{post.tags.join(" / ")}</span>
         {/if}
       </div>
+      {#if post.learningDate}<p class="learning-date">學習日期 / Learning date: {post.learningDate}</p>{/if}
+      {#if post.languages.includes("en") && post.languages.includes("zh-Hant")}
+        <nav class="language-links" aria-label="Article languages">
+          <a href="#zh" lang="zh-Hant">閱讀中文 ↓</a>
+          <a href="#en" lang="en">Read in English ↓</a>
+        </nav>
+      {/if}
     </header>
 
     <div id="article-content" class="article-content longform">
@@ -51,12 +60,15 @@
     </div>
 
     <footer class="article-footer">
-      <a href={data.indexPath}>Back to writing</a>
+      <ArticleConnections {post} />
+      <a href={data.indexPath}>← Blog／所有文章</a>
     </footer>
   </article>
 </div>
 
 <style>
+  .language-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; }
+  .learning-date { font-size: 0.8rem !important; }
   .article-shell {
     display: grid;
     grid-template-columns: var(--toc-width) minmax(0, var(--article-width)) 1fr;

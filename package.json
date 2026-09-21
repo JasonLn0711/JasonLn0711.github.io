@@ -5,23 +5,27 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "dev": "vite dev",
     "start": "vite dev",
     "build": "svelte-kit sync && vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.61.1",
     "@types/node": "^25.9.1",
+    "katex": "^0.18.7",
     "mdsvex": "^0.12.7",
+    "remark-math": "^3.0.1",
     "svelte": "^5.56.0",
     "svelte-check": "^4.4.8",
     "typescript": "^5.9.3",
-    "vite": "^8.0.14"
+    "vite": "^8.0.14",
+    "yaml": "^2.9.1"
   }
 }

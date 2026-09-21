@@ -1,9 +1,8 @@
 <script lang="ts">
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { blogPosts } from "$lib/content/blog";
+  import RecentWriting from "$lib/components/RecentWriting.svelte";
   import { currentSnapshot, recentHighlights, site, workTracks } from "$lib/content/site";
 
-  const recentPosts = blogPosts.slice(0, 3);
   const featuredHighlights = recentHighlights.slice(0, 5);
 </script>
 
@@ -20,10 +19,14 @@
       <a href="/research/">Research</a>
       <a href="/projects/">Systems</a>
       <a href="/teaching/">Teaching</a>
-      <a href="/blog/">Writing</a>
+      <a href="/blog/">Blog</a>
       <a href="/resume/">CV</a>
     </div>
   </div>
+</section>
+
+<section class="home-section">
+  <div class="content-shell"><RecentWriting /></div>
 </section>
 
 <section class="home-section">
@@ -73,26 +76,7 @@
   </div>
 </section>
 
-<section class="home-section">
-  <div class="content-shell">
-    <div class="section-title-row">
-      <h2>Recent writing</h2>
-      <a href="/blog/">All posts</a>
-    </div>
-    <div class="snapshot-list">
-      {#each recentPosts as post}
-        <article class="snapshot-row">
-          <time datetime={post.date}>{post.dateLabel}</time>
-          <div>
-            <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3>
-            <p>{post.description}</p>
-            <span>{post.categoryLabel}{post.tags.length ? ` · ${post.tags.slice(0, 3).join(" / ")}` : ""}</span>
-          </div>
-        </article>
-      {/each}
-    </div>
-  </div>
-</section>
+
 
 <style>
   .home-intro {

@@ -1,28 +1,40 @@
 <script lang="ts">
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { blogPosts } from "$lib/content/blog";
+  import { blogPosts, blogSeries } from "$lib/content/blog";
   import { site } from "$lib/content/site";
+  let filter = $state("all");
+  let posts = $derived(filter === "daily-learning" ? blogPosts.filter((post) => post.kind === filter) : blogPosts);
 </script>
 
 <PageMeta
   title={`Blog | ${site.name}`}
-  description="Long-form notes on trustworthy AI, speech intelligence, cybersecurity, interface design, and evidence-aware systems."
+  description="Bilingual daily learning notes and connected essays on AI, cybersecurity, and evidence-aware systems."
   path="/blog/"
 />
 
 <section class="blog-index">
   <div class="content-shell">
     <header class="index-head">
-      <p class="kicker">Blog / Writing</p>
-      <h1>Notes and essays</h1>
+      <p class="kicker">Blog / 學習札記</p>
+      <h1>Learning, notes and essays</h1>
       <p>
-        Long-form writing on trustworthy AI, speech and language systems,
-        security, interface design, and evidence-aware deployment.
+        Bilingual daily learning notes and connected essays on AI, cybersecurity and evidence-aware systems.
+        每日整理理解，用例子與文章連結逐步拆解大問題。
       </p>
     </header>
 
+    <nav class="filters" aria-label="Article type">
+      <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
+      <button type="button" aria-pressed={filter === "daily-learning"} onclick={() => filter = "daily-learning"}>Daily learning／每日學習</button>
+      <a href="/blog/series/">Reading series／系列閱讀 →</a>
+    </nav>
+    <noscript><p>目前列出所有文章；啟用 JavaScript 可切換文章類型。</p></noscript>
+    <div class="series-links">
+      {#each blogSeries as series}<a href={`/blog/series/${series.slug}/`}>{series.title} →</a>{/each}
+    </div>
     <div class="post-list">
-      {#each blogPosts as post}
+      {#if posts.length === 0}<p>No daily learning articles published yet. 首篇每日學習文章將在內容確認並發布後出現。</p>{/if}
+      {#each posts as post}
         <article class="post-row">
           <time datetime={post.date}>{post.dateLabel}</time>
           <div>
@@ -39,6 +51,11 @@
 </section>
 
 <style>
+  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
+  .filters button { font: inherit; cursor: pointer; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: transparent; color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink-strong); color: var(--bg); }
+  .series-links { display: grid; gap: 0.5rem; margin-bottom: 2rem; }
+
   .blog-index {
     padding-block: clamp(3.5rem, 9vw, 6rem);
   }

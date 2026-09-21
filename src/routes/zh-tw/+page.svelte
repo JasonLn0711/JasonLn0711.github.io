@@ -1,4 +1,5 @@
 <script lang="ts">
+  import RecentWriting from "$lib/components/RecentWriting.svelte";
   import PageMeta from "$lib/components/PageMeta.svelte";
   import { audienceRoutes, currentSnapshot, recentHighlights, researchPillars, site, zhTw } from "$lib/content/site";
 </script>
@@ -21,10 +22,12 @@
         <a href="/now/">近期進展</a>
         <a href="/research/">研究</a>
         <a href="/projects/">系統</a>
-        <a href="/blog/">文章</a>
+        <a href="/blog/">Blog／學習札記</a>
         <a href={`mailto:${site.email}`}>聯絡</a>
       </div>
     </header>
+
+    <section class="plain-section"><RecentWriting locale="zh-Hant" /></section>
 
     <section class="plain-section">
       <h2>可以從這裡開始</h2>

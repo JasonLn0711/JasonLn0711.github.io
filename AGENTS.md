@@ -32,3 +32,15 @@
 - `npm run check`
 - `npm run build`
 - `npm run preview`
+
+## Daily learning publication — September 21
+
+Follow [the daily publishing contract](docs/learning-publishing.md). One day
+produces one confirmed bilingual Blog article at one URL; Jason supplies his
+own explanation before editing. Use ignored `.local/drafts/` until confirmation,
+then verify the public Pages URL before recording published completion.
+Subject repositories own learner evidence and Planning owns capacity/status.
+Instagram 「非典型台清交博士生」 uses the optional one-concept template;
+no posting quota or autonomous schedule is installed.
+
+Run `npm test`, `npm run check` and `npm run build` for publishing changes.

@@ -1,0 +1,13 @@
+[
+  {
+    "slug": "evidence-aware-ai",
+    "title": "Evidence-aware AI · 以證據理解 AI 系統",
+    "description": "A reading path through existing essays: why evidence matters, how speech pipelines preserve it, and how disclosure shapes collaboration. 從既有文章理解證據、語音流程與資訊揭露的關係。",
+    "roadmap": [
+      "Evidence and human judgment · 證據與人的判斷",
+      "Speech pipelines and traceability · 語音流程與可追溯性",
+      "Minimal disclosure across nodes · 跨節點的最小揭露",
+      "Connections to recent systems work · 與系統實作的連接"
+    ]
+  }
+]

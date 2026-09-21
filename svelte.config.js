@@ -1,5 +1,7 @@
 import adapter from "@sveltejs/adapter-static";
 import { mdsvex } from "mdsvex";
+import remarkMath from "remark-math";
+import { remarkMathRender } from "./scripts/remark-math-render.js";
 
 const mdsvexExtensions = [".svx", ".md", ".mdx"];
 
@@ -49,7 +51,7 @@ const config = {
   preprocess: [
     mdsvex({
       extensions: mdsvexExtensions,
-      remarkPlugins: [remarkHeadingIds]
+      remarkPlugins: [remarkMath, remarkHeadingIds, remarkMathRender]
     })
   ],
   kit: {

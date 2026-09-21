@@ -193,7 +193,7 @@ Key routes:
 - `/projects/` and `/projects/[slug]/`
 - `/teaching/`, `/teaching/[accelerator]/`, and `/teaching/[accelerator]/[day]/`
 - `/talks/` and `/talks/regulated-ai-cybersecurity/`
-- `/blog/` and `/blog/[slug]/`
+- `/blog/`, `/blog/[slug]/`, `/blog/series/`, and `/blog/series/[slug]/`
 - `/writing/` and `/writing/[slug]/` as compatibility aliases
 - `/about/`
 - `/contact/`
@@ -223,6 +223,8 @@ Earlier v2.0 records remain useful as historical design context:
 
 ## Commands
 
+Use Node.js 22.18 or newer; GitHub Pages CI uses Node 22.
+
 ```bash
 npm run check
 npm run build
@@ -230,6 +232,22 @@ npm run preview
 ```
 
 `npm run check` runs SvelteKit sync plus `svelte-check`. `npm run build` writes the static site to `build/`.
+
+## Daily Learning Blog
+
+The site supports one bilingual daily learning article at one URL, connected
+reading series, article backlinks, build-time KaTeX mathematics and a Taipei
+three-day homepage window. The initial series connects existing public essays;
+no new learner completion is implied.
+
+- [Daily publishing workflow and metadata](docs/learning-publishing.md)
+- [Bilingual daily article template](templates/daily-learning.mdx)
+- [Instagram one-concept template](templates/instagram-one-concept.md)
+- [Reading series](https://jasonln0711.github.io/blog/series/)
+
+`npm test` checks publishing rules and mathematics. Drafts stay in ignored
+`.local/drafts/`; only confirmed public text enters `src/content/blog/`.
+`/blog/` and `/writing/` continue to share the published article data.
 
 ## Add A Blog Post
 

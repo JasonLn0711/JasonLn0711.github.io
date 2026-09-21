@@ -1,5 +1,6 @@
 <script lang="ts">
   import "../app.css";
+  import "katex/dist/katex.min.css";
   import Footer from "$lib/components/Footer.svelte";
   import Nav from "$lib/components/Nav.svelte";
 

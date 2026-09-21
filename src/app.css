@@ -386,3 +386,9 @@ button {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Bilingual article sections and typeset mathematics. */
+.longform section[id] { scroll-margin-top: 6rem; }
+.longform section + section { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; }
+.longform .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.3rem 0; max-width: 100%; }
+.longform .katex { font-size: 1.1em; }
