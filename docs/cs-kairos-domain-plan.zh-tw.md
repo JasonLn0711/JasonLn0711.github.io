@@ -18,9 +18,27 @@
 | --- | --- | --- |
 | 主站＋learn 分工 | confirmed | 主站放個人、研究、專案與文章；learn 放 MATLAB、CEH 等課程 |
 | CEH 完整中英文 | confirmed | 正文、例子、圖說、Q&A 與解析皆提供兩種語言 |
-| 首頁閱讀優化 | validated locally | 既有 Svelte 5＋SvelteKit 2＋adapter-static；人類閱讀與真實手機驗收待完成 |
+| 首頁閱讀優化 | published on GitHub Pages | 既有 Svelte 5＋SvelteKit 2＋adapter-static；人類閱讀與真實手機驗收待完成 |
 | 接續既有 Worker | working assumption | 根據帳戶現有專案提出的部署方案，尚未修正或部署 |
 | 新網域與 CEH 新頁 | implementation pending | 本次記錄規劃，不預填上線或文章完成 |
+
+## Git 發布回執 — 2026-10-23
+
+首頁實作 `a8084fd`、原始需求 `85256a9`、架構與設計文件 `4edb82c` 分開提交，
+已以 `git push origin HEAD:main` 發布。重新 fetch 確認本機與 `origin/main`
+同為 `4edb82c746efc79577edf4e268a74c124665cdf7`，divergence `0 0`；沒有衝突或歷史覆寫。
+
+本機驗證：14 tests、Svelte check 零錯誤／零警告、adapter-static build 通過；
+雙語響應式、24 個內部連結與無 JavaScript 閱讀檢查保留在[設計紀錄](site-v3-design-source.zh-tw.md)。
+四個相關 repo 本輪新增內容的 87 個文件連結／錨點通過檢查。
+
+[GitHub Pages run 39816130582](https://github.com/JasonLn0711/JasonLn0711.github.io/actions/runs/39816130582)
+於 00:46（Asia/Taipei）完成成功；公開 `/` 與 `/zh-tw/` 回應 HTTP 200 且包含新版首頁
+內容，RSS／sitemap 回應 HTTP 200 且 XML 可解析。新版已發布於既有 GitHub Pages 網址。
+此回執後續文件提交不改網站程式或建置設定；
+最新執行狀態以對應 commit 的 workflow 為準。Cloudflare Worker 修復、DNS／Custom Domain
+與真人閱讀驗收仍待執行。[Planning 日誌](../../planning-everything-track/weeks/2026-W43/days/2026-10-23.md#kairos-git-publication-2026-10-23)
+保留各 repo 的發布摘要與下一關。
 
 ## 2026-10-23 唯讀查核
 
