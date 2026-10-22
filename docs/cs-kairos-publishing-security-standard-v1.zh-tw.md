@@ -1,5 +1,7 @@
 # CS Kairos 發布、審核、資安與維運標準 v1.0
 
+> 採用更新：2026-10-23，依本人完整 Phase 0–3 實作與發布要求採用。以下提案時點的盤點保留沿革；現行狀態、細化決議與驗收以 [實作回執](phase-0-3-implementation.zh-tw.md)及 [learn 內容規範](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/content-authoring.md)為準。本人授權、代理技術審閱與獨立讀者接受分別記錄。
+
 > 提案草稿；2026-10-23。不得凌駕原有 `AGENTS.md`、`docs/learning-publishing.md`、`docs/site-v3-design-source.zh-tw.md`。遇到衝突應提出 ADR/PR 決議。
 
 ## 一、治理原則

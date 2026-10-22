@@ -1,5 +1,7 @@
 # CEH 教材與互動學習內容規格 v1.0
 
+> 採用更新：2026-10-23，依本人完整 Phase 0–3 實作與發布要求採用。以下提案時點的盤點保留沿革；現行狀態、細化決議與驗收以 [實作回執](phase-0-3-implementation.zh-tw.md)及 [learn 內容規範](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/content-authoring.md)為準。本人授權、代理技術審閱與獨立讀者接受分別記錄。
+
 > 提案草稿，2026-10-23。適用於 `learn.cs-kairos.com/courses/ceh/`。需與當期 EC-Council 官方課程/考試版本逐項核對。獨立原創教材，**非 EC-Council 官方、認可或授權課程**。
 
 ## 1. 產品承諾
