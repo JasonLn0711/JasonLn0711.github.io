@@ -2,7 +2,7 @@
 
 > 採用更新：2026-10-23，依本人完整 Phase 0–3 實作與發布要求採用。以下提案時點的盤點保留沿革；現行狀態、細化決議與驗收以 [實作回執](phase-0-3-implementation.zh-tw.md)及 [learn 內容規範](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/content-authoring.md)為準。本人授權、代理技術審閱與獨立讀者接受分別記錄。
 
-> 狀態：Proposed（需人工審閱後才具有正式部署效力）
+> 狀態：Adopted；本人已要求完整實作與發布，工程與上線證據見實作回執。獨立讀者接受另行驗收。
 > 日期：2026-10-23（Asia/Taipei）
 > 適用：`cs-kairos.com` 主網站、`learn.cs-kairos.com` 公開課程入口
 > 既有規範：`AGENTS.md`、`docs/site-v3-design-source.zh-tw.md`、`docs/learning-publishing.md`。本文件是補充，不得默默覆寫既有規範。

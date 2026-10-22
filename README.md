@@ -14,7 +14,7 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 | Lab | [Artificial Intelligence in Medical Imaging / Signal Analysis Lab](https://ytwu.lab.nycu.edu.tw/) |
 | Institution | National Yang Ming Chiao Tung University |
 | Location | Taiwan |
-| Website | [jasonln0711.github.io](https://cs-kairos.com) |
+| Website | [cs-kairos.com](https://cs-kairos.com) |
 | LinkedIn | [jason-lin-1a648813b](https://www.linkedin.com/in/jason-lin-1a648813b/) |
 | Email | [cre062400@gmail.com](mailto:cre062400@gmail.com) |
 
@@ -100,8 +100,8 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 - Schedule: May 6, 2026, 16:15-16:45
 - Venue: Taipei Nangang Exhibition Center Hall 2, 4F Conference Room 4A
 - Speaker page: [CYBERSEC 2026 Speaker Profile](https://cybersec.ithome.com.tw/en/2026/speaker/2060)
-- Talks page: [jasonln0711.github.io/talks](https://cs-kairos.com/talks/)
-- Teaching page: [jasonln0711.github.io/teaching](https://cs-kairos.com/teaching/)
+- Talks page: [cs-kairos.com/talks](https://cs-kairos.com/talks/)
+- Teaching page: [cs-kairos.com/teaching](https://cs-kairos.com/teaching/)
 
 This session focuses on cybersecurity design for AI software medical devices, using FDA 524B as a practical anchor for threat modeling, SBOM, Zero Trust design, and auditable risk governance in heavily regulated environments.
 
@@ -168,10 +168,10 @@ Experiment Design, Evaluation Frameworks, Reproducible Workflows, Python, GitHub
 
 I welcome thoughtful conversations around research collaboration, trustworthy AI, speech and language systems, and AI deployment in security-sensitive or regulated environments.
 
-- Recent work: [jasonln0711.github.io/now](https://cs-kairos.com/now/)
-- Research: [jasonln0711.github.io/research](https://cs-kairos.com/research/)
-- Systems: [jasonln0711.github.io/projects](https://cs-kairos.com/projects/)
-- Contact: [jasonln0711.github.io/contact](https://cs-kairos.com/contact/)
+- Recent work: [cs-kairos.com/now](https://cs-kairos.com/now/)
+- Research: [cs-kairos.com/research](https://cs-kairos.com/research/)
+- Systems: [cs-kairos.com/projects](https://cs-kairos.com/projects/)
+- Contact: [cs-kairos.com/contact](https://cs-kairos.com/contact/)
 
 ## About This Repository
 
