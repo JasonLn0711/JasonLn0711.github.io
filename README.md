@@ -20,6 +20,13 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 
 ## Summary
 
+The [cs-kairos.com architecture and migration plan](docs/cs-kairos-domain-plan.zh-tw.md)
+records the October 23 main-site/learning-site split, current Cloudflare findings
+and the full bilingual CEH course direction. [Original requirements](docs/sources/2026-10-23-kairos-site-requirements.md)
+and the [homepage design/validation record](docs/site-v3-design-source.zh-tw.md)
+separate adopted decisions, local implementation and public deployment. The
+custom-domain migration remains pending; the website link above is the existing address.
+
 - I am a doctoral researcher in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at NYCU, where I work across trustworthy AI, AI Software as a Medical Device (SaMD), speech and language pipelines, and security-aware evaluation.
 - Before doctoral research, I worked in cybercrime investigation. That background continues to shape how I think about evidence, adversarial behavior, failure analysis, and the difference between a strong model demo and a system that can actually be trusted in practice.
 - My current work focuses on evidence-aware AI systems, medical cybersecurity governance, ASR + LLM + RAG workflows, runtime governance, and deployable AI for high-stakes environments.

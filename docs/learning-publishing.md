@@ -1,5 +1,17 @@
 # Daily learning publishing
 
+## Scope update — 2026-10-23
+
+The [Kairos domain plan](cs-kairos-domain-plan.zh-tw.md) connects this main-site
+Blog to the separate public teaching site. CEH reading follows its adopted
+October 22 one-concept rule; a daily Blog is not a CEH reading completion gate.
+The [CEH course plan](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/ceh-bilingual-publishing-plan.zh-tw.md)
+uses complete Chinese/English article pairs on learn, with separate language
+URLs and independent public Q&A IDs. This does not change the one-URL bilingual
+format below for separately activated daily-learning Blog articles or other subjects.
+
+## Original daily Blog contract
+
 Adopted 2026-09-21. Jason explains what he understood; the editor checks,
 organizes and translates it. One learning day produces one bilingual article
 at one URL. Publication follows Jason's confirmation of both sections. A
@@ -80,12 +92,21 @@ inventories remain outside the top-level publishing manifest.
 
 ## Homepage dates
 
-The English and Chinese homepages show all articles first published today or
-in the preceding two calendar days in Asia/Taipei. An `updatedDate` does not
-make an old article new. The browser refreshes the window at Taipei midnight,
-on returning to the tab and on page restoration. Without JavaScript, the
-prerendered page labels its dated list “Latest writing”, without claiming it
-reflects the current three-day window. Empty windows link to the archive.
+Updated 2026-10-23 for the article-first homepage. Both homepages show the
+five latest published articles, ordered by original publication date descending,
+then slug for ties. Older articles remain visible between publications; an
+`updatedDate` does not move an article up the list. Fewer than five articles
+are shown in full, and an empty list links to Teaching.
+
+The same list is prerendered and hydrated, with no rolling window or midnight
+timer. Draft and future-date filtering still happens in the build-time manifest;
+a future publication requires a new build. The former three-day utility remains
+available with its existing tests, but no longer controls the homepage.
+
+Selected reading is a separate editorial slug list and may overlap the latest
+five. Homepage Chinese captions do not translate the article body; language
+labels come from the published article metadata. Missing translated captions
+fall back to the original title and description.
 
 ## Scientific notation
 

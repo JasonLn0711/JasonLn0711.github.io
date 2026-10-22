@@ -1,7 +1,39 @@
 # Personal Website v3.0 Design Source Record
 
 Date: 2026-05-31
-Status: active implementation source
+Status: historical v3 source; current homepage direction is recorded below
+
+[主站與 learn 網域規劃](cs-kairos-domain-plan.zh-tw.md)接續本頁首頁實作；
+[需求來源與雙語決策](sources/2026-10-23-kairos-site-requirements.md)保存本人原句。
+公開 CEH 課程由 Kairos Learning 擁有，網域遷移與課程實作待各自驗收。
+
+## 2026-10-23｜文章優先首頁
+
+本次以訪客注意力與維護時間為主要限制，沿用 Svelte 5、SvelteKit 2、
+TypeScript 與 adapter-static。網站 repo 擁有內容、實作與驗證；Planning
+保留位置與狀態。下方五月的概念圖與深色設計記錄保留為歷史來源。
+
+- 主參考：[swyx 個人首頁](https://swyx.io/)，採作者介紹、精選閱讀與作品分區。
+- 閱讀參考：[Julia Evans](https://jvns.ca/)，採可掃讀的標題、日期與清楚入口。
+- 使用現有暖白背景、深色文字與棕色連結；系統字體加繁中後備字體。
+- 英文 `/` 與繁中 `/zh-tw/` 共用首頁元件，依序呈現介紹、精選三篇、
+  最新五篇、主題閱讀與研究實作。照片使用既有公開頭像。
+- 最新文章以實際發布日期排序，取消首頁三日視窗與「Recent 90-day snapshot」。
+  精選文章與最新文章可重複，文章正文與既有網址保持不變。
+- 精選包含科技犯罪偵查與可信任 AI、語音證據流程、空間介面三篇。
+  繁中顯示文案依 slug 集中於 site.ts；原文語言取自 BlogPost。
+- 桌面章節採左側標題、右側閱讀欄；手機改單欄。手機導覽使用原生 details，
+  JavaScript 停用時仍可操作。首頁不引入 3D、CMS 或新執行時 API。
+- 本機驗證：14 項測試通過；Svelte check 為 0 errors／0 warnings；靜態建置成功。
+  中英首頁於 390、768、1440px 檢查無橫向溢出，照片尺寸正確，最新文章各五篇。
+  24 個內部連結與 anchor 有效，RSS／sitemap 可解析。移除 script 的靜態副本
+  保留完整內容、手機原生選單與閱讀 anchor；一般預覽瀏覽器沒有 error／warn。
+- 驗證範圍為桌面瀏覽器的響應式檢查；真實手機裝置與 Jason 的閱讀驗收尚未完成。
+  本機截圖與量測留在忽略目錄 `.local/homepage-review/`。
+- 既有依賴稽核回報 2 high／3 low（Vite、source-map-js、cookie 依賴鏈）；
+  本次未修改依賴或 lockfile，後續依賴維護另行處理。
+- 本機驗證時尚未提交、推送或部署。後續本人已要求分開提交並推送 main；
+  Git、既有 Pages 自動發布與新網域啟用分別驗收。Jason 的閱讀與真實手機驗收待完成。
 
 ## Design Read
 
