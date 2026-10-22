@@ -9,10 +9,11 @@
   <div class="footer-shell">
     <div class="footer-intro"><h2>{copy.footer}</h2><p>{copy.footerNote}</p><a href={`mailto:${site.email}`}>{site.email}</a></div>
     <nav aria-label={zh ? "其他連結" : "Further links"}>
+      <a href={site.learningUrl}>CS Kairos · {zh ? "學習" : "Learn"} ↗</a>
       <a href="/resume/">{copy.cv}</a><a href="/now/">{copy.now}</a><a href={zh ? "/zh-tw/contact/" : "/contact/"}>{copy.contact}</a>
       <a href={site.github} rel="noreferrer" target="_blank">GitHub ↗</a><a href={site.linkedin} rel="noreferrer" target="_blank">LinkedIn ↗</a><a href="/rss.xml">RSS ↗</a>
     </nav>
-    <p class="signature">{site.name} <span>· {zh ? "研究、實作與持續學習" : "Research, practice, and learning"}</span></p>
+    <p class="signature">CS Kairos · {site.name} <span>· {zh ? "研究、實作與持續學習" : "Research, practice, and learning"}</span></p>
   </div>
 </footer>
 

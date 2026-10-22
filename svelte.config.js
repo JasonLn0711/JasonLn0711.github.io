@@ -55,6 +55,15 @@ const config = {
     })
   ],
   kit: {
+    csp: {
+      mode: "hash",
+      directives: {
+        "script-src": ["self"],
+        "style-src": ["self", "unsafe-inline"],
+        "object-src": ["none"],
+        "base-uri": ["self"]
+      }
+    },
     adapter: adapter({
       pages: "build",
       assets: "build",

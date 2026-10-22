@@ -5,6 +5,7 @@ export const site = {
   institution: "National Yang Ming Chiao Tung University",
   lab: "Artificial Intelligence in Medical Imaging / Signal Analysis Lab",
   url: "https://jasonln0711.github.io",
+  learningUrl: "https://learn.cs-kairos.com",
   email: "cre062400@gmail.com",
   github: "https://github.com/JasonLn0711",
   linkedin: "https://www.linkedin.com/in/jason-lin-1a648813b/",
