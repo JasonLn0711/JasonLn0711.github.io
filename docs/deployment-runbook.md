@@ -11,8 +11,7 @@ SvelteKit's static adapter. No runtime secrets or protected API bindings are nee
    merging. Keep the previous build available. Merge only the reviewed head.
 3. Check the Cloudflare build result. Verify root, Chinese home, deep article,
    genuine 404, assets, canonical, RSS and sitemap over HTTPS.
-4. Bind `cs-kairos.com` to this Worker only after the preview passes. Add a proxied
-   `www` CNAME and a host-specific Single Redirect to `https://cs-kairos.com`,
+4. Bind `cs-kairos.com` to this Worker only after the preview passes. Bind `www.cs-kairos.com` as a second Custom Domain and add a host-specific Single Redirect to `https://cs-kairos.com`,
    preserving path and query, with status 301. Verify a single hop. Native asset
    `_redirects` does not support domain-level redirects.
 5. Switch `site.url` and robots to the canonical domain after it is reachable.

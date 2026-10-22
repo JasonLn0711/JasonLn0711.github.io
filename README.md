@@ -14,7 +14,7 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 | Lab | [Artificial Intelligence in Medical Imaging / Signal Analysis Lab](https://ytwu.lab.nycu.edu.tw/) |
 | Institution | National Yang Ming Chiao Tung University |
 | Location | Taiwan |
-| Website | [jasonln0711.github.io](https://jasonln0711.github.io) |
+| Website | [jasonln0711.github.io](https://cs-kairos.com) |
 | LinkedIn | [jason-lin-1a648813b](https://www.linkedin.com/in/jason-lin-1a648813b/) |
 | Email | [cre062400@gmail.com](mailto:cre062400@gmail.com) |
 
@@ -52,41 +52,41 @@ Current work includes cybersecurity risk management and governance for AI softwa
 
 ## Selected Projects
 
-### [UroPrevisit Navigator](https://jasonln0711.github.io/projects/uroprevisit-navigator/)
+### [UroPrevisit Navigator](https://cs-kairos.com/projects/uroprevisit-navigator/)
 
 A synthetic urology previsit workflow for adaptive governed questions, missing-field repair, clinician-review summaries, and PSA / CRM-ready proposal support.
 
-### [AI Triage Kiosk Demo](https://jasonln0711.github.io/projects/ai-triage-kiosk-demo/)
+### [AI Triage Kiosk Demo](https://cs-kairos.com/projects/ai-triage-kiosk-demo/)
 
 A synthetic vital-aware kiosk intake demo with governed English follow-up questions and staff-review summary output for a narrow market-demo scope.
 
-### [Jarvis Voice Sight](https://jasonln0711.github.io/projects/jarvis-voice-sight/)
+### [Jarvis Voice Sight](https://cs-kairos.com/projects/jarvis-voice-sight/)
 
 A realtime voice-agent prototype with always-listening interaction, VAD, barge-in, turn isolation, sentence-level streaming TTS, and Ollama / vLLM runtime support.
 
-### [Speech Evidence Intelligence Pipeline](https://jasonln0711.github.io/projects/speech-evidence-intelligence-pipeline/)
+### [Speech Evidence Intelligence Pipeline](https://cs-kairos.com/projects/speech-evidence-intelligence-pipeline/)
 
 An evidence-aware ASR + LLM workflow for turning long-form conversational audio into structured, reviewable outputs for high-stakes analysis. The pipeline emphasizes traceability between generated outputs and source transcript evidence.
 
-### [Fraud Conversation Analysis with RAG](https://jasonln0711.github.io/projects/fraud-conversation-analysis-rag/)
+### [Fraud Conversation Analysis with RAG](https://cs-kairos.com/projects/fraud-conversation-analysis-rag/)
 
 A retrieval-augmented workflow for analyzing fraud-related conversations while keeping language-model outputs grounded in transcript evidence. The project focuses on investigator-friendly review, grounding quality, and hallucination control.
 
-### [Federated Learning Leakage Study](https://jasonln0711.github.io/projects/federated-learning-leakage-study/)
+### [Federated Learning Leakage Study](https://cs-kairos.com/projects/federated-learning-leakage-study/)
 
 An AI security study centered on leakage risk and privacy trade-offs in federated learning for sensitive collaborative training settings. The work compares realistic threat models instead of treating federated learning as privacy-safe by default.
 
 ## Selected Writing
 
-- [Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice](https://jasonln0711.github.io/blog/recent-work-apr-jun-2026/)
-- [From Cybercrime Investigation to Trustworthy AI](https://jasonln0711.github.io/blog/investigation-and-trustworthy-ai/)
-- [Designing Speech Evidence Pipelines with ASR and LLMs](https://jasonln0711.github.io/blog/speech-evidence-pipelines/)
+- [Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice](https://cs-kairos.com/blog/recent-work-apr-jun-2026/)
+- [From Cybercrime Investigation to Trustworthy AI](https://cs-kairos.com/blog/investigation-and-trustworthy-ai/)
+- [Designing Speech Evidence Pipelines with ASR and LLMs](https://cs-kairos.com/blog/speech-evidence-pipelines/)
 
 ## Selected Teaching
 
-- [Teaching](https://jasonln0711.github.io/teaching/)
-- [Enterprise AI Architecture Sprint](https://jasonln0711.github.io/teaching/enterprise-ai-architecture-sprint/)
-- [Day 1: AI Gateway Architecture Evidence](https://jasonln0711.github.io/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/)
+- [Teaching](https://cs-kairos.com/teaching/)
+- [Enterprise AI Architecture Sprint](https://cs-kairos.com/teaching/enterprise-ai-architecture-sprint/)
+- [Day 1: AI Gateway Architecture Evidence](https://cs-kairos.com/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/)
 
 ## Speaking
 
@@ -100,8 +100,8 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 - Schedule: May 6, 2026, 16:15-16:45
 - Venue: Taipei Nangang Exhibition Center Hall 2, 4F Conference Room 4A
 - Speaker page: [CYBERSEC 2026 Speaker Profile](https://cybersec.ithome.com.tw/en/2026/speaker/2060)
-- Talks page: [jasonln0711.github.io/talks](https://jasonln0711.github.io/talks/)
-- Teaching page: [jasonln0711.github.io/teaching](https://jasonln0711.github.io/teaching/)
+- Talks page: [jasonln0711.github.io/talks](https://cs-kairos.com/talks/)
+- Teaching page: [jasonln0711.github.io/teaching](https://cs-kairos.com/teaching/)
 
 This session focuses on cybersecurity design for AI software medical devices, using FDA 524B as a practical anchor for threat modeling, SBOM, Zero Trust design, and auditable risk governance in heavily regulated environments.
 
@@ -168,10 +168,10 @@ Experiment Design, Evaluation Frameworks, Reproducible Workflows, Python, GitHub
 
 I welcome thoughtful conversations around research collaboration, trustworthy AI, speech and language systems, and AI deployment in security-sensitive or regulated environments.
 
-- Recent work: [jasonln0711.github.io/now](https://jasonln0711.github.io/now/)
-- Research: [jasonln0711.github.io/research](https://jasonln0711.github.io/research/)
-- Systems: [jasonln0711.github.io/projects](https://jasonln0711.github.io/projects/)
-- Contact: [jasonln0711.github.io/contact](https://jasonln0711.github.io/contact/)
+- Recent work: [jasonln0711.github.io/now](https://cs-kairos.com/now/)
+- Research: [jasonln0711.github.io/research](https://cs-kairos.com/research/)
+- Systems: [jasonln0711.github.io/projects](https://cs-kairos.com/projects/)
+- Contact: [jasonln0711.github.io/contact](https://cs-kairos.com/contact/)
 
 ## About This Repository
 
@@ -250,7 +250,7 @@ no new learner completion is implied.
 - [Daily publishing workflow and metadata](docs/learning-publishing.md)
 - [Bilingual daily article template](templates/daily-learning.mdx)
 - [Instagram one-concept template](templates/instagram-one-concept.md)
-- [Reading series](https://jasonln0711.github.io/blog/series/)
+- [Reading series](https://cs-kairos.com/blog/series/)
 
 `npm test` checks publishing rules and mathematics. Drafts stay in ignored
 `.local/drafts/`; only confirmed public text enters `src/content/blog/`.
