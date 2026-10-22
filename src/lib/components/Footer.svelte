@@ -1,95 +1,30 @@
 <script lang="ts">
-  import { site } from "$lib/content/site";
+  import { page } from "$app/state";
+  import { homeCopy, site } from "$lib/content/site";
+  let zh = $derived(page.url.pathname.startsWith("/zh-tw/"));
+  let copy = $derived(homeCopy[zh ? "zh-Hant" : "en"]);
 </script>
 
-<footer class="footer section-tight">
-  <div class="page-shell footer-grid">
-    <div>
-      <p class="kicker">{site.shortName}</p>
-      <h2>Evidence-aware AI systems, research, and writing.</h2>
-      <p>
-        A plain personal site for speech decision stability, clinical workflow
-        support, agent governance, cybersecurity, and AI systems engineering.
-      </p>
-    </div>
-    <div class="footer-links">
-      <a href="/now/">Now</a>
-      <a href="/research/">Research</a>
-      <a href="/projects/">Systems</a>
-      <a href="/teaching/">Teaching</a>
-      <a href="/blog/">Blog</a>
-      <a href="/about/">About</a>
-      <a href="/resume/">CV</a>
-      <a href="/contact/">Contact</a>
-    </div>
-    <div class="contact-card">
-      <span class="mono muted">Direct route</span>
-      <a class="email" href={`mailto:${site.email}`}>{site.email}</a>
-      <div class="meta-line">
-        <a href={site.github} rel="noreferrer" target="_blank">GitHub</a>
-        <a href={site.linkedin} rel="noreferrer" target="_blank">LinkedIn</a>
-      </div>
-    </div>
+<footer lang={zh ? "zh-Hant" : "en"}>
+  <div class="footer-shell">
+    <div class="footer-intro"><h2>{copy.footer}</h2><p>{copy.footerNote}</p><a href={`mailto:${site.email}`}>{site.email}</a></div>
+    <nav aria-label={zh ? "其他連結" : "Further links"}>
+      <a href="/resume/">{copy.cv}</a><a href="/now/">{copy.now}</a><a href={zh ? "/zh-tw/contact/" : "/contact/"}>{copy.contact}</a>
+      <a href={site.github} rel="noreferrer" target="_blank">GitHub ↗</a><a href={site.linkedin} rel="noreferrer" target="_blank">LinkedIn ↗</a><a href="/rss.xml">RSS ↗</a>
+    </nav>
+    <p class="signature">{site.name} <span>· {zh ? "研究、實作與持續學習" : "Research, practice, and learning"}</span></p>
   </div>
 </footer>
 
 <style>
-  .footer {
-    border-top: 1px solid var(--line);
-    background: var(--surface-strong);
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.55fr 0.75fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  h2 {
-    margin: 0.5rem 0 1rem;
-    max-width: 620px;
-    color: var(--ink-strong);
-    font-family: var(--font-serif);
-    font-size: clamp(1.7rem, 4vw, 3rem);
-    font-weight: 500;
-    line-height: 1.12;
-  }
-
-  p {
-    max-width: 58ch;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .footer-links {
-    display: grid;
-    gap: 0.55rem;
-  }
-
-  .footer-links a {
-    color: var(--muted);
-    text-decoration: none;
-  }
-
-  .footer-links a:hover {
-    color: var(--accent);
-  }
-
-  .contact-card {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .email {
-    color: var(--accent);
-    font-size: 1.1rem;
-    overflow-wrap: anywhere;
-  }
-
-  @media (max-width: 900px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  footer { border-top: 1px solid var(--line-strong); background: var(--surface-strong); }
+  .footer-shell { width: min(100% - 2.5rem, 64rem); margin-inline: auto; padding-block: 2.5rem 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; }
+  h2 { font-size: 1.25rem; font-weight: 600; margin: 0; }
+  p { margin: 0.5rem 0; color: var(--muted); }
+  .footer-intro a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+  nav { display: grid; grid-template-columns: repeat(2, auto); gap: 0 1.5rem; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-size: 0.925rem; text-decoration: none; }
+  nav a:hover { color: var(--accent); text-decoration: underline; }
+  .signature { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.875rem; }
+  @media (max-width: 650px) { .footer-shell { grid-template-columns: 1fr; gap: 1rem; } nav { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 0.5rem; } .signature span { display: block; } }
 </style>

@@ -13,13 +13,11 @@ export const site = {
   description:
     "Personal research site and blog for evidence-aware AI systems in speech, clinical workflow support, agent governance, cybersecurity, and enterprise AI education.",
   nav: [
-    { href: "/now/", label: "Now" },
-    { href: "/research/", label: "Research" },
-    { href: "/projects/", label: "Systems" },
-    { href: "/teaching/", label: "Teaching" },
-    { href: "/blog/", label: "Blog" },
-    { href: "/about/", label: "About" },
-    { href: "/resume/", label: "CV" }
+    { href: "/blog/", label: "Blog", labelZh: "文章" },
+    { href: "/research/", label: "Research", labelZh: "研究" },
+    { href: "/projects/", label: "Projects", labelZh: "作品" },
+    { href: "/teaching/", label: "Teaching", labelZh: "教學" },
+    { href: "/about/", label: "About", labelZh: "關於我" }
   ]
 } as const;
 
@@ -958,3 +956,96 @@ export const routePaths = [
   "/zh-tw/",
   "/zh-tw/contact/"
 ];
+
+
+// Homepage curation references published records; translations describe the same articles.
+export const homeFeaturedSlugs = [
+  "investigation-and-trustworthy-ai",
+  "speech-evidence-pipelines",
+  "flat-ui-to-spatial-interface"
+] as const;
+
+export const homeArticleZh: Record<string, { title: string; description: string }> = {
+  "investigation-and-trustworthy-ai": {
+    title: "從科技犯罪偵查到可信任 AI",
+    description: "科技犯罪偵查的經驗，如何影響我對證據、對抗行為與高風險 AI 系統的思考。"
+  },
+  "speech-evidence-pipelines": {
+    title: "用 ASR 與 LLM 設計語音證據流程",
+    description: "結合語音辨識、檢索與語言模型，讓分析結果能回到逐字稿中的證據。"
+  },
+  "flat-ui-to-spatial-interface": {
+    title: "從平面 UI 到空間介面",
+    description: "從 Liquid Glass、visionOS 與 AI，思考搜尋、工具協作和跨應用操作的介面變化。"
+  },
+  "cross-node-fraud-intelligence-minimal-disclosure": {
+    title: "詐欺情資的最小揭露：跨節點形成模式",
+    description: "當證據分散在不同節點，如何在資訊揭露的限制下辨識共同模式，並保留可檢視的依據。"
+  },
+  "recent-work-apr-jun-2026": {
+    title: "2026 年 4–6 月工作整理：以證據為基礎的 AI 系統",
+    description: "整理語音決策穩定性、臨床流程原型、即時語音、執行時治理與 AI 系統工程教材的公開成果。"
+  }
+};
+
+export const homeCopy = {
+  en: {
+    eyebrow: "AI · Cybersecurity · Learning",
+    role: "Doctoral researcher at National Yang Ming Chiao Tung University",
+    intro: "I study AI and cybersecurity, and share what I learn about speech systems, technical practice, and working across disciplines.",
+    detail: "My background in cybercrime investigation shapes how I think about evidence, security, and human judgment.",
+    start: "Start reading", about: "About me", featured: "A few places to start",
+    featuredNote: "Selected essays on the questions behind my work.",
+    latest: "Latest writing", latestNote: "Notes, essays, and updates, by publication date.",
+    all: "All articles", topics: "Follow a thread", topicsNote: "Choose a subject and keep reading.",
+    work: "Research & practice", workNote: "The research, systems, and teaching behind the writing.",
+    empty: "No articles have been published yet.", emptyLink: "Explore the teaching materials",
+    footer: "Keep in touch", footerNote: "For research conversations, teaching, and collaboration.",
+    cv: "CV", now: "Work archive", contact: "Contact", home: "Home", skip: "Skip to content"
+  },
+  "zh-Hant": {
+    eyebrow: "AI · 資安 · 學習",
+    role: "國立陽明交通大學博士研究者",
+    intro: "我是 Jason，研究 AI 與資安，也分享語音系統、技術實作與跨領域學習的筆記。",
+    detail: "過去從事科技犯罪偵查的經驗，持續影響我對證據、安全與人的判斷的思考。",
+    start: "開始閱讀", about: "關於我", featured: "從這幾篇開始",
+    featuredNote: "先透過文章，認識我關注的問題。",
+    latest: "最新文章", latestNote: "依發布日期排列的筆記、文章與工作整理。",
+    all: "所有文章", topics: "沿著主題閱讀", topicsNote: "選一個感興趣的方向，繼續讀下去。",
+    work: "研究與實作", workNote: "文章背後的研究、系統與教學。",
+    empty: "目前尚無已發布的文章。", emptyLink: "先看看教學內容",
+    footer: "保持聯繫", footerNote: "歡迎交流研究問題、教學與合作想法。",
+    cv: "履歷", now: "歷年工作", contact: "聯絡", home: "首頁", skip: "跳至主要內容"
+  }
+} as const;
+
+export const homeTopics = [
+  { href: "/blog/series/evidence-aware-ai/", en: "AI & evidence", zh: "AI 與證據", type: "Reading series", typeZh: "系列閱讀" },
+  { href: "/talks/regulated-ai-cybersecurity/", en: "Security & governance", zh: "資安與治理", type: "Talk", typeZh: "公開講座" },
+  { href: "/blog/speech-evidence-pipelines/", en: "Speech & systems", zh: "語音與系統", type: "Research note", typeZh: "研究筆記" },
+  { href: "/teaching/", en: "Teaching & learning", zh: "教學與學習", type: "Teaching materials", typeZh: "教學內容" }
+] as const;
+
+const homeResearch = findResearch("counterfactual-decision-stability-asr")!;
+const homeProject = findProject("project-aura")!;
+const homeTeaching = findTeachingAccelerator("enterprise-ai-architecture-sprint")!;
+export const homeWork = [
+  {
+    title: "CDS-ASR / JANUS", titleZh: "CDS-ASR / JANUS",
+    href: `/research/${homeResearch.slug}/`, kind: "Research", kindZh: "研究",
+    summary: homeResearch.summary, status: homeResearch.maturity,
+    summaryZh: "研究合理的語音辨識差異，是否會改變後續判斷。", statusZh: "論文證據強化階段"
+  },
+  {
+    title: homeProject.title, titleZh: homeProject.title,
+    href: `/projects/${homeProject.slug}/`, kind: "System", kindZh: "系統",
+    summary: homeProject.summary, status: homeProject.readiness,
+    summaryZh: "從校正後逐字稿產生結構化會議報告，並呈現本機模型的執行狀態與錯誤。", statusZh: "本機桌面工作流程"
+  },
+  {
+    title: homeTeaching.title, titleZh: "企業語音 AI 系統：七日入門教材",
+    href: homeTeaching.sourceHref, kind: "Teaching", kindZh: "教學",
+    summary: homeTeaching.summary, status: homeTeaching.date,
+    summaryZh: "以架構、治理、安全、部署與驗收產出，逐步認識企業語音 AI 系統。", statusZh: "2026 年 6 月教材"
+  }
+] as const;
