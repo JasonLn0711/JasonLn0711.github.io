@@ -1,8 +1,8 @@
 # CS Kairos 平台架構與遷移藍圖 v1.0
 
-> 狀態：Proposed（需人工審閱後才具有正式部署效力）  
-> 日期：2026-10-23（Asia/Taipei）  
-> 適用：`cs-kairos.com` 主網站、`learn.cs-kairos.com` 公開課程入口  
+> 狀態：Proposed（需人工審閱後才具有正式部署效力）
+> 日期：2026-10-23（Asia/Taipei）
+> 適用：`cs-kairos.com` 主網站、`learn.cs-kairos.com` 公開課程入口
 > 既有規範：`AGENTS.md`、`docs/site-v3-design-source.zh-tw.md`、`docs/learning-publishing.md`。本文件是補充，不得默默覆寫既有規範。
 
 ## 1. 第一原理與範圍
