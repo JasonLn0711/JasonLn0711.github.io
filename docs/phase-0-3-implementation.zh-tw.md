@@ -1,6 +1,6 @@
 # CS Kairos Phase 0–3 實作與驗收
 
-日期：2026-10-23。狀態：implementation in progress。
+日期：2026-10-23。狀態：implemented、validated、published；獨立讀者接受與真實使用指標另行驗收。
 
 ## 所有權與採用決策
 
@@ -35,7 +35,7 @@
 
 ## 驗證紀錄
 
-以後續實際命令、PR、部署 ID 與公開 URL 補記；目前不預填完成。
+以下依實際 Git、CI、瀏覽器與 HTTPS 檢查記錄各層結果。
 
 [架構](cs-kairos-platform-architecture-v1.zh-tw.md) · [內容標準](ceh-course-content-standard-v1.zh-tw.md) · [發布標準](cs-kairos-publishing-security-standard-v1.zh-tw.md) · [先前網域計畫](cs-kairos-domain-plan.zh-tw.md)
 
@@ -46,3 +46,37 @@
 14 tests、Svelte check（0 errors / 0 warnings）、static build 與 50 HTML release check 通過。Wrangler 4.152.0 的本機靜態預覽已確認 `/`、`/zh-tw/`、`/teaching/`、既有文章 HTTP 200；不存在路徑 HTTP 404，回應含 nosniff 與 frame-ancestors／form-action 限制。瀏覽器已讀取首頁。相容日期固定為已隨本機 runtime 提供的 `2026-10-19`，避免台北日期超過 UTC／runtime 支援日期；這不改變發布紀錄日期。
 
 本節只建立本機與 PR 前驗證證據，Cloudflare 正式部署、網域及回復演練另記結果。
+
+
+### 正式主網域與回復演練
+
+[PR #2](https://github.com/JasonLn0711/JasonLn0711.github.io/pull/2)以 merge `18a4e56` 修復既有 Worker 的靜態發布；[PR #3](https://github.com/JasonLn0711/JasonLn0711.github.io/pull/3)以 merge `75f0ac3` 切換 canonical 並把兩個 Custom Domain 寫回 Wrangler。兩輪 PR 檢查與 Cloudflare branch preview 成功；瀏覽器預覽確認主標題與 `https://cs-kairos.com/` canonical。
+
+- 正式主站：[cs-kairos.com](https://cs-kairos.com/)；[繁中首頁](https://cs-kairos.com/zh-tw/)。Cloudflare production version `14eceaf8` 對應 `75f0ac3`；[GitHub Pages run 39829282804](https://github.com/JasonLn0711/JasonLn0711.github.io/actions/runs/39829282804)亦成功，保留舊來源可讀。
+- DNS 由五筆增至七筆，只新增 root／www 的 Worker Custom Domain；learn、api、console、shanghui、shanghui-staging 原記錄保留，Access 與 Tunnel 未修改。
+- `CS Kairos www to canonical` Single Redirect 已啟用：條件 `(http.host eq "www.cs-kairos.com")`，目標 `concat("https://cs-kairos.com", http.request.uri.path)`，301、preserve query。HTTP 與 HTTPS 的 www 深層測試皆回應正確 Location；瀏覽器實際到達繁中頁並保留 query。
+- curl 驗證 49 個 HTML 路徑、404、RSS、sitemap、robots 共 53 項通過。六個舊 `/writing/` 相容頁保留 HTTP 200，canonical 正確指到 `/blog/`。XML 可解析且採新網域；主站回應包含 nosniff、frame-ancestors、form-action、referrer 與 permissions 限制。
+- Python urllib 的部分探測曾回應 403；一般 curl 與 Brave 的同一公開內容驗證成功，沒有更動安全政策來通過檢查。
+- 實際回復：`14eceaf8` → `1311a23d`（上一個已驗證靜態版本）。控制台確認 100% 流量，公開首頁呈現上一版 github.io canonical。隨後 Promote `14eceaf8` 回到 100%，再次讀回首頁與 cs-kairos canonical。演練未改 Git 歷史或其他服務。
+
+### Phase 2–3 課程發布
+
+[kairos-learning PR #1](https://github.com/JasonLn0711/kairos-learning/pull/1)以 merge `3cb0cfc` 發布；[Pages run 39829804755](https://github.com/JasonLn0711/kairos-learning/actions/runs/39829804755)成功。來源、教材、測試與完整回執由[教學站實作紀錄](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/releases/2026-10-23-phase-0-3.md)持有。
+
+| 交付 | 公開入口與證據 |
+| --- | --- |
+| M01 試點 | [概念地圖](https://learn.cs-kairos.com/courses/ceh/v13/m01/)、授權／CIA 兩篇完整雙語、六題原創問答與安全練習 |
+| M02–M20 | [CEH v13](https://learn.cs-kairos.com/courses/ceh/v13/) 每章一個完整核心單元、原創 Q&A、具預期結果的安全練習 |
+| 其他課程 | [AI／ML](https://learn.cs-kairos.com/courses/ai-ml/)、[網路基礎](https://learn.cs-kairos.com/courses/networking/)各一個完整雙語單元 |
+| 可回查與複習 | [30 個詞彙](https://learn.cs-kairos.com/glossary/)、[搜尋](https://learn.cs-kairos.com/search/)、[本機錯題](https://learn.cs-kairos.com/review/) |
+| MATLAB | [三案原址](https://learn.cs-kairos.com/courses/matlab-practice/)，所有原有檔案及六份 ZIP 保留 |
+
+首版共 23 個雙語主題、54 題，產出 190 個 HTML。公開 189 個頁面與 404／sitemap／搜尋索引／robots 共 193 項檢查通過；M14 曾出現一次 503，針對該頁重測後回應 200。六份公開 ZIP 實際下載後與原檔 SHA-256 相同。
+
+十個測試、內容驗證、Svelte check、實際草稿／未來日期排除、靜態連結／錨點／CSP 檢查通過。320px 長程式碼溢位經修正並實際重測；390px 鍵盤問答與錯題訂正、1280px 章節地圖、雙語切換及中英搜尋均已操作。最終本機 Lighthouse 行動版：首頁與 M01 文章的 Performance 98、Accessibility 100、Best Practices 100、SEO 100；這些是實驗室單次量測，不是現場 p75 或完整 WCAG 認證。
+
+### 下一驗證層與範圍控制
+
+工程實作與正式發布已完成；下一關由獨立讀者完成 M01 的閱讀、小檢核與安全練習，記下難懂段落與實際結果，再決定下一批內容深度。真人接受與 field Core Web Vitals 尚未評估，不以自動測試代填。JSON 結構與題庫單一來源的實作決議見[教學站架構](https://github.com/JasonLn0711/kairos-learning/blob/main/docs/platform-architecture.md)。
+
+M01–M20 是核心概念首版，未宣稱官方所有細項已完整覆蓋；官方 v13 課程模組與 Exam Blueprint v5 分開查核。個人 M04 續讀、CEH／CEHP 240 分鐘／週與課日 25 分鐘維持原規則。會員、LMS 成績後端、AI 助教、群島與影片上傳未啟動。本機測試紀錄不算 Jason 學習成果。

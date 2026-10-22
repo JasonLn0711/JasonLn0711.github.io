@@ -1,7 +1,11 @@
 # cs-kairos.com 主站與教學站規劃
 
 更新：2026-10-23（Asia/Taipei）。主站＋learn 與完整雙語為 adopted decision；
-部署設計與下列實作階段為 implementation pending。詳細需求見[原始來源](sources/2026-10-23-kairos-site-requirements.md)。
+下列初始設計保留為歷史快照；目前主網域與 Phase 0–3 已實作、驗證並發布。詳細需求見[原始來源](sources/2026-10-23-kairos-site-requirements.md)。
+
+## 現行實作回執
+
+[Phase 0–3 完整證據](phase-0-3-implementation.zh-tw.md)持有 PR、部署、www 301、正式 HTTPS、MATLAB 保留與回復演練結果。`cs-kairos.com` 已啟用；learn 已發布 23 個雙語主題、54 題、詞彙／搜尋／錯題。後續本人確認的 Phase 0–3 範圍已啟用搜尋，更新較早的 deferred 描述；其餘未啟動功能保持原界線。獨立讀者接受與 field CWV 是下一驗證層。
 
 ## FIRST PRINCIPLE 與完成界線
 
