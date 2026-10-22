@@ -88,9 +88,9 @@ flowchart LR
 **責任分離**：Codex 可準備修正 PR 與驗證報告；正式 DNS、worker routes、Access policy、main merge 與 public release 應依既有權限與明確授權決定。不得一邊編輯邊臆測現有環境。
 
 ## 九、四階段交付
-**Phase 0（盤點）**：查清所有 host 的 source/deployment/DNS 及風險，保存可回滾快照。  
-**Phase 1（可公開主站）**：不變更框架，主網域 Cloudflare Static Worker 上線與 SEO 校正。  
-**Phase 2（CEH Pilot）**：在現有 learn source 新增課程索引、M01 兩篇與原創 Q&A，驗證 MATLAB 不受影響。  
+**Phase 0（盤點）**：查清所有 host 的 source/deployment/DNS 及風險，保存可回滾快照。
+**Phase 1（可公開主站）**：不變更框架，主網域 Cloudflare Static Worker 上線與 SEO 校正。
+**Phase 2（CEH Pilot）**：在現有 learn source 新增課程索引、M01 兩篇與原創 Q&A，驗證 MATLAB 不受影響。
 **Phase 3（擴充）**：M02–M05、跨模組字典、錯題複習、站內搜尋及合理的內容品質統計；滿足能力門檻後依序擴展至 M20。
 
 每階段有 **Demo URL、CI 結果、內容審閱、回歸清單、commit、回滾指令**，缺一不得宣稱「已交付」。

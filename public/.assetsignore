@@ -1,0 +1,4 @@
+.env*
+*.map
+.DS_Store
+**/.git/**

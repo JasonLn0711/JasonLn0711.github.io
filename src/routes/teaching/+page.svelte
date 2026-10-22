@@ -22,6 +22,13 @@
       </p>
     </header>
 
+    <section class="plain-section" aria-labelledby="learning-heading">
+      <h2 id="learning-heading">CS Kairos Learning</h2>
+      <p>Study a concept, work through an example, and check your reasoning. The learning site brings together technical lessons, original questions, and guided practice.</p>
+      <p lang="zh-Hant">從概念、例子到理解檢核與安全練習，依自己的節奏學習。</p>
+      <p><a href={site.learningUrl}>Explore courses / 前往課程 →</a></p>
+    </section>
+
     <section class="plain-section" aria-labelledby="accelerators-heading">
       <div class="section-title-row">
         <h2 id="accelerators-heading">Accelerators</h2>
