@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jasonln0711.github.io/sitemap.xml
+Sitemap: https://cs-kairos.com/sitemap.xml

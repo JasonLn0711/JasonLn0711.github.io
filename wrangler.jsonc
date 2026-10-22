@@ -9,5 +9,15 @@
     "directory": "./build",
     "html_handling": "force-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "cs-kairos.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.cs-kairos.com",
+      "custom_domain": true
+    }
+  ]
 }
