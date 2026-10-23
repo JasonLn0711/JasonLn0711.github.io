@@ -16,7 +16,7 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 | Location | Taiwan |
 | Website | [cs-kairos.com](https://cs-kairos.com) |
 | LinkedIn | [jason-lin-1a648813b](https://www.linkedin.com/in/jason-lin-1a648813b/) |
-| Email | [cre062400@gmail.com](mailto:cre062400@gmail.com) |
+| Email | [contact@cs-kairos.com](mailto:contact@cs-kairos.com) |
 
 ## Summary
 

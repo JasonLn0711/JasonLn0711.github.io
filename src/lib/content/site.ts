@@ -6,7 +6,7 @@ export const site = {
   lab: "Artificial Intelligence in Medical Imaging / Signal Analysis Lab",
   url: "https://cs-kairos.com",
   learningUrl: "https://learn.cs-kairos.com",
-  email: "cre062400@gmail.com",
+  email: "contact@cs-kairos.com",
   github: "https://github.com/JasonLn0711",
   linkedin: "https://www.linkedin.com/in/jason-lin-1a648813b/",
   avatar: "/images/headshot.jpg",
