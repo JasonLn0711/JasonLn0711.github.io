@@ -1065,22 +1065,181 @@ export const eventNotes = [{
     event: "October 24 free online talk | Build animated, interactive websites with AI",
     announcedTopic: "AI-powered web motion | Interactive website design in practice (AI 讓網頁動起來｜互動網頁設計實戰)",
     slidesTitle: "AI-powered brand motion | Motion design in practice (AI 讓品牌動起來｜動態設計實戰)",
-    titleNote: "The registration announcement and the slides use different titles. Both are recorded under their own source; this does not establish that the event changed.",
+    titleNote: "The registration announcement and the slide deck are recorded under their respective titles.",
     organizer: "Claude x Codex online study group", platform: "Zoom · free online session",
     registrationStatus: "Registration closed (public form checked on October 24). Link retained as an event source.",
     speakerBio: "The organizer introduces Nocts as a UI/UX and web designer who combines frontend development, web motion and AI coding to turn designs into working websites.",
-    announcedContent: "The announcement covers interaction and animation, explaining content, style and interaction needs to AI, a one-page demonstration and a public prompt guide. It welcomes beginners building personal sites, portfolios or brand pages, as well as engineers and designers; no AI experience, project idea or preparation is required. These are announced topics, not a claim that every item was completed.",
+    announcedContent: "The announcement covers interaction and animation, explaining content, style and interaction needs to AI, a one-page demonstration and a public prompt guide. It welcomes beginners building personal sites, portfolios or brand pages, as well as engineers and designers; no AI experience, project idea or preparation is required.",
     type: "Talk", format: "Online",
-    summary: "Motion purpose, easing and springs, plus an introduction to p5.js and animation tools.",
+    summary: "From brand personality and storyboards to AI workflows, web effects, media performance and session Q&A.",
     attribution: "Nocts (奇昌) · presenter named in the event announcement",
-    status: "Notes in progress; attendance completion has not been confirmed.",
-    scope: "An original, condensed reading of public materials with edited technical Q&A. Embedded videos, images and interactions have not all been verified.",
+    status: "Workshop ended; notes updated from the supplied session transcript.",
+    scope: "Original synthesis of session topics, materials and official technical references. Visual media, hands-on results and the promised follow-up video remain to be reviewed.",
     sections: [
-      {title: "Give motion a purpose", text: "Choose what the viewer needs to notice: a change of state, a response to an action, or the relationship between two screens. Then specify the order, pace and stopping point. Keeping an element still can preserve attention for the important change.", source: "https://web-animation-course.vercel.app/", sourceLabel: "Workshop slides"},
-      {title: "Describe the result before choosing tools", text: "A useful brief names the output format, available assets, sequence, timing, visual constraints and review criteria. Review transitions as well as still frames. The shared notes provide worked examples; their full prompts and shot lists remain at the source.", source: "https://hackmd.io/@zz41354899/H14KjaJ9Ml", sourceLabel: "Shared workshop notes"},
-      {title: "Easing and physical simulation", text: "Easing controls the rate of change; a curve alone does not simulate gravity or friction. Legacy Material guidance commonly decelerates entering elements and accelerates exiting ones. Its Standard curve, cubic-bezier(0.4, 0, 0.2, 1), differs from Sharp, cubic-bezier(0.4, 0, 0.6, 1). These are version-specific guidelines, not universal rules.", source: "https://m1.material.io/motion/duration-easing.html", sourceLabel: "Material: duration and easing"},
-      {title: "Damping controls oscillation", text: "A spring model pulls toward a target. Damping suppresses oscillation; it is not another name for bounce. Sufficient damping can prevent overshoot. Choose motion to support the interaction rather than adding bounce to every element.", source: "https://developer.android.com/develop/ui/views/animations/spring-animation", sourceLabel: "Android: spring physics"}
-    ],
+      {
+            "title": "Choose the medium and the message",
+            "text": "Website intros establish a first impression; scroll reveals pace a story; loading states, transitions and notifications explain app state; product explainers condense a workflow into a readable sequence. Give each moment one focal point, then coordinate attention, rhythm, feedback and continuity.",
+            "source": "https://web-animation-course.vercel.app/",
+            "sourceLabel": "Workshop slides"
+      },
+      {
+            "title": "Turn a style into concrete motion",
+            "text": "Choose a brand personality, then specify color, shape, entrance order, travel distance and reading time. Rounded forms and gentle responses can suggest playfulness; clear alignment and brief transitions can feel crisp; small movements and generous reading time can feel composed. These are editorial starting points to adapt. The pink character example illustrated a coherent color-and-motion direction.",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "Shared notes"
+      },
+      {
+            "title": "Effect glossary: attention, transitions and beats",
+            "text": "Push-ins focus attention on detail; typing and cursors make actions visible; staggered entrances establish reading order. Sweeps, morphs, match cuts and irises connect shots. Arcs, subtle squash and overshoot can suggest weight; small breathing motions, parallax or a slow push keep a hold alive. Mark important changes against the music's BPM and downbeats, then review the timing.",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "Effect vocabulary from the materials"
+      },
+      {
+            "title": "Turn visual constraints into review criteria",
+            "text": "Palette, typeface, writing direction, tracking and asset proportions establish a style. Grain, glow, outlines, shadows and line drawing add depth; keep background motion consistent and give primary text contrast and reading time. The materials' outCubic/outExpo, inOutCubic and outBack labels suggest decelerating entrances, smooth transitions and overshoot. Check the chosen tool's easing names and preview.",
+            "source": "https://gsap.com/docs/v3/Eases/",
+            "sourceLabel": "GSAP easing; material terminology in shared notes"
+      },
+      {
+            "title": "Turn a screen recording into a product story",
+            "text": "The quotation-tool example focused on simplifying a recorded workflow into inputs, actions and results. Recordings, screenshots and text supply the material for a storyboard. Emphasize the main action, quiet secondary UI and leave time to read the result. A roughly 35-second UI brief and a short bank-animation brief illustrated the same method: establish content and purpose before choosing shots.",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "Session examples and shared notes"
+      },
+      {
+            "title": "Review the storyboard before animation",
+            "text": "Specify the purpose, audience, landscape or portrait ratio, duration, assets and references. Ask for each shot's content, timing, movement, transition and hold. HTML previews and PNG storyboards support a review before animation. For revisions, name a shot, its problem and the desired outcome—for example, show the button response before revealing the result card.",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "Shared notes"
+      },
+      {
+            "title": "Separate design decisions from implementation",
+            "text": "The session discussed storyboarding before animation and a participant's Claude-led, Codex-assisted workflow. Compare tools using the same brief: do they follow the requested sequence, produce readable storyboards and support focused revisions? Model preferences and waiting times were session-specific experiences; use your own assets and preview quality to make a choice.",
+            "source": "https://github.com/zz41354899/mografy",
+            "sourceLabel": "Mografy public project"
+      },
+      {
+            "title": "Canvas: compute each frame from time",
+            "text": "Canvas provides a drawing surface. An animation updates position, scale or opacity and redraws, while layers establish foreground, background and text order. Browser animation commonly uses requestAnimationFrame. Mografy's public scene model derives frames from absolute time for preview, seeking and export, with an optional Three.js layer for 3D scenes.",
+            "source": "https://github.com/zz41354899/mografy#scene-model",
+            "sourceLabel": "Mografy: scene model"
+      },
+      {
+            "title": "Choose tools by the job",
+            "text": "p5.js supports creative drawing and interaction; GSAP coordinates tweens and timelines; Motion for React, formerly Framer Motion, handles React UI, gesture and scroll animation; Three.js supports 3D scenes. Video workflows can use After Effects for motion graphics and compositing and DaVinci Resolve for editing, color and audio. Choose a combination around the output and existing project.",
+            "source": "https://motion.dev/docs/react",
+            "sourceLabel": "Motion for React documentation; other tools below"
+      },
+      {
+            "title": "Easing curves and springs",
+            "text": "Easing controls the rate of change; physical models also account for spring force and damping. Legacy Material guidance commonly decelerates entrances and accelerates exits. Its Standard curve is cubic-bezier(0.4, 0, 0.2, 1); Sharp is cubic-bezier(0.4, 0, 0.6, 1). Damping suppresses oscillation; sufficient damping allows settling without overshoot. Choose a response around the interaction.",
+            "source": "https://m1.material.io/motion/duration-easing.html",
+            "sourceLabel": "Material: duration and easing; spring reference below"
+      },
+      {
+            "title": "Coordinate animation with scrolling",
+            "text": "Define the trigger—page entry, a section entering view, a click or a state change—then specify order, playback scope and end state. The closing Q&A emphasized appearance timing and continuity. Describe the intro, section reveals and button feedback separately, then explain their handoffs so each moment has a clear focal point.",
+            "source": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+            "sourceLabel": "GSAP ScrollTrigger; session timing synthesis"
+      },
+      {
+            "title": "Load what the reader needs first",
+            "text": "Use loading=\"lazy\" for non-critical images below the fold. Load the hero or LCP image promptly and reserve space with dimensions. Plan fetching and visual reveal separately: prepare the resource, then reveal it with the intended scroll or interaction. For video, choose preload, a poster and a deferred-loading strategy for the target browsers.",
+            "source": "https://web.dev/articles/browser-level-image-lazy-loading",
+            "sourceLabel": "web.dev: browser-level image lazy loading"
+      },
+      {
+            "title": "Responsive images: size and pixel density",
+            "text": "Provide width variants with srcset and describe the expected layout width with sizes so the browser can choose. Fixed display sizes can use density candidates such as 1x and 2x. Use picture for alternative crops or formats. Inspect the image actually downloaded on a phone to balance clarity and transfer size.",
+            "source": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
+            "sourceLabel": "MDN: responsive images"
+      },
+      {
+            "title": "Media formats, quality and compatibility",
+            "text": "WebP supports lossy and lossless compression. PNG compression is lossless; resizing or reducing colors can change the result. WebM is a video container, and file size depends on duration, resolution, frame rate, content and encoding settings. Safari supports WebP; video compatibility depends on browser version, container and codec. Compare your actual media for quality, size and playback, then choose formats and fallbacks.",
+            "source": "https://developers.google.com/speed/webp/faq",
+            "sourceLabel": "Google WebP FAQ; PNG and video references below"
+      },
+      {
+            "title": "Review preview, export and the website",
+            "text": "Review text, rhythm, layers and transitions in the preview. Check resolution, frame rate, audio and size after export. On the website, verify mobile cropping, downloads, interaction and readability. Time generation, rendering and encoding separately for your own project. As an implementation supplement, preserve keyboard access and a reduced-motion reading experience.",
+            "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
+            "sourceLabel": "MDN: reduced motion"
+      },
+      {
+            "title": "Mografy delivery and other tool entry points",
+            "text": "Mografy's public workflow covers preview and export, listing MP4, WebM, Lottie and SVGA. Its Lottie/SVGA output packages frame images, so check delivery requirements early. HyperFrames builds video projects with web technology; Jitter is a web motion-design tool with an official MCP connection for AI tools. Hera and Motion UX provide generation and design-learning entry points respectively.",
+            "source": "https://mografy-website.vercel.app/zh-TW",
+            "sourceLabel": "Mografy; other official resources below"
+      }
+],
+    sessionQa: [
+      {
+            "q": "How can I start with recordings and screenshots?",
+            "a": "Organize the assets and main action. Ask AI to simplify the workflow around what the audience should understand, then produce a storyboard with HTML/PNG previews. Review it before animation and check the exported result in the website.",
+            "time": "01:08:55–01:12:10"
+      },
+      {
+            "q": "Can audio, slides or text be a starting point?",
+            "a": "First extract the narrative, key messages and available assets, then ask for shots and visual requirements. The session discussed these inputs; check that the selected tool can read the files and identify the images or graphics each shot needs.",
+            "time": "00:50:32–00:52:01"
+      },
+      {
+            "q": "Is a separate Canvas API service needed?",
+            "a": "Canvas is a browser drawing API. Mografy's documented workflow lets a coding agent read the local project and instructions, then produce scenes, previews and exports. AI service access follows the chosen tool's requirements.",
+            "time": "00:42:38–00:43:37"
+      },
+      {
+            "q": "Why review a storyboard first?",
+            "a": "A storyboard makes sequence, emphasis and reading time reviewable. The session described tools skipping this stage. Explicitly request storyboard delivery and review before animation, including the expected files.",
+            "time": "00:36:31–00:39:55"
+      },
+      {
+            "q": "How should animation and website effects work together?",
+            "a": "Specify each layer's trigger, entrance, hold and end state, then coordinate the handoff. The closing follow-up emphasized order and continuity; tune speed and scale around the visual focus.",
+            "time": "01:02:42–01:08:22；01:12:17–01:13:30"
+      },
+      {
+            "q": "Where should performance work start?",
+            "a": "Start with asset sizes, initial loading, deferred offscreen images and responsive image selection, then inspect animation work and export settings. Use the format and loading sections above as a checklist for your own page.",
+            "time": "00:54:22–01:00:46"
+      },
+      {
+            "q": "Can the workflow be automated?",
+            "a": "The demonstrated direction was to let an agent read project instructions and create storyboards and scenes from content, duration and assets. Keep review points for the brief, storyboard, preview and export so revisions have a clear target.",
+            "time": "00:44:03–00:49:08"
+      },
+      {
+            "q": "Where can I continue learning?",
+            "a": "Revisit the method in the slides and shared notes, use Mografy documentation for workflow details and Motion UX for motion-design teaching. Hera is a shared AI motion-graphics resource; GSAP documents web-animation APIs. Choose a direction around the output you want to make.",
+            "time": "01:01:02–01:05:24"
+      },
+      {
+            "q": "Can several images become an animation?",
+            "a": "Describe the role and order of the images, then ask for frames or a storyboard. The session used product-operation assets as an example; review continuity between the resulting shots.",
+            "time": "00:35:49–00:36:29"
+      },
+      {
+            "q": "What should I prepare before prompting?",
+            "a": "Prepare purpose, aspect ratio, duration, assets and the intended feeling, then request a storyboard. A short prompt can work alongside detailed project instructions and asset descriptions.",
+            "time": "00:36:31–00:37:16"
+      },
+      {
+            "q": "How might Claude and Codex share the work?",
+            "a": "A session participant described Claude leading planning, Codex assisting implementation and Mografy providing previews. Keep approved decisions in a shared brief so the next tool knows the agreed content and next deliverable.",
+            "time": "00:44:42–00:45:02"
+      },
+      {
+            "q": "What should guide model selection?",
+            "a": "The presenter discussed Sonnet/Opus trade-offs in speed, detail and cost. Compare the same small brief for storyboard-first delivery, style consistency, focused revisions and turnaround.",
+            "time": "00:39:55–00:42:38"
+      },
+      {
+            "q": "Is another agent-orchestration layer needed?",
+            "a": "The session favored letting an existing agent read the project and complete the brief, storyboard, preview and export workflow first. Add coordination when repeated work and handoffs justify it.",
+            "time": "00:48:24–00:48:57"
+      }
+],
     qa: [
       {q: "What is p5.js?", a: "A JavaScript library for creative coding, drawing and interaction. It creates a browser canvas and supports both 2D and WEBGL rendering, including 3D work.", source: "https://p5js.org/reference/p5/createCanvas/", sourceLabel: "p5.js: createCanvas"},
       {q: "How do setup() and draw() work?", a: "setup() runs once when the sketch starts. draw() then runs repeatedly to update the scene. noLoop() stops that loop and loop() resumes it; the actual frame rate depends on runtime conditions.", source: "https://p5js.org/reference/p5/draw/", sourceLabel: "p5.js: draw (with setup, noLoop and loop references)"},
@@ -1088,7 +1247,7 @@ export const eventNotes = [{
     ],
     quizTitle: "Optional self-check · no answer recorded",
     quiz: "For moving particles that react to the pointer, should position updates happen only in setup(), or repeatedly in draw()?",
-    answer: "Use repeated updates in draw() for this sketch. setup() initializes the scene once; ongoing motion needs new positions and redraws. This explanation does not record a learner score.",
+    answer: "Use repeated updates in draw() for this sketch. setup() initializes the scene once; ongoing motion needs new positions and redraws.",
     reflection: "Personal reflection has not been added."
   },
   zh: {
@@ -1096,22 +1255,181 @@ export const eventNotes = [{
     event: "10/24 免費線上講座｜用 AI 做出會動、能互動的網站",
     announcedTopic: "AI 讓網頁動起來｜互動網頁設計實戰",
     slidesTitle: "AI 讓品牌動起來｜動態設計實戰",
-    titleNote: "報名公告和當天簡報的標題不同，這裡依各自來源保留；不據此推定活動曾改題。",
+    titleNote: "報名公告與當天簡報的標題依各自來源並列。",
     organizer: "Claude x Codex 線上讀書會", platform: "Zoom・免費線上講座",
     registrationStatus: "報名已截止（10/24 唯讀查核公開表單）；保留連結供回查活動來源。",
     speakerBio: "依主辦介紹，Nocts 具 UI/UX 與網頁設計背景，結合前端、網頁動態與 AI Coding，把設計做成能操作的網站。",
-    announcedContent: "主辦公告包含動畫與操作回應、如何向 AI 說清楚內容／風格／互動需求、一頁網站示範，以及公開指令指南。對象包括想做個人網站、作品集或品牌頁的初學者，以及工程師與設計師；不需要 AI 經驗、事先想好題目或做課前功課。這是公告內容，不代表每一項都已完成。",
+    announcedContent: "主辦公告包含動畫與操作回應、如何向 AI 說清楚內容／風格／互動需求、一頁網站示範，以及公開指令指南。對象包括想做個人網站、作品集或品牌頁的初學者，以及工程師與設計師；不需要 AI 經驗、事先想好題目或做課前功課。",
     type: "講座", format: "線上",
-    summary: "整理動態設計目的、緩動與彈簧，以及 p5.js 和動畫工具的分工。",
+    summary: "從品牌個性與分鏡開始，整理 AI 協作、網站技術、動態效果、媒體效能與現場問答。",
     attribution: "Nocts（奇昌）・依活動介紹標示",
-    status: "筆記持續整理中；尚未確認全程完課。",
-    scope: "本頁為公開教材的自寫濃縮摘要與整理後技術問答。內嵌影片、圖片與互動尚未全部驗證。",
+    status: "活動已結束；已依完整課堂文字更新筆記。",
+    scope: "本頁整合課堂主題、教材與官方技術文件，採自寫教學與問答。視覺素材的完整播放驗證、本人實作與後續操作影片持續補記。",
     sections: [
-      {title: "先決定動作要讓人看懂什麼", text: "動態可以提示狀態改變、回應操作，或交代畫面之間的關係。先選出觀眾需要注意的訊息，再安排出現順序、速度與停留位置。讓其他元素保持靜止，也能把注意力留給重要變化。", source: "https://web-animation-course.vercel.app/", sourceLabel: "工作坊簡報"},
-      {title: "把需求寫清楚，再選工具", text: "描述作品時，交代輸出格式、可用素材、事件順序、時間安排、視覺限制與驗收條件。預覽要檢查轉場過程，不能只看單張畫面。共筆提供完整範例；詳細提示詞與逐鏡安排留在原始教材查閱。", source: "https://hackmd.io/@zz41354899/H14KjaJ9Ml", sourceLabel: "工作坊共筆"},
-      {title: "緩動曲線與物理模擬", text: "緩動描述變化的速度；一條曲線本身不等於模擬重力或摩擦力。舊版 Material 常見做法為進場減速、離場加速。Standard 的 cubic-bezier(0.4, 0, 0.2, 1) 與 Sharp 的 cubic-bezier(0.4, 0, 0.6, 1) 不同；這是特定版本的設計指引，不能當成所有動畫的通則。", source: "https://m1.material.io/motion/duration-easing.html", sourceLabel: "Material：時長與緩動"},
-      {title: "Damping 是阻尼", text: "彈簧模型會把物件拉回目標位置；阻尼抑制震盪，不是回彈的同義詞。阻尼足夠時可以不過沖。是否使用彈跳，應由互動目的決定。", source: "https://developer.android.com/develop/ui/views/animations/spring-animation", sourceLabel: "Android：彈簧物理動畫"}
-    ],
+      {
+            "title": "先選載體，再決定觀眾要看到什麼",
+            "text": "網頁開場適合建立第一印象；捲動揭露可以分段說故事；App 的載入、切頁與通知用來交代狀態；產品解說影片則把操作流程濃縮成容易看懂的情節。每一段先選一個重點，安排視線、節奏與回應，讓前後內容接得起來。",
+            "source": "https://web-animation-course.vercel.app/",
+            "sourceLabel": "工作坊簡報"
+      },
+      {
+            "title": "把可愛、俐落、沉穩寫成具體動作",
+            "text": "先選品牌個性，再描述顏色、形狀、出場順序、移動距離與停留時間。可愛可以從圓潤造型、柔和配色與輕巧回應開始；俐落可以用清楚的對齊和短轉場；沉穩可以用較小位移與充足閱讀時間。這些是整理後的設計起點，依內容與品牌調整。課堂的粉紅色案例示範了配色與角色動態如何形成一致感。",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "工作坊共筆"
+      },
+      {
+            "title": "效果速查：視線、轉場與節拍",
+            "text": "推近（push-in）把注意力帶向細節；打字與游標讓操作過程看得見；逐項出場（stagger）讓資訊有閱讀順序。掃動（sweep）、形變（morph）、形狀銜接（match cut）與圓形開合（iris）用來連接畫面。弧線移動、輕微擠壓（squash）與過沖可帶出重量感；停留時以小幅呼吸、視差或慢推維持生命感。配樂可用 BPM 與重拍標記重要變化，再預覽確認節奏。",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "教材效果詞彙整理"
+      },
+      {
+            "title": "把風格限制寫進驗收",
+            "text": "色票、字體、直排或橫排、字距與素材比例一起形成風格。材質顆粒、柔光、描邊、陰影和線條描繪可用來加強層次；背景動作保持一致，主要文字要有足夠對比與閱讀時間。教材中的 outCubic／outExpo、inOutCubic、outBack 分別提示進場減速、平順銜接與過沖感；實作時對照所選工具的 easing 名稱與預覽。",
+            "source": "https://gsap.com/docs/v3/Eases/",
+            "sourceLabel": "GSAP：緩動曲線；教材用語見共筆"
+      },
+      {
+            "title": "把操作錄影整理成產品故事",
+            "text": "課堂以報價工具的解說動畫談操作簡化：先保留觀眾需要理解的輸入、動作與結果，再整理成分鏡。原始錄影、截圖與文字都能提供內容線索；畫面可以突出主要操作、淡化次要介面，最後留時間讀結果。示範另提到約 35 秒的 UI 流程需求，以及銀行動畫案例的短提示詞；可帶走的方法是先說清楚內容與目的，再決定鏡頭。",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "課堂案例與共筆"
+      },
+      {
+            "title": "分鏡先過一輪，再生成動畫",
+            "text": "需求先交代用途、觀眾、橫式或直式比例、長度、素材與風格參考，再請 AI 列出每個鏡頭的內容、時間、動作、轉場和停留點。可要求 HTML 預覽與 PNG 分鏡，檢查資訊順序後再製作動畫。修改時一次指出一個鏡頭、問題與期待結果，例如「第二段先顯示按鈕回應，再揭露結果卡片」。",
+            "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
+            "sourceLabel": "工作坊共筆"
+      },
+      {
+            "title": "AI 協作：把設計決策和實作交付分開",
+            "text": "課堂分享先討論分鏡、再生成動畫的流程，也有人分享由 Claude 主導需求、Codex 協助實作的經驗。可以用相同需求比較工具是否照指定順序交付、分鏡是否清楚、修改是否方便。講者偏好的模型與等待時間屬於當次使用經驗；選擇時以自己的素材、預覽與交付品質做判斷。",
+            "source": "https://github.com/zz41354899/mografy",
+            "sourceLabel": "Mografy 公開專案"
+      },
+      {
+            "title": "Canvas：用時間算出每一個畫面",
+            "text": "Canvas 是網頁的繪圖表面。動畫會更新位置、大小或透明度，再重畫畫面；分層能安排前景、背景和文字的先後。瀏覽器中的即時動畫常配合 requestAnimationFrame 更新。Mografy 的公開場景模型以絕對時間驅動畫面，方便預覽、定位與輸出指定影格；選用的 Three.js 圖層可處理 3D 場景。",
+            "source": "https://github.com/zz41354899/mografy#scene-model",
+            "sourceLabel": "Mografy：場景模型"
+      },
+      {
+            "title": "依作品選工具",
+            "text": "p5.js 適合創意繪圖與互動；GSAP 適合補間、時間軸與協調動作；Motion for React（前稱 Framer Motion）提供 React 的介面、手勢與捲動動畫；Three.js 提供 3D 場景能力。影片工作流程可搭配 After Effects 的動態圖像與合成，以及 DaVinci Resolve 的剪輯、調色與音訊。以輸出與既有專案需求決定組合。",
+            "source": "https://motion.dev/docs/react",
+            "sourceLabel": "Motion for React 官方文件；其他工具見來源"
+      },
+      {
+            "title": "緩動曲線與彈簧",
+            "text": "緩動控制變化速度；物理模型則另外處理彈力、阻尼等參數。舊版 Material 常用進場減速、離場加速；Standard 為 cubic-bezier(0.4, 0, 0.2, 1)，Sharp 為 cubic-bezier(0.4, 0, 0.6, 1)，用途和曲線各有差異。Damping 是阻尼，用來抑制震盪；阻尼足夠時，物件可以平穩抵達目標。選擇時先想使用者需要什麼回應。",
+            "source": "https://m1.material.io/motion/duration-easing.html",
+            "sourceLabel": "Material：時長與緩動；彈簧見補充來源"
+      },
+      {
+            "title": "讓動畫與捲動接得起來",
+            "text": "先定義觸發事件：進入頁面、捲動到區塊、點擊或狀態改變。再排先後順序、播放範圍與結束狀態。課堂最後的問答特別強調「何時出現」和連貫性。可以把開場動畫、段落揭露、按鈕回饋分開描述，再寫出交接關係，讓同一時間的視覺重點清楚。",
+            "source": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+            "sourceLabel": "GSAP ScrollTrigger；課堂時序整理"
+      },
+      {
+            "title": "先載入眼前需要的內容",
+            "text": "畫面下方的非關鍵圖片可用 loading=\"lazy\" 延後載入；首屏主視覺與 LCP 圖片優先載入，並設定寬高來預留版面。載入時機和出場動畫可以分開規劃：資源準備好，再依捲動或互動揭露。影片可依目標瀏覽器選擇 preload、poster 與延後載入策略。",
+            "source": "https://web.dev/articles/browser-level-image-lazy-loading",
+            "sourceLabel": "web.dev：瀏覽器圖片延遲載入"
+      },
+      {
+            "title": "響應式圖片：版面大小與像素密度一起看",
+            "text": "手機、平板和桌面的顯示需求不同。srcset 可提供不同寬度的檔案，sizes 描述圖片在版面中預計佔多寬，交由瀏覽器挑選；固定顯示尺寸也可用 1x、2x 密度候選。需要不同裁切或格式時，再用 picture。檢查手機實際下載哪張圖，讓清晰度與傳輸量配合。",
+            "source": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
+            "sourceLabel": "MDN：響應式圖片"
+      },
+      {
+            "title": "圖片與影片：格式、品質、相容性",
+            "text": "WebP 提供有損與無損壓縮；PNG 本身採無損壓縮，另行縮圖或減色會影響結果。WebM 是影片容器，可搭配不同編碼器；檔案大小受長度、解析度、幀率、內容和編碼設定影響。Safari 已有 WebP 支援，影片則要一起檢查瀏覽器版本、容器與編碼器。用實際素材比較畫質、大小與播放結果，再決定格式和備援。",
+            "source": "https://developers.google.com/speed/webp/faq",
+            "sourceLabel": "Google WebP FAQ；PNG／影片規格見來源"
+      },
+      {
+            "title": "把預覽、輸出與網站驗收分成三步",
+            "text": "預覽先看文字、節奏、層次與轉場；輸出再檢查解析度、幀率、音訊與檔案大小；放進網站後，確認手機裁切、下載量、互動與可讀性。講者提到的製作和匯出分鐘數是個案經驗，可把自己的生成、算圖與編碼分別計時。補充實作時，也要保留鍵盤操作與減少動態效果的閱讀方式。",
+            "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
+            "sourceLabel": "MDN：減少動態效果"
+      },
+      {
+            "title": "Mografy 的交付與其他工具入口",
+            "text": "Mografy 公開文件提供預覽與輸出流程，首頁列出 MP4、WebM、Lottie、SVGA；其 Lottie／SVGA 輸出採影格圖片封裝，適合先核對交付需求。課堂另談到 HyperFrames 和 Jitter：前者以網頁技術建立影片專案；後者是網頁動態設計工具，官方另提供 MCP 連接 AI 工具。Hera 與 Motion UX 分別可作生成工具和設計學習入口。",
+            "source": "https://mografy-website.vercel.app/zh-TW",
+            "sourceLabel": "Mografy；其他官方入口見來源"
+      }
+],
+    sessionQa: [
+      {
+            "q": "只有錄影和截圖，怎麼開始？",
+            "a": "先整理素材和主要操作，告訴 AI 觀眾要看懂什麼，請它簡化流程、列分鏡並提供 HTML／PNG 預覽。確認後再製作動畫，輸出完成再檢查網站中的呈現。",
+            "time": "01:08:55–01:12:10"
+      },
+      {
+            "q": "只有聲音、簡報或文字，也能規劃嗎？",
+            "a": "可以先整理敘事順序、關鍵訊息和可用素材，再請 AI 提出鏡頭與畫面需求。課堂討論了這些輸入方式；實作時還要確認工具能讀取提供的檔案，以及每個鏡頭需要的圖片或圖形。",
+            "time": "00:50:32–00:52:01"
+      },
+      {
+            "q": "需要另外接 Canvas API 服務嗎？",
+            "a": "Canvas 是瀏覽器提供的繪圖 API。依 Mografy 公開流程，可讓程式代理讀取本機專案和相關操作說明，再產生場景、預覽與輸出。AI 服務的存取需求另依所選工具處理。",
+            "time": "00:42:38–00:43:37"
+      },
+      {
+            "q": "先做分鏡，有什麼幫助？",
+            "a": "分鏡讓內容順序、畫面重點和停留時間先變得可討論。課堂提到直接生成動畫時容易略過這一步；可在提示詞列明「先交分鏡，確認後再做動畫」，並寫出希望收到的檔案。",
+            "time": "00:36:31–00:39:55"
+      },
+      {
+            "q": "動畫和網頁特效怎麼安排？",
+            "a": "分別寫出兩者的觸發、出場、停留和結束狀態，再安排交接。最後的追問把重點收在先後順序與連貫性；速度和比例則配合畫面焦點調整。",
+            "time": "01:02:42–01:08:22；01:12:17–01:13:30"
+      },
+      {
+            "q": "動態網站的效能從哪裡開始看？",
+            "a": "先檢查素材大小、首屏載入、下方圖片的延遲載入與響應式圖片，再看動畫執行與輸出設定。上方格式與載入章節已整理官方做法，可逐項對照自己的頁面。",
+            "time": "00:54:22–01:00:46"
+      },
+      {
+            "q": "可以把流程自動化嗎？",
+            "a": "課堂示範的方向是讓 AI 讀取專案規則，以內容、秒數和素材產生分鏡與場景。仍可保留需求、分鏡、預覽與輸出的檢查點，讓每次修改有明確位置。",
+            "time": "00:44:03–00:49:08"
+      },
+      {
+            "q": "後續可以從哪些資源學？",
+            "a": "從工作坊簡報與共筆回看方法，再用 Mografy 文件查操作、Motion UX 看動態設計教學。Hera 是課堂分享的 AI 動態圖像入口，GSAP 可查網頁動畫 API。依想完成的作品挑一個方向延伸。",
+            "time": "01:01:02–01:05:24"
+      },
+      {
+            "q": "多張圖片能串成動畫嗎？",
+            "a": "可以先交代圖片的用途與順序，再請 AI 規劃逐格或分鏡內容。課堂以產品操作素材說明這個方向，製作時仍要檢查畫面之間的連續性。",
+            "time": "00:35:49–00:36:29"
+      },
+      {
+            "q": "提示詞之前要準備什麼？",
+            "a": "先整理用途、畫幅、秒數、素材與想傳達的感受，再要求分鏡。短提示詞也能搭配完整的專案規則和素材說明，讓 AI 取得足夠上下文。",
+            "time": "00:36:31–00:37:16"
+      },
+      {
+            "q": "Claude 與 Codex 可以如何分工？",
+            "a": "現場有人分享由 Claude 討論需求、Codex 配合實作，再透過 Mografy 預覽的流程。可把規劃結果整理成共同規格，讓接手的工具知道已確認內容與下一個交付。",
+            "time": "00:44:42–00:45:02"
+      },
+      {
+            "q": "模型選擇可以看哪些條件？",
+            "a": "講者討論 Sonnet／Opus 在討論速度、細節與成本上的取捨。可以拿相同的小案例比較：是否先交分鏡、是否保留風格、修改是否集中、等待時間是否合適。",
+            "time": "00:39:55–00:42:38"
+      },
+      {
+            "q": "需要額外串接多個代理嗎？",
+            "a": "課堂建議先讓既有代理讀取專案，走通需求、分鏡、預覽與輸出。之後再依重複工作和交接需求安排分工。",
+            "time": "00:48:24–00:48:57"
+      }
+],
     qa: [
       {q: "p5.js 是什麼？", a: "p5.js 是用於創意編碼、繪圖與互動的 JavaScript 程式庫。它在瀏覽器建立畫布，支援 2D 與 WEBGL 繪圖模式，也能製作 3D 內容。", source: "https://p5js.org/reference/p5/createCanvas/", sourceLabel: "p5.js：createCanvas"},
       {q: "setup() 和 draw() 怎麼運作？", a: "setup() 在 sketch 開始時執行一次；之後 draw() 重複執行，更新畫面。noLoop() 可以停止迴圈，loop() 可以恢復；實際幀率仍受執行環境影響。", source: "https://p5js.org/reference/p5/draw/", sourceLabel: "p5.js：draw（含 setup、noLoop 與 loop 參照）"},
@@ -1119,7 +1437,7 @@ export const eventNotes = [{
     ],
     quizTitle: "選讀理解測驗・尚未作答",
     quiz: "粒子需要持續移動並回應滑鼠時，位置應只在 setup() 更新一次，還是在 draw() 重複更新？",
-    answer: "這個情境需要在 draw() 重複更新。setup() 負責一次性的初始化；持續移動需要計算新位置並重新繪製。此解說不記錄分數，也不代表已作答。",
+    answer: "這個情境需要在 draw() 重複更新。setup() 負責一次性的初始化；持續移動需要計算新位置並重新繪製。",
     reflection: "個人心得尚待補充。"
   }
 }] as const;

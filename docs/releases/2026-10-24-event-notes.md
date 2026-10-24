@@ -40,3 +40,11 @@ The same metadata release adds presenter-shared Hera and Motion UX references. H
 GSAP's shared official homepage is also included once in the workshop resource list, linked to the existing p5.js / GSAP / Three.js comparison. The earlier API-documentation citation remains at the technical claim. No package is installed, and no open-source licensing claim is made.
 
 Combined update regression: tests pass; Svelte reports 0 errors / 0 warnings; build and 54-page release/link check pass. New-tab browser checks at 390px and 1280px confirm no overflow, bilingual metadata, keyboard disclosure, same-article language switching, the GSAP comparison anchor and retained diagram/Q&A. Output checks exclude private message identifiers, referral query, meeting URLs and email-source links.
+
+## Post-session transcript expansion
+
+The existing bilingual article now covers 16 knowledge topics, an original prompt exercise, 13 session Q&A groups with relative source times, and the retained p5.js supplement and unscored self-check. It adds motion vocabulary, storyboarding, tool roles, Canvas, media loading and responsive images, and corrected format guidance from official sources. The event is marked ended; personal reflection, hands-on evidence and follow-up video availability keep their own status.
+
+Private transcript, source hash, correction ledger, participant discussion and source IDs remain in the private source repository. The public article contains original teaching synthesis and anonymized questions. The source note consolidates coverage limits. Public prose uses direct Taiwan Traditional Chinese and corresponding English.
+
+Validation: 14 tests pass; Svelte check reports 0 errors / 0 warnings; static build and the 54-page release/internal-link scan pass. New QA tab at 390px and 1280px confirms no horizontal overflow, matching bilingual article routing, 16 chapters and 13 questions per language, keyboard chapter disclosure and answer disclosure. The semantic HTML/CSS figure is retained; zero new image assets (0 image bytes). The existing site is light-only; reduced-motion CSS remains in place and the added content introduces no animation. Public deployment is verified separately against the final main commit.
