@@ -22,6 +22,7 @@
         每日整理理解，用例子與文章連結逐步拆解大問題。
       </p>
     </header>
+    <p><a href="/event-notes/">Talks &amp; Workshops · 演講與工作坊筆記 →</a></p>
 
     <nav class="filters" aria-label="Article type">
       <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
