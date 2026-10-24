@@ -28,16 +28,20 @@
         <h2>{zh ? "活動資訊" : "Event metadata"}</h2>
         <dl class="metadata">
           <dt>{zh ? "活動名稱" : "Event"}</dt><dd>{copy.event}</dd>
+          <dt>{zh ? "報名正式主題" : "Announced topic"}</dt><dd>{copy.announcedTopic}</dd>
+          <dt>{zh ? "當日簡報標題" : "Slide-deck title"}</dt><dd>{copy.slidesTitle}<br />{copy.titleNote}</dd>
           <dt>{zh ? "日期" : "Date"}</dt><dd>{entry.date}</dd>
-          <dt>{zh ? "預定時段" : "Scheduled time"}</dt><dd>14:00–15:00 · Asia/Taipei (UTC+08:00)<br />{zh ? "僅為排定時間，不代表實際結束或完課。" : "Scheduled slot only; actual end and completion are unconfirmed."}</dd>
+          <dt>{zh ? "預定時段" : "Scheduled time"}</dt><dd>{entry.scheduledTime} · {entry.timezone}<br />{zh ? "僅為排定時間，不代表實際結束或完課。" : "Scheduled slot only; actual end and completion are unconfirmed."}</dd>
           <dt>{zh ? "類型／形式" : "Type / format"}</dt><dd>{copy.type} · {copy.format}</dd>
           <dt>{zh ? "主講人" : "Presenter"}</dt><dd>{copy.attribution}</dd>
-          <dt>{zh ? "主辦單位" : "Organizer"}</dt><dd>{zh ? "待確認" : "To be confirmed"}</dd>
+          <dt>{zh ? "主辦單位" : "Organizer"}</dt><dd>{copy.organizer}</dd>
           <dt>{zh ? "協辦單位" : "Co-organizer"}</dt><dd>{zh ? "未查得公開資料" : "Public information not found"}</dd>
-          <dt>{zh ? "公開地點／平台" : "Public venue / platform"}</dt><dd>{zh ? "線上；公開平台資訊待確認" : "Online; public platform details to be confirmed"}</dd>
-          <dt>{zh ? "報名／活動來源" : "Registration / event source"}</dt><dd>{zh ? "公開報名頁待確認；活動內容見" : "Public registration page to be confirmed; content available in the"} <a href="https://web-animation-course.vercel.app/">{zh ? "簡報" : "slides"}</a></dd>
+          <dt>{zh ? "公開地點／平台" : "Public venue / platform"}</dt><dd>{copy.platform}</dd>
+          <dt>{zh ? "報名／活動來源" : "Registration / event source"}</dt><dd><a href={entry.registrationUrl}>{zh ? "公開報名表（活動來源）" : "Public registration form (event source)"}</a><br />{copy.registrationStatus}</dd>
           <dt>{zh ? "教材" : "Materials"}</dt><dd><a href="https://web-animation-course.vercel.app/">{zh ? "簡報" : "Slides"}</a> · <a href="https://hackmd.io/@zz41354899/H14KjaJ9Ml">{zh ? "共筆" : "Shared notes"}</a></dd>
         </dl>
+        <p>{copy.speakerBio}</p>
+        <details><summary>{zh ? "主辦公告的內容與適合對象" : "Announced topics and audience"}</summary><p>{copy.announcedContent}</p></details>
         <p class="boundary">{copy.status} {copy.scope}</p>
         <p>{zh ? "更新日期" : "Updated"}：<time datetime={entry.updated}>{entry.updated}</time></p>
       </header>
@@ -52,12 +56,19 @@
         <figcaption id="drawing-caption">{zh ? "p5.js 的簡化流程：程式更新資料，繪圖工具把結果畫出來。這是 HTML/CSS 示意，沒有外部圖片。" : "A simplified p5.js flow: code updates data and drawing tools render it. An HTML/CSS diagram with no external image."}</figcaption>
       </figure>
       <section id="qa"><h2>{zh ? "整理後 Q&A" : "Edited Q&A"}</h2>
-        {#each copy.qa as item}<h3>{item.q}</h3><p>{item.a}</p><a href={item.source}>{item.sourceLabel} ↗</a>{/each}
+        {#each copy.qa as item, index}<h3 id={index === 2 ? "tool-comparison" : undefined}>{item.q}</h3><p>{item.a}</p><a href={item.source}>{item.sourceLabel} ↗</a>{/each}
         <aside><h3>{copy.quizTitle}</h3><p>{copy.quiz}</p><details><summary>{zh ? "展開答案與解說" : "Reveal answer and explanation"}</summary><p>{copy.answer}</p></details></aside>
       </section>
       <section id="reflection"><h2>{zh ? "個人心得" : "Personal reflection"}</h2><p>{copy.reflection}</p><h3>{zh ? "實作狀態" : "Practice status"}</h3><p>{zh ? "尚無可公開的實作與執行驗證紀錄。" : "No public implementation or execution evidence has been added."}</p></section>
       <section id="sources"><h2>{zh ? "延伸來源" : "Further sources"}</h2>
         <ul><li><a href="https://web-animation-course.vercel.app/">{zh ? "工作坊簡報" : "Workshop slides"}</a></li><li><a href="https://hackmd.io/@zz41354899/H14KjaJ9Ml">{zh ? "工作坊共筆" : "Shared workshop notes"}</a></li><li><a href="https://mografy-website.vercel.app/zh-TW">Mografy</a></li><li><a href="https://p5js.org/reference/p5/setup/">p5.js: setup()</a></li><li><a href="https://github.com/mrdoob/three.js">Three.js</a></li></ul>
+        <h3>{zh ? "工作坊分享的延伸資源" : "Resources shared during the workshop"}</h3>
+        <p>{zh ? "依參與者轉貼的工作坊資源分享整理；以下只核對公開入口與自述用途。" : "Recorded from workshop links relayed by a participant; only the public entry pages and their descriptions were checked."}</p>
+        <ul>
+          <li><a href="https://gsap.com/">GSAP</a> — {zh ? "工作坊補充分享的動畫工具入口；官網介紹 JavaScript 動畫、時間控制與捲動互動。" : "An animation resource shared during the session; its website introduces JavaScript animation, timing and scroll interactions."} <a href="#tool-comparison">{zh ? "回看 p5.js／GSAP／Three.js 分工" : "See the p5.js / GSAP / Three.js comparison"}</a></li>
+          <li><a href="https://hera.video/">Hera</a> — {zh ? "官網介紹為可用提示詞製作、編輯動態圖像的工具；未登入或實測生成效果。" : "Its website describes a tool for creating and editing motion graphics from prompts. Generation quality has not been tested."}</li>
+          <li><a href="https://www.youtube.com/channel/UCPOmpoL4tsc9ZLtCotluXYg">Motion UX · YouTube</a> — {zh ? "頻道自介為設計師的 Motion UX 工作流程教學；本次未逐片觀看影片。" : "The channel describes tutorials on Motion UX workflows for designers. Individual videos have not been reviewed."}</li>
+        </ul>
         <p>{zh ? "Mografy 為教材提供的工具入口；本頁不據此判定整站的技術實作。" : "Mografy is a tool linked by the materials; this note makes no claim about its site-wide implementation."}</p>
       </section>
       <a href={base}>← {heading}</a>
