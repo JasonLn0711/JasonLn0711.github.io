@@ -26,3 +26,5 @@ Adds dated attendance notes to the existing personal site, separate from the own
 ## Release evidence
 
 Previous production head: `77dd3a0`, Cloudflare Workers build `59bc9629-aba8-4ac2-944f-ac470d054366` successful. Release uses the existing Git integration and unchanged domain/security configuration. Post-deployment results belong in the release receipt and Planning publication mirror.
+
+Cloudflare's npm 10.9.2 preview rejected the initial npm 12 scoped override lockfile (`Missing: undici@7.29.1 from lock file`). The override was moved to the Undici package level and checked with npm 10.9.2 clean install; the dependency remains confined to development tooling.
