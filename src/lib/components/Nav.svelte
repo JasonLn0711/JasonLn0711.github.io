@@ -7,7 +7,10 @@
   let zh = $derived(pathname.startsWith("/zh-tw/"));
   let copy = $derived(homeCopy[zh ? "zh-Hant" : "en"]);
   $effect(() => { pathname; open = false; });
-  function active(href: string) { return pathname.startsWith(href); }
+  let notesPage = $derived(pathname.includes("/event-notes/"));
+  let languageHref = $derived(notesPage ? (zh ? pathname.replace("/zh-tw", "") : `/zh-tw${pathname}`) : (zh ? "/" : "/zh-tw/"));
+  function localizedHref(href: string) { return zh && href === "/event-notes/" ? `/zh-tw${href}` : href; }
+  function active(href: string) { return pathname.startsWith(localizedHref(href)); }
   function closeOnEscape(event: KeyboardEvent) {
     if (event.key === "Escape" && open) { open = false; menuToggle?.focus(); }
   }
@@ -21,16 +24,16 @@
     <a class="brand" href={zh ? "/zh-tw/" : "/"} aria-label={`${site.shortName} · ${copy.home}`}>{site.shortName}<span aria-hidden="true">.</span></a>
     <nav class="desktop-nav" aria-label={zh ? "主要導覽" : "Primary"}>
       {#each site.nav as item}
-        <a aria-current={active(item.href) ? "page" : undefined} href={item.href}>{zh ? item.labelZh : item.label}</a>
+        <a aria-current={active(item.href) ? "page" : undefined} href={localizedHref(item.href)}>{zh ? item.labelZh : item.label}</a>
       {/each}
     </nav>
     <div class="nav-actions">
-      <a class="language" href={zh ? "/" : "/zh-tw/"} lang={zh ? "en" : "zh-Hant"} hreflang={zh ? "en" : "zh-Hant"}>{zh ? "English" : "繁中"}</a>
+      <a class="language" href={languageHref} lang={zh ? "en" : "zh-Hant"} hreflang={zh ? "en" : "zh-Hant"}>{zh ? "English" : "繁中"}</a>
       <details class="mobile-nav" bind:open>
         <summary bind:this={menuToggle}>{zh ? "選單" : "Menu"}<span aria-hidden="true"> +</span></summary>
         <nav aria-label={zh ? "手機主要導覽" : "Mobile primary"}>
           {#each site.nav as item}
-            <a aria-current={active(item.href) ? "page" : undefined} href={item.href} onclick={() => open = false}>{zh ? item.labelZh : item.label}</a>
+            <a aria-current={active(item.href) ? "page" : undefined} href={localizedHref(item.href)} onclick={() => open = false}>{zh ? item.labelZh : item.label}</a>
           {/each}
         </nav>
       </details>
@@ -55,6 +58,6 @@
   .mobile-nav nav { position: absolute; top: 100%; left: 0; right: 0; display: grid; padding: 0.75rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--line-strong); }
   .mobile-nav nav a { display: flex; align-items: center; min-height: 48px; color: var(--ink); text-decoration: none; padding-inline: 0.5rem; }
   .mobile-nav nav a:hover, summary:hover { background: var(--accent-soft); }
-  @media (max-width: 800px) { .desktop-nav { display: none; } .mobile-nav { display: block; } .nav-shell { gap: 0.5rem; min-height: 4rem; } }
+  @media (max-width: 1100px) { .desktop-nav { display: none; } .mobile-nav { display: block; } .nav-shell { gap: 0.5rem; min-height: 4rem; } }
   @media (max-width: 380px) { .nav-shell { width: calc(100% - 2rem); } .language { padding-left: 0.65rem; } .nav-actions { gap: 0; } }
 </style>

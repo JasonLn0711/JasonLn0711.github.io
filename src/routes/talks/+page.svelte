@@ -20,6 +20,7 @@
         model serving, voice AI, and evidence-aware deployment.
       </p>
     </header>
+    <p><a href="/event-notes/">Talks &amp; Workshops · 演講與工作坊筆記 →</a></p>
 
     <section class="plain-section" aria-labelledby="teaching-heading">
       <h2 id="teaching-heading">Current teaching surfaces</h2>

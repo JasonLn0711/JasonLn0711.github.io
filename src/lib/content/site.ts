@@ -14,6 +14,7 @@ export const site = {
   description:
     "Personal research site and blog for evidence-aware AI systems in speech, clinical workflow support, agent governance, cybersecurity, and enterprise AI education.",
   nav: [
+    { href: "/event-notes/", label: "Talks & Workshops", labelZh: "演講與工作坊筆記" },
     { href: "/blog/", label: "Blog", labelZh: "文章" },
     { href: "/research/", label: "Research", labelZh: "研究" },
     { href: "/projects/", label: "Projects", labelZh: "作品" },
@@ -933,6 +934,8 @@ export function findTeachingDay(acceleratorSlug: string, daySlug: string) {
 }
 
 export const routePaths = [
+  "/event-notes/", "/zh-tw/event-notes/",
+  "/event-notes/2026-10-24-web-animation/", "/zh-tw/event-notes/2026-10-24-web-animation/",
   "/",
   "/now/",
   "/design/",
@@ -1050,3 +1053,57 @@ export const homeWork = [
     summaryZh: "以架構、治理、安全、部署與驗收產出，逐步認識企業語音 AI 系統。", statusZh: "2026 年 6 月教材"
   }
 ] as const;
+
+// Public editorial notes only. Future entries require a separate publication review.
+export const eventNotes = [{
+  slug: "2026-10-24-web-animation",
+  date: "2026-10-24", updated: "2026-10-24",
+  en: {
+    title: "AI-assisted brand motion: workshop notes",
+    event: "AI 讓品牌動起來｜動態設計實戰",
+    type: "Workshop", format: "Online",
+    summary: "Motion purpose, easing and springs, plus an introduction to p5.js and animation tools.",
+    attribution: "The public slide deck introduces its presenter as Nocts. These notes follow that public attribution.",
+    status: "Notes in progress; attendance completion has not been confirmed.",
+    scope: "An original, condensed reading of public materials with edited technical Q&A. Embedded videos, images and interactions have not all been verified.",
+    sections: [
+      {title: "Give motion a purpose", text: "Choose what the viewer needs to notice: a change of state, a response to an action, or the relationship between two screens. Then specify the order, pace and stopping point. Keeping an element still can preserve attention for the important change.", source: "https://web-animation-course.vercel.app/", sourceLabel: "Workshop slides"},
+      {title: "Describe the result before choosing tools", text: "A useful brief names the output format, available assets, sequence, timing, visual constraints and review criteria. Review transitions as well as still frames. The shared notes provide worked examples; their full prompts and shot lists remain at the source.", source: "https://hackmd.io/@zz41354899/H14KjaJ9Ml", sourceLabel: "Shared workshop notes"},
+      {title: "Easing and physical simulation", text: "Easing controls the rate of change; a curve alone does not simulate gravity or friction. Legacy Material guidance commonly decelerates entering elements and accelerates exiting ones. Its Standard curve, cubic-bezier(0.4, 0, 0.2, 1), differs from Sharp, cubic-bezier(0.4, 0, 0.6, 1). These are version-specific guidelines, not universal rules.", source: "https://m1.material.io/motion/duration-easing.html", sourceLabel: "Material: duration and easing"},
+      {title: "Damping controls oscillation", text: "A spring model pulls toward a target. Damping suppresses oscillation; it is not another name for bounce. Sufficient damping can prevent overshoot. Choose motion to support the interaction rather than adding bounce to every element.", source: "https://developer.android.com/develop/ui/views/animations/spring-animation", sourceLabel: "Android: spring physics"}
+    ],
+    qa: [
+      {q: "What is p5.js?", a: "A JavaScript library for creative coding, drawing and interaction. It creates a browser canvas and supports both 2D and WEBGL rendering, including 3D work.", source: "https://p5js.org/reference/p5/createCanvas/", sourceLabel: "p5.js: createCanvas"},
+      {q: "How do setup() and draw() work?", a: "setup() runs once when the sketch starts. draw() then runs repeatedly to update the scene. noLoop() stops that loop and loop() resumes it; the actual frame rate depends on runtime conditions.", source: "https://p5js.org/reference/p5/draw/", sourceLabel: "p5.js: draw (with setup, noLoop and loop references)"},
+      {q: "Do p5.js, GSAP and Three.js replace each other?", a: "Their responsibilities can overlap. p5.js provides drawing and interaction; GSAP tweens object properties and sequences animations; Three.js provides a 3D library. A project can combine them according to its rendering and timing needs.", source: "https://gsap.com/docs/v3/GSAP/", sourceLabel: "GSAP documentation"}
+    ],
+    quizTitle: "Optional self-check · no answer recorded",
+    quiz: "For moving particles that react to the pointer, should position updates happen only in setup(), or repeatedly in draw()?",
+    answer: "Use repeated updates in draw() for this sketch. setup() initializes the scene once; ongoing motion needs new positions and redraws. This explanation does not record a learner score.",
+    reflection: "Personal reflection has not been added."
+  },
+  zh: {
+    title: "AI 輔助品牌動態：工作坊筆記",
+    event: "AI 讓品牌動起來｜動態設計實戰",
+    type: "工作坊", format: "線上",
+    summary: "整理動態設計目的、緩動與彈簧，以及 p5.js 和動畫工具的分工。",
+    attribution: "公開簡報以 Nocts 介紹講者；本頁依該公開署名標註。",
+    status: "筆記持續整理中；尚未確認全程完課。",
+    scope: "本頁為公開教材的自寫濃縮摘要與整理後技術問答。內嵌影片、圖片與互動尚未全部驗證。",
+    sections: [
+      {title: "先決定動作要讓人看懂什麼", text: "動態可以提示狀態改變、回應操作，或交代畫面之間的關係。先選出觀眾需要注意的訊息，再安排出現順序、速度與停留位置。讓其他元素保持靜止，也能把注意力留給重要變化。", source: "https://web-animation-course.vercel.app/", sourceLabel: "工作坊簡報"},
+      {title: "把需求寫清楚，再選工具", text: "描述作品時，交代輸出格式、可用素材、事件順序、時間安排、視覺限制與驗收條件。預覽要檢查轉場過程，不能只看單張畫面。共筆提供完整範例；詳細提示詞與逐鏡安排留在原始教材查閱。", source: "https://hackmd.io/@zz41354899/H14KjaJ9Ml", sourceLabel: "工作坊共筆"},
+      {title: "緩動曲線與物理模擬", text: "緩動描述變化的速度；一條曲線本身不等於模擬重力或摩擦力。舊版 Material 常見做法為進場減速、離場加速。Standard 的 cubic-bezier(0.4, 0, 0.2, 1) 與 Sharp 的 cubic-bezier(0.4, 0, 0.6, 1) 不同；這是特定版本的設計指引，不能當成所有動畫的通則。", source: "https://m1.material.io/motion/duration-easing.html", sourceLabel: "Material：時長與緩動"},
+      {title: "Damping 是阻尼", text: "彈簧模型會把物件拉回目標位置；阻尼抑制震盪，不是回彈的同義詞。阻尼足夠時可以不過沖。是否使用彈跳，應由互動目的決定。", source: "https://developer.android.com/develop/ui/views/animations/spring-animation", sourceLabel: "Android：彈簧物理動畫"}
+    ],
+    qa: [
+      {q: "p5.js 是什麼？", a: "p5.js 是用於創意編碼、繪圖與互動的 JavaScript 程式庫。它在瀏覽器建立畫布，支援 2D 與 WEBGL 繪圖模式，也能製作 3D 內容。", source: "https://p5js.org/reference/p5/createCanvas/", sourceLabel: "p5.js：createCanvas"},
+      {q: "setup() 和 draw() 怎麼運作？", a: "setup() 在 sketch 開始時執行一次；之後 draw() 重複執行，更新畫面。noLoop() 可以停止迴圈，loop() 可以恢復；實際幀率仍受執行環境影響。", source: "https://p5js.org/reference/p5/draw/", sourceLabel: "p5.js：draw（含 setup、noLoop 與 loop 參照）"},
+      {q: "p5.js、GSAP 與 Three.js 互相取代嗎？", a: "它們的職責可以重疊。p5.js 提供繪圖與互動；GSAP 對物件屬性做補間並安排動畫時序；Three.js 提供 3D 程式庫。可以依作品的繪製與時間控制需求組合使用。", source: "https://gsap.com/docs/v3/GSAP/", sourceLabel: "GSAP 官方文件"}
+    ],
+    quizTitle: "選讀理解測驗・尚未作答",
+    quiz: "粒子需要持續移動並回應滑鼠時，位置應只在 setup() 更新一次，還是在 draw() 重複更新？",
+    answer: "這個情境需要在 draw() 重複更新。setup() 負責一次性的初始化；持續移動需要計算新位置並重新繪製。此解說不記錄分數，也不代表已作答。",
+    reflection: "個人心得尚待補充。"
+  }
+}] as const;
