@@ -11,7 +11,6 @@
   let filtered = $derived([...eventNotes].sort((a,b) => b.date.localeCompare(a.date)).filter(note => JSON.stringify(note).toLowerCase().includes(query.trim().toLowerCase())));
 
   let resources = $derived(copy && entry ? uniqueResources([
-    { source: entry.registrationUrl, sourceLabel: zh ? "公開報名表（活動來源）" : "Public registration form (event source)" },
     { source: "https://web-animation-course.vercel.app/", sourceLabel: zh ? "工作坊簡報" : "Workshop slides" },
     { source: "https://hackmd.io/@zz41354899/H14KjaJ9Ml", sourceLabel: zh ? "工作坊共筆" : "Shared workshop notes" },
     { source: "https://mografy-website.vercel.app/zh-TW", sourceLabel: "Mografy" },
@@ -30,6 +29,10 @@
     { source: "https://www.adobe.com/products/aftereffects.html", sourceLabel: "After Effects \u00b7 Adobe" },
     { source: "https://www.blackmagicdesign.com/products/davinciresolve", sourceLabel: "DaVinci Resolve \u00b7 Blackmagic Design" },
     { source: "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations", sourceLabel: "Canvas animation \u00b7 MDN" },
+    { source: "https://gsap.com/docs/v3/GSAP/Timeline/", sourceLabel: "GSAP: Timeline" },
+    { source: "https://web.dev/articles/lcp", sourceLabel: "web.dev: Largest Contentful Paint" },
+    { source: "https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/currentSrc", sourceLabel: "MDN: currentSrc" },
+    { source: "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video", sourceLabel: "MDN: video" },
     ...copy.sections,
     ...copy.qa
   ]) : []);
@@ -55,7 +58,7 @@
         <details open><summary>{zh ? "本頁目錄" : "On this page"}</summary>
           <div class="toc-links">
             <a href="#note-top">{zh ? "重點結論" : "Key takeaway"}</a>
-            <a href="#knowledge">{zh ? "依時間讀筆記" : "Follow the session"}</a>
+            <a href="#knowledge">{zh ? "教學筆記" : "Learning notes"}</a>
             {#each copy.sections as section, index}
               <a class="chapter-link" href={`#${section.id}`}><span>{String(index + 1).padStart(2, "0")}</span> {section.title}</a>
             {/each}
@@ -69,16 +72,20 @@
         </details>
       </nav>
       <div class="reading-body">
-      <section id="knowledge"><h2>{zh ? "沿著演講時間，從想法走到作品" : "Follow the session: from an idea to a finished piece"}</h2>
-        <p>{zh ? "以下依錄音中的教學順序整理。每章先交代課堂談到這裡的原因，再補白話解釋與可試做的例子。時間採錄音相對位置；教材與官方文件的補充放在各章筆記中，來源集中於文末。" : "The chapters follow the teaching sequence in the recording. Each gives the session context, a plain-language explanation and a small exercise. Times are relative to the recording. Material and documentation supplements appear within the notes, with links collected at the end."}</p>
+      <section id="knowledge"><h2>{zh ? "從想法到作品：16 個動態設計主題" : "From idea to implementation: 16 motion-design topics"}</h2>
+        <p>{zh ? "先理解動態要傳達的訊息，再練習分鏡、工具選擇與網站實作。每個主題都有操作思路、網站例子與小練習，可以依自己的作品挑一段開始。" : "Start with the message motion should communicate, then work through storyboards, tool choices and website implementation. Each topic includes a workflow, a website example and a small exercise you can adapt to your own project."}</p>
+        <p class="source-caption">{zh ? "延伸學習：技術說明搭配官方文件，操作流程與練習是可自行嘗試的設計方法；參考連結集中於文末。" : "Further learning: technical explanations draw on official documentation; the workflows and exercises offer design methods to try. References are collected at the end."}</p>
         {#each copy.sections as section, index}
           <section class="lesson" id={section.id} data-lesson>
-            <p class="timestamp">{zh ? "錄音相對時間" : "Relative recording time"} <span data-session-time>{section.time}</span></p>
             <h3>{String(index + 1).padStart(2, "0")} · {section.title}</h3>
-            <p class="session-context"><strong>{zh ? "課堂脈絡" : "Session context"}</strong> — {section.context}</p>
-            <h4>{zh ? "白話筆記・教材與文件補充" : "Notes with material and documentation supplements"}</h4>
-            <p>{section.text}</p>
-            <div class="practice"><h4>{zh ? "試著這樣做" : "Try this"}</h4><p>{section.practice}</p></div>
+            <div data-teaching>
+              {#each section.paragraphs as paragraph}<p>{paragraph}</p>{/each}
+              <p>{section.text}</p>
+            </div>
+            <h4>{section.workflowTitle}</h4>
+            <ol data-workflow>{#each section.steps as step}<li>{step}</li>{/each}</ol>
+            <p data-example><strong>{zh ? "網站例子" : "Website example"}</strong> — {section.example}</p>
+            <div class="practice" data-practice><h4>{zh ? "小練習" : "Small exercise"}</h4><p>{section.practice}</p></div>
             <p class="source-caption">{zh ? "參考" : "Reference"}：{section.sourceLabel}</p>
           </section>
         {/each}
@@ -92,7 +99,7 @@
         <figcaption id="drawing-caption">{zh ? "p5.js 的簡化流程：程式更新資料，繪圖工具把結果畫出來。這是 HTML/CSS 示意，沒有外部圖片。" : "A simplified p5.js flow: code updates data and drawing tools render it. An HTML/CSS diagram with no external image."}</figcaption>
       </figure>
       <section id="session-qa"><h2>{zh ? "現場 Q&A 整理" : "Session Q&A"}</h2><p>{zh ? "依課堂提問重述，技術補充連到上方章節與官方來源。" : "Questions are restated from the session; technical additions connect to the chapters and official sources above."}</p>
-        {#each copy.sessionQa as item}<div data-session-qa><h3>{item.q}</h3><p>{item.a}</p><p class="timestamp">{zh ? "來源相對時間" : "Relative source time"} {item.time}</p></div>{/each}
+        {#each copy.sessionQa as item}<div data-session-qa><h3>{item.q}</h3><p>{item.a}</p></div>{/each}
       </section>
       <section id="qa"><h2>{zh ? "延伸 Q&A：p5.js 與工具分工" : "Supplementary Q&A: p5.js and tool roles"}</h2><p>{zh ? "以下延伸先前的技術提問，與現場問答分開整理。" : "These build on earlier technical questions and are kept separate from the session Q&A."}</p>
         {#each copy.qa as item, index}<h3 id={index === 2 ? "tool-comparison" : undefined}>{item.q}</h3><p>{item.a}</p><p class="source-caption">{zh ? "參考" : "Reference"}：{item.sourceLabel}</p>{/each}
@@ -111,21 +118,15 @@
         <details open><summary id="metadata-heading">{zh ? "活動資訊" : "Event metadata"}</summary>
         <dl class="metadata">
           <dt>{zh ? "活動名稱" : "Event"}</dt><dd>{copy.event}</dd>
-          <dt>{zh ? "報名正式主題" : "Announced topic"}</dt><dd>{copy.announcedTopic}</dd>
-          <dt>{zh ? "當日簡報標題" : "Slide-deck title"}</dt><dd>{copy.slidesTitle}<br />{copy.titleNote}</dd>
           <dt>{zh ? "日期" : "Date"}</dt><dd>{entry.date}</dd>
-          <dt>{zh ? "預定時段" : "Scheduled time"}</dt><dd>{entry.scheduledTime} · {entry.timezone}<br />{zh ? "活動已結束；實際起訖時刻待補。" : "The session has ended; actual start and end times are to be added."}</dd>
           <dt>{zh ? "類型／形式" : "Type / format"}</dt><dd>{copy.type} · {copy.format}</dd>
           <dt>{zh ? "主講人" : "Presenter"}</dt><dd>{copy.attribution}</dd>
           <dt>{zh ? "主辦單位" : "Organizer"}</dt><dd>{copy.organizer}</dd>
-          <dt>{zh ? "協辦單位" : "Co-organizer"}</dt><dd>{zh ? "未查得公開資料" : "Public information not found"}</dd>
           <dt>{zh ? "公開地點／平台" : "Public venue / platform"}</dt><dd>{copy.platform}</dd>
-          <dt>{zh ? "報名／活動來源" : "Registration / event source"}</dt><dd><a href="#sources">{zh ? "公開報名表見來源清單" : "Registration form in the source list"}</a><br />{copy.registrationStatus}</dd>
           <dt>{zh ? "教材" : "Materials"}</dt><dd><a href="#sources">{zh ? "簡報、共筆與官方文件" : "Slides, shared notes and documentation"}</a></dd>
         </dl>
         <p>{copy.speakerBio}</p>
-        <details><summary>{zh ? "主辦公告的內容與適合對象" : "Announced topics and audience"}</summary><p>{copy.announcedContent}</p></details>
-        <div class="boundary"><h3>{zh ? "資料與更新狀態" : "Sources and update status"}</h3><p>{copy.status} {copy.scope}</p><p>{zh ? "涵蓋完整課堂文字、12 頁簡報、共筆與工具文件。現場問答的時間為提供稿件的相對時間。技術補充依官方文件核對；Mografy 的實作說明採公開 Canvas／Three.js 文件。" : "Coverage includes the supplied session text, 12 slides, shared notes and tool documentation. Session Q&A uses relative transcript timestamps. Technical additions follow official documentation; Mografy's implementation description follows its public Canvas/Three.js documents."}</p></div>
+        <div class="boundary"><h3>{zh ? "筆記狀態" : "Note status"}</h3><p>{copy.status} {copy.scope}</p></div>
         <p>{zh ? "更新日期" : "Updated"}：<time datetime={entry.updated}>{entry.updated}</time></p>
         <a href="#knowledge">{zh ? "回到知識筆記 ↑" : "Back to the notes ↑"}</a></details>
       </div>
@@ -158,7 +159,6 @@
   h3 { margin-top: 1.8rem; color: var(--ink-strong); }
   h3[id] { scroll-margin-top: 6rem; }
   blockquote { margin: 1rem 0; padding: 1rem 1.5rem; border-left: 2px solid var(--accent); line-height: 1.9; color: var(--ink); background: var(--accent-soft); }
-  .timestamp { font-size: .85rem; font-variant-numeric: tabular-nums; }
   p, li { line-height: 1.8; color: var(--muted); overflow-wrap: anywhere; }
   .lead { font-size: 1.15rem; }
   section[id] { border-top: 1px solid var(--line); padding-block: 1.5rem; scroll-margin-top: 6rem; }
@@ -184,10 +184,11 @@
   .lesson { padding-block: 1.5rem; }
   .lesson:target { border-top-color: var(--accent); }
   .lesson h3 { margin-top: .5rem; font-size: 1.4rem; }
+  .lesson ol { padding-left: 1.5rem; }
+  .lesson li + li { margin-top: .65rem; }
   .lesson h4 { color: var(--ink); margin-bottom: .5rem; font-weight: 600; }
   .practice { border-left: 2px solid var(--accent); background: var(--accent-soft); padding: .2rem 1rem; margin-block: 1.3rem; }
   .source-caption { font-size: .8rem; }
-  .session-context { color: var(--ink); }
   #note-top { scroll-margin-top: 6rem; }
   @media (max-width: 1100px) {
     .detail-page { width: min(100% - 1.35rem, 46rem); }
