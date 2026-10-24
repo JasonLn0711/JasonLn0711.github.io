@@ -28,5 +28,10 @@
     "vite": "^8.0.14",
     "wrangler": "4.152.0",
     "yaml": "^2.9.1"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.30.1"
+    }
   }
 }
