@@ -1,3 +1,4 @@
+import { checkBuiltEventNotes } from './check-event-note.mjs';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
@@ -31,5 +32,6 @@ function walk(dir) {
   }
 }
 walk('build');
+errors.push(...checkBuiltEventNotes());
 if (errors.length) { console.error([...new Set(errors)].join('\n')); process.exitCode=1; }
 else console.log(`PASS: ${checked} HTML pages, internal paths and targeted credential patterns; ${((performance.now()-start)/1000).toFixed(1)}s.`);
