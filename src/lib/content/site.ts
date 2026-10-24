@@ -1058,23 +1058,17 @@ export const homeWork = [
 export const eventNotes = [{
   slug: "2026-10-24-web-animation",
   date: "2026-10-24", updated: "2026-10-24",
-  scheduledTime: "14:00–15:00", timezone: "Asia/Taipei (UTC+08:00)",
-  registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLScMeJDhCFqzrYfCtlqkIiV9_gLlUVybOL_EAJn6kkDK6JGGqA/viewform",
   en: {
     title: "AI-assisted brand motion: workshop notes",
     event: "October 24 free online talk | Build animated, interactive websites with AI",
-    announcedTopic: "AI-powered web motion | Interactive website design in practice (AI 讓網頁動起來｜互動網頁設計實戰)",
-    slidesTitle: "AI-powered brand motion | Motion design in practice (AI 讓品牌動起來｜動態設計實戰)",
-    titleNote: "The registration announcement and the slide deck are recorded under their respective titles.",
     organizer: "Claude x Codex online study group", platform: "Zoom · free online session",
-    registrationStatus: "Registration closed (public form checked on October 24). Link retained as an event source.",
     speakerBio: "The organizer introduces Nocts as a UI/UX and web designer who combines frontend development, web motion and AI coding to turn designs into working websites.",
     announcedContent: "The announcement covers interaction and animation, explaining content, style and interaction needs to AI, a one-page demonstration and a public prompt guide. It welcomes beginners building personal sites, portfolios or brand pages, as well as engineers and designers; no AI experience, project idea or preparation is required.",
     type: "Talk", format: "Online",
     summary: "From brand personality and storyboards to AI workflows, web effects, media performance and session Q&A.",
     attribution: "Nocts (奇昌) · presenter named in the event announcement",
-    status: "Workshop ended; notes updated from the supplied session transcript.",
-    scope: "Original synthesis of session topics, materials and official technical references. Visual media, hands-on results and the promised follow-up video remain to be reviewed.",
+    status: "Workshop completed.",
+    scope: "Teaching notes combine workshop topics with further learning from official documentation. Personal practice and reflection are updated separately.",
     sections: [
       {
             "title": "Choose the medium and the message",
@@ -1082,9 +1076,18 @@ export const eventNotes = [{
             "source": "https://web-animation-course.vercel.app/",
             "sourceLabel": "Workshop slides",
             "id": "note-1",
-            "time": "00:00:12–00:03:12",
-            "context": "The opening asks where motion will appear. A website, app and explainer each give the viewer a different job, which shapes the visual focus.",
-            "practice": "Pick one portfolio card: show its title first, then reveal the result after expansion. Next decide how quickly that change should happen."
+            "practice": "Sketch the collapsed and expanded versions of one card. Write what the reader knows in each state, then circle the change that most needs a visual cue.",
+            "paragraphs": [
+                  "Motion design communicates through visual change. Position, scale, opacity or shape can help a reader notice what happened. Begin with one thing the reader should understand: a button accepted an action, a project card expanded, or a new topic has started.",
+                  "The medium is where the content appears. Readers control scrolling and clicks on a website; a video controls its own sequence. The same story therefore needs different pacing. A useful starting point is a clear static layout and working interaction, followed by one movement that helps explain a change."
+            ],
+            "workflowTitle": "Define the job of this moment",
+            "steps": [
+                  "List what the reader sees now, the action available and the result they should recognize.",
+                  "Separate the main message from supporting details and choose the element that deserves attention.",
+                  "Describe the before and after states, then choose a fade, movement or direct change that explains the difference."
+            ],
+            "example": "A portfolio card initially shows a project title and summary. “View results” expands the result text and becomes “Collapse.” The content stays visibly connected to the chosen project. Motion can indicate the expansion while the text and control communicate the state."
       },
       {
             "title": "Easing curves and springs",
@@ -1092,9 +1095,18 @@ export const eventNotes = [{
             "source": "https://m1.material.io/motion/duration-easing.html",
             "sourceLabel": "Material: duration and easing; spring reference below",
             "id": "note-10",
-            "time": "00:03:12–00:07:51",
-            "context": "App loading states, buttons and notifications introduce timing. Material and spring documentation add the distinction between a speed curve and a settling response.",
-            "practice": "Let a notification decelerate into a readable resting position. For a dragged object returning home, consider a spring response. Choose the interaction before tuning parameters."
+            "practice": "Write two notification specifications: one with a duration and decelerating ease, another describing a spring response. Name the differences you would inspect, such as settling speed and overshoot.",
+            "paragraphs": [
+                  "Easing is a way to distribute acceleration and braking across a change. Duration sets the total time; easing determines how progress is distributed within it. Keep one fixed while changing the other so the effect is easy to compare.",
+                  "A spring model moves an object toward a target. Stiffness describes the restoring force and damping reduces oscillation; some tools also expose mass. This response is useful for a dragged object settling or an interface whose target can change during motion. A fixed-length brand transition often starts with an explicit duration and easing curve."
+            ],
+            "workflowTitle": "Compare timing on one card",
+            "steps": [
+                  "Keep the starting point, destination and distance fixed. Preview linear movement as a reference.",
+                  "Use the same duration with a decelerating entrance and check whether the settling text is readable.",
+                  "For a spring, define the resting position and vary damping or stiffness separately, observing overshoot and settling."
+            ],
+            "example": "A successful form submission can show a notification that slows as it reaches its resting position. A draggable project card can use a spring to return after release. Choose each response around the interaction and the reading task."
       },
       {
             "title": "Turn a screen recording into a product story",
@@ -1102,9 +1114,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "Session examples and shared notes",
             "id": "note-5",
-            "time": "00:08:15–00:12:53",
-            "context": "The product explainer demonstrates how a recording supplies material while a storyboard highlights inputs, actions and results.",
-            "practice": "Sketch three cards: enter a request → generate → inspect the result. Quiet unrelated interface details and check whether the sequence is understandable."
+            "practice": "Describe a familiar website feature in five sentences, then select three scenes that best explain its purpose. Ask a first-time viewer what they understand from the sketches.",
+            "paragraphs": [
+                  "A product story connects a problem, an action and a result. A screen recording captures the full workflow; an explainer helps a first-time viewer recognize the important steps. Writing the use case first gives the animation a clear selection rule.",
+                  "Keep moments that answer a viewer’s questions: where to enter information, what happens after submission and what the result looks like. Clearly labeled sample data can support a demonstration. Keep the cursor, input and result visually connected so the same object remains recognizable between shots."
+            ],
+            "workflowTitle": "Condense a workflow into readable scenes",
+            "steps": [
+                  "List the complete operation, then write one sentence describing the value this demonstration should explain.",
+                  "Select the input, main action and result that support it. Prepare screenshots or simplified diagrams for each.",
+                  "Write one explanation per shot and allow reading time. Check that the final result answers the opening problem."
+            ],
+            "example": "A quotation-tool page can begin with the need to organize services, show item entry and quote generation, then hold on the resulting quotation. If the lesson is about creating a draft, account settings and history can have their own tutorial."
       },
       {
             "title": "Effect glossary: attention, transitions and beats",
@@ -1112,9 +1133,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "Effect vocabulary from the materials",
             "id": "note-3",
-            "time": "00:13:01–00:16:36",
-            "context": "The product example leads into attention, feedback and continuity. Vocabulary from the shared notes adds concrete techniques to those design goals.",
-            "practice": "Move the cursor to a button before revealing the result card. This sequence makes cause and effect visible and gives the effect a purpose."
+            "practice": "Write a fade version and a staggered version of the same service-card section. Explain which one better communicates the order and what you would inspect in a preview.",
+            "paragraphs": [
+                  "Effect names are a vocabulary for describing visible changes. Decide whether a movement should guide attention, explain an action or connect scenes, then choose a technique. Give it a starting state, an ending state and a clear place for reading.",
+                  "A stagger offsets the start times of several elements. A morph changes one shape into another. A match cut connects shots through similar framing or shape. Parallax uses different movement rates across layers to suggest depth. Beginners can establish the sequence with fades or small translations before adding more complex effects."
+            ],
+            "workflowTitle": "Use an effect to explain a relationship",
+            "steps": [
+                  "Mark the focal point and the next reading position on a sketch, then describe their relationship.",
+                  "Choose one effect and specify its trigger, changing properties and final state.",
+                  "Let important text settle for reading and check whether background and foreground compete for attention."
+            ],
+            "example": "Three service cards can enter in order: describe a need, discuss an approach, deliver the result. Once positioned, they stay still so the reader can compare the whole process. The stagger has a specific role: it establishes sequence."
       },
       {
             "title": "Turn a style into concrete motion",
@@ -1122,9 +1152,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "Shared notes",
             "id": "note-2",
-            "time": "00:22:29–00:23:25",
-            "context": "After discussing attention, the presenter turns to the feeling a piece should convey. That direction gives the script and tool choices a shared goal.",
-            "practice": "Replace “make it playful” with rounded shapes, soft colors and a light entrance that settles into a readable title. Carry those choices into the storyboard."
+            "practice": "Choose two adjectives for your website and write three observable conditions for each. Replace a broad request such as “more polished” with something you could check on screen.",
+            "paragraphs": [
+                  "Brand personality describes how a piece should feel; a motion specification translates that feeling into choices someone can build and revise. Words such as playful or crisp become useful when paired with shape, color, speed, travel distance and settling behavior.",
+                  "Style also depends on the information. A playful character can move prominently while pricing, specifications and contact details remain stable and readable. When sharing a reference, identify the palette, typography or transition you want to study so your own content keeps its identity."
+            ],
+            "workflowTitle": "Translate adjectives into production choices",
+            "steps": [
+                  "Choose a main feeling and one supporting quality, such as approachable and organized.",
+                  "Describe palette, shapes, typography and motion rules in terms visible in a preview.",
+                  "Apply those rules to a heading, a card and a button, then check their consistency."
+            ],
+            "example": "An approachable professional portfolio could use a soft background, clear type hierarchy and rounded cards. A heading makes a small entrance and settles; button feedback is brief. Project results keep enough reading space."
       },
       {
             "title": "Review the storyboard before animation",
@@ -1132,9 +1171,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "Shared notes",
             "id": "note-6",
-            "time": "00:23:25–00:24:06",
-            "context": "Before selecting tools, the session asks what each shot should communicate. The later 00:35:49–00:37:16 Q&A turns this into a storyboard deliverable.",
-            "practice": "Make four columns: image, text, action and hold time. Ask AI for that table and still previews, then review them before animation."
+            "practice": "Draw four shots for one project, each with a single message. Read the still sequence first, then mark the connections that would benefit from movement.",
+            "paragraphs": [
+                  "A storyboard is a visual plan made before animation. Each shot identifies its focal object, text and action so the story can be reviewed early. It is especially useful for portfolio introductions, product workflows and services with several steps.",
+                  "A brief identifies the audience, purpose, aspect ratio, assets and desired next action. Timing includes reading holds as well as entrances and exits. A dense slide can become two shots. Read the text aloud at a comfortable pace and use the preview to adjust its hold."
+            ],
+            "workflowTitle": "Review the still story before adding movement",
+            "steps": [
+                  "Divide the story into an opening, the main information and a next action, with one focus per shot.",
+                  "List text, assets, start and end states and holds. Deliver sketches or HTML/PNG previews for review.",
+                  "Approve sequence and emphasis before animation. Request revisions by shot, problem and decisions to preserve."
+            ],
+            "example": "A portfolio introduction can state the project’s problem, use project images to explain the method and result, then point to the full case study. A result awaiting verification can keep a replaceable text area until its wording is approved."
       },
       {
             "title": "Choose tools by the job",
@@ -1142,9 +1190,18 @@ export const eventNotes = [{
             "source": "https://motion.dev/docs/react",
             "sourceLabel": "Motion for React documentation; other tools below",
             "id": "note-9",
-            "time": "00:24:06–00:24:38",
-            "context": "The presenter selects tools after purpose, feeling and script. Beginners can separate drawing, animation timing and the final deliverable.",
-            "practice": "For a pointer-following dot, start by exploring p5.js; for sequencing website cards, explore GSAP. Choose around the existing project and the next concrete task."
+            "practice": "Create columns for elements/drawing, timing and output. Put one requirement in each, circle the smallest useful feature and read the relevant tool documentation.",
+            "paragraphs": [
+                  "Tool selection starts with three questions: where is the content drawn, what controls its changes, and what must be delivered? The DOM organizes web elements such as text, buttons and cards. Canvas supports programmatic drawing and repeatedly updated scenes. Your existing framework and maintenance approach also matter.",
+                  "A tween computes intermediate values between a start and a target, such as opacity moving from 0 to 1. A timeline places several changes in relation to one another. Drawing, timing and 3D tools can cooperate when their responsibilities are explicit."
+            ],
+            "workflowTitle": "Choose tools around the next feature",
+            "steps": [
+                  "Identify whether the output is an interactive website, a fixed video or both, and check the existing framework.",
+                  "List the objects and interactions, distinguishing ordinary web elements, 2D drawing and 3D scenes.",
+                  "Complete one small effect, then inspect editability, mobile behavior and output requirements before extending it."
+            ],
+            "example": "Existing project cards can use GSAP for entrance sequencing. Generative shapes around the pointer can use p5.js. A model the reader can rotate may call for Three.js. Each choice answers a specific visual task."
       },
       {
             "title": "Turn visual constraints into review criteria",
@@ -1152,9 +1209,18 @@ export const eventNotes = [{
             "source": "https://gsap.com/docs/v3/Eases/",
             "sourceLabel": "GSAP easing; material terminology in shared notes",
             "id": "note-4",
-            "time": "00:25:49–00:27:11",
-            "context": "The pink-character example turns a brand feeling into a visual direction. The material’s style constraints become a practical review checklist here.",
-            "practice": "Choose one palette and heading font, then make still storyboards. Check the title’s clarity before adding one transition and reviewing consistency."
+            "practice": "Choose one website section and write five observable style rules. Deliberately change one rule on a single card and compare the overall consistency.",
+            "paragraphs": [
+                  "Style constraints are reusable design decisions: palette, type hierarchy, corner treatment and spacing. They make separate screens feel related and provide concrete revision criteria. “Keep the heading hierarchy consistent” is easier to inspect than a broad request for polish.",
+                  "Grain, glow, shadows and outlines add depth while text still needs contrast against its background. Motion can follow shared rules too: peer cards use the same entrance, and important content remains stable once positioned. Check wrapping, occlusion and control space separately on smaller screens."
+            ],
+            "workflowTitle": "Build a compact visual review sheet",
+            "steps": [
+                  "Choose primary and supporting colors, text hierarchy and spacing, then apply them to the static layout.",
+                  "Give similar components a shared motion rule and check whether decoration interferes with recognition.",
+                  "Preview the same section on phone and desktop, recording a specific location and desired result for each revision."
+            ],
+            "example": "A project list can share card corners, title placement and spacing. Every card uses the same small entrance movement; hover adjusts a border or shadow while the title remains clear. Future cards inherit the same rules."
       },
       {
             "title": "Canvas: compute each frame from time",
@@ -1162,9 +1228,18 @@ export const eventNotes = [{
             "source": "https://github.com/zz41354899/mografy#scene-model",
             "sourceLabel": "Mografy: scene model",
             "id": "note-8",
-            "time": "00:28:15–00:35:28",
-            "context": "After introducing production tools, the session explores layers and time. Public documentation supplies the Canvas model used in this explanation.",
-            "practice": "Imagine a dot moving right: determine the current time, calculate its position and draw that frame. Draw foreground text later to establish a clear layer order."
+            "practice": "Sketch the dot at its start, midpoint and destination. Mark the drawing order, then write a brief requesting time-based positioning and a preview that can be paused.",
+            "paragraphs": [
+                  "A frame is the image at one point in time. Canvas is a drawing surface controlled by code: coordinates, colors and shapes describe the current state. Animation commonly redraws the background and objects as their state changes.",
+                  "Separating time from drawing helps make previews reproducible. For a simple constant-speed dot, position can be described as starting position plus speed multiplied by elapsed time. The same time then produces the same position. requestAnimationFrame schedules browser animation callbacks; p5.js sketches can organize their updates in draw(), with the actual update rate depending on runtime conditions."
+            ],
+            "workflowTitle": "Build a drawing process around one dot",
+            "steps": [
+                  "Define the canvas size and initial data, including the dot’s radius, starting point and destination.",
+                  "Calculate its position from elapsed time, then draw the background, objects and text in the intended layer order.",
+                  "Inspect the beginning, middle and end for reproducibility, clipping and readable labels."
+            ],
+            "example": "A website process diagram can move a dot from input to result. Draw the route first, the dot next and labels last. The result label stays readable when the dot arrives. Update the coordinate plan when the canvas size changes."
       },
       {
             "title": "Review preview, export and the website",
@@ -1172,9 +1247,18 @@ export const eventNotes = [{
             "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
             "sourceLabel": "MDN: reduced motion",
             "id": "note-15",
-            "time": "00:35:49–00:38:15",
-            "context": "Storyboard previews and export waiting times introduce the delivery process. These three review stages make the work easier to inspect.",
-            "practice": "Check the story in the storyboard, text and rhythm in the export, then mobile presentation in the website. Record one specific revision at a time."
+            "practice": "Make three review rows: preview, exported file and website. Leave untested rows pending; after checking each one, record the observation and next revision.",
+            "paragraphs": [
+                  "Preview, export and website review answer different questions. A preview helps revise the story and timing; export creates the deliverable; the website introduces display size, loading and interaction. Separating these checks helps locate a problem: rushed text belongs to timing, while cropping belongs to presentation.",
+                  "Further learning: keyboard access and reduced motion are part of reading quality. Controls need clear names and visible focus. The prefers-reduced-motion preference can guide a quieter transition or a static presentation that preserves information and interaction. Record what was actually tested."
+            ],
+            "workflowTitle": "Keep a result for each delivery stage",
+            "steps": [
+                  "Read every line in the preview, then inspect focus, layers and transitions. Record the shot and reason for each revision.",
+                  "Check the exported aspect ratio, resolution, audio, file size and playback against the delivery brief.",
+                  "Use the embedded result on phone, desktop and keyboard, then review content and controls with reduced motion enabled."
+            ],
+            "example": "A portfolio video may look correct in a player yet crop its end-card text inside a phone card. Adjust the container ratio, text-safe area or mobile composition, then repeat the same viewing path."
       },
       {
             "title": "Separate design decisions from implementation",
@@ -1182,9 +1266,18 @@ export const eventNotes = [{
             "source": "https://github.com/zz41354899/mografy",
             "sourceLabel": "Mografy public project",
             "id": "note-7",
-            "time": "00:38:18–00:48:57",
-            "context": "Questions about storyboards and previews lead into collaboration between AI tools. Carry approved design decisions into each production step.",
-            "practice": "Keep one approved brief and storyboard. Ask a tool to change only the second shot’s text and hold, then check that the other decisions remain intact."
+            "practice": "Write a handoff for one project card: goal, assets, approved decisions, current revision and review method. Check whether an important detail still depends on a verbal explanation.",
+            "paragraphs": [
+                  "AI collaboration benefits from a brief that another tool can continue. The audience, storyboard, assets, approved style rules and current deliverable provide context. Keeping these decisions together makes revisions more focused and helps preserve earlier work across tools.",
+                  "Compare tools on the same small task: storyboard-first delivery, preservation of colors and text, revision accuracy and preview quality. Versions and pricing change, so check current documentation and actual access conditions. Keep the input, output and revision reason as evidence for your choice."
+            ],
+            "workflowTitle": "Write a handoff another tool can use",
+            "steps": [
+                  "Collect the audience, asset locations, style rules, approved storyboard and scope of this revision.",
+                  "Ask the tool to restate the deliverable, then produce a draft or preview that can be inspected.",
+                  "Write approved decisions back into the brief and identify the specific problem and decisions to preserve in the next round."
+            ],
+            "example": "One tool can help plan four portfolio shots and another can implement the approved sequence. The handoff includes wording, asset names, shot focus and review criteria. A longer reading hold in shot two can be requested while retaining the other approved scenes."
       },
       {
             "title": "Load what the reader needs first",
@@ -1192,9 +1285,18 @@ export const eventNotes = [{
             "source": "https://web.dev/articles/browser-level-image-lazy-loading",
             "sourceLabel": "web.dev: browser-level image lazy loading",
             "id": "note-12",
-            "time": "00:54:22–00:57:07",
-            "context": "The performance Q&A begins with image loading. Official guidance supplies the implementation details for resource fetching and visual presentation.",
-            "practice": "Load the important opening image promptly and defer offscreen project images. Reserve their dimensions, then inspect what a phone downloads."
+            "practice": "Label your assets “needed on arrival” or “needed later.” Inspect one lower image for reserved space, fetching time and its effect on neighboring layout.",
+            "paragraphs": [
+                  "Lazy loading defers resource fetching until it is closer to being needed. The first viewport contains what readers see on arrival; Largest Contentful Paint measures when the largest visible image or text block is rendered. Give an important opening image prompt access to loading rather than delaying the page’s main message.",
+                  "Images can use loading=\"lazy\", with width and height helping reserve space. Fetching makes an asset available; an entrance animation controls its presentation. A video can use a poster and a preload choice suited to playback requirements. Inspect actual behavior in the browsers you intend to support."
+            ],
+            "workflowTitle": "Prioritize the opening view",
+            "steps": [
+                  "Identify the text, imagery and controls needed on arrival and make the main content visible promptly.",
+                  "Defer non-critical images farther down the page and reserve their space to avoid moving nearby text.",
+                  "Reload with the browser’s Network panel open, inspect fetching, then scroll down and review the content."
+            ],
+            "example": "A portfolio hero loads promptly while a lower gallery prepares its case-study thumbnails as needed. Reserved image ratios keep titles and buttons stable. Any card entrance can be scheduled separately from the download."
       },
       {
             "title": "Responsive images: size and pixel density",
@@ -1202,9 +1304,18 @@ export const eventNotes = [{
             "source": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
             "sourceLabel": "MDN: responsive images",
             "id": "note-13",
-            "time": "00:57:09–00:58:21",
-            "context": "After deferred loading, the presenter discusses image sizes for phones, tablets and desktops. Responsive images give the browser suitable candidates.",
-            "practice": "Prepare smaller and larger versions of one project image and describe its layout width. Inspect the phone’s selected file for legibility and transfer size."
+            "practice": "Record the phone and desktop display widths, source pixels and downloaded size of one project image. Use its reading requirements to propose candidate sizes or a crop plan.",
+            "paragraphs": [
+                  "Responsive images let the browser choose a suitable file. CSS controls the image’s layout size, while the file has its own pixel dimensions; a small phone screen may have a high pixel density. Candidate files help balance detail with transfer size.",
+                  "srcset lists candidates. With width descriptors, sizes describes the expected layout width, and the browser combines that with device conditions. Fixed display sizes can use 1x and 2x density candidates. picture can switch crops or formats, such as a wide desktop composition and a closer phone crop."
+            ],
+            "workflowTitle": "Plan the layout before preparing candidates",
+            "steps": [
+                  "Identify the displayed width and crop on phone and desktop, preserving the subject and essential text.",
+                  "Prepare suitable file sizes and describe them with srcset, sizes or picture conditions.",
+                  "Reload at different widths and inspect the selected currentSrc together with the visible detail."
+            ],
+            "example": "A case-study image may occupy half a desktop row and the full mobile content width. Width candidates let the browser choose for layout and density. If interface text remains too small on a phone, a closer crop can focus on the important part."
       },
       {
             "title": "Media formats, quality and compatibility",
@@ -1212,9 +1323,18 @@ export const eventNotes = [{
             "source": "https://developers.google.com/speed/webp/faq",
             "sourceLabel": "Google WebP FAQ; PNG and video references below",
             "id": "note-14",
-            "time": "00:58:27–01:00:46",
-            "context": "The discussion moves from dimensions to WebP, WebM and compression. Format documentation provides the properties used for these choices.",
-            "practice": "Compare the same image as PNG and WebP for detail and size. Record both container and codec for video, then check playback on the target phone and browser."
+            "practice": "Produce two versions of one asset and record dimensions, format, file size and visual differences. Keep the original so the settings can be revised.",
+            "paragraphs": [
+                  "A format describes how a file stores content. Image compression offers choices around size and detail; video adds frame dimensions, frame rate, audio and encoding. Identify whether the asset is a photo, transparent icon, interface screenshot or video before choosing outputs to compare.",
+                  "A video container packages image, audio and related data; a codec encodes and decodes the media. Playback support therefore depends on the container, codec and browser together. Inspect small text, gradients and fast-moving regions after compression, using the same content for a meaningful comparison."
+            ],
+            "workflowTitle": "Compare outputs from the same asset",
+            "steps": [
+                  "Keep dimensions and content fixed; for video, also fix duration and frame rate.",
+                  "Export with suitable formats and quality settings, record size and inspect text, edges, transparency and gradients.",
+                  "Play the result in target browsers, check picture and sound, and prepare alternatives required by the delivery environment."
+            ],
+            "example": "A product screenshot with small text can be compared as PNG and in different WebP modes to find a readable output. For a portfolio video, record the MP4 or WebM container and codec, then inspect playback on the intended phone browser."
       },
       {
             "title": "Mografy delivery and other tool entry points",
@@ -1222,9 +1342,18 @@ export const eventNotes = [{
             "source": "https://mografy-website.vercel.app/zh-TW",
             "sourceLabel": "Mografy; other official resources below",
             "id": "note-16",
-            "time": "01:01:02–01:05:24",
-            "context": "After performance, the session shares tools and learning resources. These entry points are grouped around delivery and learning goals.",
-            "practice": "For a first piece, follow Mografy’s preview and export documentation; for motion-design practice, choose a relevant Motion UX topic. Set delivery requirements before choosing a format."
+            "practice": "Write a delivery checklist for your intended piece and check one tool against it. Separate confirmed capabilities from items to try, then complete the smallest useful export.",
+            "paragraphs": [
+                  "Delivery formats depend on where the work will appear. A video player, interactive web component and design tool have different needs, including transparency, sound, looping, size and later editing. Start with how the receiving environment will use the result.",
+                  "Further learning can follow the goal. For storyboarding and visual timing, choose a relevant Motion UX lesson. For production and export, consult current Mografy, Hera, HyperFrames or Jitter documentation. Features and export support change, so try a small complete workflow before committing a larger piece."
+            ],
+            "workflowTitle": "Confirm delivery with a small complete piece",
+            "steps": [
+                  "List the destination, dimensions, sound, transparency, loop behavior and need for later editing.",
+                  "Use one tool’s documented workflow to preview and export a small example, recording the actual files produced.",
+                  "Test those files in the receiving website or player before expanding the content and visual detail."
+            ],
+            "example": "A silent looping background needs checks for format, size and the loop boundary. A demonstration where readers drag objects needs working web interaction. Those delivery requirements lead to different production choices."
       },
       {
             "title": "Coordinate animation with scrolling",
@@ -1232,76 +1361,72 @@ export const eventNotes = [{
             "source": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
             "sourceLabel": "GSAP ScrollTrigger; session timing synthesis",
             "id": "note-11",
-            "time": "01:05:39–01:08:22",
-            "context": "The closing Q&A returns to websites: when several animations share a page, their entrance order matters. The 01:12:17–01:13:30 follow-up revisits that order.",
-            "practice": "Write: intro title settles → scrolling reveals a project card → clicking expands details. Preview each handoff with an explicit trigger."
+            "practice": "Create columns for trigger, changing element, final state and repeated action. Preview one section, validate the order and then tune movement size.",
+            "paragraphs": [
+                  "Plan web motion as event → state change → stable result. Events include page entry, a section entering view, a click or completed loading. Explicit triggers make sequencing easier and help anticipate fast scrolling, repeated clicks and returning to a page.",
+                  "GSAP timelines coordinate changes through positions and labels; ScrollTrigger can connect a trigger or progress to scrolling. Decide whether reaching a position starts a sequence or whether scrolling controls its progress. Give important content a clear final state and a readable reduced-motion presentation."
+            ],
+            "workflowTitle": "Draw states before scheduling triggers",
+            "steps": [
+                  "Describe initial, in-progress and completed states for each section, including when controls can be used.",
+                  "Specify the trigger, repeat or return behavior and which movements follow or overlap.",
+                  "Check fast scrolling, reverse scrolling, repeated actions and keyboard use for clear content and focus."
+            ],
+            "example": "When a portfolio section enters view, its heading settles before the cards appear. Details expand only after “View more” is activated. Readers who move quickly to the next section should still have readable project text. Review this sequence as a brief and sketch before implementing it."
       }
 ],
     sessionQa: [
       {
             "q": "Can several images become an animation?",
-            "a": "Describe the role and order of the images, then ask for frames or a storyboard. The session used product-operation assets as an example; review continuity between the resulting shots.",
-            "time": "00:35:49–00:36:29"
+            "a": "Describe the role and order of the images, then ask for frames or a storyboard. The session used product-operation assets as an example; review continuity between the resulting shots."
       },
       {
             "q": "Why review a storyboard first?",
-            "a": "A storyboard makes sequence, emphasis and reading time reviewable. The session described tools skipping this stage. Explicitly request storyboard delivery and review before animation, including the expected files.",
-            "time": "00:36:31–00:39:55"
+            "a": "A storyboard makes sequence, emphasis and reading time reviewable. The session described tools skipping this stage. Explicitly request storyboard delivery and review before animation, including the expected files."
       },
       {
             "q": "What should I prepare before prompting?",
-            "a": "Prepare purpose, aspect ratio, duration, assets and the intended feeling, then request a storyboard. A short prompt can work alongside detailed project instructions and asset descriptions.",
-            "time": "00:36:31–00:37:16"
+            "a": "Prepare purpose, aspect ratio, duration, assets and the intended feeling, then request a storyboard. A short prompt can work alongside detailed project instructions and asset descriptions."
       },
       {
             "q": "What should guide model selection?",
-            "a": "The presenter discussed Sonnet/Opus trade-offs in speed, detail and cost. Compare the same small brief for storyboard-first delivery, style consistency, focused revisions and turnaround.",
-            "time": "00:39:55–00:42:38"
+            "a": "The presenter discussed Sonnet/Opus trade-offs in speed, detail and cost. Compare the same small brief for storyboard-first delivery, style consistency, focused revisions and turnaround."
       },
       {
             "q": "Is a separate Canvas API service needed?",
-            "a": "Canvas is a browser drawing API. Mografy's documented workflow lets a coding agent read the local project and instructions, then produce scenes, previews and exports. AI service access follows the chosen tool's requirements.",
-            "time": "00:42:38–00:43:37"
+            "a": "Canvas is a browser drawing API. Mografy's documented workflow lets a coding agent read the local project and instructions, then produce scenes, previews and exports. AI service access follows the chosen tool's requirements."
       },
       {
             "q": "Can the workflow be automated?",
-            "a": "The demonstrated direction was to let an agent read project instructions and create storyboards and scenes from content, duration and assets. Keep review points for the brief, storyboard, preview and export so revisions have a clear target.",
-            "time": "00:44:03–00:49:08"
+            "a": "The demonstrated direction was to let an agent read project instructions and create storyboards and scenes from content, duration and assets. Keep review points for the brief, storyboard, preview and export so revisions have a clear target."
       },
       {
             "q": "How might Claude and Codex share the work?",
-            "a": "A session participant described Claude leading planning, Codex assisting implementation and Mografy providing previews. Keep approved decisions in a shared brief so the next tool knows the agreed content and next deliverable.",
-            "time": "00:44:42–00:45:02"
+            "a": "A session participant described Claude leading planning, Codex assisting implementation and Mografy providing previews. Keep approved decisions in a shared brief so the next tool knows the agreed content and next deliverable."
       },
       {
             "q": "Is another agent-orchestration layer needed?",
-            "a": "The session favored letting an existing agent read the project and complete the brief, storyboard, preview and export workflow first. Add coordination when repeated work and handoffs justify it.",
-            "time": "00:48:24–00:48:57"
+            "a": "The session favored letting an existing agent read the project and complete the brief, storyboard, preview and export workflow first. Add coordination when repeated work and handoffs justify it."
       },
       {
             "q": "Can audio, slides or text be a starting point?",
-            "a": "First extract the narrative, key messages and available assets, then ask for shots and visual requirements. The session discussed these inputs; check that the selected tool can read the files and identify the images or graphics each shot needs.",
-            "time": "00:50:32–00:52:01"
+            "a": "First extract the narrative, key messages and available assets, then ask for shots and visual requirements. The session discussed these inputs; check that the selected tool can read the files and identify the images or graphics each shot needs."
       },
       {
             "q": "Where should performance work start?",
-            "a": "Start with asset sizes, initial loading, deferred offscreen images and responsive image selection, then inspect animation work and export settings. Use the format and loading sections above as a checklist for your own page.",
-            "time": "00:54:22–01:00:46"
+            "a": "Start with asset sizes, initial loading, deferred offscreen images and responsive image selection, then inspect animation work and export settings. Use the format and loading sections above as a checklist for your own page."
       },
       {
             "q": "Where can I continue learning?",
-            "a": "Revisit the method in the slides and shared notes, use Mografy documentation for workflow details and Motion UX for motion-design teaching. Hera is a shared AI motion-graphics resource; GSAP documents web-animation APIs. Choose a direction around the output you want to make.",
-            "time": "01:01:02–01:05:24"
+            "a": "Revisit the method in the slides and shared notes, use Mografy documentation for workflow details and Motion UX for motion-design teaching. Hera is a shared AI motion-graphics resource; GSAP documents web-animation APIs. Choose a direction around the output you want to make."
       },
       {
             "q": "How should animation and website effects work together?",
-            "a": "Specify each layer's trigger, entrance, hold and end state, then coordinate the handoff. The closing follow-up emphasized order and continuity; tune speed and scale around the visual focus.",
-            "time": "01:02:42–01:08:22；01:12:17–01:13:30"
+            "a": "Specify each layer's trigger, entrance, hold and end state, then coordinate the handoff. The closing follow-up emphasized order and continuity; tune speed and scale around the visual focus."
       },
       {
             "q": "How can I start with recordings and screenshots?",
-            "a": "Organize the assets and main action. Ask AI to simplify the workflow around what the audience should understand, then produce a storyboard with HTML/PNG previews. Review it before animation and check the exported result in the website.",
-            "time": "01:08:55–01:12:10"
+            "a": "Organize the assets and main action. Ask AI to simplify the workflow around what the audience should understand, then produce a storyboard with HTML/PNG previews. Review it before animation and check the exported result in the website."
       }
 ],
     qa: [
@@ -1317,18 +1442,14 @@ export const eventNotes = [{
   zh: {
     title: "AI 輔助品牌動態：工作坊筆記",
     event: "10/24 免費線上講座｜用 AI 做出會動、能互動的網站",
-    announcedTopic: "AI 讓網頁動起來｜互動網頁設計實戰",
-    slidesTitle: "AI 讓品牌動起來｜動態設計實戰",
-    titleNote: "報名公告與當天簡報的標題依各自來源並列。",
     organizer: "Claude x Codex 線上讀書會", platform: "Zoom・免費線上講座",
-    registrationStatus: "報名已截止（10/24 唯讀查核公開表單）；保留連結供回查活動來源。",
     speakerBio: "依主辦介紹，Nocts 具 UI/UX 與網頁設計背景，結合前端、網頁動態與 AI Coding，把設計做成能操作的網站。",
     announcedContent: "主辦公告包含動畫與操作回應、如何向 AI 說清楚內容／風格／互動需求、一頁網站示範，以及公開指令指南。對象包括想做個人網站、作品集或品牌頁的初學者，以及工程師與設計師；不需要 AI 經驗、事先想好題目或做課前功課。",
     type: "講座", format: "線上",
     summary: "從品牌個性與分鏡開始，整理 AI 協作、網站技術、動態效果、媒體效能與現場問答。",
     attribution: "Nocts（奇昌）・依活動介紹標示",
-    status: "活動已結束；已依完整課堂文字更新筆記。",
-    scope: "本頁整合課堂主題、教材與官方技術文件，採自寫教學與問答。視覺素材的完整播放驗證、本人實作與後續操作影片持續補記。",
+    status: "活動已結束。",
+    scope: "筆記結合工作坊主題與官方文件的延伸學習；個人實作與心得各自更新。",
     sections: [
       {
             "title": "先選載體，再決定觀眾要看到什麼",
@@ -1336,9 +1457,18 @@ export const eventNotes = [{
             "source": "https://web-animation-course.vercel.app/",
             "sourceLabel": "工作坊簡報",
             "id": "note-1",
-            "time": "00:00:12–00:03:12",
-            "context": "開場先談動態放在哪裡。先知道觀眾是在逛網頁、操作 App，還是看解說影片，才好決定要帶出哪個重點。",
-            "practice": "先挑作品集的一張卡片，寫下「讀者先看到作品名稱，按下展開後看到成果」。接著再決定這個變化要多快。"
+            "practice": "選自己網站的一張卡片，畫出展開前後兩個小草圖。各寫一句「讀者現在知道什麼」，再圈出最需要提示的變化。",
+            "paragraphs": [
+                  "動態設計是用畫面的變化交代訊息。物件的位置、大小、透明度或形狀改變時，讀者會注意到「發生了什麼」。設計前先寫下希望讀者理解的一件事，例如按鈕已收到操作、作品卡片可以展開，或這一段開始介紹新主題。",
+                  "載體就是內容出現的地方。網頁讓讀者自行捲動和點擊，影片則由播放順序帶路；同一段故事放進兩種載體，需要不同的閱讀節奏。適合初學者的起點，是先把靜態內容與操作做清楚，再挑一個需要提示的變化加入動態。"
+            ],
+            "workflowTitle": "先寫出這個畫面要完成的事",
+            "steps": [
+                  "列出讀者目前看見的內容、準備採取的行動，以及完成後要知道的結果。",
+                  "把畫面分成主要訊息與輔助資訊，指定這一刻最值得注意的元素。",
+                  "寫出變化前後的狀態，再決定要用淡入、位移或直接切換來交代差異。"
+            ],
+            "example": "作品集卡片原本顯示專案名稱與摘要。點擊「看成果」後展開成果文字，按鈕改成「收合」。讀者能把新內容連回剛才選的作品；動態只需協助看出展開位置，文字和按鈕本身就能說清楚狀態。"
       },
       {
             "title": "緩動曲線與彈簧",
@@ -1346,9 +1476,18 @@ export const eventNotes = [{
             "source": "https://m1.material.io/motion/duration-easing.html",
             "sourceLabel": "Material：時長與緩動；彈簧見補充來源",
             "id": "note-10",
-            "time": "00:03:12–00:07:51",
-            "context": "從 App 的載入、按鈕與通知，課堂帶到動作快慢。下面搭配 Material 與彈簧文件，說清楚速度曲線和回位反應。",
-            "practice": "讓通知卡片進場後慢慢停穩，方便閱讀；若做拖曳後回位，再評估彈簧反應。先選互動目的，才調速度或阻尼。"
+            "practice": "替通知卡片寫兩版規格：一版用固定時長與減速曲線，一版描述彈簧回位的預期感受。記下你準備觀察的差異，像是停穩速度與過沖程度。",
+            "paragraphs": [
+                  "緩動可以想成替一段移動安排油門與煞車：起點和終點相同，前半段走得快或慢，感受就不同。duration 決定總共花多久，easing 決定這段時間裡速度如何分配。調整時固定其中一項，才容易看出另一項造成的差異。",
+                  "彈簧動畫則根據模型往目標回位。stiffness 描述拉回力道，damping 是讓震盪逐漸減弱的阻尼；有些工具也提供 mass。拖曳後回位或可以中途改變目標的介面，適合評估這類反應。固定片長的品牌轉場則常從時間與緩動曲線開始規劃。"
+            ],
+            "workflowTitle": "用同一張卡片比較節奏",
+            "steps": [
+                  "固定卡片的起點、終點與移動距離，先用等速預覽，觀察是否容易看清楚。",
+                  "保持總時長相同，換成進場減速，確認卡片停穩時文字是否容易閱讀。",
+                  "若要試彈簧，先設定目標位置，再一次只改阻尼或剛性，觀察是否過沖、多久穩定。"
+            ],
+            "example": "表單送出成功後，一張通知卡片進場並停穩。可以讓位移在接近終點時變慢，文字持續可讀；如果是拖動作品卡片後放手，則可用彈簧回位來表達物件與目標的關係。兩者各自依互動需求選擇。"
       },
       {
             "title": "把操作錄影整理成產品故事",
@@ -1356,9 +1495,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "課堂案例與共筆",
             "id": "note-5",
-            "time": "00:08:15–00:12:53",
-            "context": "講者接著用產品解說示範：操作錄影提供素材，分鏡幫觀眾抓住輸入、操作與結果。",
-            "practice": "把一次操作拆成「輸入需求 → 按下產生 → 看見結果」三張卡。拿掉與這次重點無關的介面細節，再檢查讀者能否看懂流程。"
+            "practice": "選一個熟悉的網站功能，把操作寫成五句話，再挑出最能解釋用途的三個畫面。請一位第一次看到的人只看草圖，說說他理解的功能。",
+            "paragraphs": [
+                  "產品故事把一段操作整理成「遇到什麼問題、做了什麼、得到什麼」。螢幕錄影保存完整過程，解說畫面則要讓第一次接觸產品的人辨認主要動作。先寫出使用情境，會比直接替每個按鈕加效果更容易安排內容。",
+                  "適合保留的畫面，是能回答讀者疑問的步驟，例如輸入資料的位置、送出後的回應與結果長什麼樣子。製作示範時可使用清楚標示的範例資料，將游標、輸入欄位與結果對齊，讓前後畫面中的同一物件容易辨認。"
+            ],
+            "workflowTitle": "把長操作整理成可讀的片段",
+            "steps": [
+                  "先列出完整操作，再用一句話寫出這次要介紹的功能價值。",
+                  "挑出與這句話直接相關的輸入、主要操作和結果，為每一步準備截圖或簡化示意。",
+                  "替每幕寫一句解說，保留足夠閱讀時間；檢查結果畫面是否回答了開頭的問題。"
+            ],
+            "example": "在網站介紹報價工具時，先呈現「需要整理服務項目」，接著展示輸入項目與產生報價，最後停在可檢查的報價結果。若這段只介紹快速建立草稿，帳號設定和歷史清單可放到其他教學頁。"
       },
       {
             "title": "效果速查：視線、轉場與節拍",
@@ -1366,9 +1514,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "教材效果詞彙整理",
             "id": "note-3",
-            "time": "00:13:01–00:16:36",
-            "context": "產品案例之後，課堂從視線、操作回應與連續感檢查動作。這裡搭配共筆的效果詞彙，幫這些設計目的找到具體做法。",
-            "practice": "先讓游標移到按鈕，再讓結果卡片出現。先後順序讓讀者看懂因果；選效果時就以這個目的為準。"
+            "practice": "為同一組服務卡片寫一版淡入、一版逐項出場規格。比較哪一版更容易理解順序，並寫下判斷原因。",
+            "paragraphs": [
+                  "效果名稱是一套描述畫面變化的詞彙，能幫你把「想要有感覺」說得更具體。選用時先確定要引導注意、交代操作，還是連接兩個畫面，再挑合適的動作。每個效果都應有清楚的起點、結束狀態與閱讀位置。",
+                  "例如 stagger 是把元素的開始時間錯開，適合表現一組有順序的資訊；morph 讓形狀逐漸變成另一個形狀；match cut 利用相似構圖或形狀銜接不同畫面。視差是讓不同層移動速度不同，常用來表現深度。初學者可先用淡入或小幅位移確認順序，再加入更複雜的效果。"
+            ],
+            "workflowTitle": "用動作說清楚一個關係",
+            "steps": [
+                  "在草圖上標出主角與下一個閱讀位置，寫下兩者之間的關係。",
+                  "挑一種效果，描述觸發方式、變化的屬性以及結束後留下什麼。",
+                  "讓重要文字停穩供閱讀，再檢查背景與前景是否同時搶走注意力。"
+            ],
+            "example": "介紹三步驟服務流程時，可以讓三張卡片依序出場，讓讀者先看「提出需求」，再看「討論方案」與「完成交付」。卡片就位後保持穩定，讀者也能一次比較三個步驟。這裡的 stagger 用來交代順序。"
       },
       {
             "title": "把可愛、俐落、沉穩寫成具體動作",
@@ -1376,9 +1533,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "工作坊共筆",
             "id": "note-2",
-            "time": "00:22:29–00:23:25",
-            "context": "談完資訊的引導，講者轉向「想讓人感受到什麼」。感受先有方向，後面的腳本與工具才有共同目標。",
-            "practice": "把「可愛一點」改寫成「圓角圖形、柔和配色、輕巧進場，標題最後停穩」。下面就能把這些條件放進分鏡。"
+            "practice": "選兩個描述自己網站的形容詞，每個各寫三項可觀察的畫面條件。把「更有質感」這類寬泛要求改成可以檢查的句子。",
+            "paragraphs": [
+                  "品牌個性是希望別人感受到的特質；動態規格則把這些特質寫成能製作與修改的選擇。「可愛」「俐落」可以作為起點，再補上造型、色彩、速度、移動幅度與停留方式，AI 或設計夥伴才知道要改哪裡。",
+                  "風格也需要配合內容。活潑的品牌可以讓裝飾角色有較明顯的動作，同一頁的價格、規格與聯絡資訊仍要穩定易讀。準備參考時，指出喜歡的是配色、排版還是轉場，會比只丟一張圖更容易保留自己的內容特色。"
+            ],
+            "workflowTitle": "把抽象形容詞寫成製作規格",
+            "steps": [
+                  "選一個主要感受，再挑一個輔助特質，例如親切且有條理。",
+                  "分別寫下配色、形狀、文字排列與動態規則，讓每項都能在預覽中檢查。",
+                  "套用到標題、卡片和按鈕三種元素，確認同頁的風格有共同規則。"
+            ],
+            "example": "個人品牌網站想呈現「親切而專業」：可用柔和底色、清楚字級與圓角卡片，標題小幅進場後停穩，按鈕回應簡短。作品成果保留足夠閱讀空間，親切感來自一致的視覺選擇。"
       },
       {
             "title": "分鏡先過一輪，再生成動畫",
@@ -1386,9 +1552,18 @@ export const eventNotes = [{
             "source": "https://hackmd.io/@zz41354899/H14KjaJ9Ml",
             "sourceLabel": "工作坊共筆",
             "id": "note-6",
-            "time": "00:23:25–00:24:06",
-            "context": "課堂在選工具前先談腳本：每一幕要說什麼、留下什麼感受。後面的 00:35:49–00:37:16 問答再把它落實成分鏡交付。",
-            "practice": "用四欄小表寫「畫面、文字、動作、停留時間」。請 AI 先交這張表和靜態預覽，確認後再動起來。"
+            "practice": "替一個作品畫四格分鏡，每格只放一個重點。先請自己只看靜態畫面讀一次，再標出需要動態才能交代的連接。",
+            "paragraphs": [
+                  "分鏡是動畫開始前的畫面計畫。每一格說明這一幕的主角、文字與動作，讓你先確認故事能不能被理解。它特別適合介紹作品、產品操作或多步驟服務，因為修改一張草圖通常比重做整段動畫容易討論。",
+                  "需求單先交代觀眾、用途、畫幅、素材和希望對方採取的行動。時間分配除了進出場，也要留下閱讀停留；字多的畫面可拆成兩幕。用自己的語速讀一次文字，搭配預覽調整停留，比只追求轉場密度更容易做出能看的成品。"
+            ],
+            "workflowTitle": "先檢查靜態故事，再安排動作",
+            "steps": [
+                  "把故事寫成開頭、主要內容與下一步，替每段指定一個畫面重點。",
+                  "逐幕列出文字、素材、開始與結束狀態、停留方式，先交付草圖或HTML／PNG預覽。",
+                  "確認內容順序與畫面焦點，再加入動作；修改時指出幕次、問題與希望保留的部分。"
+            ],
+            "example": "作品集介紹可以先交代專案解決的問題，再用兩張作品圖說明方法與成果，片尾引導前往完整案例頁。若成果數字尚未確認，先留可替換的文字位置，等資料確定後再完成畫面。"
       },
       {
             "title": "依作品選工具",
@@ -1396,9 +1571,18 @@ export const eventNotes = [{
             "source": "https://motion.dev/docs/react",
             "sourceLabel": "Motion for React 官方文件；其他工具見來源",
             "id": "note-9",
-            "time": "00:24:06–00:24:38",
-            "context": "用途、感受與腳本確定後，講者才開始選工具。初學者可以先把「畫什麼」「怎麼動」「最後交什麼」分開看。",
-            "practice": "要做跟著滑鼠移動的圓點，可先看 p5.js；要安排幾張網頁卡片依序出場，可看 GSAP。沿用現有專案，挑能完成這一步的工具。"
+            "practice": "把想做的功能拆成「元素／繪圖」「時間控制」「輸出」三欄，各填一項需求。先圈出最小可完成的部分，再查對應工具文件。",
+            "paragraphs": [
+                  "選工具時可以分成三個問題：內容畫在哪裡、變化由誰控制、最後要交付什麼。DOM 是網頁元素的結構，適合文字、按鈕與卡片；Canvas 用程式繪製畫面，適合大量圖形或逐格更新的場景。既有網站的框架與維護方式也會影響選擇。",
+                  "補間是從起始值算到目標值，例如讓透明度從 0 變成 1。時間軸則安排多段變化的開始位置與先後關係。繪圖、補間與3D可以協作：先知道哪一層負責畫面，再決定哪一層管理時間，程式比較容易拆開修改。"
+            ],
+            "workflowTitle": "為眼前的功能選一組責任清楚的工具",
+            "steps": [
+                  "先寫出輸出是互動網頁、固定影片，還是兩者都需要，並確認現有專案使用什麼框架。",
+                  "列出需要繪製的物件與互動方式，分辨是一般網頁元素、2D繪圖或3D場景。",
+                  "先完成一個最小效果，再檢查可修改性、手機表現與交付格式，逐步增加需求。"
+            ],
+            "example": "作品卡片依序進場，可由既有網頁元素搭配GSAP安排；滑鼠附近的生成圖形可用p5.js繪製；要讓讀者旋轉立體模型時，可再評估Three.js。每個選擇都對應一個明確的畫面任務。"
       },
       {
             "title": "把風格限制寫進驗收",
@@ -1406,9 +1590,18 @@ export const eventNotes = [{
             "source": "https://gsap.com/docs/v3/Eases/",
             "sourceLabel": "GSAP：緩動曲線；教材用語見共筆",
             "id": "note-4",
-            "time": "00:25:49–00:27:11",
-            "context": "粉紅色角色案例把前面的品牌感受變成畫面。這裡用教材的風格條件，整理成初學者可以逐項檢查的規格。",
-            "practice": "選定一組色票與一種標題字體，先做靜態分鏡。檢查主標題是否清楚，再加入一種轉場，看風格能否維持一致。"
+            "practice": "截取自己網站的一個區塊，寫出五項可觀察的風格規則。挑一張卡片故意改掉其中一項，再比較整體一致性。",
+            "paragraphs": [
+                  "風格限制是一組可重複使用的設計規則，例如固定色票、字體層級、圓角與間距。它讓不同畫面看起來屬於同一個網站，也讓修改有依據。把規則寫成「標題使用同一字級層級」「卡片留白一致」這類可觀察條件，驗收會更具體。",
+                  "顆粒、發光、陰影與描邊可以增加層次，使用時要保留文字與背景的對比。動態也能成為規則：相同層級的卡片使用同一種進場方式，重要內容到位後維持穩定。手機上的閱讀空間較小，需另外檢查換行、遮擋與點擊範圍。"
+            ],
+            "workflowTitle": "建立一張小型風格檢查表",
+            "steps": [
+                  "選定主要與輔助色、文字層級及基本間距，先套用到靜態畫面。",
+                  "指定同類元件共用的動態節奏，再檢查背景裝飾是否影響內容辨識。",
+                  "用手機與桌面預覽相同段落，把問題寫成具體位置與期待結果。"
+            ],
+            "example": "作品列表的每張卡片使用一致圓角、標題位置與間距。第一張進場採小幅位移，其他卡片沿用同樣規則；滑鼠停留只改邊框或陰影，作品名稱始終清楚。新增卡片時就能直接沿用這套規格。"
       },
       {
             "title": "Canvas：用時間算出每一個畫面",
@@ -1416,9 +1609,18 @@ export const eventNotes = [{
             "source": "https://github.com/zz41354899/mografy#scene-model",
             "sourceLabel": "Mografy：場景模型",
             "id": "note-8",
-            "time": "00:28:15–00:35:28",
-            "context": "介紹製作工具後，課堂進一步談圖層與時間。下面用公開文件補齊 Canvas 的基本模型，方便理解畫面如何產生。",
-            "practice": "想像圓點從左往右移：先決定現在的時間，再算出圓點位置，最後畫出這一格。前景文字放在後面繪製，形成清楚層次。"
+            "practice": "先在紙上畫出圓點起點、中點與終點，標記每張圖要畫的順序。再寫一段文字規格，請工具依時間計算位置並提供可暫停的預覽。",
+            "paragraphs": [
+                  "影格是一個時間點的畫面；動畫則持續更新這些畫面。Canvas可以想成程式控制的畫紙：你告訴它座標、顏色與形狀，它就畫出當下狀態。做動畫時通常要清除或重畫背景，再畫出更新後的物件，才能表現移動。",
+                  "把時間和畫面分開思考，能讓預覽更容易重現。以簡化的等速圓點為例，位置可寫成「起點＋速度×經過時間」。如此一來，同一時間會得到同一位置。requestAnimationFrame讓瀏覽器安排更新回呼；若用p5.js，則可在draw()裡組織更新與繪製，實際更新頻率依環境而變。"
+            ],
+            "workflowTitle": "從一個圓點建立繪圖流程",
+            "steps": [
+                  "先設定畫布尺寸與初始資料，例如圓點半徑、起點和目標位置。",
+                  "依經過時間計算目前位置；每次更新先處理背景，再依圖層順序畫物件與文字。",
+                  "預覽開頭、中間和結尾，檢查同一時間的狀態是否一致，以及物件是否超出畫布。"
+            ],
+            "example": "網站的流程示意可以用圓點沿路徑移動，表示資料由輸入到結果。背景先畫路徑，再畫圓點，最後畫標籤；當圓點停在結果端時，標籤仍清楚。若改畫布大小，座標也要配合版面調整。"
       },
       {
             "title": "把預覽、輸出與網站驗收分成三步",
@@ -1426,9 +1628,18 @@ export const eventNotes = [{
             "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
             "sourceLabel": "MDN：減少動態效果",
             "id": "note-15",
-            "time": "00:35:49–00:38:15",
-            "context": "現場談到分鏡預覽與輸出等待時間。這裡把交付拆成三次檢查，讓初學者知道每一步該看什麼。",
-            "practice": "先看分鏡是否說清楚故事，再看輸出的文字和節奏，最後放回網頁看手機呈現。每次只記一個具體問題，方便回頭修改。"
+            "practice": "替一個作品建立三列檢查紀錄：「預覽看到了什麼」「輸出檔案如何」「放回網站如何」。尚未執行的列保留待測，完成後填入觀察與下一個修改。",
+            "paragraphs": [
+                  "預覽、輸出與網站呈現檢查的是不同事情。預覽用來修改內容與節奏；輸出把作品變成可交付檔案；放進網站後，還要看實際尺寸、載入與操作。分開驗收能讓問題比較容易定位，例如文字太快先回時間安排，影片裁切則回版面設定。",
+                  "延伸學習：鍵盤操作與減少動態效果也屬於閱讀品質。互動控制應有清楚名稱與焦點；使用者偏好減少動態時，可透過prefers-reduced-motion安排較少位移、簡單切換或靜態呈現，讓資訊和操作保持可用。完成狀態要以實際預覽與測試紀錄確認。"
+            ],
+            "workflowTitle": "為三個階段各留一份檢查結果",
+            "steps": [
+                  "預覽時先讀完文字，再看主角、圖層與轉場，記下需要修改的幕次和原因。",
+                  "輸出後檢查畫幅、解析度、音訊、檔案大小與播放結果，核對交付需求。",
+                  "放進網站後，以手機、桌面與鍵盤操作一次，再檢查減少動態設定下的內容與功能。"
+            ],
+            "example": "同一支作品介紹在播放器裡看起來正常，放進手機作品卡片後可能因裁切而少了片尾文字。此時可調整容器比例、文字安全範圍或替手機準備不同構圖，再用相同路徑重看一次。"
       },
       {
             "title": "AI 協作：把設計決策和實作交付分開",
@@ -1436,9 +1647,18 @@ export const eventNotes = [{
             "source": "https://github.com/zz41354899/mografy",
             "sourceLabel": "Mografy 公開專案",
             "id": "note-7",
-            "time": "00:38:18–00:48:57",
-            "context": "分鏡與預覽的提問接著帶出 AI 工具怎麼合作。重點是把已確認的設計決策留給下一個製作步驟。",
-            "practice": "先固定一份需求與分鏡，請工具只改第二幕的文字和停留時間。檢查其他畫面是否保留，再比較修改品質。"
+            "practice": "替一張作品卡片寫一份交接單，包含目標、素材、已確認內容、本輪修改與驗收方式。用這份交接單檢查自己是否還需要口頭補充重要資訊。",
+            "paragraphs": [
+                  "AI協作需要一份大家都能接續的規格。需求、分鏡、素材、已確認的設計規則與目前要交付的東西，都是工具理解任務的上下文。把這些內容整理好，能讓下一輪修改更聚焦，也方便換工具時延續前面的決定。",
+                  "模型或工具的比較可以用相同的小任務進行：是否先交分鏡、是否保留配色與文字、修改範圍是否準確、預覽是否容易檢查。版本與價格會變動，選擇時查目前文件與實際使用條件；把每次的輸入、結果與修改原因留下，比只記一個偏好更有參考價值。"
+            ],
+            "workflowTitle": "把交接寫成可以直接接手的規格",
+            "steps": [
+                  "整理目標讀者、素材位置、風格規則、已確認分鏡與這一輪要改的範圍。",
+                  "請工具先回覆它理解的交付內容，再產出可檢查的草稿或預覽。",
+                  "審查結果後，把通過的決定寫回規格；下一輪指出具體問題與需要保留的部分。"
+            ],
+            "example": "你可以先用一個工具討論作品集的四格分鏡，再把確認版交給另一個工具製作。交接內容包含文字、素材檔名、每幕重點與驗收條件；若第二幕要延長閱讀時間，就指定第二幕，並保留其他已確認畫面。"
       },
       {
             "title": "先載入眼前需要的內容",
@@ -1446,9 +1666,18 @@ export const eventNotes = [{
             "source": "https://web.dev/articles/browser-level-image-lazy-loading",
             "sourceLabel": "web.dev：瀏覽器圖片延遲載入",
             "id": "note-12",
-            "time": "00:54:22–00:57:07",
-            "context": "現場開始問網頁效能，先談圖片載入。以下依官方文件整理下載資源與顯示動作的做法。",
-            "practice": "作品集最上方的重要圖片先載入；下方作品圖再安排延後載入。替每張圖保留尺寸，接著檢查手機下載了哪些檔案。"
+            "practice": "替自己的頁面素材標記「首屏需要」或「稍後需要」。挑一張下方圖片，檢查尺寸是否預留、何時開始下載，以及出現後是否改變附近版面。",
+            "paragraphs": [
+                  "延遲載入是把資源下載安排在接近需要時，減少一開始要處理的內容。首屏是讀者打開頁面先看到的區域；LCP衡量視窗內最大圖片或文字區塊呈現的時間。若主視覺圖片就是首屏重點，應優先準備它，讓讀者早點看到頁面主要內容。",
+                  "圖片可用loading=\"lazy\"交由瀏覽器延後載入，並用width與height協助預留空間。下載與進場是兩個可分開安排的步驟：下載讓資源可用，進場決定讀者何時看到變化。影片還可透過poster提供封面，並依播放需求選擇preload；實際載入行為要在目標瀏覽器檢查。"
+            ],
+            "workflowTitle": "先安排首屏，再處理下方素材",
+            "steps": [
+                  "列出一進頁面就需要的文字、圖片和控制，讓主要內容優先可見。",
+                  "將下方非關鍵圖片安排延遲載入，並保留尺寸，避免圖片出現時推擠文字。",
+                  "使用瀏覽器開發工具的Network面板重新載入頁面，觀察下載時機，再捲到下方檢查內容。"
+            ],
+            "example": "作品集首頁的主視覺先載入，下方十張案例縮圖則依需要逐步準備。縮圖區預先保留比例，讀者往下捲時標題與按鈕位置保持穩定；卡片進場效果則另外配合捲動安排。"
       },
       {
             "title": "響應式圖片：版面大小與像素密度一起看",
@@ -1456,9 +1685,18 @@ export const eventNotes = [{
             "source": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
             "sourceLabel": "MDN：響應式圖片",
             "id": "note-13",
-            "time": "00:57:09–00:58:21",
-            "context": "延後載入之後，講者接著談手機、平板、桌面的圖片大小。回應式圖片就是讓瀏覽器有合適尺寸可選。",
-            "practice": "為同一張作品圖準備較小與較大的版本，再描述它在版面上的寬度。用手機檢查實際選到的檔案，兼顧文字清楚與下載量。"
+            "practice": "選一張作品圖，記下手機與桌面的顯示寬度、原圖像素和實際下載大小。根據閱讀需求，寫出你要準備的候選尺寸或裁切方案。",
+            "paragraphs": [
+                  "回應式圖片讓瀏覽器依顯示需求選擇檔案。CSS決定圖片在版面上佔多大，圖片檔案則有自己的像素尺寸；手機的小畫面也可能有較高像素密度。提供不同尺寸候選，可以同時考慮清晰度與下載量。",
+                  "srcset列出可選檔案，使用寬度描述時，sizes交代圖片預計在版面中佔多少寬度；瀏覽器再搭配裝置條件選擇。若顯示尺寸固定，可使用1x、2x密度候選。picture適合依條件換構圖或格式，像是桌面橫圖與手機直式裁切。"
+            ],
+            "workflowTitle": "先決定版面，再準備候選圖片",
+            "steps": [
+                  "確認圖片在手機與桌面的顯示寬度及裁切方式，保留主角和必要文字。",
+                  "準備符合需求的尺寸候選，配上對應的srcset、sizes或picture條件。",
+                  "在不同寬度重新載入，檢查瀏覽器實際選用的currentSrc與畫面細節。"
+            ],
+            "example": "桌面作品頁讓案例圖佔半欄，手機則佔滿內容寬度。可先提供數個寬度版本，讓瀏覽器依版面和像素密度選圖；若橫向截圖在手機太小，再準備聚焦主要介面的裁切版本。"
       },
       {
             "title": "圖片與影片：格式、品質、相容性",
@@ -1466,9 +1704,18 @@ export const eventNotes = [{
             "source": "https://developers.google.com/speed/webp/faq",
             "sourceLabel": "Google WebP FAQ；PNG／影片規格見來源",
             "id": "note-14",
-            "time": "00:58:27–01:00:46",
-            "context": "尺寸確定後，課堂再談 WebP、WebM 與壓縮。下面用格式文件整理各自特性，讓選擇有可檢查的依據。",
-            "practice": "用同一張圖比較 PNG 與 WebP 的細節和檔案大小；影片則一起記錄容器與編碼。最後在目標手機和瀏覽器確認播放結果。"
+            "practice": "替一份素材做兩個輸出版本，用表格記錄尺寸、格式、檔案大小與目視差異。保留原始素材，方便重新調整。",
+            "paragraphs": [
+                  "格式是檔案如何保存內容的方式。圖片壓縮可以在檔案大小與細節之間做選擇；影片還包含畫幅、幀率、聲音與編碼設定。先確認作品是照片、透明圖示、介面截圖或影片，再決定要比較哪些輸出。",
+                  "影片的容器用來裝影像、音訊與相關資料，codec則負責編碼與解碼。因此判斷播放支援時，要一起看容器、codec和瀏覽器。檔案變小之後，也要看細字、漸層與快速移動的區域；用相同內容比較，才能知道壓縮造成什麼變化。"
+            ],
+            "workflowTitle": "用同一份素材比較輸出",
+            "steps": [
+                  "先固定尺寸與內容；影片也先固定片長與幀率，讓比較條件一致。",
+                  "選擇合適的格式和品質設定，記錄輸出大小，再放大檢查文字、邊緣、透明與漸層。",
+                  "在目標瀏覽器播放，確認畫面和聲音；依交付環境準備必要的替代來源。"
+            ],
+            "example": "一張含細字的產品截圖可比較PNG與WebP不同模式，選擇仍能清楚閱讀的版本。作品介紹影片則記錄MP4或WebM搭配的codec，實際放到手機瀏覽器播放，再檢查畫質與載入。"
       },
       {
             "title": "Mografy 的交付與其他工具入口",
@@ -1476,9 +1723,18 @@ export const eventNotes = [{
             "source": "https://mografy-website.vercel.app/zh-TW",
             "sourceLabel": "Mografy；其他官方入口見來源",
             "id": "note-16",
-            "time": "01:01:02–01:05:24",
-            "context": "效能討論之後，現場分享延伸工具與學習資源。這裡按交付與學習用途整理入口，方便選一條路繼續。",
-            "practice": "想做第一支作品，先照 Mografy 文件走預覽與輸出；想練動態設計，先從 Motion UX 挑一個相關主題。先確認自己的交付需求，再選格式。"
+            "practice": "替想做的作品寫一張交付清單，選一個工具查它是否支援。把已確認條件與仍要試用的項目分開，先完成最小輸出。",
+            "paragraphs": [
+                  "交付格式要配合作品最後出現的地方。影片播放器、網頁內的互動元件和設計工具各有需求，可能涉及透明背景、聲音、循環、檔案大小或後續編輯。先寫出接收端如何使用作品，會比較容易挑工具與輸出流程。",
+                  "延伸學習可以依目標分路線：想練分鏡與視覺節奏，可從Motion UX的設計教學挑一個相關主題；想製作並輸出作品，可查Mografy、Hera、HyperFrames或Jitter的現行文件。產品功能和匯出支援依版本而變，開始前先用小作品走過一次流程。"
+            ],
+            "workflowTitle": "用最小作品確認交付條件",
+            "steps": [
+                  "列出放置位置、需要的尺寸、聲音、透明效果、循環方式及是否要繼續編輯。",
+                  "選一個工具做最小範例，依官方流程完成預覽與輸出，記錄實際產生的檔案。",
+                  "把檔案交給真正使用它的網頁或播放器檢查，再擴充內容與視覺細節。"
+            ],
+            "example": "作品頁需要一段無聲、可循環的背景動態時，可先檢查輸出格式、檔案大小與循環銜接；若是讓讀者拖曳物件的互動示範，則要保留可執行的網頁互動。交付條件會直接影響工具選擇。"
       },
       {
             "title": "讓動畫與捲動接得起來",
@@ -1486,76 +1742,72 @@ export const eventNotes = [{
             "source": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
             "sourceLabel": "GSAP ScrollTrigger；課堂時序整理",
             "id": "note-11",
-            "time": "01:05:39–01:08:22",
-            "context": "收尾問答回到網頁：多種動態放在同一頁時，要交代它們何時出現。01:12:17–01:13:30 的追問再次聚焦先後順序。",
-            "practice": "寫成「開場標題停穩 → 捲到作品時揭露卡片 → 按下按鈕才展開細節」。逐步預覽，確認每個動作都有清楚的觸發條件。"
+            "practice": "為自己的作品區寫四欄：「觸發」「要改變的元素」「完成狀態」「再次操作時怎麼辦」。挑一個區塊完成預覽，先驗證順序，再調整動作幅度。",
+            "paragraphs": [
+                  "網頁動態可以用「事件 → 狀態變化 → 穩定結果」來規劃。事件可能是頁面出現、區塊進入視窗、按下按鈕或資料完成載入。把觸發條件寫清楚，就能安排先後順序，也能預想快速捲動、重複點擊與返回頁面時的行為。",
+                  "GSAP時間軸可協調多段動畫，透過位置與標籤安排銜接；ScrollTrigger可把觸發或進度連到捲動。使用時先決定是到達位置後播放一段，還是讓動畫進度隨捲動變化。重要內容應有清楚的最終狀態，並為減少動態偏好保留容易閱讀的呈現。"
+            ],
+            "workflowTitle": "先畫狀態，再排觸發與交接",
+            "steps": [
+                  "為每個區塊寫下初始、進行中與完成狀態，標記何時允許互動。",
+                  "指定觸發事件、播放次數或返回行為，再安排哪些動作接續、哪些可以同時發生。",
+                  "檢查快速捲動、往回捲、連續操作與鍵盤使用，確認內容和焦點保持清楚。"
+            ],
+            "example": "作品區進入視窗後，標題先到位，卡片接著出場；讀者按「看更多」才展開細節。若讀者快速跳到下一段，作品文字仍應可讀。這份時序可以先用文字與草圖確認，再交給動畫工具實作。"
       }
 ],
     sessionQa: [
       {
             "q": "多張圖片能串成動畫嗎？",
-            "a": "可以先交代圖片的用途與順序，再請 AI 規劃逐格或分鏡內容。課堂以產品操作素材說明這個方向，製作時仍要檢查畫面之間的連續性。",
-            "time": "00:35:49–00:36:29"
+            "a": "可以先交代圖片的用途與順序，再請 AI 規劃逐格或分鏡內容。課堂以產品操作素材說明這個方向，製作時仍要檢查畫面之間的連續性。"
       },
       {
             "q": "先做分鏡，有什麼幫助？",
-            "a": "分鏡讓內容順序、畫面重點和停留時間先變得可討論。課堂提到直接生成動畫時容易略過這一步；可在提示詞列明「先交分鏡，確認後再做動畫」，並寫出希望收到的檔案。",
-            "time": "00:36:31–00:39:55"
+            "a": "分鏡讓內容順序、畫面重點和停留時間先變得可討論。課堂提到直接生成動畫時容易略過這一步；可在提示詞列明「先交分鏡，確認後再做動畫」，並寫出希望收到的檔案。"
       },
       {
             "q": "提示詞之前要準備什麼？",
-            "a": "先整理用途、畫幅、秒數、素材與想傳達的感受，再要求分鏡。短提示詞也能搭配完整的專案規則和素材說明，讓 AI 取得足夠上下文。",
-            "time": "00:36:31–00:37:16"
+            "a": "先整理用途、畫幅、秒數、素材與想傳達的感受，再要求分鏡。短提示詞也能搭配完整的專案規則和素材說明，讓 AI 取得足夠上下文。"
       },
       {
             "q": "模型選擇可以看哪些條件？",
-            "a": "講者討論 Sonnet／Opus 在討論速度、細節與成本上的取捨。可以拿相同的小案例比較：是否先交分鏡、是否保留風格、修改是否集中、等待時間是否合適。",
-            "time": "00:39:55–00:42:38"
+            "a": "講者討論 Sonnet／Opus 在討論速度、細節與成本上的取捨。可以拿相同的小案例比較：是否先交分鏡、是否保留風格、修改是否集中、等待時間是否合適。"
       },
       {
             "q": "需要另外接 Canvas API 服務嗎？",
-            "a": "Canvas 是瀏覽器提供的繪圖 API。依 Mografy 公開流程，可讓程式代理讀取本機專案和相關操作說明，再產生場景、預覽與輸出。AI 服務的存取需求另依所選工具處理。",
-            "time": "00:42:38–00:43:37"
+            "a": "Canvas 是瀏覽器提供的繪圖 API。依 Mografy 公開流程，可讓程式代理讀取本機專案和相關操作說明，再產生場景、預覽與輸出。AI 服務的存取需求另依所選工具處理。"
       },
       {
             "q": "可以把流程自動化嗎？",
-            "a": "課堂示範的方向是讓 AI 讀取專案規則，以內容、秒數和素材產生分鏡與場景。仍可保留需求、分鏡、預覽與輸出的檢查點，讓每次修改有明確位置。",
-            "time": "00:44:03–00:49:08"
+            "a": "課堂示範的方向是讓 AI 讀取專案規則，以內容、秒數和素材產生分鏡與場景。仍可保留需求、分鏡、預覽與輸出的檢查點，讓每次修改有明確位置。"
       },
       {
             "q": "Claude 與 Codex 可以如何分工？",
-            "a": "現場有人分享由 Claude 討論需求、Codex 配合實作，再透過 Mografy 預覽的流程。可把規劃結果整理成共同規格，讓接手的工具知道已確認內容與下一個交付。",
-            "time": "00:44:42–00:45:02"
+            "a": "現場有人分享由 Claude 討論需求、Codex 配合實作，再透過 Mografy 預覽的流程。可把規劃結果整理成共同規格，讓接手的工具知道已確認內容與下一個交付。"
       },
       {
             "q": "需要額外串接多個代理嗎？",
-            "a": "課堂建議先讓既有代理讀取專案，走通需求、分鏡、預覽與輸出。之後再依重複工作和交接需求安排分工。",
-            "time": "00:48:24–00:48:57"
+            "a": "課堂建議先讓既有代理讀取專案，走通需求、分鏡、預覽與輸出。之後再依重複工作和交接需求安排分工。"
       },
       {
             "q": "只有聲音、簡報或文字，也能規劃嗎？",
-            "a": "可以先整理敘事順序、關鍵訊息和可用素材，再請 AI 提出鏡頭與畫面需求。課堂討論了這些輸入方式；實作時還要確認工具能讀取提供的檔案，以及每個鏡頭需要的圖片或圖形。",
-            "time": "00:50:32–00:52:01"
+            "a": "可以先整理敘事順序、關鍵訊息和可用素材，再請 AI 提出鏡頭與畫面需求。課堂討論了這些輸入方式；實作時還要確認工具能讀取提供的檔案，以及每個鏡頭需要的圖片或圖形。"
       },
       {
             "q": "動態網站的效能從哪裡開始看？",
-            "a": "先檢查素材大小、首屏載入、下方圖片的延遲載入與響應式圖片，再看動畫執行與輸出設定。上方格式與載入章節已整理官方做法，可逐項對照自己的頁面。",
-            "time": "00:54:22–01:00:46"
+            "a": "先檢查素材大小、首屏載入、下方圖片的延遲載入與響應式圖片，再看動畫執行與輸出設定。上方格式與載入章節已整理官方做法，可逐項對照自己的頁面。"
       },
       {
             "q": "後續可以從哪些資源學？",
-            "a": "從工作坊簡報與共筆回看方法，再用 Mografy 文件查操作、Motion UX 看動態設計教學。Hera 是課堂分享的 AI 動態圖像入口，GSAP 可查網頁動畫 API。依想完成的作品挑一個方向延伸。",
-            "time": "01:01:02–01:05:24"
+            "a": "從工作坊簡報與共筆回看方法，再用 Mografy 文件查操作、Motion UX 看動態設計教學。Hera 是課堂分享的 AI 動態圖像入口，GSAP 可查網頁動畫 API。依想完成的作品挑一個方向延伸。"
       },
       {
             "q": "動畫和網頁特效怎麼安排？",
-            "a": "分別寫出兩者的觸發、出場、停留和結束狀態，再安排交接。最後的追問把重點收在先後順序與連貫性；速度和比例則配合畫面焦點調整。",
-            "time": "01:02:42–01:08:22；01:12:17–01:13:30"
+            "a": "分別寫出兩者的觸發、出場、停留和結束狀態，再安排交接。最後的追問把重點收在先後順序與連貫性；速度和比例則配合畫面焦點調整。"
       },
       {
             "q": "只有錄影和截圖，怎麼開始？",
-            "a": "先整理素材和主要操作，告訴 AI 觀眾要看懂什麼，請它簡化流程、列分鏡並提供 HTML／PNG 預覽。確認後再製作動畫，輸出完成再檢查網站中的呈現。",
-            "time": "01:08:55–01:12:10"
+            "a": "先整理素材和主要操作，告訴 AI 觀眾要看懂什麼，請它簡化流程、列分鏡並提供 HTML／PNG 預覽。確認後再製作動畫，輸出完成再檢查網站中的呈現。"
       }
 ],
     qa: [
