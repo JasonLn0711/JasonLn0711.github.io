@@ -1,4 +1,4 @@
-import { blogPosts, blogSeries } from "$lib/content/blog";
+import { allPosts, professionalSeries } from "$lib/content/blog";
 import { routePaths, site } from "$lib/content/site";
 
 export const prerender = true;
@@ -7,9 +7,9 @@ export function GET() {
   const paths = Array.from(
     new Set([
       ...routePaths,
-      "/blog/series/",
-      ...blogSeries.map((series) => `/blog/series/${series.slug}/`),
-      ...blogPosts.flatMap((post) => [`/blog/${post.slug}/`, `/writing/${post.slug}/`])
+      "/professional/series/",
+      ...professionalSeries.map((series) => `/professional/series/${series.slug}/`),
+      ...allPosts.map((post) => post.path)
     ])
   );
 

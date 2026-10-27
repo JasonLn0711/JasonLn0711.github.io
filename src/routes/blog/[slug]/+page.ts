@@ -1,10 +1,10 @@
 import { error } from "@sveltejs/kit";
-import { blogPosts, findBlogPost } from "$lib/content/blog";
+import { allPosts, findBlogPost } from "$lib/content/blog";
 
 export const prerender = true;
 
 export function entries() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return allPosts.map((post) => ({ slug: post.slug }));
 }
 
 export function load({ params }) {
@@ -16,7 +16,7 @@ export function load({ params }) {
 
   return {
     post,
-    canonicalPath: `/blog/${post.slug}/`,
+    canonicalPath: post.path,
     indexPath: "/blog/"
   };
 }

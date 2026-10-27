@@ -33,10 +33,20 @@
 - `npm run build`
 - `npm run preview`
 
-## Daily learning publication — September 21
+## Writing sections — October 27
 
-Follow [the daily publishing contract](docs/learning-publishing.md). One day
-produces one confirmed bilingual Blog article at one URL; Jason supplies his
+Blog is reserved for personal perspectives, reading reflections, life experiences,
+humanities and personal miscellany. Use `src/content/blog/` with categories
+`perspective`, `reading`, `life` or `humanities`; do not publish unapproved private material.
+Research perspectives, technical essays and work updates belong in
+`src/content/professional/` at `/professional/`. Research results, projects and
+teaching retain their existing sections. Professional articles are not research-result
+records. Preserve existing article bodies and old URLs when moving content.
+
+## Daily learning publication — September 21 (scope amended October 27)
+
+Follow [the daily publishing contract](docs/learning-publishing.md). An explicitly activated learning publication
+produces one confirmed bilingual professional article at one URL; Jason supplies his
 own explanation before editing. Use ignored `.local/drafts/` until confirmation,
 then verify the public Pages URL before recording published completion.
 Subject repositories own learner evidence and Planning owns capacity/status.

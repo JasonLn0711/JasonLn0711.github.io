@@ -9,6 +9,7 @@ export type RawBlogMetadata = {
   series?: string; order?: number; relations?: Relation[];
 };
 export type BlogPost = {
+  section: "blog" | "professional"; path: string;
   slug: string; title: string; description: string; date: string; dateLabel: string;
   updatedDate?: string; category: string; categoryLabel: string; tags: string[];
   featured: boolean; cover?: string; ogImage: string; modulePath: string;
@@ -105,7 +106,9 @@ export function createBlogPosts(
         targets.add(relation.slug);
       }
       const category = m.category ?? (m.kind === "daily-learning" ? "daily-learning" : "essay");
+      const section = modulePath.includes("/professional/") ? "professional" : "blog";
       posts.push({
+        section, path: `/${section}/${slug}/`,
         slug, title: m.title, description: m.description, date, dateLabel: formatDate(date), updatedDate,
         category, categoryLabel: category.split(/[-_\s]+/).map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join(" "),
         tags: m.tags ?? [], featured: m.featured ?? false, cover: m.cover,
@@ -117,6 +120,11 @@ export function createBlogPosts(
   for (const post of posts) {
     for (const relation of post.relations) {
       if (!slugs.has(relation.slug)) throw new Error(`${post.modulePath}: relation target is not published: ${relation.slug}`);
+    }
+  }
+  for (const item of series) {
+    if (new Set(posts.filter((p) => p.series === item.slug).map((p) => p.section)).size > 1) {
+      throw new Error(`Series cannot mix personal and professional articles: ${item.slug}`);
     }
   }
   return posts.sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));

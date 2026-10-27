@@ -1,7 +1,2 @@
-<script lang="ts">
-  import BlogDetail from "../../blog/[slug]/+page.svelte";
-
-  let { data } = $props();
-</script>
-
-<BlogDetail {data} />
+<script lang="ts">import MovedPage from "$lib/components/MovedPage.svelte"; let { data } = $props();</script>
+<MovedPage path={data.canonicalPath} />
