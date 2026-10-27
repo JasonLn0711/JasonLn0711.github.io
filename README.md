@@ -78,9 +78,9 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 
 ## Selected Writing
 
-- [Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice](https://cs-kairos.com/blog/recent-work-apr-jun-2026/)
-- [From Cybercrime Investigation to Trustworthy AI](https://cs-kairos.com/blog/investigation-and-trustworthy-ai/)
-- [Designing Speech Evidence Pipelines with ASR and LLMs](https://cs-kairos.com/blog/speech-evidence-pipelines/)
+- [Recent Work, April-June 2026: Evidence-Aware AI Systems in Practice](https://cs-kairos.com/professional/recent-work-apr-jun-2026/)
+- [From Cybercrime Investigation to Trustworthy AI](https://cs-kairos.com/professional/investigation-and-trustworthy-ai/)
+- [Designing Speech Evidence Pipelines with ASR and LLMs](https://cs-kairos.com/professional/speech-evidence-pipelines/)
 
 ## Selected Teaching
 
@@ -177,14 +177,14 @@ I welcome thoughtful conversations around research collaboration, trustworthy AI
 
 This repository contains the SvelteKit static source for my personal website, research pages, and MDX blog. The current public direction is a minimal academic/personal site: plain navigation, a readable homepage, chronological writing, and long-form article pages for trustworthy AI systems, speech intelligence, cybersecurity, regulated AI deployment, talks, and project notes.
 
-The site keeps the older research/project/talk URLs available, while `/blog/` is the canonical writing surface and `/writing/` remains as a compatibility alias.
+The site keeps the older research/project/talk URLs available, while `/blog/` contains personal perspectives, reading reflections, life experiences and humanities. Professional essays and work updates live at `/professional/`; `/writing/` and the five former Blog article URLs redirect to their professional destinations.
 Teaching accelerators are published under `/teaching/`, with the AI Systems Engineering Handbook repo kept as the canonical source for worksheets, instructor guides, rubrics, reference answers, and later day packages.
 
 ## Current Implementation
 
 - Framework: SvelteKit with `@sveltejs/adapter-static`.
 - Styling: native CSS tokens and route-level Svelte styles.
-- Blog content: top-level `src/content/blog/*.mdx` files compiled with `mdsvex`.
+- Personal Blog content: top-level `src/content/blog/*.mdx`; professional articles: `src/content/professional/*.mdx`. Both use `mdsvex` and the same publication safeguards.
 - Content layer: `src/lib/content/site.ts` for profile, recent-work, research, systems, teaching, and contact data, plus `src/lib/content/blog.ts` for blog metadata.
 - Article UI: semantic long-form layout with generated `h2`/`h3` heading IDs and a hydrated desktop table of contents.
 - Static output: `build/`.
@@ -200,8 +200,10 @@ Key routes:
 - `/projects/` and `/projects/[slug]/`
 - `/teaching/`, `/teaching/[accelerator]/`, and `/teaching/[accelerator]/[day]/`
 - `/talks/` and `/talks/regulated-ai-cybersecurity/`
-- `/blog/`, `/blog/[slug]/`, `/blog/series/`, and `/blog/series/[slug]/`
-- `/writing/` and `/writing/[slug]/` as compatibility aliases
+- `/blog/` and `/blog/[slug]/` for personal writing
+- `/professional/`, `/professional/[slug]/`, `/professional/series/`, and `/professional/series/[slug]/`
+- Former `/blog/series/` routes redirect to the professional series
+- `/writing/` and `/writing/[slug]/` as compatibility redirects
 - `/about/`
 - `/contact/`
 - `/resume/`

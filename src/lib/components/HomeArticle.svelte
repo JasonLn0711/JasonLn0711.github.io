@@ -13,10 +13,10 @@
 <article class:featured class="article-row">
   <div class="article-meta">
     <time datetime={post.date}>{dateLabel}</time>
-    <span>{articleLanguage(post.languages, zh)}</span>
+    <span>{post.section === "professional" ? (zh ? "專業文章 · " : "Professional · ") : (zh ? "個人雜記 · " : "Blog · ")}{articleLanguage(post.languages, zh)}</span>
   </div>
   <div class="article-copy" lang={translated ? "zh-Hant" : post.languages[0]}>
-    <h3><a href={`/blog/${post.slug}/`}>{translated?.title ?? post.title}<span class="arrow" aria-hidden="true"> ↗</span></a></h3>
+    <h3><a href={post.path}>{translated?.title ?? post.title}<span class="arrow" aria-hidden="true"> ↗</span></a></h3>
     <p>{translated?.description ?? post.description}</p>
   </div>
 </article>

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { blogPosts, blogSeries, type BlogPost } from "$lib/content/blog";
+  import { allPosts, allSeries, type BlogPost } from "$lib/content/blog";
   import { articleConnections, seriesPosts, type RelationType } from "$lib/content/blog-model";
 
   let { post }: { post: BlogPost } = $props();
-  let links = $derived(articleConnections(blogPosts, post));
-  let series = $derived(blogSeries.find((item) => item.slug === post.series));
-  let ordered = $derived(post.series ? seriesPosts(blogPosts, post.series) : []);
+  let links = $derived(articleConnections(allPosts, post));
+  let series = $derived(allSeries.find((item) => item.slug === post.series));
+  let ordered = $derived(post.series ? seriesPosts(allPosts, post.series) : []);
   let position = $derived(ordered.findIndex((item) => item.slug === post.slug));
   let previous = $derived(ordered[position - 1]);
   let next = $derived(ordered[position + 1]);
@@ -17,16 +17,16 @@
 <section class="connections" aria-labelledby="connections-title">
   <h2 id="connections-title">Connections · 文章之間的關係</h2>
   {#if series}
-    <p><a href={`/blog/series/${series.slug}/`}>{series.title}</a> · Part {post.order}</p>
+    <p><a href={`/${post.section}/series/${series.slug}/`}>{series.title}</a> · Part {post.order}</p>
     <nav class="sequence" aria-label="Series reading order">
-      {#if previous}<a rel="prev" href={`/blog/${previous.slug}/`}>← 上一篇 / Previous: {previous.title}</a>{/if}
-      {#if next}<a rel="next" href={`/blog/${next.slug}/`}>下一篇 / Next: {next.title} →</a>{/if}
+      {#if previous}<a rel="prev" href={previous.path}>← 上一篇 / Previous: {previous.title}</a>{/if}
+      {#if next}<a rel="next" href={next.path}>下一篇 / Next: {next.title} →</a>{/if}
     </nav>
   {/if}
   {#each links.outgoing as link}
     <div class="connection">
       <span>{labels[link.type]}</span>
-      <h3><a href={`/blog/${link.post.slug}/`}>{link.post.title}</a></h3>
+      <h3><a href={link.post.path}>{link.post.title}</a></h3>
       <p lang="en">{link.reason}</p>
       {#if link.reasonZh}<p lang="zh-Hant">{link.reasonZh}</p>{/if}
     </div>
@@ -35,7 +35,7 @@
     <h3 class="incoming-title">Linked from · 哪些文章連到本文</h3>
     {#each links.incoming as link}
       <div class="connection">
-        <h3><a href={`/blog/${link.post.slug}/`}>{link.post.title}</a></h3>
+        <h3><a href={link.post.path}>{link.post.title}</a></h3>
         <p lang="en">{link.reason}</p>
         {#if link.reasonZh}<p lang="zh-Hant">{link.reasonZh}</p>{/if}
       </div>

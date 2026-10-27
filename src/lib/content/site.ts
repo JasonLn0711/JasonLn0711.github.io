@@ -15,7 +15,8 @@ export const site = {
     "Personal research site and blog for evidence-aware AI systems in speech, clinical workflow support, agent governance, cybersecurity, and enterprise AI education.",
   nav: [
     { href: "/event-notes/", label: "Talks & Workshops", labelZh: "演講與工作坊筆記" },
-    { href: "/blog/", label: "Blog", labelZh: "文章" },
+    { href: "/blog/", label: "Blog", labelZh: "個人雜記" },
+    { href: "/professional/", label: "Professional writing", labelZh: "專業文章" },
     { href: "/research/", label: "Research", labelZh: "研究" },
     { href: "/projects/", label: "Projects", labelZh: "作品" },
     { href: "/teaching/", label: "Teaching", labelZh: "教學" },
@@ -951,7 +952,7 @@ export const routePaths = [
   ),
   "/talks/",
   "/talks/regulated-ai-cybersecurity/",
-  "/writing/",
+  "/professional/",
   "/blog/",
   "/about/",
   "/contact/",
@@ -998,10 +999,10 @@ export const homeCopy = {
     role: "Doctoral researcher at National Yang Ming Chiao Tung University",
     intro: "I study AI and cybersecurity, and share what I learn about speech systems, technical practice, and working across disciplines.",
     detail: "My background in cybercrime investigation shapes how I think about evidence, security, and human judgment.",
-    start: "Start reading", about: "About me", featured: "A few places to start",
+    start: "Start reading", about: "About me", featured: "Selected professional writing",
     featuredNote: "Selected essays on the questions behind my work.",
-    latest: "Latest writing", latestNote: "Notes, essays, and updates, by publication date.",
-    all: "All articles", topics: "Follow a thread", topicsNote: "Choose a subject and keep reading.",
+    latest: "Latest professional writing", latestNote: "Research perspectives, technical essays and work updates, by publication date.",
+    all: "All professional articles", topics: "Follow a thread", topicsNote: "Choose a subject and keep reading.",
     work: "Research & practice", workNote: "The research, systems, and teaching behind the writing.",
     empty: "No articles have been published yet.", emptyLink: "Explore the teaching materials",
     footer: "Keep in touch", footerNote: "For research conversations, teaching, and collaboration.",
@@ -1012,10 +1013,10 @@ export const homeCopy = {
     role: "國立陽明交通大學博士研究者",
     intro: "我是 Jason，研究 AI 與資安，也分享語音系統、技術實作與跨領域學習的筆記。",
     detail: "過去從事科技犯罪偵查的經驗，持續影響我對證據、安全與人的判斷的思考。",
-    start: "開始閱讀", about: "關於我", featured: "從這幾篇開始",
+    start: "開始閱讀", about: "關於我", featured: "精選專業文章",
     featuredNote: "先透過文章，認識我關注的問題。",
-    latest: "最新文章", latestNote: "依發布日期排列的筆記、文章與工作整理。",
-    all: "所有文章", topics: "沿著主題閱讀", topicsNote: "選一個感興趣的方向，繼續讀下去。",
+    latest: "最新專業文章", latestNote: "依發布日期排列的研究觀點、技術評論與工作進展。",
+    all: "所有專業文章", topics: "沿著主題閱讀", topicsNote: "選一個感興趣的方向，繼續讀下去。",
     work: "研究與實作", workNote: "文章背後的研究、系統與教學。",
     empty: "目前尚無已發布的文章。", emptyLink: "先看看教學內容",
     footer: "保持聯繫", footerNote: "歡迎交流研究問題、教學與合作想法。",
@@ -1024,9 +1025,9 @@ export const homeCopy = {
 } as const;
 
 export const homeTopics = [
-  { href: "/blog/series/evidence-aware-ai/", en: "AI & evidence", zh: "AI 與證據", type: "Reading series", typeZh: "系列閱讀" },
+  { href: "/professional/series/evidence-aware-ai/", en: "AI & evidence", zh: "AI 與證據", type: "Reading series", typeZh: "系列閱讀" },
   { href: "/talks/regulated-ai-cybersecurity/", en: "Security & governance", zh: "資安與治理", type: "Talk", typeZh: "公開講座" },
-  { href: "/blog/speech-evidence-pipelines/", en: "Speech & systems", zh: "語音與系統", type: "Research note", typeZh: "研究筆記" },
+  { href: "/professional/speech-evidence-pipelines/", en: "Speech & systems", zh: "語音與系統", type: "Research note", typeZh: "研究筆記" },
   { href: "/teaching/", en: "Teaching & learning", zh: "教學與學習", type: "Teaching materials", typeZh: "教學內容" }
 ] as const;
 

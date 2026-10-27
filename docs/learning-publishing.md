@@ -1,5 +1,20 @@
 # Daily learning publishing
 
+## Scope update — 2026-10-27
+
+Blog now contains only personal perspectives, reading reflections, life experiences,
+humanities and personal miscellany. Professional learning, research and work articles
+use `src/content/professional/` and `/professional/`. The five previous Blog articles
+and their evidence-aware AI series moved there without changing their bodies or dates.
+Old Blog/writing URLs remain redirects. The existing bilingual confirmation and
+publication safeguards below still apply; references to the daily Blog describe the
+historical contract and no longer authorize technical content in the personal Blog.
+
+Homepage selected/latest professional articles link directly to `/professional/`;
+the personal Blog has a separate entry and an honest empty state. RSS remains a
+site-wide article feed with explicit section categories, new canonical links and
+stable legacy GUIDs. Sitemap contains canonical destinations only.
+
 ## Scope update — 2026-10-23
 
 The [Kairos domain plan](cs-kairos-domain-plan.zh-tw.md) connects this main-site
@@ -34,7 +49,7 @@ practical acceptance keep their own records.
 5. Present the bilingual draft for Jason's content confirmation. Keep
    unpublished private source notes in their subject or protected repository.
 6. After confirmation, set `draft: false`, set `pubDate` to the actual Taipei
-   publication date and copy the reviewed file to `src/content/blog/`.
+   publication date and copy the reviewed file to `src/content/professional/`.
    `learningDate` remains the date of the actual learning, even when published
    later. Check related-article links and the series position.
 7. Run `npm test`, `npm run check`, `npm run build`; review the production

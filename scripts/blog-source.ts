@@ -1,18 +1,20 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { parse } from "yaml";
 import type { Plugin } from "vite";
 import { createBlogPosts, type RawBlogMetadata, type Series } from "../src/lib/content/blog-model.ts";
 
 export function readPublishedPosts(root: string, today?: string) {
-  const content = resolve(root, "src/content/blog");
-  const entries = readdirSync(content).filter((name) => name.endsWith(".mdx")).map((name) => {
-    const modulePath = `src/content/blog/${name}`;
+  const entries = ["blog", "professional"].flatMap((section) => {
+    const content = resolve(root, `src/content/${section}`);
+    return (existsSync(content) ? readdirSync(content) : []).filter((name) => name.endsWith(".mdx")).map((name) => {
+    const modulePath = `src/content/${section}/${name}`;
     const source = readFileSync(resolve(root, modulePath), "utf8");
     const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
     if (!frontmatter) throw new Error(`${modulePath}: missing frontmatter`);
     const metadata = parse(frontmatter[1]) as RawBlogMetadata;
     return { modulePath, metadata, source };
+    });
   });
   const series = JSON.parse(readFileSync(resolve(root, "src/lib/content/blog-series.json"), "utf8")) as Series[];
   const posts = createBlogPosts(entries, series, today);
@@ -38,6 +40,7 @@ export function publishedBlogPlugin(): Plugin {
     load(source) {
       if (source !== resolved) return;
       this.addWatchFile(resolve(root, "src/content/blog"));
+      this.addWatchFile(resolve(root, "src/content/professional"));
       this.addWatchFile(resolve(root, "src/lib/content/blog-series.json"));
       const posts = readPublishedPosts(root);
       for (const post of posts) this.addWatchFile(resolve(root, post.modulePath));
@@ -46,7 +49,7 @@ export function publishedBlogPlugin(): Plugin {
     },
     configureServer(server) {
       server.watcher.on("all", (_event, path) => {
-        if (path.includes("/src/content/blog/") || path.endsWith("/blog-series.json")) {
+        if (path.includes("/src/content/blog/") || path.includes("/src/content/professional/") || path.endsWith("/blog-series.json")) {
           const module = server.moduleGraph.getModuleById(resolved);
           if (module) server.moduleGraph.invalidateModule(module);
           server.ws.send({ type: "full-reload" });

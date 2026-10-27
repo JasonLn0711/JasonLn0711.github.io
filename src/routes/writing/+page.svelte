@@ -1,5 +1,2 @@
-<script lang="ts">
-  import BlogIndex from "../blog/+page.svelte";
-</script>
-
-<BlogIndex />
+<script lang="ts">import MovedPage from "$lib/components/MovedPage.svelte";</script>
+<MovedPage path="/professional/" />

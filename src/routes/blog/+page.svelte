@@ -1,40 +1,39 @@
 <script lang="ts">
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { blogPosts, blogSeries } from "$lib/content/blog";
+  import { blogPosts } from "$lib/content/blog";
   import { site } from "$lib/content/site";
   let filter = $state("all");
-  let posts = $derived(filter === "daily-learning" ? blogPosts.filter((post) => post.kind === filter) : blogPosts);
+  let posts = $derived(filter === "all" ? blogPosts : blogPosts.filter((post) => post.category === filter));
 </script>
 
 <PageMeta
   title={`Blog | ${site.name}`}
-  description="Bilingual daily learning notes and connected essays on AI, cybersecurity, and evidence-aware systems."
+  description="Personal perspectives, reading reflections, life experiences and humanities."
   path="/blog/"
 />
 
 <section class="blog-index">
   <div class="content-shell">
     <header class="index-head">
-      <p class="kicker">Blog / 學習札記</p>
-      <h1>Learning, notes and essays</h1>
+      <p class="kicker">Blog / 個人雜記</p>
+      <h1>Perspectives, reading and life</h1>
       <p>
-        Bilingual daily learning notes and connected essays on AI, cybersecurity and evidence-aware systems.
-        每日整理理解，用例子與文章連結逐步拆解大問題。
+        Personal perspectives, reading reflections, life experiences and humanities.
+        個人觀點、閱讀心得、生命經驗，以及人文與個人雜記。
       </p>
     </header>
-    <p><a href="/event-notes/">Talks &amp; Workshops · 演講與工作坊筆記 →</a></p>
+    <p>Looking for research or technical articles? <a href="/professional/">Professional writing／專業文章 →</a></p>
 
     <nav class="filters" aria-label="Article type">
       <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
-      <button type="button" aria-pressed={filter === "daily-learning"} onclick={() => filter = "daily-learning"}>Daily learning／每日學習</button>
-      <a href="/blog/series/">Reading series／系列閱讀 →</a>
+      {#each [["perspective", "Perspectives／個人觀點"], ["reading", "Reading／閱讀心得"], ["life", "Life／生命經驗"], ["humanities", "Humanities & miscellany／人文與雜記"]] as [value, label]}
+        <button type="button" aria-pressed={filter === value} onclick={() => filter = value}>{label}</button>
+      {/each}
     </nav>
     <noscript><p>目前列出所有文章；啟用 JavaScript 可切換文章類型。</p></noscript>
-    <div class="series-links">
-      {#each blogSeries as series}<a href={`/blog/series/${series.slug}/`}>{series.title} →</a>{/each}
-    </div>
-    <div class="post-list">
-      {#if posts.length === 0}<p>No daily learning articles published yet. 首篇每日學習文章將在內容確認並發布後出現。</p>{/if}
+
+    <div class="post-list" aria-live="polite">
+      {#if posts.length === 0}<p>No personal articles have been published here yet. 此處尚未發布個人文章。</p>{/if}
       {#each posts as post}
         <article class="post-row">
           <time datetime={post.date}>{post.dateLabel}</time>
@@ -55,7 +54,7 @@
   .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
   .filters button { font: inherit; cursor: pointer; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: transparent; color: var(--ink); }
   .filters button[aria-pressed="true"] { background: var(--ink-strong); color: var(--bg); }
-  .series-links { display: grid; gap: 0.5rem; margin-bottom: 2rem; }
+
 
   .blog-index {
     padding-block: clamp(3.5rem, 9vw, 6rem);

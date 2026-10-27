@@ -2,13 +2,13 @@
   import PageMeta from "./PageMeta.svelte";
   import RecentWriting from "./RecentWriting.svelte";
   import HomeArticle from "./HomeArticle.svelte";
-  import { blogPosts } from "$lib/content/blog";
+  import { professionalPosts } from "$lib/content/blog";
   import { featuredWriting } from "$lib/content/home";
   import { homeCopy, homeFeaturedSlugs, homeTopics, homeWork, site } from "$lib/content/site";
   let { locale = "en" }: { locale?: "en" | "zh-Hant" } = $props();
   let zh = $derived(locale === "zh-Hant");
   let copy = $derived(homeCopy[locale]);
-  const featured = featuredWriting(blogPosts, homeFeaturedSlugs);
+  const featured = featuredWriting(professionalPosts, homeFeaturedSlugs);
 </script>
 
 <PageMeta title={`${site.name} | ${zh ? "AI、資安與學習筆記" : "Notes on AI, cybersecurity & learning"}`} description={copy.intro} path={zh ? "/zh-tw/" : "/"} lang={zh ? "zh-tw" : "en"} />
@@ -29,6 +29,11 @@
     <p class="intro-detail">{copy.detail}</p>
     <div class="intro-links"><a class="start" href="#selected-writing">{copy.start} ↓</a><a href="/about/">{copy.about} →</a></div>
   </header>
+
+  <section class="reading-section" aria-labelledby="personal-title">
+    <div class="section-heading"><h2 id="personal-title">Blog · {zh ? "個人雜記" : "Personal writing"}</h2></div>
+    <div><p>{zh ? "個人觀點、閱讀心得、生命經驗，以及人文與個人雜記。" : "Personal perspectives, reading reflections, life experiences and humanities."}</p><a href="/blog/">{zh ? "前往 Blog" : "Visit the Blog"} →</a></div>
+  </section>
 
   <section class="reading-section" id="selected-writing" aria-labelledby="selected-title">
     <div class="section-heading"><h2 id="selected-title">{copy.featured}</h2><p>{copy.featuredNote}</p></div>
