@@ -86,8 +86,8 @@ The implementation should prefer these reusable primitives:
 
 Before calling the redesign complete:
 
-- `npm run check`
-- `npm run build`
+- `pnpm run check`
+- `pnpm run build`
 - Render homepage in English, Traditional Chinese, and Japanese.
 - Inspect desktop and mobile screenshots for nav wrapping, CTA wrapping, text overflow, section overlap, and focus/contrast regressions.
 - Confirm `src/data/*.ts` and `src/content/**/*` core claims were not rewritten for design convenience.

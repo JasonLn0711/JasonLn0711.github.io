@@ -101,7 +101,7 @@ flowchart TB
 ## 8. 部署順序與回滾門檻（不得跳步）
 
 1. **Inventory**：匯出 DNS/Worker/Custom Domains/Build 設定快照；找到 `learn` 真正 source；列出全部既有路徑、課程下載、API/console 保護狀態；確定主要網址 canonical 策略。
-2. **Local/Preview**：在獨立分支完成部署設定，執行 `npm ci`、`npm test`、`npm run check`、`npm run build`，由 Preview 手機/桌機驗證。只在通過後動手 DNS。
+2. **Local/Preview**：在獨立分支完成部署設定，執行 `pnpm install --frozen-lockfile`、`pnpm test`、`pnpm run check`、`pnpm run build`，由 Preview 手機/桌機驗證。只在通過後動手 DNS。
 3. **Main cutover**：將既有或新 Static Worker 綁 `cs-kairos.com` **Custom Domain**（Cloudflare 自動配置所需 DNS/TLS）；驗證 HTTPS、首頁/文章/404/CSP。再配置 `www` DNS/TLS 與單次轉址。
 4. **Canonical cutover**：確認已上線後改 `site.url`、Open Graph、canonical、RSS、sitemap、internal links。舊 GitHub Pages 入口應有可行的轉址或明確 canonical，不允許永久重複索引。
 5. **Learn expand**：保持 `learn` 原 CNAME 不變，在原本發布管線推出 CEH 試點；逐頁驗證 MATLAB 的 HTML、下載、書籤及外部連結。

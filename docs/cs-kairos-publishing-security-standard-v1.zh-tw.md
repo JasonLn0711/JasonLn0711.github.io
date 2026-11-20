@@ -25,7 +25,7 @@
 
 ## 三、可機器化品質門檻
 **每個主站 PR**：
-- `npm ci`、`npm test`、`npm run check`、`npm run build`。
+- `pnpm install --frozen-lockfile`、`pnpm test`、`pnpm run check`、`pnpm run build`。
 - Markdown/frontmatter/schema 合法；所有內部連結可解析；外部連結失效提供警告/人工審核（避免把暫時網路故障造成阻擋）。
 - Site identity、homepage 最近文章、RSS/sitemap/canonical 與 robots 維持一致，draft/future content 不可漏出。
 - 無 secret、無敏感資料、依賴與授權檢查；CSP 與防止 XSS 須經實際測試，不能以一個 WAF 或 HTTP header 當成程式碼安全證明。

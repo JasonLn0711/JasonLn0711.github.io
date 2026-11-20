@@ -233,12 +233,12 @@ Earlier v2.0 records remain useful as historical design context:
 Use Node.js 22.18 or newer; GitHub Pages CI uses Node 22.
 
 ```bash
-npm run check
-npm run build
-npm run preview
+pnpm run check
+pnpm run build
+pnpm run preview
 ```
 
-`npm run check` runs SvelteKit sync plus `svelte-check`. `npm run build` writes the static site to `build/`.
+`pnpm run check` runs SvelteKit sync plus `svelte-check`. `pnpm run build` writes the static site to `build/`.
 
 ## Daily Learning Blog
 
@@ -252,7 +252,7 @@ no new learner completion is implied.
 - [Instagram one-concept template](templates/instagram-one-concept.md)
 - [Reading series](https://cs-kairos.com/blog/series/)
 
-`npm test` checks publishing rules and mathematics. Drafts stay in ignored
+`pnpm test` checks publishing rules and mathematics. Drafts stay in ignored
 `.local/drafts/`; only confirmed public text enters `src/content/blog/`.
 `/blog/` and `/writing/` continue to share the published article data.
 
@@ -294,6 +294,8 @@ For a future Day 2 or Day 3:
 
 Last verified after adding the teaching accelerator routes:
 
-- `npm run check`
-- `npm run build`
+- `pnpm run check`
+- `pnpm run build`
 - Production preview smoke checks for `/teaching/`, `/teaching/enterprise-ai-architecture-sprint/`, `/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/`, and `/sitemap.xml`.
+
+JavaScript dependencies use `pnpm@12.15.0` (see `packageManager`). Install pnpm before running the commands above. `pnpm install --frozen-lockfile` reuses the host content-addressable store; commit `pnpm-lock.yaml` with dependency changes. CI installs the pinned pnpm version before restoring its cache.

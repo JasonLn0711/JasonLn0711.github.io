@@ -29,9 +29,9 @@
 
 ## Commands
 
-- `npm run check`
-- `npm run build`
-- `npm run preview`
+- `pnpm run check`
+- `pnpm run build`
+- `pnpm run preview`
 
 ## Daily learning publication — September 21
 
@@ -43,4 +43,4 @@ Subject repositories own learner evidence and Planning owns capacity/status.
 Instagram 「非典型台清交博士生」 uses the optional one-concept template;
 no posting quota or autonomous schedule is installed.
 
-Run `npm test`, `npm run check` and `npm run build` for publishing changes.
+Run `pnpm test`, `pnpm run check` and `pnpm run build` for publishing changes.
