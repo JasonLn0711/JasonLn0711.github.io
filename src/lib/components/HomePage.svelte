@@ -23,7 +23,15 @@
   <header class="intro">
     <div class="intro-top">
       <div><p class="eyebrow">{copy.eyebrow}</p><h1>{site.shortName}</h1></div>
-      <img src={site.avatar} alt="Jason Chia-Sheng Lin" width="128" height="128" fetchpriority="high" />
+      <img
+        src="/images/headshot-160.webp"
+        srcset="/images/headshot-160.webp 160w, /images/headshot-256.webp 256w, /images/headshot-384.webp 384w"
+        sizes="(max-width: 480px) 80px, 128px"
+        alt="Jason Chia-Sheng Lin"
+        width="128"
+        height="128"
+        decoding="async"
+      />
     </div>
     <p class="role">{site.name} · {copy.role}</p>
     <p class="intro-lead">{copy.intro}</p>
@@ -79,7 +87,7 @@
   .intro-top { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
   .eyebrow { margin: 0; color: var(--accent); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.035em; }
   h1 { margin: 0.3rem 0 0; font-family: var(--font-serif); font-size: clamp(2.9rem, 6vw, 4.4rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.035em; }
-  .intro img { flex: 0 0 auto; width: 128px; height: 128px; border-radius: 50%; object-fit: cover; object-position: center 30%; }
+  .intro img { flex: 0 0 auto; width: 128px; height: 128px; border-radius: 50%; }
   .role { color: var(--muted); font-size: 0.875rem; margin: 1.25rem 0; }
   .intro-lead { font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.75; max-width: 58ch; margin: 0; }
   .intro-detail { color: var(--muted); max-width: 65ch; margin: 0.75rem 0 0; }
