@@ -24,7 +24,7 @@
 - First principle: visitor trust under limited attention.
 - Core chain: `visitor pain -> Jason helps clarify -> evidence surface -> safe boundary -> next gentle action`.
 - Tone: warm, relaxed, rigorous, and helpful.
-- Interface language: deep graphite research atlas, cyan action states, restrained amber evidence markers, readable type, visible evidence surfaces, and low-pressure CTAs.
+- Interface language: warm off-white, readable type, brown links, visible evidence and low-pressure actions. See [the current reading design](docs/site-reading-refinement.zh-tw.md) for bilingual navigation and the reader-facing copy boundary.
 - Motion should support orientation and must never make content unreadable. Reduced-motion users should get a static readable layout.
 
 ## Commands

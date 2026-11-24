@@ -39,3 +39,7 @@ automated accessibility and Lighthouse checks cover their reported scope only.
 
 See [phase evidence](phase-0-3-implementation.zh-tw.md) and
 [Cloudflare redirects](https://developers.cloudflare.com/workers/static-assets/redirects/).
+
+The [November 24 reading and navigation record](site-reading-refinement.zh-tw.md)
+defines the homepage entry points, bilingual navigation, article contents,
+research evidence links, and portrait assets to verify in the current design.

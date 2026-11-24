@@ -1,7 +1,10 @@
 # Personal Website v3.0 Design Source Record
 
 Date: 2026-05-31
-Status: historical v3 source; current homepage direction is recorded below
+Status: historical v3 design source
+
+現行首頁、手機閱讀與讀者文案的決策見[閱讀與研究導覽優化](site-reading-refinement.zh-tw.md)。
+下方保留 10 月首頁與 5 月設計來源的原始紀錄。
 
 [主站與 learn 網域規劃](cs-kairos-domain-plan.zh-tw.md)接續本頁首頁實作；
 [需求來源與雙語決策](sources/2026-10-23-kairos-site-requirements.md)保存本人原句。

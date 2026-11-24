@@ -20,12 +20,11 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 
 ## Summary
 
-The [cs-kairos.com architecture and migration plan](docs/cs-kairos-domain-plan.zh-tw.md)
-records the October 23 main-site/learning-site split, current Cloudflare findings
-and the full bilingual CEH course direction. [Original requirements](docs/sources/2026-10-23-kairos-site-requirements.md)
-and the [homepage design/validation record](docs/site-v3-design-source.zh-tw.md)
-separate adopted decisions, local implementation and public deployment. The
-custom-domain migration remains pending; the website link above is the existing address.
+The personal site lives at [cs-kairos.com](https://cs-kairos.com/). The
+[reading and navigation design record](docs/site-reading-refinement.zh-tw.md)
+describes the bilingual homepage, mobile reading and access to research evidence.
+The [October domain and course rollout record](docs/phase-0-3-implementation.zh-tw.md)
+documents the separate [Kairos Learning site](https://learn.cs-kairos.com/).
 
 - I am a doctoral researcher in the Artificial Intelligence in Medical Imaging / Signal Analysis Lab at NYCU, where I work across trustworthy AI, AI Software as a Medical Device (SaMD), speech and language pipelines, and security-aware evaluation.
 - Before doctoral research, I worked in cybercrime investigation. That background continues to shape how I think about evidence, adversarial behavior, failure analysis, and the difference between a strong model demo and a system that can actually be trusted in practice.
@@ -86,7 +85,7 @@ An AI security study centered on leakage risk and privacy trade-offs in federate
 
 - [Teaching](https://cs-kairos.com/teaching/)
 - [Enterprise AI Architecture Sprint](https://cs-kairos.com/teaching/enterprise-ai-architecture-sprint/)
-- [Day 1: AI Gateway Architecture Evidence](https://cs-kairos.com/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/)
+- [Day 1: Domain map and interview-signal issue tree](https://cs-kairos.com/teaching/enterprise-ai-architecture-sprint/day-01-domain-map/)
 
 ## Speaking
 
@@ -213,17 +212,17 @@ Key routes:
 
 ## Design And Content Records
 
+See the [current bilingual reading and navigation design](docs/site-reading-refinement.zh-tw.md)
+and the [deployment runbook](docs/deployment-runbook.md). The archived concept
+images are cataloged in the historical design source.
+
 Historical v3.0 design records:
 
 - [`docs/site-v3-clean-slate-rebuild-plan.zh-tw.md`](docs/site-v3-clean-slate-rebuild-plan.zh-tw.md)
 - [`docs/site-v3-design-source.zh-tw.md`](docs/site-v3-design-source.zh-tw.md)
 - [`docs/site-v3-content-inventory.zh-tw.md`](docs/site-v3-content-inventory.zh-tw.md)
 
-The older section concept images used by `/design/` live in:
-
-```text
-public/design/v3-concepts/
-```
+The archived concept images live in `public/design/v3-concepts/`.
 
 Earlier v2.0 records remain useful as historical design context:
 
@@ -232,7 +231,7 @@ Earlier v2.0 records remain useful as historical design context:
 
 ## Commands
 
-Use Node.js 22.18 or newer; GitHub Pages CI uses Node 22.
+Use Node.js 22.18 or newer. GitHub Pages CI uses Node 24.
 
 ```bash
 npm run check
@@ -244,19 +243,20 @@ npm run preview
 
 ## Daily Learning Blog
 
-The site supports one bilingual daily learning article at one URL, connected
-reading series, article backlinks, build-time KaTeX mathematics and a Taipei
-three-day homepage window. The initial series connects existing public essays;
-no new learner completion is implied.
+When a daily learning article is explicitly requested and its content is confirmed,
+the site supports both languages at one professional article URL. Professional
+articles have reading series, backlinks and build-time KaTeX mathematics. The
+homepage presents selected articles and the most recent additional writing.
 
 - [Daily publishing workflow and metadata](docs/learning-publishing.md)
 - [Bilingual daily article template](templates/daily-learning.mdx)
 - [Instagram one-concept template](templates/instagram-one-concept.md)
-- [Reading series](https://cs-kairos.com/blog/series/)
+- [Reading series](https://cs-kairos.com/professional/series/)
 
 `npm test` checks publishing rules and mathematics. Drafts stay in ignored
-`.local/drafts/`; only confirmed public text enters `src/content/blog/`.
-`/blog/` and `/writing/` continue to share the published article data.
+`.local/drafts/`. Confirmed personal writing lives in `src/content/blog/`.
+Confirmed research perspectives, technical essays and learning articles live
+in `src/content/professional/`. Existing writing URLs have compatibility routes.
 
 ## Add A Blog Post
 
