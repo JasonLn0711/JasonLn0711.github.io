@@ -21,8 +21,8 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 ## Summary
 
 The personal site lives at [cs-kairos.com](https://cs-kairos.com/). The
-[reading and navigation design record](docs/site-reading-refinement.zh-tw.md)
-describes the bilingual homepage, mobile reading and access to research evidence.
+[editorial index and typography record](docs/site-v3-editorial-index.zh-tw.md)
+describes the bilingual homepage, topic index and article reading experience.
 The [October domain and course rollout record](docs/phase-0-3-implementation.zh-tw.md)
 documents the separate [Kairos Learning site](https://learn.cs-kairos.com/).
 
@@ -212,7 +212,8 @@ Key routes:
 
 ## Design And Content Records
 
-See the [current bilingual reading and navigation design](docs/site-reading-refinement.zh-tw.md)
+See the [current editorial index and typography](docs/site-v3-editorial-index.zh-tw.md),
+the [previous bilingual reading design](docs/site-reading-refinement.zh-tw.md)
 and the [deployment runbook](docs/deployment-runbook.md). The archived concept
 images are cataloged in the historical design source.
 
