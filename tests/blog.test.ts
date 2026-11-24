@@ -7,7 +7,7 @@ import { compile } from "mdsvex";
 import { compile as compileSvelte } from "svelte/compiler";
 import math from "remark-math";
 import { remarkMathRender } from "../scripts/remark-math-render.js";
-import svelteConfig from "../svelte.config.js";
+import { markdownPreprocessor } from "../scripts/mdsvex-config.js";
 import { readPublishedPosts } from "../scripts/blog-source.ts";
 import { createBlogPosts, recentPosts, taipeiDate, normalizeDate, seriesPosts, articleConnections, type RawBlogMetadata, type Series } from "../src/lib/content/blog-model.ts";
 
@@ -19,7 +19,7 @@ const entry = (slug: string, metadata: RawBlogMetadata = {}) => ({
 });
 
 test("rendered article headings share stable IDs with the static table of contents", async () => {
-  const result = await svelteConfig.preprocess[0].markup({
+  const result = await markdownPreprocessor.markup({
     filename: "headings.mdx",
     content: "## 開始閱讀\n\n### A *small* example\n\n## 開始閱讀\n"
   });

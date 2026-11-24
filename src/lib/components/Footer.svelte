@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { homeCopy, site } from "$lib/content/site";
+  import { homeCopy, site } from "#lib/content/site.ts";
   let zh = $derived(page.url.pathname.startsWith("/zh-tw/"));
   let copy = $derived(homeCopy[zh ? "zh-Hant" : "en"]);
 </script>

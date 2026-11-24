@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import type { BlogPost, Series } from "$lib/content/blog-model";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import type { BlogPost, Series } from "#lib/content/blog-model.ts";
   let { data }: { data: { series: Series; posts: BlogPost[] } } = $props();
 </script>
 <PageMeta title={data.series.title} description={data.series.description} path={`/professional/series/${data.series.slug}/`} />

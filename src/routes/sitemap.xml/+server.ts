@@ -1,5 +1,5 @@
-import { allPosts, professionalSeries } from "$lib/content/blog";
-import { routePaths, site } from "$lib/content/site";
+import { allPosts, professionalSeries } from "#lib/content/blog.ts";
+import { routePaths, site } from "#lib/content/site.ts";
 
 export const prerender = true;
 

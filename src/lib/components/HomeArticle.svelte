@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { BlogPost } from "$lib/content/blog";
-  import { articleLanguage } from "$lib/content/home";
-  import { homeArticleZh } from "$lib/content/site";
+  import type { BlogPost } from "#lib/content/blog.ts";
+  import { articleLanguage } from "#lib/content/home.ts";
+  import { homeArticleZh } from "#lib/content/site.ts";
   let { post, locale = "en", featured = false }: { post: BlogPost; locale?: "en" | "zh-Hant"; featured?: boolean } = $props();
   let zh = $derived(locale === "zh-Hant");
   let translated = $derived(zh ? homeArticleZh[post.slug] : undefined);

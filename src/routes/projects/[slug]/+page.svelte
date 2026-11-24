@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { projects, site } from "$lib/content/site";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { projects, site } from "#lib/content/site.ts";
 
   let { data } = $props<{ data: { project: (typeof projects)[number] } }>();
   let project = $derived(data.project);

@@ -3,7 +3,7 @@ import {
   findTeachingAccelerator,
   findTeachingDay,
   teachingAccelerators
-} from "$lib/content/site";
+} from "#lib/content/site.ts";
 
 export function entries() {
   return teachingAccelerators.flatMap((accelerator) =>

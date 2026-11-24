@@ -2,9 +2,9 @@
   import "../app.css";
   import "katex/dist/katex.min.css";
   import { page } from "$app/state";
-  import { siteLanguage } from "$lib/content/localization";
-  import Footer from "$lib/components/Footer.svelte";
-  import Nav from "$lib/components/Nav.svelte";
+  import { siteLanguage } from "#lib/content/localization.ts";
+  import Footer from "#lib/components/Footer.svelte";
+  import Nav from "#lib/components/Nav.svelte";
 
   let { children } = $props();
 

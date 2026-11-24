@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { site } from "$lib/content/site";
+  import { site } from "#lib/content/site.ts";
 
   export let title: string = site.defaultTitle;
   export let description: string = site.description;

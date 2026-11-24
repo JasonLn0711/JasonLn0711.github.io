@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { site, teachingAccelerators, teachingHighlights } from "$lib/content/site";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { site, teachingAccelerators, teachingHighlights } from "#lib/content/site.ts";
 </script>
 
 <PageMeta

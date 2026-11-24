@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { uniqueResources } from "$lib/content/event-note-links";
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { site, eventNotes } from "$lib/content/site";
+  import { uniqueResources } from "#lib/content/event-note-links.ts";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { site, eventNotes } from "#lib/content/site.ts";
   let { zh = false, slug = "" } = $props<{zh?: boolean; slug?: string}>();
   let query = $state("");
   let base = $derived(zh ? "/zh-tw/event-notes/" : "/event-notes/");

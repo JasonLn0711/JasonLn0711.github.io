@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
-import { professionalSeries, professionalPosts } from "$lib/content/blog";
-import { seriesPosts } from "$lib/content/blog-model";
+import { professionalSeries, professionalPosts } from "#lib/content/blog.ts";
+import { seriesPosts } from "#lib/content/blog-model.ts";
 export const prerender = true;
 export function entries() { return professionalSeries.map((series) => ({ slug: series.slug })); }
 export function load({ params }: { params: { slug: string } }) {

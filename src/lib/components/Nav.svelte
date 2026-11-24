@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
+  import { browser } from "$app/env";
   import { page } from "$app/state";
-  import { alternatePage, siteLanguage } from "$lib/content/localization";
-  import { homeCopy, site } from "$lib/content/site";
+  import { alternatePage, siteLanguage } from "#lib/content/localization.ts";
+  import { homeCopy, site } from "#lib/content/site.ts";
 
   let mobileMenu: HTMLDetailsElement | undefined = $state();
   let menuToggle: HTMLElement | undefined = $state();

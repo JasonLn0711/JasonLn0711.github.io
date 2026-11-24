@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { findTeachingAccelerator, teachingAccelerators } from "$lib/content/site";
+import { findTeachingAccelerator, teachingAccelerators } from "#lib/content/site.ts";
 
 export function entries() {
   return teachingAccelerators.map((accelerator) => ({ accelerator: accelerator.slug }));

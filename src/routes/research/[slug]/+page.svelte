@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { researchPillars, site } from "$lib/content/site";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { researchPillars, site } from "#lib/content/site.ts";
 
   let { data } = $props<{ data: { pillar: (typeof researchPillars)[number] } }>();
   let pillar = $derived(data.pillar);

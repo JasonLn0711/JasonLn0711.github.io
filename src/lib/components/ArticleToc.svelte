@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ArticleHeading } from "$lib/content/article-headings";
+  import type { ArticleHeading } from "#lib/content/article-headings.ts";
 
   let { items = [], label = "Contents" }: { items?: ArticleHeading[]; label?: string } = $props();
   let activeId = $state("");

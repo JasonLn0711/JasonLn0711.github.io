@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { allPosts, allSeries, type BlogPost } from "$lib/content/blog";
-  import { articleConnections, seriesPosts, type RelationType } from "$lib/content/blog-model";
+  import { allPosts, allSeries, type BlogPost } from "#lib/content/blog.ts";
+  import { articleConnections, seriesPosts, type RelationType } from "#lib/content/blog-model.ts";
 
   let { post }: { post: BlogPost } = $props();
   let links = $derived(articleConnections(allPosts, post));

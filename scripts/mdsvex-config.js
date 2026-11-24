@@ -1,9 +1,8 @@
-import adapter from "@sveltejs/adapter-static";
 import { mdsvex } from "mdsvex";
 import remarkMath from "remark-math";
-import { remarkMathRender } from "./scripts/remark-math-render.js";
+import { remarkMathRender } from "./remark-math-render.js";
 
-const mdsvexExtensions = [".svx", ".md", ".mdx"];
+export const mdsvexExtensions = [".svx", ".md", ".mdx"];
 
 /**
  * @typedef {object} MarkdownNode
@@ -37,7 +36,7 @@ function remarkHeadingIds() {
    */
   function transform(tree, file) {
     const seen = new Map();
-    /** @type {import("./src/lib/content/article-headings.ts").ArticleHeading[]} */
+    /** @type {import("../src/lib/content/article-headings.ts").ArticleHeading[]} */
     const articleHeadings = [];
 
     /** @param {MarkdownNode} node */
@@ -64,37 +63,7 @@ function remarkHeadingIds() {
   return transform;
 }
 
-const config = {
-  extensions: [".svelte", ...mdsvexExtensions],
-  preprocess: [
-    mdsvex({
-      extensions: mdsvexExtensions,
-      remarkPlugins: [remarkMath, remarkHeadingIds, remarkMathRender]
-    })
-  ],
-  kit: {
-    csp: {
-      mode: "hash",
-      directives: {
-        "script-src": ["self"],
-        "style-src": ["self", "unsafe-inline"],
-        "object-src": ["none"],
-        "base-uri": ["self"]
-      }
-    },
-    adapter: adapter({
-      pages: "build",
-      assets: "build",
-      fallback: "404.html",
-      strict: true
-    }),
-    files: {
-      assets: "public"
-    },
-    prerender: {
-      entries: ["*"]
-    }
-  }
-};
-
-export default config;
+export const markdownPreprocessor = mdsvex({
+  extensions: mdsvexExtensions,
+  remarkPlugins: [remarkMath, remarkHeadingIds, remarkMathRender]
+});

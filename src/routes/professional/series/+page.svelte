@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { professionalSeries, professionalPosts } from "$lib/content/blog";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { professionalSeries, professionalPosts } from "#lib/content/blog.ts";
 </script>
 <PageMeta title="Reading series · 系列閱讀" description="Follow a larger question through connected articles, one step at a time." path="/professional/series/" />
 <section class="content-shell series-index">

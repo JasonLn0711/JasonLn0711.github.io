@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { findResearch, researchPillars } from "$lib/content/site";
+import { findResearch, researchPillars } from "#lib/content/site.ts";
 
 export function entries() {
   return researchPillars.map((pillar) => ({ slug: pillar.slug }));

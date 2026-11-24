@@ -1,7 +1,7 @@
 <script lang="ts">
-  import IntentAccordion from "$lib/components/IntentAccordion.svelte";
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { site } from "$lib/content/site";
+  import IntentAccordion from "#lib/components/IntentAccordion.svelte";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { site } from "#lib/content/site.ts";
 </script>
 
 <PageMeta

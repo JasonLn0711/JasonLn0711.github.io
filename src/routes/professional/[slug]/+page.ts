@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { professionalPosts, findBlogPost } from "$lib/content/blog";
+import { professionalPosts, findBlogPost } from "#lib/content/blog.ts";
 
 export const prerender = true;
 

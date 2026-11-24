@@ -1,5 +1,5 @@
-import type { Handle } from "@sveltejs/kit";
-import { siteLanguage } from "$lib/content/localization";
+import type { Handle } from "@sveltejs/kit/hooks";
+import { siteLanguage } from "#lib/content/localization.ts";
 
 export const handle: Handle = ({ event, resolve }) => resolve(event, {
   transformPageChunk: ({ html }) =>

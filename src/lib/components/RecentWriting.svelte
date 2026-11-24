@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BlogPost } from "$lib/content/blog";
-  import { homeCopy } from "$lib/content/site";
+  import type { BlogPost } from "#lib/content/blog.ts";
+  import { homeCopy } from "#lib/content/site.ts";
   import HomeArticle from "./HomeArticle.svelte";
   let { posts, locale = "en" }: { posts: BlogPost[]; locale?: "en" | "zh-Hant" } = $props();
   let copy = $derived(homeCopy[locale]);

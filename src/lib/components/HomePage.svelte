@@ -2,9 +2,9 @@
   import PageMeta from "./PageMeta.svelte";
   import RecentWriting from "./RecentWriting.svelte";
   import HomeArticle from "./HomeArticle.svelte";
-  import { professionalPosts } from "$lib/content/blog";
-  import { featuredWriting, latestWriting } from "$lib/content/home";
-  import { homeCopy, homeFeaturedSlugs, homeTopics, homeWork, site } from "$lib/content/site";
+  import { professionalPosts } from "#lib/content/blog.ts";
+  import { featuredWriting, latestWriting } from "#lib/content/home.ts";
+  import { homeCopy, homeFeaturedSlugs, homeTopics, homeWork, site } from "#lib/content/site.ts";
   let { locale = "en" }: { locale?: "en" | "zh-Hant" } = $props();
   let zh = $derived(locale === "zh-Hant");
   let copy = $derived(homeCopy[locale]);

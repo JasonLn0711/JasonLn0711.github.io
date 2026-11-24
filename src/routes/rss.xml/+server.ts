@@ -1,5 +1,5 @@
-import { allPosts } from "$lib/content/blog";
-import { site } from "$lib/content/site";
+import { allPosts } from "#lib/content/blog.ts";
+import { site } from "#lib/content/site.ts";
 
 export const prerender = true;
 const xml = (value: string) => value.replace(/[<>&"']/g, (char) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" }[char]!));

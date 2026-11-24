@@ -1,8 +1,8 @@
 <script lang="ts">
-  import ArticleToc from "$lib/components/ArticleToc.svelte";
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { getTeachingDay } from "$lib/content/teaching";
-  import { site, teachingAccelerators } from "$lib/content/site";
+  import ArticleToc from "#lib/components/ArticleToc.svelte";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { getTeachingDay } from "#lib/content/teaching.ts";
+  import { site, teachingAccelerators } from "#lib/content/site.ts";
 
   let { data } = $props<{
     data: {

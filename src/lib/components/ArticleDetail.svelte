@@ -1,9 +1,9 @@
 <script lang="ts">
-  import ArticleConnections from "$lib/components/ArticleConnections.svelte";
-  import ArticleToc from "$lib/components/ArticleToc.svelte";
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { getBlogArticle, type BlogPost } from "$lib/content/blog";
-  import { site } from "$lib/content/site";
+  import ArticleConnections from "#lib/components/ArticleConnections.svelte";
+  import ArticleToc from "#lib/components/ArticleToc.svelte";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { getBlogArticle, type BlogPost } from "#lib/content/blog.ts";
+  import { site } from "#lib/content/site.ts";
 
   let {
     data

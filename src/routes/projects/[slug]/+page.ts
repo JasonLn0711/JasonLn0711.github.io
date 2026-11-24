@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { findProject, projects } from "$lib/content/site";
+import { findProject, projects } from "#lib/content/site.ts";
 
 export function entries() {
   return projects.map((project) => ({ slug: project.slug }));

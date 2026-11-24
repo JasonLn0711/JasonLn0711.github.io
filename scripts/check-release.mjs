@@ -14,6 +14,7 @@ for (const file of tracked) {
   if (secretPatterns.some(pattern => pattern.test(content))) errors.push(`Possible credential in ${file}; inspect privately.`);
 }
 let checked = 0;
+/** @param {string} dir */
 function walk(dir) {
   for (const item of readdirSync(dir, {withFileTypes:true})) {
     const file = path.join(dir,item.name);

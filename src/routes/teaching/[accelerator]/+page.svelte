@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { site, teachingAccelerators } from "$lib/content/site";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { site, teachingAccelerators } from "#lib/content/site.ts";
 
   let { data } = $props<{ data: { accelerator: (typeof teachingAccelerators)[number] } }>();
   let accelerator = $derived(data.accelerator);

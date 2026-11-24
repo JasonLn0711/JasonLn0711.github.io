@@ -1,7 +1,7 @@
 <script lang="ts">
-  import PageMeta from "$lib/components/PageMeta.svelte";
-  import { professionalPosts, professionalSeries } from "$lib/content/blog";
-  import { site } from "$lib/content/site";
+  import PageMeta from "#lib/components/PageMeta.svelte";
+  import { professionalPosts, professionalSeries } from "#lib/content/blog.ts";
+  import { site } from "#lib/content/site.ts";
   let filter = $state("all");
   let posts = $derived(filter === "all" ? professionalPosts : professionalPosts.filter((post) => filter === "daily-learning" ? post.kind === filter : post.category === filter));
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { contactIntents } from "$lib/content/site";
+  import { contactIntents } from "#lib/content/site.ts";
 
   let active = 0;
 </script>
