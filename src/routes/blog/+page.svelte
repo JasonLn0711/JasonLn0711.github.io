@@ -19,34 +19,37 @@
       <h1>Perspectives, reading and life</h1>
       <p>
         Personal perspectives, reading reflections, life experiences and humanities.
-        個人觀點、閱讀心得、生命經驗，以及人文與個人雜記。
+        <span lang="zh-Hant">個人觀點、閱讀心得、生命經驗，以及人文雜記。</span>
       </p>
     </header>
-    <p>Looking for research or technical articles? <a href="/professional/">Professional writing／專業文章 →</a></p>
-
-    <nav class="filters" aria-label="Article type">
-      <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
-      {#each [["perspective", "Perspectives／個人觀點"], ["reading", "Reading／閱讀心得"], ["life", "Life／生命經驗"], ["humanities", "Humanities & miscellany／人文與雜記"]] as [value, label]}
-        <button type="button" aria-pressed={filter === value} onclick={() => filter = value}>{label}</button>
-      {/each}
-    </nav>
-    <noscript><p>目前列出所有文章；啟用 JavaScript 可切換文章類型。</p></noscript>
-
-    <div class="post-list" aria-live="polite">
-      {#if posts.length === 0}<p>No personal articles have been published here yet. 此處尚未發布個人文章。</p>{/if}
-      {#each posts as post}
-        <article class="post-row">
-          <time datetime={post.date}>{post.dateLabel}</time>
-          <div>
-            <h2><a href={`/blog/${post.slug}/`}>{post.title}</a></h2>
-            <p>{post.description}</p>
-            <span>
-              {post.categoryLabel}{post.tags.length ? ` · ${post.tags.join(" / ")}` : ""}
-            </span>
-          </div>
-        </article>
-      {/each}
-    </div>
+    {#if blogPosts.length > 0}
+      <nav class="filters" aria-label="Article type">
+        <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
+        {#each [["perspective", "Perspectives／個人觀點"], ["reading", "Reading／閱讀心得"], ["life", "Life／生命經驗"], ["humanities", "Humanities & miscellany／人文與雜記"]] as [value, label]}
+          <button type="button" aria-pressed={filter === value} onclick={() => filter = value}>{label}</button>
+        {/each}
+      </nav>
+      <noscript><p lang="zh-Hant">目前列出所有文章。啟用 JavaScript 可切換文章類型。</p></noscript>
+      <div class="post-list" aria-live="polite">
+        {#each posts as post}
+          <article class="post-row">
+            <time datetime={post.date}>{post.dateLabel}</time>
+            <div>
+              <h2><a href={`/blog/${post.slug}/`}>{post.title}</a></h2>
+              <p>{post.description}</p>
+              <span class="post-meta">
+                {post.categoryLabel}{post.tags.length ? ` · ${post.tags.join(" / ")}` : ""}
+              </span>
+            </div>
+          </article>
+        {:else}
+          <p>No articles in this category yet. <span lang="zh-Hant">此分類尚無已發布文章。</span></p>
+        {/each}
+      </div>
+    {:else}
+      <p>No personal articles have been published here yet. <span lang="zh-Hant">此處尚未發布個人文章。</span></p>
+    {/if}
+    <p class="professional-link"><a href="/professional/">Professional writing <span lang="zh-Hant">／專業文章</span> →</a></p>
   </div>
 </section>
 
@@ -94,7 +97,7 @@
   }
 
   time,
-  span {
+  .post-meta {
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.78rem;
@@ -111,6 +114,10 @@
     margin: 0.45rem 0 0.55rem;
     color: var(--muted);
     line-height: 1.72;
+  }
+
+  .professional-link {
+    margin-top: 1.25rem;
   }
 
   @media (max-width: 700px) {

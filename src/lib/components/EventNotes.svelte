@@ -105,7 +105,7 @@
         {#each copy.qa as item, index}<h3 id={index === 2 ? "tool-comparison" : undefined}>{item.q}</h3><p>{item.a}</p><p class="source-caption">{zh ? "參考" : "Reference"}：{item.sourceLabel}</p>{/each}
         <aside><h3>{copy.quizTitle}</h3><p>{copy.quiz}</p><details><summary>{zh ? "展開答案與解說" : "Reveal answer and explanation"}</summary><p>{copy.answer}</p></details></aside>
       </section>
-      <section id="reflection"><h2>{zh ? "個人心得" : "Personal reflection"}</h2><p>{copy.reflection}</p><h3>{zh ? "實作狀態" : "Practice status"}</h3><p>{zh ? "尚無可公開的實作與執行驗證紀錄。" : "No public implementation or execution evidence has been added."}</p></section>
+      <section id="reflection"><h2>{zh ? "個人心得" : "Personal reflection"}</h2><p>{copy.reflection}</p></section>
       <section id="sources"><h2>{zh ? "來源清單" : "Source list"}</h2>
         <p>{zh ? "課堂教材與技術文件集中在這裡，每個資源保留一個連結。Hera 是動態生成工具入口，Motion UX 提供動態設計教學；GSAP 的首頁、API、緩動與捲動文件各有不同用途。" : "Materials and technical references are collected here, with one link per resource. Hera is a motion-generation tool and Motion UX provides design tutorials. GSAP’s homepage, API, easing and scrolling documents serve distinct purposes."}</p>
         <ul>{#each resources as resource}<li><a href={resource.source}>{resource.sourceLabel}</a></li>{/each}</ul>
@@ -126,7 +126,6 @@
           <dt>{zh ? "教材" : "Materials"}</dt><dd><a href="#sources">{zh ? "簡報、共筆與官方文件" : "Slides, shared notes and documentation"}</a></dd>
         </dl>
         <p>{copy.speakerBio}</p>
-        <div class="boundary"><h3>{zh ? "筆記狀態" : "Note status"}</h3><p>{copy.status} {copy.scope}</p></div>
         <p>{zh ? "更新日期" : "Updated"}：<time datetime={entry.updated}>{entry.updated}</time></p>
         <a href="#knowledge">{zh ? "回到知識筆記 ↑" : "Back to the notes ↑"}</a></details>
       </div>
@@ -179,8 +178,6 @@
   .event-sidebar .metadata { grid-template-columns: minmax(0, 1fr); }
   .event-sidebar dt { border-bottom: 0; padding-bottom: 0; font-size: .8rem; }
   .event-sidebar dd { padding-top: .2rem; }
-  .event-sidebar h3 { font-size: 1rem; }
-  .event-sidebar .boundary { padding: .65rem; }
   .lesson { padding-block: 1.5rem; }
   .lesson:target { border-top-color: var(--accent); }
   .lesson h3 { margin-top: .5rem; font-size: 1.4rem; }
@@ -203,7 +200,7 @@
     .entry-grid { display: block; }
     .event-sidebar { position: static; max-height: none; overflow: visible; }
   }
-  .boundary, aside { padding: 1rem; border-left: 2px solid var(--accent); background: var(--accent-soft); }
+  aside { padding: 1rem; border-left: 2px solid var(--accent); background: var(--accent-soft); }
   summary { cursor: pointer; padding-block: .75rem; color: var(--accent); }
   input { display: block; width: 100%; box-sizing: border-box; margin-top: .6rem; padding: .8rem; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); }
   .note-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; border-top: 1px solid var(--line); padding-block: 1.5rem; }

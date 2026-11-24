@@ -5,7 +5,7 @@
 
 <PageMeta
   title={`Teaching | ${site.name}`}
-  description="Public teaching surfaces and accelerator handouts for AI systems engineering, AI Gateway architecture, agent governance, cybersecurity, and enterprise delivery."
+  description="Courses and handouts on AI systems engineering, AI Gateway architecture, agent governance, cybersecurity, and deployment."
   path="/teaching/"
 />
 
@@ -13,12 +13,9 @@
   <div class="content-shell">
     <header class="index-head">
       <p class="kicker">Teaching</p>
-      <h1>AI systems engineering, taught as evidence work.</h1>
+      <h1>Learn AI systems engineering</h1>
       <p>
-        This page collects public-safe learning surfaces from the AI Systems
-        Engineering Handbook and related talks. The goal is to help students and
-        builders move from model demos to architecture, governance, security,
-        validation, and delivery evidence.
+        Use worked examples and exercises to design, secure and evaluate AI systems.
       </p>
     </header>
 
@@ -30,10 +27,7 @@
     </section>
 
     <section class="plain-section" aria-labelledby="accelerators-heading">
-      <div class="section-title-row">
-        <h2 id="accelerators-heading">Accelerators</h2>
-        <a href={site.github} rel="noreferrer" target="_blank">GitHub</a>
-      </div>
+      <h2 id="accelerators-heading">Courses and handouts</h2>
 
       <div class="accelerator-list">
         {#each teachingAccelerators as accelerator}
@@ -53,7 +47,6 @@
                     <a class="day-row" href={day.href}>
                       <span>{day.day}</span>
                       <strong>{day.title}</strong>
-                      <em>{day.status}</em>
                     </a>
                   {:else}
                     <div class="day-row upcoming">
@@ -71,7 +64,7 @@
     </section>
 
     <section class="plain-section" aria-labelledby="surfaces-heading">
-      <h2 id="surfaces-heading">Teaching surfaces</h2>
+      <h2 id="surfaces-heading">Related teaching material</h2>
       <div class="surface-list">
         {#each teachingHighlights as item}
           <article>
@@ -81,7 +74,6 @@
             </div>
             <h3><a href={item.href}>{item.title}</a></h3>
             <p>{item.summary}</p>
-            <span>{item.status}</span>
           </article>
         {/each}
       </div>
@@ -117,13 +109,6 @@
   .plain-section {
     border-top: 1px solid var(--line);
     padding-block: clamp(2.1rem, 6vw, 3.4rem);
-  }
-
-  .section-title-row {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-    justify-content: space-between;
   }
 
   h2 {
@@ -241,9 +226,5 @@
       gap: 0.35rem;
     }
 
-    .section-title-row {
-      display: grid;
-      gap: 0.15rem;
-    }
   }
 </style>

@@ -4,15 +4,15 @@
 </script>
 
 <PageMeta
-  title={`Now | ${site.name}`}
-  description="A recent public-safe map of Jason Lin's April-June 2026 research, systems, teaching, and writing work."
+  title={`Work archive | ${site.name}`}
+  description="Jason Lin's April–June 2026 research, projects, teaching and writing."
   path="/now/"
 />
 
 <section class="now-page">
   <div class="content-shell">
     <header class="page-head">
-      <p class="kicker">Now / Recent work</p>
+      <p class="kicker">Work archive</p>
       <h1>{currentSnapshot.period}</h1>
       <p class="lead">{currentSnapshot.summary}</p>
     </header>
@@ -63,10 +63,6 @@
       </div>
     </section>
 
-    <section class="plain-section boundary" aria-labelledby="boundary-heading">
-      <h2 id="boundary-heading">Public boundary</h2>
-      <p>{currentSnapshot.boundary}</p>
-    </section>
   </div>
 </section>
 
@@ -164,10 +160,6 @@
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.78rem;
-  }
-
-  .boundary p {
-    margin: 0;
   }
 
   @media (max-width: 700px) {

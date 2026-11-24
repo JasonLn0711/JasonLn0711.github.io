@@ -5,22 +5,15 @@
 
 <PageMeta
   title={`Systems | ${site.name}`}
-  description="Public-safe systems and prototypes for clinical workflow support, voice AI, speech evidence, fraud analysis, and cybersecurity."
+  description="Systems and prototypes for clinical workflow support, voice AI, speech evidence, fraud analysis, and cybersecurity."
   path="/projects/"
 />
 
 <section class="index-page">
   <div class="content-shell">
     <header class="index-head">
-      <p class="kicker">Systems</p>
-      <h1>Small honest demos, explicit evidence, clear scope.</h1>
-      <p>
-        These projects are framed by the problem they address, the capability
-        they demonstrate, the evidence surface behind them, and the next
-        validation layer. Clinical and regulated systems stay synthetic,
-        staff-review oriented, and deliberately bounded unless a separate
-        governance path exists.
-      </p>
+      <h1>Projects and prototypes</h1>
+      <p>Explore work on clinical workflows, real-time voice, speech evidence and cybersecurity.</p>
     </header>
 
     <div class="system-list">
@@ -33,11 +26,6 @@
           <div>
             <h2><a href={`/projects/${project.slug}/`}>{project.title}</a></h2>
             <p>{project.summary}</p>
-            <div class="evidence-list">
-              {#each project.evidence.slice(0, 2) as item}
-                <span>{item}</span>
-              {/each}
-            </div>
           </div>
         </article>
       {/each}
@@ -101,19 +89,6 @@
 
   p {
     margin: 0.5rem 0 0;
-  }
-
-  .evidence-list {
-    display: grid;
-    gap: 0.55rem;
-    margin-top: 1rem;
-  }
-
-  .evidence-list span {
-    border-left: 2px solid var(--line-strong);
-    padding-left: 0.8rem;
-    color: var(--muted);
-    line-height: 1.62;
   }
 
   @media (max-width: 760px) {

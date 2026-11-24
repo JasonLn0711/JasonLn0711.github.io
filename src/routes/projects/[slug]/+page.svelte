@@ -16,7 +16,7 @@
 <section class="detail-page">
   <div class="content-shell">
     <nav class="back-nav" aria-label="Back navigation">
-      <a href="/projects/">Systems</a>
+      <a href="/projects/">Projects</a>
     </nav>
     <article>
       <header class="detail-head">
@@ -31,12 +31,12 @@
       </section>
 
       <section class="plain-section">
-        <h2>System response</h2>
+        <h2>How it works</h2>
         <p>{project.systemResponse}</p>
       </section>
 
       <section class="plain-section">
-        <h2>Evidence surface</h2>
+        <h2>What the project demonstrates</h2>
         <ul>
           {#each project.evidence as item}
             <li>{item}</li>
@@ -53,10 +53,6 @@
         </div>
       </section>
 
-      <section class="plain-section">
-        <h2>Next validation layer</h2>
-        <p>{project.next}</p>
-      </section>
     </article>
   </div>
 </section>

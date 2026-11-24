@@ -26,7 +26,7 @@
       </header>
 
       <section class="plain-section">
-        <h2>First principle</h2>
+        <h2>What you’ll learn</h2>
         <p>{accelerator.thesis}</p>
       </section>
 
@@ -41,7 +41,6 @@
                   <h3>{day.title}</h3>
                   <p>{day.description}</p>
                 </div>
-                <em>{day.status}</em>
               </a>
             {:else}
               <div class="day-row upcoming">
@@ -58,7 +57,7 @@
       </section>
 
       <section class="plain-section">
-        <h2>Evidence definition</h2>
+        <h2>What you’ll make</h2>
         <ul>
           {#each accelerator.evidenceDefinition as item}
             <li>{item}</li>
@@ -66,19 +65,6 @@
         </ul>
       </section>
 
-      <section class="plain-section">
-        <h2>Expansion mechanism</h2>
-        <ol>
-          {#each accelerator.expansionModel as item}
-            <li>{item}</li>
-          {/each}
-        </ol>
-      </section>
-
-      <section class="plain-section">
-        <h2>Source boundary</h2>
-        <p>{accelerator.boundary}</p>
-      </section>
     </article>
   </div>
 </section>
@@ -153,7 +139,7 @@
 
   .day-row {
     display: grid;
-    grid-template-columns: 5rem minmax(0, 1fr) 10rem;
+    grid-template-columns: 5rem minmax(0, 1fr);
     gap: 1rem;
     align-items: start;
     border-top: 1px solid var(--line);
@@ -183,8 +169,7 @@
     color: var(--muted);
   }
 
-  ul,
-  ol {
+  ul {
     display: grid;
     gap: 0.65rem;
     margin: 0;

@@ -15,9 +15,8 @@
       <p class="kicker">Research</p>
       <h1>Evidence-aware AI systems for high-stakes work.</h1>
       <p>
-        My research asks how AI systems preserve evidence, human review,
-        reconstructability, and public-safe scope when they move from fluent
-        outputs into decisions, workflows, and action.
+        I study how AI systems use evidence, how people review their decisions,
+        and how we can reconstruct what happened when an AI system acts.
       </p>
     </header>
 
@@ -31,12 +30,6 @@
           <div>
             <h2><a href={`/research/${pillar.slug}/`}>{pillar.title}</a></h2>
             <p>{pillar.summary}</p>
-            <p class="thesis">{pillar.thesis}</p>
-            <div class="evidence-list">
-              {#each pillar.evidence.slice(0, 2) as item}
-                <span>{item}</span>
-              {/each}
-            </div>
           </div>
         </article>
       {/each}
@@ -100,23 +93,6 @@
 
   p {
     margin: 0.5rem 0 0;
-  }
-
-  .thesis {
-    color: var(--ink);
-  }
-
-  .evidence-list {
-    display: grid;
-    gap: 0.55rem;
-    margin-top: 1rem;
-  }
-
-  .evidence-list span {
-    border-left: 2px solid var(--line-strong);
-    padding-left: 0.8rem;
-    color: var(--muted);
-    line-height: 1.62;
   }
 
   @media (max-width: 760px) {

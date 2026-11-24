@@ -28,33 +28,31 @@ export const currentSnapshot = {
   period: "April-June 2026",
   headline: "Evidence-aware AI systems for high-stakes work.",
   summary:
-    "I build and study AI systems where the hard part is not only model output, but evidence, review, governance, and safe handoff: speech decision stability, clinical workflow support, agent governance, cybersecurity evidence, and practical AI systems education.",
+    "From April to June 2026 I studied speech decision stability and AI governance, built clinical and voice workflow prototypes, and developed AI systems engineering lessons.",
   focusAreas: [
     "Research evidence for speech-to-decision stability, provenance-bounded evidence packets, and false-governability forecasting.",
-    "Public-safe prototypes for urology previsit support, vital-aware kiosk intake, realtime voice interaction, and local meeting-summary trust.",
+    "Prototypes for urology previsit support, vital-aware kiosk intake, real-time voice interaction, and local meeting summaries.",
     "Teaching materials that translate AI Gateway, agent governance, model serving, voice AI, and security into deployable engineering practice."
-  ],
-  boundary:
-    "Recent work is summarized from public-safe repo artifacts and planning summaries. Raw planning notes, private contacts, patient-like data, raw transcripts, credentials, and patent-sensitive mechanics are intentionally kept out of the website."
+  ]
 } as const;
 
 export const workTracks = [
   {
     title: "Research evidence",
     summary:
-      "Turning manuscript and benchmark work into claim-gated evidence surfaces: CDS-ASR, PB-EGP/STV, TFSC false governability, and WISA CaseTrace.",
+      "Four studies on speech decision stability, evidence packets for small models, AI governance, and security case evidence.",
     href: "/research/"
   },
   {
-    title: "Deployable prototypes",
+    title: "Systems and prototypes",
     summary:
-      "Building narrow, reviewable systems that demonstrate the workflow before making larger claims: UroPrevisit Navigator, AI Triage Kiosk, Jarvis Voice Sight, and Project AURA.",
+      "Explore previsit intake, a triage kiosk demo, real-time voice interaction, and local meeting reports.",
     href: "/projects/"
   },
   {
-    title: "Teaching and translation",
+    title: "Teaching",
     summary:
-      "Packaging AI systems engineering into practical learning artifacts: AI Gateway, agent governance, model serving, voice AI, cybersecurity, and enterprise delivery.",
+      "Learn AI gateways, agent governance, model serving, voice AI, cybersecurity, and deployment through lessons and exercises.",
     href: "/teaching/"
   }
 ] as const;
@@ -74,10 +72,10 @@ export const recentHighlights = [
     date: "2026-06",
     period: "June 2026",
     category: "Research",
-    title: "CDS-ASR / JANUS evidence hardening",
+    title: "CDS-ASR / JANUS speech decision stability",
     summary:
       "Advanced a speech-to-decision stability research line that tests whether downstream decisions remain stable under plausible ASR alternatives.",
-    status: "Selected-300 aggregate review complete; raw audio and transcripts remain private",
+    status: "Aggregate review of the Selected-300 set complete",
     href: "/research/counterfactual-decision-stability-asr/"
   },
   {
@@ -86,8 +84,8 @@ export const recentHighlights = [
     category: "Research",
     title: "PB-EGP and Support-Transfer Validation",
     summary:
-      "Developed provenance-bounded evidence graph packet work for small-model decision support, with release gates, audit protocols, and public-benchmark orientation.",
-    status: "Fallback package and validation gates ready for owner release-channel decision",
+      "Designed a benchmark to test whether evidence packets improve decisions by small models under a fixed token budget.",
+    status: "Benchmark design",
     href: "/research/provenance-bounded-evidence-packets/"
   },
   {
@@ -96,7 +94,7 @@ export const recentHighlights = [
     category: "System",
     title: "AI Triage Kiosk demo",
     summary:
-      "Built a synthetic vital-aware intake and staff-review summary demo for a June market demonstration, with a narrow API contract and explicit clinical-scope controls.",
+      "Built a kiosk demo that uses synthetic vital signs to ask follow-up questions and prepare a summary for staff review.",
     status: "Synthetic-data market demo; no autonomous diagnosis or production clinical triage",
     href: "/projects/ai-triage-kiosk-demo/"
   },
@@ -106,7 +104,7 @@ export const recentHighlights = [
     category: "System",
     title: "UroPrevisit Navigator",
     summary:
-      "Hardened a urology previsit workflow prototype for adaptive question navigation, missing-field repair, clinician-review summaries, and PSA/CRM-ready proposal framing.",
+      "Built a urology previsit prototype that asks follow-up questions, fills gaps in the intake and prepares a summary for clinician review.",
     status: "Synthetic-data workflow prototype for staff-review support",
     href: "/projects/uroprevisit-navigator/"
   },
@@ -117,7 +115,7 @@ export const recentHighlights = [
     title: "Jarvis Voice Sight",
     summary:
       "Built a mock-first realtime voice agent path with always-listening interaction, VAD, barge-in, turn isolation, streaming TTS, and Ollama/vLLM runtime support.",
-    status: "Realtime prototype with typecheck, lint, test, smoke, health, and demo gates",
+    status: "Real-time voice prototype",
     href: "/projects/jarvis-voice-sight/"
   },
   {
@@ -137,7 +135,7 @@ export const recentHighlights = [
     title: "TFSC false-governability manuscript",
     summary:
       "Rebuilt an AI governance manuscript around false-governability onset, review scarcity, bounded authority, and reconstructable runtime governance.",
-    status: "Submission-candidate package with public-safe evidence framing",
+    status: "Manuscript prepared for submission",
     href: "/research/false-governability-runtime-governance/"
   }
 ] as const;
@@ -146,31 +144,30 @@ export const timelineMonths = [
   {
     month: "April 2026",
     summary:
-      "Research and public-profile foundations: journal-path revision, urology demo readiness, governed scam-content research routing, Network Security and coursework packaging, and CYBERSEC talk preparation.",
+      "Work on the urology intake prototype, scam-risk research and the CYBERSEC medical cybersecurity talk.",
     items: [
-      "Prepared evidence-led public-site and resume direction around trustworthy AI and speech systems.",
-      "Moved urology previsit work toward a safe local demo and reviewer-ready workflow evidence.",
-      "Kept Meta/Threads research bounded as reviewer-support and public-interest scam-risk work."
+      "Developed the urology previsit workflow for a local demonstration.",
+      "Framed scam-risk research around evidence that people can review."
     ]
   },
   {
     month: "May 2026",
     summary:
-      "Clinical workflow prototypes and manuscript reframing became the center of gravity: AI triage, UroPrevisit Navigator, Project AURA, TFSC, WISA, and CYBERSEC delivery.",
+      "Clinical workflow prototypes, AI governance research and a medical cybersecurity talk.",
     items: [
       "Delivered CYBERSEC 2026 medical cybersecurity session.",
-      "Converted imedtac AI triage into a narrow synthetic vital-aware demo with a staff-review summary boundary.",
-      "Clarified the Health Taiwan / urology proposal route as PSA follow-up, adaptive previsit questions, clinician-review summaries, and CRM-ready fields."
+      "Built a synthetic triage kiosk demo with a summary for staff review.",
+      "Designed a urology previsit workflow around PSA follow-up and clinician review."
     ]
   },
   {
     month: "June 2026",
     summary:
-      "The work shifted into evidence hardening, release gates, and education packaging across CDS-ASR, PB-EGP/STV, TFSC, WISA, Jarvis Voice Sight, Project AURA, and the AI Systems Engineering Handbook.",
+      "Speech decision stability, evidence packets, voice prototypes and AI systems teaching.",
     items: [
-      "Completed aggregate-safe research evidence surfaces for speech decision stability and evidence-packet work.",
+      "Completed aggregate review for the Selected-300 speech decision study and advanced the evidence-packet benchmark design.",
       "Built AI systems engineering teaching packets around AI Gateway, agent governance, model serving, vLLM/SGLang, and enterprise delivery.",
-      "Advanced realtime voice interaction and local meeting-summary trust prototypes with explicit runtime validation gates."
+      "Improved real-time voice interaction and the local meeting-summary workflow."
     ]
   }
 ] as const;
@@ -180,7 +177,7 @@ export const researchPillars = [
     slug: "counterfactual-decision-stability-asr",
     title: "Counterfactual Decision-Stability ASR",
     shortTitle: "CDS-ASR",
-    maturity: "Manuscript hardening",
+    maturity: "Manuscript in preparation",
     summary:
       "A speech-to-decision stability research line that asks whether downstream decisions remain stable under plausible transcript alternatives.",
     thesis:
@@ -188,14 +185,12 @@ export const researchPillars = [
     why:
       "Real deployments use transcripts as input to decisions, summaries, and escalation logic. A transcript can look acceptable while still changing the action a downstream system takes.",
     evidence: [
-      "JANUS workspace organized around audio, ASR hypotheses, risk atoms, counterfactual variants, CEIS scoring, and constrained recovery.",
-      "Selected-300 aggregate review surface completed with dual-review and model-level assessment summaries.",
-      "Evidence-chain audits preserve aggregate counts and readiness gates while keeping audio, transcripts, row IDs, and reviewer notes outside the public site."
+      "JANUS compares plausible transcript alternatives and evaluates whether they change a downstream decision.",
+      "The Selected-300 aggregate review is complete, with two reviews and model-level assessment summaries."
     ],
     validation: ["ASR hypotheses", "Risk atoms", "Counterfactual variants", "Decision stability"],
-    outputs: "Manuscript evidence, aggregate audits, recovery-policy checks, and submission-readiness artifacts.",
     boundary:
-      "Public pages describe the research question and aggregate readiness only. Raw audio, transcripts, row content, local hypotheses, and reviewer notes remain private.",
+      "The evidence described here is aggregated across the selected set.",
     questions: [
       "Which transcript alternatives are plausible enough to matter for downstream review?",
       "When does low WER still hide decision-relevant risk?",
@@ -214,18 +209,15 @@ export const researchPillars = [
     why:
       "Organizations want smaller, cheaper, local, or private models to support decisions, but weak grounding can create unsupported claims and brittle outputs.",
     evidence: [
-      "PB-EGP scope defines provenance-bounded evidence graph packets against top-k text, summaries, graph pruning, and context compression.",
-      "Support-Transfer Validation work advanced through adjudication, fallback packaging, release manifests, and semantic validation.",
-      "Pilot design focuses on public SciFact and FEVEROUS records with unsupported-claim, provenance-validity, correctness, and stability metrics."
+      "The pilot compares evidence graph packets with top-k text, summaries, graph pruning, and context compression.",
+      "SciFact and FEVEROUS provide public records for measuring unsupported claims, source validity, correctness, and decision stability."
     ],
     validation: ["Public records", "Packet schema", "Audit rubric", "Decision stability"],
-    outputs: "Research charter, schemas, pilot fixtures, validation gates, and manuscript strategy.",
     boundary:
-      "Benchmark rows, gold files, prompts, packet internals, and raw source text stay in the execution repo until a deliberate public release channel is chosen.",
+      "The evidence here describes the study design and evaluation criteria.",
     questions: [
       "What evidence structure helps a small model stay grounded under a fixed token budget?",
-      "How should provenance validity be measured separately from answer correctness?",
-      "When is a fallback-scope research package ready for public artifact release?"
+      "How should provenance validity be measured separately from answer correctness?"
     ]
   },
   {
@@ -240,14 +232,13 @@ export const researchPillars = [
     why:
       "High-audit AI systems increasingly draft, route, classify, recommend, and act. Governance must therefore preserve action-episode accountability, not only policy language.",
     evidence: [
-      "TFSC-facing manuscript rebuilt around false-governability onset under review scarcity.",
-      "Taiwan 165 is used as a public-safe parameterization anchor for high-audit governance pressure.",
-      "Evidence framing separates throughput from audit completeness, reconstructability, review backlog, and bounded-authority controls."
+      "The manuscript models when scarce review capacity can make an AI workflow hard to reconstruct.",
+      "Taiwan 165 provides public context for modeling pressure on review capacity.",
+      "The framework tracks throughput, audit completeness, reconstructability, review backlog, and the authority granted to the system."
     ],
-    validation: ["Governance mechanism", "Public-safe anchor", "Runtime accountability", "Submission proof"],
-    outputs: "Manuscript package, conceptual figures, public-safe evidence architecture, and portal-proof artifacts.",
+    validation: ["Review capacity", "Public case context", "Runtime accountability"],
     boundary:
-      "The website summarizes the governance mechanism and manuscript state. Protected records, legal claims, deployment claims, and domain-specific outcome claims require separate authorized evidence.",
+      "The evidence here concerns the proposed governance mechanism and its conceptual model.",
     questions: [
       "How early can an organization forecast false-governability onset?",
       "Which traces preserve reconstructability when human review is scarce?",
@@ -258,22 +249,21 @@ export const researchPillars = [
     slug: "security-evidence-casetrace",
     title: "Security Evidence and CaseTrace",
     shortTitle: "CaseTrace",
-    maturity: "Conference paper path",
+    maturity: "Conference paper in preparation",
     summary:
-      "A security-evidence research direction that turns reviewer feedback into traceable public-source case evidence, uncertainty labels, and baseline comparison.",
+      "A method for tracing security case claims to public sources, with uncertainty labels and a baseline comparison.",
     thesis:
       "Security papers become stronger when claims are mapped to reproducible case evidence, uncertainty, defense-control implications, and explicit comparison instead of broad threat narratives.",
     why:
       "AI/security research is often evaluated under scarce reviewer attention. Traceable evidence methods help reviewers see the technical contribution and its limits quickly.",
     evidence: [
-      "WISA 2026 package reframed around a new contribution-first CaseTrace direction rather than a polished resubmission.",
-      "Evidence package records 18 coded rows across 3 cases, source corpus, case index, missing-evidence notes, baseline comparison, and LNCS structure.",
+      "CaseTrace maps claims to public sources and marks where the evidence is incomplete.",
+      "The study contains 18 coded entries across 3 cases, with a source index and a baseline comparison.",
       "CYBERSEC medical cybersecurity work translates FDA 524B, threat modeling, SBOM, Zero Trust, and Patch SLA into public teaching material."
     ],
-    validation: ["Case corpus", "Uncertainty labels", "Baseline comparison", "Reviewer gates"],
-    outputs: "CaseTrace manuscript path, readiness checklist, public talk material, and evidence mapping templates.",
+    validation: ["Case corpus", "Uncertainty labels", "Baseline comparison"],
     boundary:
-      "The site only presents public-source methodology and teaching artifacts. Sensitive case material, controlled evidence, and unpublished details stay in their execution repos.",
+      "The case analysis draws on public sources.",
     questions: [
       "What evidence makes a security case study reproducible enough for reviewer scrutiny?",
       "How can uncertainty labels prevent overclaiming in AI/security papers?",
@@ -289,39 +279,37 @@ export const projects = [
     category: "Clinical workflow support",
     readiness: "Synthetic workflow prototype",
     summary:
-      "A urology previsit workflow that uses synthetic cases, adaptive governed questions, missing-field repair, and clinician-review summaries for PSA follow-up and CRM-ready proposal work.",
+      "A urology previsit prototype that uses synthetic cases to collect intake details, ask follow-up questions, and prepare a summary for clinician review.",
     humanPain:
       "Urology previsit work can lose useful context before the clinician sees the patient: symptoms, PSA follow-up signals, missing fields, and patient questions arrive in fragmented form.",
     systemResponse:
-      "The prototype keeps the workflow narrow: synthetic intake, governed adaptive previsit questions, source-attributed state, role-separated outputs, and clinician-review summaries.",
+      "The next intake question adapts to the answers and missing fields. Separate views let patients, staff, and clinicians see the information relevant to their roles.",
     evidence: [
-      "Versioned synthetic-case workflow with patient, nurse, clinician, visit-packet, and reviewer views.",
-      "ASR-ready adaptive-question path that stops before diagnostic drift.",
-      "Deep-cultivation positioning around PSA follow-up, clinician-review summaries, and CRM-ready fields."
+      "Patient, nurse, clinician, and reviewer views using synthetic cases.",
+      "A visit summary that highlights PSA follow-up information for clinician review.",
+      "An adaptive question flow limited to previsit intake."
     ],
     stack: ["Static web", "Synthetic cases", "Adaptive questions", "Local ASR", "Workflow validation"],
-    cover: "/og/default.png",
-    next: "Use the governed proposal route to clarify owners, data path, procurement, SOP, and CRM support before any production integration claim."
+    cover: "/og/default.png"
   },
   {
     slug: "ai-triage-kiosk-demo",
     title: "AI Triage Kiosk Demo",
     category: "Market demo / staff-review support",
-    readiness: "Public-safe demo",
+    readiness: "Synthetic-data demo",
     summary:
-      "A synthetic vital-aware kiosk intake demo that returns governed English follow-up questions and a staff-review summary for an imedtac market demonstration.",
+      "A kiosk demo that uses synthetic vital signs to ask English follow-up questions and prepare a summary for staff review.",
     humanPain:
-      "A customer-facing kiosk demo needs to show AI capability without implying autonomous clinical triage, diagnosis, treatment, or production HIS/EMR integration.",
+      "Intake staff need a compact view of reported symptoms, vital signs, and missing information before they decide how to help.",
     systemResponse:
-      "The demo uses a fixed narrow contract: synthetic vital payload, choice-only follow-up, session continuity, safe fallback behavior, and staff-review summary output.",
+      "The demo uses a fixed set of intake questions with selectable answers and carries context from one answer to the next. Clinical decisions remain with staff.",
     evidence: [
-      "Two-endpoint API and field semantics aligned for the June demo baseline.",
-      "Runtime checks for demo-only safety boundaries and governed-question ranking.",
-      "QR summary bridge, option-label handling, partial-vitals behavior, and bearer-token rehearsal API hardened."
+      "Follow-up questions selected from reported symptoms and synthetic vital signs.",
+      "Staff-review summary available through a QR Code.",
+      "Intake can continue when some vital signs are unavailable."
     ],
     stack: ["Static web", "JavaScript", "REST API", "Governed question routing", "Demo validation"],
-    cover: "/og/default.png",
-    next: "Keep future endpoint, wording, field, or UI changes under recorded change control with imedtac before widening scope."
+    cover: "/og/default.png"
   },
   {
     slug: "jarvis-voice-sight",
@@ -329,19 +317,17 @@ export const projects = [
     category: "Voice AI",
     readiness: "Realtime prototype",
     summary:
-      "A mock-first realtime voice agent prototype with always-listening interaction, VAD, barge-in, turn isolation, sentence-level streaming TTS, and Ollama/vLLM runtime support.",
+      "A real-time voice prototype you can interrupt mid-response. It streams spoken replies by sentence and supports Ollama or vLLM.",
     humanPain:
       "Voice assistants often fail when conversation becomes interruptible, long-form, or latency-sensitive. The user needs to keep speaking without the system losing turn state.",
     systemResponse:
       "The prototype separates the frontend from an orchestrator and replaceable ASR, LLM, TTS, and emotion adapters, then measures whether users continue beyond the first exchange.",
     evidence: [
       "Realtime mode, stale-audio discard, cancellable TTS queue, and sentence-level audio streaming.",
-      "Mock mode for microphone-unavailable contexts while preserving the full pipeline contract.",
-      "Typecheck, lint, test, benchmark, realtime smoke, health, preflight, and demo scripts."
+      "A simulated mode for trying the conversation flow without a microphone."
     ],
     stack: ["TypeScript", "Voice AI", "VAD", "Streaming TTS", "Ollama", "vLLM"],
-    cover: "/og/default.png",
-    next: "Use session memory and retrieval as the next design layer only after the continuous conversation loop remains stable."
+    cover: "/og/default.png"
   },
   {
     slug: "project-aura",
@@ -353,15 +339,13 @@ export const projects = [
     humanPain:
       "Meeting summaries are useful only if the user can trust the input, model runtime, field structure, and failure behavior instead of receiving a fluent but uninspectable digest.",
     systemResponse:
-      "The workflow consumes corrected transcripts, runs local layered extraction, renders structured JSON to Markdown, and checks the local Ollama model path before use.",
+      "A local Ollama model extracts information from a corrected transcript, then the app formats it as a structured Markdown report.",
     evidence: [
-      "Parallel layered extraction, field schemas, prompts, sample report, and tests.",
-      "Local Ollama preflight with exact model-tag checking and user-confirmed model pull behavior.",
-      "Runtime hardening separated model, environment, and UI error states."
+      "Structured reports with consistent fields.",
+      "Local model availability and processing errors are visible in the app."
     ],
     stack: ["Python", "PyQt", "Ollama", "Local LLM", "Structured extraction"],
-    cover: "/og/default.png",
-    next: "Run the workflow on real corrected meeting transcripts and decide whether the next step is UI polish or real-use accumulation."
+    cover: "/og/default.png"
   },
   {
     slug: "speech-evidence-intelligence-pipeline",
@@ -376,8 +360,7 @@ export const projects = [
       "The pipeline keeps audio, transcript spans, retrieval context, and final claims connected so reviewers can inspect where an output came from.",
     evidence: ["ASR and transcript segmentation", "Retrieval over evidence-bearing spans", "Structured extraction for reviewer handoff"],
     stack: ["Python", "ASR", "Whisper", "RAG", "LLM pipelines"],
-    cover: "/projects/speech-evidence-intelligence-pipeline.svg",
-    next: "Expand evaluation notes for transcript quality, retrieval grounding, and analyst review effort."
+    cover: "/projects/speech-evidence-intelligence-pipeline.svg"
   },
   {
     slug: "fraud-conversation-analysis-rag",
@@ -392,8 +375,7 @@ export const projects = [
       "Grounded retrieval surfaces relevant transcript segments before reasoning, so generated answers remain tied to recoverable dialogue evidence.",
     evidence: ["Transcript indexing", "Evidence-bearing dialogue retrieval", "Grounding and hallucination-control evaluation"],
     stack: ["Python", "RAG", "LLM pipelines", "Transcript analysis"],
-    cover: "/projects/fraud-conversation-analysis-rag.svg",
-    next: "Add explicit retrieval-quality and evidence-support evaluation artifacts."
+    cover: "/projects/fraud-conversation-analysis-rag.svg"
   },
   {
     slug: "federated-learning-leakage-study",
@@ -408,8 +390,7 @@ export const projects = [
       "The study compares collaborative training assumptions against realistic leakage scenarios and defense trade-offs.",
     evidence: ["Threat-model framing", "Gradient leakage literature", "Secure aggregation and privacy-utility comparison"],
     stack: ["PyTorch", "Federated learning", "Privacy", "Gradient leakage"],
-    cover: "/projects/federated-learning-leakage-study.svg",
-    next: "Compare attack and defense assumptions across collaborative training scenarios."
+    cover: "/projects/federated-learning-leakage-study.svg"
   }
 ] as const;
 
@@ -419,8 +400,8 @@ export const teachingHighlights = [
     date: "June 2026",
     audience: "Students, builders, and enterprise AI teams",
     summary:
-      "A 7-day public-safe sprint that turns enterprise voice AI / AI Coach / agent governance onboarding into concrete review artifacts: domain map, voice pipeline, gateway architecture, red-team harness, PII event schema, K8s checklist, GPU sizing table, demo memo, and first-30-days plan.",
-    status: "Canonical 7-day version lives in the ai-systems-engineering-handbook accelerator repo.",
+      "Seven lessons on enterprise voice AI, from the voice pipeline and gateway to data handling, deployment and a demo plan.",
+    status: "Seven lessons in Traditional Chinese",
     href: "/teaching/enterprise-ai-architecture-sprint/"
   },
   {
@@ -428,8 +409,8 @@ export const teachingHighlights = [
     date: "June 2026",
     audience: "Course designers and technical mentors",
     summary:
-      "The handbook keeps the 7-day onboarding tutorial as the first map, then expands the same enterprise voice AI, gateway, governance, security, deployment, and acceptance themes into a 28-day spiral bootcamp plus 2-day review and portfolio packaging layer.",
-    status: "Expanded bootcamp path remains canonical in the handbook repo.",
+      "The curriculum extends the introductory course with longer exercises in voice AI, gateways, governance, deployment and portfolio review.",
+    status: "Extended curriculum",
     href: "/teaching/enterprise-ai-architecture-sprint/"
   },
   {
@@ -438,7 +419,7 @@ export const teachingHighlights = [
     audience: "Medical-device and regulated-AI teams",
     summary:
       "Slide, audio, transcript, and test-question support around AI software medical-device cybersecurity, FDA 524B, threat modeling, SBOM, Zero Trust, and Patch SLA.",
-    status: "CYBERSEC talk delivered; CDE teaching handoff prepared.",
+    status: "Presented at CYBERSEC 2026",
     href: "/talks/regulated-ai-cybersecurity/"
   }
 ] as const;
@@ -450,14 +431,12 @@ export const teachingAccelerators = [
     date: "June 2026",
     audience: "Students, builders, course designers, and enterprise AI teams",
     summary:
-      "A Traditional Chinese 7-day consulting-style onboarding tutorial for enterprise voice AI / AI Coach / agent governance delivery, built around architecture, governance, security, deployment, validation, and customer-acceptance evidence.",
+      "A seven-day course in Traditional Chinese on designing, securing, deploying, and evaluating enterprise voice AI systems.",
     thesis:
-      "Enterprise AI onboarding is strongest when a learner can explain the end-to-end system, produce reviewable artifacts, and name the next validation layer for deployment, safety, latency, cost, and customer acceptance.",
+      "Learn to explain the end-to-end voice pipeline and plan how to check deployment readiness, safety, latency, and cost.",
     sourceRepo: "ai-systems-engineering-handbook",
     sourcePath: "src/content/teaching/enterprise-ai-architecture-sprint/",
     sourceHref: "/teaching/enterprise-ai-architecture-sprint/",
-    boundary:
-      "The website publishes the full public-safe 7-day onboarding pages. The handbook repo remains the broader source package for worksheets, instructor guides, rubrics, reference answers, handoffs, and expanded 28/30-day bootcamp materials.",
     evidenceDefinition: [
       "one-page domain brief",
       "50 survival terms",
@@ -466,11 +445,6 @@ export const teachingAccelerators = [
       "red-team mini harness and PII policy event schema",
       "K8s checklist and GPU sizing table",
       "demo script, architecture memo, onboarding pack, and first-30-days plan"
-    ],
-    expansionModel: [
-      "The 7-day version builds the first system map and artifact set.",
-      "The 28-day spiral bootcamp deepens the same topics into deployable capability.",
-      "The 30-day version adds mock review and portfolio packaging before handoff."
     ],
     days: [
       {
@@ -827,7 +801,7 @@ export const audienceRoutes = [
     title: "I want to inspect systems.",
     audience: "Engineers, collaborators, and technical partners.",
     pain: "You need to know what exists, what it proves, and what remains bounded.",
-    helps: "Open the Systems page and inspect each workflow by capability, evidence, and next validation layer.",
+    helps: "See what each project does and what its prototype demonstrates.",
     href: "/projects/"
   },
   {
@@ -837,65 +811,6 @@ export const audienceRoutes = [
     pain: "You need readable explanations and reusable learning paths.",
     helps: "Use Teaching and Writing for long-form notes, course surfaces, and public framing.",
     href: "/teaching/"
-  }
-] as const;
-
-export const designConcepts = [
-  {
-    slug: "hero-living-research-atlas",
-    title: "Hero / Living Research Atlas",
-    image: "/design/v3-concepts/01-hero-living-research-atlas.png",
-    purpose: "Open with a human, warm, evidence-led research identity.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "audience-route-atlas",
-    title: "Audience Route Atlas",
-    image: "/design/v3-concepts/02-audience-route-atlas.png",
-    purpose: "Let different visitors enter by intent instead of guessing the right page.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "research-atlas",
-    title: "Research Atlas",
-    image: "/design/v3-concepts/03-research-atlas.png",
-    purpose: "Show three research territories as inspectable evidence directions.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "project-evidence-lab",
-    title: "Project Evidence Lab",
-    image: "/design/v3-concepts/04-project-evidence-lab.png",
-    purpose: "Turn projects into benches that show problem, system, evidence, and maturity.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "talks-public-framing",
-    title: "Talks / Public Framing",
-    image: "/design/v3-concepts/05-talks-public-framing.png",
-    purpose: "Make talks readable by audience fit and decision value.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "writing-reasoning-archive",
-    title: "Writing / Reasoning Archive",
-    image: "/design/v3-concepts/06-writing-reasoning-archive.png",
-    purpose: "Present writing as inspectable reasoning rather than generic posts.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "about-working-model",
-    title: "About / Working Model",
-    image: "/design/v3-concepts/07-about-working-model.png",
-    purpose: "Translate Jason's calm, caring, rigorous style into collaboration principles.",
-    translation: "Archived v3 design reference retained as source history."
-  },
-  {
-    slug: "contact-intents",
-    title: "Contact Intents",
-    image: "/design/v3-concepts/08-contact-intents.png",
-    purpose: "Make outreach specific, low-pressure, and easy to start.",
-    translation: "Archived v3 design reference retained as source history."
   }
 ] as const;
 
@@ -939,7 +854,6 @@ export const routePaths = [
   "/event-notes/2026-10-24-web-animation/", "/zh-tw/event-notes/2026-10-24-web-animation/",
   "/",
   "/now/",
-  "/design/",
   "/audiences/",
   "/research/",
   ...researchPillars.map((item) => `/research/${item.slug}/`),
@@ -1039,7 +953,7 @@ export const homeWork = [
     title: "CDS-ASR / JANUS", titleZh: "CDS-ASR / JANUS",
     href: `/research/${homeResearch.slug}/`, kind: "Research", kindZh: "研究",
     summary: homeResearch.summary, status: homeResearch.maturity,
-    summaryZh: "研究合理的語音辨識差異，是否會改變後續判斷。", statusZh: "論文證據強化階段"
+    summaryZh: "研究合理的語音辨識差異，是否會改變後續判斷。", statusZh: "論文準備中"
   },
   {
     title: homeProject.title, titleZh: homeProject.title,
@@ -1069,7 +983,6 @@ export const eventNotes = [{
     summary: "From brand personality and storyboards to AI workflows, web effects, media performance and session Q&A.",
     attribution: "Nocts (奇昌) · presenter named in the event announcement",
     status: "Workshop completed.",
-    scope: "Teaching notes combine workshop topics with further learning from official documentation. Personal practice and reflection are updated separately.",
     sections: [
       {
             "title": "Choose the medium and the message",
@@ -1450,7 +1363,6 @@ export const eventNotes = [{
     summary: "從品牌個性與分鏡開始，整理 AI 協作、網站技術、動態效果、媒體效能與現場問答。",
     attribution: "Nocts（奇昌）・依活動介紹標示",
     status: "活動已結束。",
-    scope: "筆記結合工作坊主題與官方文件的延伸學習；個人實作與心得各自更新。",
     sections: [
       {
             "title": "先選載體，再決定觀眾要看到什麼",

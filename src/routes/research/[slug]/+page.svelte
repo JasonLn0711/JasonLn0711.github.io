@@ -22,29 +22,31 @@
         <p class="kicker">{pillar.maturity}</p>
         <h1>{pillar.title}</h1>
         <p class="lead">{pillar.summary}</p>
+        <a class="evidence-link" href="#public-evidence">View public evidence <span aria-hidden="true">↓</span></a>
       </header>
 
       <section class="plain-section">
-        <h2>Thesis</h2>
+        <h2>Research question</h2>
         <p>{pillar.thesis}</p>
       </section>
 
       <section class="plain-section">
-        <h2>Why it matters now</h2>
+        <h2>Why it matters</h2>
         <p>{pillar.why}</p>
       </section>
 
       <section class="plain-section">
-        <h2>Evidence surface</h2>
+        <h2 id="public-evidence" tabindex="-1">Evidence</h2>
         <ul>
           {#each pillar.evidence as item}
             <li>{item}</li>
           {/each}
         </ul>
+        <p class="evidence-scope">{pillar.boundary}</p>
       </section>
 
       <section class="plain-section">
-        <h2>Validation path</h2>
+        <h2>How the study evaluates it</h2>
         <ol>
           {#each pillar.validation as step}
             <li>{step}</li>
@@ -53,17 +55,7 @@
       </section>
 
       <section class="plain-section">
-        <h2>Current outputs</h2>
-        <p>{pillar.outputs}</p>
-      </section>
-
-      <section class="plain-section">
-        <h2>Scope control</h2>
-        <p>{pillar.boundary}</p>
-      </section>
-
-      <section class="plain-section">
-        <h2>Questions</h2>
+        <h2>Open questions</h2>
         <ul>
           {#each pillar.questions as question}
             <li>{question}</li>
@@ -97,6 +89,7 @@
     font-weight: 500;
     line-height: 1.06;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .lead {
@@ -109,6 +102,23 @@
   .plain-section {
     border-top: 1px solid var(--line);
     padding-block: clamp(1.8rem, 5vw, 3rem);
+  }
+
+  .evidence-link {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.9rem;
+    font-weight: 650;
+  }
+
+  #public-evidence {
+    scroll-margin-top: 5.5rem;
+  }
+
+  .evidence-scope {
+    margin-top: 1rem;
   }
 
   h2 {
