@@ -1,4 +1,8 @@
 <script lang="ts">
+  import "@fontsource-variable/inter/wght.css";
+  import "@fontsource-variable/inter/wght-italic.css";
+  import "@fontsource-variable/noto-sans-tc/wght.css";
+  import "#lib/styles/fonts.css";
   import "../app.css";
   import "katex/dist/katex.min.css";
   import { page } from "$app/state";
