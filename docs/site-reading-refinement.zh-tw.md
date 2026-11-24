@@ -24,3 +24,5 @@ Rust 剖析未找到值得移植的熱點，這一輪使用現有靜態 HTML、S
 ## 發布前的相依更新
 
 既有 npm 高風險稽核要求 SvelteKit 3.1.1。此次將 SvelteKit、靜態 adapter 與相容的 TypeScript 更新放在獨立提交，並保留 npm lockfile、既有 CI 檢查及 Cloudflare 靜態設定。從相同網站內容產出的 62 個 HTML 路徑一致。61 個預先產生的頁面通過文字、連結、語言與中繼資料比對。RSS、sitemap、robots、重新導向與標頭檔位元組相同。 [SvelteKit 3 遷移說明](https://svelte.dev/docs/kit/migrating-to-sveltekit-3)
+
+[正式站回執](releases/2026-11-24-main-site-reading.md)記錄實際部署來源、網址及公開資產查核。

@@ -43,3 +43,6 @@ See [phase evidence](phase-0-3-implementation.zh-tw.md) and
 The [November 24 reading and navigation record](site-reading-refinement.zh-tw.md)
 defines the homepage entry points, bilingual navigation, article contents,
 research evidence links, and portrait assets to verify in the current design.
+
+The [November 24 release receipt](releases/2026-11-24-main-site-reading.md) links
+the deployed source and both production checks.
