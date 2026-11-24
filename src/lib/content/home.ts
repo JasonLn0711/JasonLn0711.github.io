@@ -1,8 +1,13 @@
 import type { BlogPost } from "./blog-model";
 
 /** Input is the existing published manifest; updatedDate never changes ordering. */
-export function latestWriting<T extends Pick<BlogPost, "slug" | "date">>(posts: readonly T[]): T[] {
-  return [...posts].sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug)).slice(0, 5);
+export function latestWriting<T extends Pick<BlogPost, "slug" | "date">>(
+  posts: readonly T[], featured: readonly Pick<BlogPost, "slug">[] = []
+): T[] {
+  const featuredSlugs = new Set(featured.map((post) => post.slug));
+  return posts.filter((post) => !featuredSlugs.has(post.slug))
+    .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug))
+    .slice(0, 5);
 }
 
 export function featuredWriting<T extends Pick<BlogPost, "slug">>(posts: readonly T[], slugs: readonly string[]): T[] {

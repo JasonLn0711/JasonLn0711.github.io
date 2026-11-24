@@ -27,6 +27,15 @@ test("homepage handles empty, short and same-day lists deterministically", () =>
   assert.equal(latestWriting(posts.slice(0, 1)).length, 1);
 });
 
+test("more professional writing skips every featured post before applying the five-item limit", () => {
+  const posts = [1, 2, 3, 4, 5, 6, 7].map((day) => ({
+    slug: `post-${day}`, date: `2026-01-0${day}`
+  }));
+  assert.deepEqual(latestWriting(posts, [posts[6], posts[3]]).map((post) => post.slug),
+    ["post-6", "post-5", "post-3", "post-2", "post-1"]);
+  assert.deepEqual(latestWriting(posts, posts), []);
+});
+
 test("language links distinguish translated pages from a link to the other home page", () => {
   const workshop = "/event-notes/2026-10-24-web-animation/";
   assert.equal(siteLanguage("/zh-tw"), "zh-Hant");

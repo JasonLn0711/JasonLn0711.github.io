@@ -3,12 +3,13 @@
   import RecentWriting from "./RecentWriting.svelte";
   import HomeArticle from "./HomeArticle.svelte";
   import { professionalPosts } from "$lib/content/blog";
-  import { featuredWriting } from "$lib/content/home";
+  import { featuredWriting, latestWriting } from "$lib/content/home";
   import { homeCopy, homeFeaturedSlugs, homeTopics, homeWork, site } from "$lib/content/site";
   let { locale = "en" }: { locale?: "en" | "zh-Hant" } = $props();
   let zh = $derived(locale === "zh-Hant");
   let copy = $derived(homeCopy[locale]);
   const featured = featuredWriting(professionalPosts, homeFeaturedSlugs);
+  const latest = latestWriting(professionalPosts, featured);
 </script>
 
 <PageMeta title={`${site.name} | ${zh ? "AI、資安與學習筆記" : "Notes on AI, cybersecurity & learning"}`} description={copy.intro} path={zh ? "/zh-tw/" : "/"} lang={zh ? "zh-tw" : "en"} />
@@ -27,13 +28,11 @@
     <p class="role">{site.name} · {copy.role}</p>
     <p class="intro-lead">{copy.intro}</p>
     <p class="intro-detail">{copy.detail}</p>
-    <div class="intro-links"><a class="start" href="#selected-writing">{copy.start} ↓</a><a href="/about/">{copy.about} →</a></div>
+    <div class="intro-links">
+      <a class="button primary" href="#selected-writing">{copy.start}<span aria-hidden="true">↓</span></a>
+      <a class="button" href="#research-and-practice">{copy.explore}<span aria-hidden="true">↓</span></a>
+    </div>
   </header>
-
-  <section class="reading-section" aria-labelledby="personal-title">
-    <div class="section-heading"><h2 id="personal-title">Blog · {zh ? "個人雜記" : "Personal writing"}</h2></div>
-    <div><p>{zh ? "個人觀點、閱讀心得、生命經驗，以及人文與個人雜記。" : "Personal perspectives, reading reflections, life experiences and humanities."}</p><a href="/blog/">{zh ? "前往 Blog" : "Visit the Blog"} →</a></div>
-  </section>
 
   <section class="reading-section" id="selected-writing" aria-labelledby="selected-title">
     <div class="section-heading"><h2 id="selected-title">{copy.featured}</h2><p>{copy.featuredNote}</p></div>
@@ -45,8 +44,8 @@
   </section>
 
   <section class="reading-section" aria-labelledby="latest-title">
-    <div class="section-heading"><h2 id="latest-title">{copy.latest}</h2><p>{copy.latestNote}</p></div>
-    <RecentWriting {locale} />
+    <div class="section-heading"><h2 id="latest-title">{copy.latest}</h2></div>
+    <RecentWriting posts={latest} {locale} />
   </section>
 
   <section class="reading-section" aria-labelledby="topics-title">
@@ -58,7 +57,7 @@
     </ul>
   </section>
 
-  <section class="reading-section" aria-labelledby="work-title">
+  <section class="reading-section" id="research-and-practice" aria-labelledby="work-title">
     <div class="section-heading"><h2 id="work-title">{copy.work}</h2><p>{copy.workNote}</p></div>
     <div class="work-list">
       {#each homeWork as item}
@@ -70,6 +69,8 @@
       {/each}
     </div>
   </section>
+
+  <p class="personal-link" id="personal-title"><a href="/blog/">{copy.personal} <span aria-hidden="true">→</span></a></p>
 </div>
 
 <style>
@@ -82,9 +83,8 @@
   .role { color: var(--muted); font-size: 0.875rem; margin: 1.25rem 0; }
   .intro-lead { font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.75; max-width: 58ch; margin: 0; }
   .intro-detail { color: var(--muted); max-width: 65ch; margin: 0.75rem 0 0; }
-  .intro-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.25rem; }
-  .intro-links a { display: inline-flex; align-items: center; min-height: 44px; }
-  .start { font-weight: 600; }
+  .intro-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .intro-links a { font-size: 0.95rem; }
   .reading-section { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); padding-block: 3rem; border-top: 1px solid var(--line-strong); scroll-margin-top: 6rem; }
   .reading-section > * { min-width: 0; }
   h2 { font-family: var(--font-serif); font-size: 1.65rem; font-weight: 500; line-height: 1.3; margin: 0; text-wrap: balance; }
@@ -101,6 +101,8 @@
   .work-list h3 a:hover { color: var(--accent); text-decoration: underline; }
   .work-list p { color: var(--muted); margin: 0; max-width: 65ch; }
   .work-list .work-meta { font-size: 0.875rem; }
+  .personal-link { margin: 0; border-top: 1px solid var(--line); padding-block: 1rem; }
+  .personal-link a { display: inline-flex; gap: 0.35rem; align-items: center; min-height: 44px; }
   .home[lang="zh-Hant"] h1 { font-family: var(--font-serif); }
   .home[lang="zh-Hant"] h2 { font-family: var(--font-sans); font-weight: 600; }
   @media (max-width: 760px) {
@@ -114,5 +116,6 @@
     .eyebrow { font-size: 0.8rem; letter-spacing: 0; }
     .topics { grid-template-columns: 1fr; }
     .topics li:nth-child(2) a { padding-top: 1rem; }
+    .intro-links { flex-direction: column; align-items: start; }
   }
 </style>
