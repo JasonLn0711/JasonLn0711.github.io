@@ -65,9 +65,8 @@
   h1 {
     margin: 1rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.6rem, 8vw, 4.8rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.06;
     text-wrap: balance;
   }
@@ -97,9 +96,8 @@
   h2 {
     margin: 0 0 1.35rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.18;
   }
 

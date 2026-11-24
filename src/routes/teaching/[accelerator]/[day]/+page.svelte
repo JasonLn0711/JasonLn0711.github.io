@@ -78,7 +78,6 @@
 
   .back-nav {
     margin-bottom: 1.5rem;
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 
@@ -89,9 +88,8 @@
   h1 {
     margin: 1rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 8vw, 4.6rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.06;
     text-wrap: balance;
   }

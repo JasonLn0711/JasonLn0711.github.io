@@ -884,6 +884,10 @@ export const homeFeaturedSlugs = [
   "flat-ui-to-spatial-interface"
 ] as const;
 
+export const homeFeaturedArtwork: Partial<Record<string, string>> = {
+  "investigation-and-trustworthy-ai": "/blog/investigation-editorial-cover.webp"
+};
+
 export const homeArticleZh: Record<string, { title: string; description: string }> = {
   "investigation-and-trustworthy-ai": {
     title: "從科技犯罪偵查到可信任 AI",
@@ -909,29 +913,25 @@ export const homeArticleZh: Record<string, { title: string; description: string 
 
 export const homeCopy = {
   en: {
-    eyebrow: "AI · Cybersecurity · Learning",
+    headline: ["Evidence for", "AI decisions."],
     role: "Doctoral researcher at National Yang Ming Chiao Tung University",
-    intro: "I study AI and cybersecurity, and share what I learn about speech systems, technical practice, and working across disciplines.",
-    detail: "My background in cybercrime investigation shapes how I think about evidence, security, and human judgment.",
-    start: "Read selected articles", explore: "Explore research & practice", featured: "Selected professional writing",
-    featuredNote: "Selected essays on the questions behind my work.",
-    latest: "More professional writing", personal: "Personal blog",
-    all: "All professional articles", topics: "Follow a thread", topicsNote: "Choose a subject and keep reading.",
-    work: "Research & practice", workNote: "The research, systems, and teaching behind the writing.",
+    intro: "I study how evidence shapes decisions in AI and cybersecurity, from speech systems to technical practice.",
+    contents: "On this page", featured: "Selected writing",
+    latest: "Recent writing", personal: "Personal blog",
+    all: "All professional articles", topics: "Topic index",
+    work: "Research & practice",
     empty: "No articles have been published yet.", emptyLink: "Explore the teaching materials",
     footer: "Keep in touch", footerNote: "For research conversations, teaching, and collaboration.",
     cv: "CV", now: "Work archive", contact: "Contact", home: "Home", skip: "Skip to content"
   },
   "zh-Hant": {
-    eyebrow: "AI · 資安 · 學習",
+    headline: ["讓 AI 的判斷", "有跡可循"],
     role: "國立陽明交通大學博士研究者",
-    intro: "我是 Jason，研究 AI 與資安，也分享語音系統、技術實作與跨領域學習的筆記。",
-    detail: "過去從事科技犯罪偵查的經驗，持續影響我對證據、安全與人的判斷的思考。",
-    start: "讀精選專業文章", explore: "看研究與實作", featured: "精選專業文章",
-    featuredNote: "先透過文章，認識我關注的問題。",
-    latest: "更多專業文章", personal: "個人雜記",
-    all: "所有專業文章", topics: "沿著主題閱讀", topicsNote: "選一個感興趣的方向，繼續讀下去。",
-    work: "研究與實作", workNote: "文章背後的研究、系統與教學。",
+    intro: "我研究證據如何影響 AI 與資安的判斷，也分享語音系統與技術實作的筆記。",
+    contents: "本頁目錄", featured: "精選專業文章",
+    latest: "近期專業文章", personal: "個人雜記",
+    all: "所有專業文章", topics: "主題索引",
+    work: "研究與實作",
     empty: "目前尚無已發布的文章。", emptyLink: "先看看教學內容",
     footer: "保持聯繫", footerNote: "歡迎交流研究問題、教學與合作想法。",
     cv: "履歷", now: "歷年工作", contact: "聯絡", home: "首頁", skip: "跳至主要內容"

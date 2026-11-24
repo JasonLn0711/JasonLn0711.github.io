@@ -1,35 +1,43 @@
 :root {
   color-scheme: light;
-  --bg: #fbfaf7;
-  --bg-soft: #f3f0ea;
-  --surface: #ffffff;
-  --surface-strong: #f7f5f0;
-  --ink: #24211d;
-  --ink-strong: #141210;
-  --muted: #706b63;
-  --muted-2: #908a80;
-  --line: #e2ded6;
-  --line-strong: #cfc8bc;
-  --accent: #6f3f2d;
-  --accent-soft: #f1e4dc;
-  --amber: #8b641f;
+  --bg: #f9f6ee;
+  --bg-soft: #f0eadf;
+  --surface: #fffdf7;
+  --surface-strong: #f1ebe0;
+  --ink: #302b26;
+  --ink-strong: #221d19;
+  --muted: #61574d;
+  --muted-2: #6d6257;
+  --line: #e2d9ca;
+  --line-strong: #bdb1a0;
+  --control-line: #847263;
+  --accent: #8b412d;
+  --accent-soft: #f0e5d8;
+  --accent-strong: #3f2c24;
+  --on-accent: #fcf6ec;
+  --amber: #86601f;
   --amber-soft: #f6ecd4;
   --danger: #9f2f2d;
   --content-width: 44rem;
-  --page-width: 70rem;
+  --page-width: 74rem;
   --article-width: 46rem;
   --toc-width: 13.5rem;
   --radius-sm: 0.25rem;
   --radius-md: 0.4rem;
   --radius-lg: 0.55rem;
   --radius-xl: 0.7rem;
-  --font-sans:
-    "Aptos", "SF Pro Display", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC",
-    sans-serif;
-  --font-serif:
-    Georgia, "Times New Roman", Times, serif;
-  --font-mono:
-    "SFMono-Regular", "Cascadia Code", "JetBrains Mono", "IBM Plex Mono", Consolas,
-    monospace;
+  --font-family: "Inter Variable", "Noto Sans TC Variable", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:where(:root, [lang]:lang(en)) {
+  --reading-weight: 400;
+  --heading-weight: 650;
+  --strong-weight: 700;
+}
+
+:where([lang]:lang(zh)) {
+  --reading-weight: 350;
+  --heading-weight: 500;
+  --strong-weight: 550;
 }

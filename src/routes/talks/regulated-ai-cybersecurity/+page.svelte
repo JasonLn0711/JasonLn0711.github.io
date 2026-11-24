@@ -63,7 +63,6 @@
 
   .back-nav {
     margin-bottom: 1.5rem;
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 
@@ -74,9 +73,8 @@
   h1 {
     margin: 1rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.4rem, 7vw, 4.4rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.08;
     text-wrap: balance;
   }
@@ -91,7 +89,6 @@
   .talk-meta {
     margin: 1rem 0 0;
     color: var(--muted);
-    font-family: var(--font-mono);
     font-size: 0.78rem;
     line-height: 1.6;
   }
@@ -104,9 +101,8 @@
   h2 {
     margin: 0 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(1.45rem, 3.4vw, 2rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.2;
   }
 

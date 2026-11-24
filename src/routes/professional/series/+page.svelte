@@ -18,7 +18,7 @@
 </section>
 <style>
   .series-index { padding-block: 4rem; }
-  h1 { font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; }
+  h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: var(--heading-weight); }
   h2 { font-size: 1.3rem; }
   p { line-height: 1.75; color: var(--muted); }
   article { border-top: 1px solid var(--line); margin-block: 2rem; padding-top: 1rem; }

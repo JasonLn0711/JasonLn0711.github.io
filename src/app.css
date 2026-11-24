@@ -7,6 +7,8 @@
 html {
   color: var(--ink);
   background: var(--bg);
+  font-family: var(--font-family);
+  font-size-adjust: from-font;
   scroll-behavior: smooth;
 }
 
@@ -16,10 +18,21 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background: var(--bg);
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.75;
   text-rendering: optimizeLegibility;
+}
+
+:where(body, [lang]:is(article, div, footer, header, p, section)) {
+  font-weight: var(--reading-weight);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-weight: var(--heading-weight);
+}
+
+:where(b, strong, th) {
+  font-weight: var(--strong-weight);
 }
 
 a {
@@ -39,8 +52,16 @@ img {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: inherit;
 }
 
 button {
@@ -73,9 +94,8 @@ button {
 .kicker {
   margin: 0;
   color: var(--muted);
-  font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--strong-weight);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -85,8 +105,7 @@ button {
   margin: 0;
   max-width: 12ch;
   color: var(--ink-strong);
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-weight: var(--heading-weight);
   letter-spacing: 0;
   line-height: 1.08;
 }
@@ -105,10 +124,6 @@ button {
   color: var(--muted);
   font-size: clamp(1.05rem, 2vw, 1.22rem);
   line-height: 1.75;
-}
-
-.mono {
-  font-family: var(--font-mono);
 }
 
 .muted {
@@ -139,13 +154,13 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--control-line);
   border-radius: var(--radius-sm);
   padding: 0.6rem 0.82rem;
   color: var(--ink-strong);
   background: var(--surface);
   box-shadow: none;
-  font-weight: 650;
+  font-weight: var(--heading-weight);
   line-height: 1.2;
   text-decoration: none;
   transition:
@@ -167,13 +182,13 @@ button {
 }
 
 .button.primary {
-  color: #ffffff;
-  background: var(--ink-strong);
-  border-color: var(--ink-strong);
+  color: var(--on-accent);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .button.primary:hover {
-  color: #ffffff;
+  color: var(--on-accent);
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -206,7 +221,6 @@ button {
   gap: 0.5rem 0.85rem;
   align-items: center;
   color: var(--muted);
-  font-family: var(--font-mono);
   font-size: 0.78rem;
 }
 
@@ -226,9 +240,8 @@ button {
   padding: 0.18rem 0.42rem;
   color: var(--accent);
   background: var(--accent-soft);
-  font-family: var(--font-mono);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: var(--strong-weight);
   letter-spacing: 0.04em;
 }
 
@@ -245,9 +258,11 @@ button {
   transform: translateY(-160%);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
-  color: #ffffff;
-  background: var(--ink-strong);
+  color: var(--on-accent);
+  background: var(--accent-strong);
 }
+
+.skip-link:hover { color: var(--on-accent); }
 
 .skip-link:focus {
   transform: translateY(0);
@@ -256,7 +271,7 @@ button {
 .longform {
   color: var(--ink);
   font-size: clamp(1.02rem, 1.6vw, 1.1rem);
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .longform > * + * {
@@ -267,8 +282,7 @@ button {
 .longform h3 {
   scroll-margin-top: 5.5rem;
   color: var(--ink-strong);
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-weight: var(--heading-weight);
   line-height: 1.22;
 }
 
@@ -292,7 +306,6 @@ button {
   border-left: 3px solid var(--accent);
   padding: 0.1rem 0 0.1rem 1rem;
   color: var(--muted);
-  font-family: var(--font-serif);
   font-size: 1.12em;
 }
 
@@ -302,7 +315,6 @@ button {
   padding: 0.08rem 0.26rem;
   color: var(--danger);
   background: var(--surface-strong);
-  font-family: var(--font-mono);
   font-size: 0.9em;
 }
 
@@ -391,4 +403,4 @@ button {
 .longform section[id] { scroll-margin-top: 6rem; }
 .longform section + section { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; }
 .longform .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.3rem 0; max-width: 100%; }
-.longform .katex { font-size: 1.1em; }
+.longform .katex { font-size: 1.1em; font-size-adjust: none; }

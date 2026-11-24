@@ -24,8 +24,8 @@
 </section>
 <style>
   .series-page { padding-block: 4rem; }
-  h1 { font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; line-height: 1.2; }
-  h2 { font-family: var(--font-serif); font-weight: 500; font-size: 1.65rem; margin-top: 2.5rem; }
+  h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: var(--heading-weight); line-height: 1.2; }
+  h2 { font-weight: var(--heading-weight); font-size: 1.65rem; margin-top: 2.5rem; }
   h3 { font-size: 1.2rem; line-height: 1.4; margin: 0; }
   p, li { color: var(--muted); line-height: 1.75; }
   time { font-size: 0.8rem; }

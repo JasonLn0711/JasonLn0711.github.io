@@ -73,7 +73,6 @@
 
   .back-nav {
     margin-bottom: 1.5rem;
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 
@@ -84,9 +83,8 @@
   h1 {
     margin: 1rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.6rem, 8vw, 4.8rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.06;
     text-wrap: balance;
     overflow-wrap: anywhere;
@@ -110,7 +108,7 @@
     align-items: center;
     min-height: 44px;
     margin-top: 0.9rem;
-    font-weight: 650;
+    font-weight: var(--heading-weight);
   }
 
   #public-evidence {
@@ -124,9 +122,8 @@
   h2 {
     margin: 0 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(1.45rem, 3.4vw, 2rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.2;
   }
 

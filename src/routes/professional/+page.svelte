@@ -71,9 +71,8 @@
   h1 {
     margin: 1rem 0 0.85rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.7rem, 8vw, 4.8rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.06;
   }
 
@@ -100,7 +99,6 @@
   time,
   span {
     color: var(--muted);
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 

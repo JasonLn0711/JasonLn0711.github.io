@@ -48,7 +48,7 @@
 
 <style>
   .connections { margin-bottom: 2rem; }
-  h2 { margin: 0 0 1rem; font-family: var(--font-serif); font-size: 1.65rem; font-weight: 500; }
+  h2 { margin: 0 0 1rem; font-size: 1.65rem; font-weight: var(--heading-weight); }
   h3 { margin: 0.35rem 0; font-size: 1rem; line-height: 1.5; }
   p { color: var(--muted); margin: 0.4rem 0; line-height: 1.7; }
   span { color: var(--muted); font-size: 0.78rem; }

@@ -72,7 +72,7 @@
       "toc footer .";
     column-gap: clamp(2rem, 5vw, 3.5rem);
     align-items: start;
-    padding-block: clamp(3.4rem, 9vw, 6rem);
+    padding-block: clamp(2.6rem, 6.5vw, 5rem);
   }
 
   .article-content {
@@ -90,12 +90,15 @@
   h1 {
     margin: 0.9rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
-    font-size: clamp(2.35rem, 7vw, 4.6rem);
-    font-weight: 500;
-    line-height: 1.08;
+    font-size: clamp(2.25rem, 1.3rem + 3.9vw, 4.5rem);
+    font-weight: var(--heading-weight);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
     overflow-wrap: anywhere;
   }
+
+  h1:lang(zh-Hant) { letter-spacing: -0.015em; }
 
   .article-header p:not(.kicker) {
     margin: 0 0 1.1rem;

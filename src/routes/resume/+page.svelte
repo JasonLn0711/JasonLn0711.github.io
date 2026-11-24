@@ -97,9 +97,8 @@
   h1 {
     margin: 1rem 0 1rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(2.8rem, 9vw, 5rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.04;
     text-wrap: balance;
   }
@@ -137,9 +136,8 @@
   h2 {
     margin: 0 0 1.2rem;
     color: var(--ink-strong);
-    font-family: var(--font-serif);
     font-size: clamp(1.45rem, 3.4vw, 2rem);
-    font-weight: 500;
+    font-weight: var(--heading-weight);
     line-height: 1.2;
   }
 
@@ -168,7 +166,6 @@
 
   time {
     color: var(--muted);
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 
@@ -183,7 +180,6 @@
     border-radius: var(--radius-sm);
     padding: 0.24rem 0.46rem;
     background: var(--surface-strong);
-    font-family: var(--font-mono);
     font-size: 0.78rem;
   }
 

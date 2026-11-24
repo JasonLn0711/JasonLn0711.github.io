@@ -14,7 +14,7 @@
       on:click={() => (active = active === index ? -1 : index)}
       data-reveal
     >
-      <span class="intent-number mono">{String(index + 1).padStart(2, "0")}</span>
+      <span class="intent-number">{String(index + 1).padStart(2, "0")}</span>
       <span class="intent-copy">
         <strong>{intent.title}</strong>
         <span>{intent.summary}</span>
@@ -58,6 +58,7 @@
     color: var(--amber);
     font-size: 0.86rem;
     font-weight: 800;
+    font-variant-numeric: tabular-nums;
   }
 
   .intent-copy {

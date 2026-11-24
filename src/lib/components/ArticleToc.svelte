@@ -69,7 +69,7 @@
     margin: 0 0 0.8rem;
     color: var(--ink);
     font-size: 0.78rem;
-    font-weight: 700;
+    font-weight: var(--strong-weight);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -137,7 +137,7 @@
       cursor: pointer;
       color: var(--ink-strong);
       font-size: 0.95rem;
-      font-weight: 650;
+      font-weight: var(--heading-weight);
     }
 
     .mobile-contents nav {
