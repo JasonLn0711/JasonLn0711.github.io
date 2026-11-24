@@ -2,7 +2,7 @@
   import ArticleConnections from "$lib/components/ArticleConnections.svelte";
   import ArticleToc from "$lib/components/ArticleToc.svelte";
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { getBlogComponent, type BlogPost } from "$lib/content/blog";
+  import { getBlogArticle, type BlogPost } from "$lib/content/blog";
   import { site } from "$lib/content/site";
 
   let {
@@ -16,7 +16,8 @@
   }>();
 
   let post = $derived(data.post);
-  let Content = $derived(getBlogComponent(post.slug));
+  let article = $derived(getBlogArticle(post));
+  let Content = $derived(article?.default);
 </script>
 
 <PageMeta
@@ -30,59 +31,57 @@
   modifiedTime={post.updatedDate}
 />
 
-<div class="article-shell page-shell">
-  {#key post.slug}<ArticleToc contentId="article-content" />{/key}
-
-  <article class="article-main">
-    <header class="article-header">
-      <p class="kicker">{post.kind === "daily-learning" ? "Daily learning · 每日學習" : post.categoryLabel}</p>
-      <h1>{post.title}</h1>
-      <p>{post.description}</p>
-      <div class="meta-line">
-        <time datetime={post.date}>{post.dateLabel}</time>
-        {#if post.tags.length}
-          <span>{post.tags.join(" / ")}</span>
-        {/if}
-      </div>
-      {#if post.learningDate}<p class="learning-date">學習日期 / Learning date: {post.learningDate}</p>{/if}
-      {#if post.languages.includes("en") && post.languages.includes("zh-Hant")}
-        <nav class="language-links" aria-label="Article languages">
-          <a href="#zh" lang="zh-Hant">閱讀中文 ↓</a>
-          <a href="#en" lang="en">Read in English ↓</a>
-        </nav>
-      {/if}
-    </header>
-
-    <div id="article-content" class="article-content longform">
-      {#if Content}
-        <Content />
+<article class="article-shell page-shell" lang={post.languages[0]}>
+  <header class="article-header">
+    <p class="kicker">{post.kind === "daily-learning" ? "Daily learning · 每日學習" : post.categoryLabel}</p>
+    <h1>{post.title}</h1>
+    <p>{post.description}</p>
+    <div class="meta-line">
+      <time datetime={post.date}>{post.dateLabel}</time>
+      {#if post.tags.length}
+        <span>{post.tags.join(" / ")}</span>
       {/if}
     </div>
+    {#if post.learningDate}<p class="learning-date">學習日期 / Learning date: {post.learningDate}</p>{/if}
+  </header>
 
-    <footer class="article-footer">
-      <ArticleConnections {post} />
-      <a href={data.indexPath}>← {post.section === "professional" ? "Professional writing／專業文章" : "Blog／個人雜記"}</a>
-    </footer>
-  </article>
-</div>
+  {#key post.slug}
+    <ArticleToc items={article?.metadata.articleHeadings} label={post.languages[0] === "zh-Hant" ? "本文目錄" : "Contents"} />
+  {/key}
+
+  <div id="article-content" class="article-content longform">
+    {#if Content}
+      <Content />
+    {/if}
+  </div>
+
+  <footer class="article-footer">
+    <ArticleConnections {post} />
+    <a href={data.indexPath}>← {post.section === "professional" ? "Professional writing／專業文章" : "Blog／個人雜記"}</a>
+  </footer>
+</article>
 
 <style>
-  .language-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; }
   .learning-date { font-size: 0.8rem !important; }
   .article-shell {
     display: grid;
-    grid-template-columns: var(--toc-width) minmax(0, var(--article-width)) 1fr;
-    gap: clamp(2rem, 5vw, 3.5rem);
+    grid-template-columns: var(--toc-width) minmax(0, var(--article-width)) minmax(0, 1fr);
+    grid-template-areas:
+      "toc header ."
+      "toc body ."
+      "toc footer .";
+    column-gap: clamp(2rem, 5vw, 3.5rem);
     align-items: start;
     padding-block: clamp(3.4rem, 9vw, 6rem);
   }
 
-  .article-main {
-    grid-column: 2;
-    min-width: 0;
+  .article-content {
+    grid-area: body;
+    min-inline-size: 0;
   }
 
   .article-header {
+    grid-area: header;
     border-bottom: 1px solid var(--line);
     margin-bottom: clamp(2rem, 6vw, 3rem);
     padding-bottom: clamp(1.5rem, 5vw, 2.4rem);
@@ -95,6 +94,7 @@
     font-size: clamp(2.35rem, 7vw, 4.6rem);
     font-weight: 500;
     line-height: 1.08;
+    overflow-wrap: anywhere;
   }
 
   .article-header p:not(.kicker) {
@@ -105,6 +105,7 @@
   }
 
   .article-footer {
+    grid-area: footer;
     border-top: 1px solid var(--line);
     margin-top: 3rem;
     padding-top: 1.2rem;
@@ -114,10 +115,11 @@
     .article-shell {
       width: min(100% - 1.35rem, var(--article-width));
       grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "header" "toc" "body" "footer";
     }
 
-    .article-main {
-      grid-column: 1;
+    .article-header {
+      margin-bottom: 1.25rem;
     }
   }
 </style>

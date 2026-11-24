@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createBlogPosts, type RawBlogMetadata } from "../src/lib/content/blog-model.ts";
 import { latestWriting, featuredWriting, articleLanguage } from "../src/lib/content/home.ts";
+import { alternatePage, siteLanguage } from "../src/lib/content/localization.ts";
 
 const entry = (slug: string, pubDate: string, extra: RawBlogMetadata = {}) => ({
   modulePath: `/content/${slug}.mdx`, metadata: { title: slug, description: "A public article", pubDate, ...extra }
@@ -24,6 +25,18 @@ test("homepage handles empty, short and same-day lists deterministically", () =>
   const posts = [{ slug: "z", date: "2026-01-01" }, { slug: "a", date: "2026-01-01" }];
   assert.deepEqual(latestWriting(posts).map((p) => p.slug), ["a", "z"]);
   assert.equal(latestWriting(posts.slice(0, 1)).length, 1);
+});
+
+test("language links distinguish translated pages from a link to the other home page", () => {
+  const workshop = "/event-notes/2026-10-24-web-animation/";
+  assert.equal(siteLanguage("/zh-tw"), "zh-Hant");
+  assert.equal(siteLanguage(workshop), "en");
+  assert.equal(alternatePage(workshop).href, `/zh-tw${workshop}`);
+  assert.equal(alternatePage(`/zh-tw${workshop}`).href, workshop);
+  assert.equal(alternatePage("/zh-tw/contact/").href, "/contact/");
+  assert.deepEqual(alternatePage("/professional/example/"), {
+    href: "/zh-tw/", isPaired: false, locale: "zh-Hant", label: "繁中首頁"
+  });
 });
 
 test("curation preserves editorial order and never creates links to unpublished articles", () => {

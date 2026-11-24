@@ -1,7 +1,9 @@
 import type { Component } from "svelte";
+import type { ArticleHeading } from "./article-headings";
 
 type TeachingModule = {
   default: Component;
+  metadata: { articleHeadings?: ArticleHeading[] };
 };
 
 const dayModules = import.meta.glob<TeachingModule>(
@@ -14,7 +16,7 @@ function slugFromPath(path: string) {
   return fileName.replace(/\.md$/i, "");
 }
 
-export function getTeachingDayComponent(slug: string) {
+export function getTeachingDay(slug: string) {
   const entry = Object.entries(dayModules).find(([path]) => slugFromPath(path) === slug);
-  return entry?.[1].default;
+  return entry?.[1];
 }

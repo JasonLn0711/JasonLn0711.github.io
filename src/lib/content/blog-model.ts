@@ -1,3 +1,5 @@
+import type { ArticleHeading } from "./article-headings.ts";
+
 export type RelationType = "prerequisite" | "extends" | "related";
 export type Relation = { slug: string; type: RelationType; reason: string; reasonZh?: string };
 export type Series = { slug: string; title: string; description: string; roadmap: string[] };
@@ -7,6 +9,7 @@ export type RawBlogMetadata = {
   ogImage?: string; routeSlug?: string; kind?: "essay" | "daily-learning";
   learningDate?: string | Date; languages?: ("en" | "zh-Hant")[];
   series?: string; order?: number; relations?: Relation[];
+  articleHeadings?: ArticleHeading[];
 };
 export type BlogPost = {
   section: "blog" | "professional"; path: string;

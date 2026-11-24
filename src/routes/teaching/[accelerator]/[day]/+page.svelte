@@ -1,7 +1,7 @@
 <script lang="ts">
   import ArticleToc from "$lib/components/ArticleToc.svelte";
   import PageMeta from "$lib/components/PageMeta.svelte";
-  import { getTeachingDayComponent } from "$lib/content/teaching";
+  import { getTeachingDay } from "$lib/content/teaching";
   import { site, teachingAccelerators } from "$lib/content/site";
 
   let { data } = $props<{
@@ -13,7 +13,8 @@
 
   let accelerator = $derived(data.accelerator);
   let day = $derived(data.day);
-  let Content = $derived(getTeachingDayComponent(day.slug));
+  let lesson = $derived(getTeachingDay(day.slug));
+  let Content = $derived(lesson?.default);
 </script>
 
 <PageMeta
@@ -24,10 +25,8 @@
 />
 
 <section class="handout-page">
-  <div class="page-shell handout-layout">
-    <ArticleToc contentId="article-content" />
-
-    <article class="handout-content">
+  <article class="page-shell handout-layout" lang="zh-Hant">
+    <div class="handout-intro">
       <nav class="back-nav" aria-label="Back navigation">
         <a href={`/teaching/${accelerator.slug}/`}>{accelerator.title}</a>
       </nav>
@@ -38,18 +37,20 @@
         <p class="lead">{day.description}</p>
         <div class="meta-line">
           <span>{accelerator.date}</span>
-          <span>{day.status}</span>
-          <span>Full local lesson</span>
         </div>
       </header>
+    </div>
 
-      <div id="article-content" class="longform">
-        {#if Content}
-          <Content />
-        {/if}
-      </div>
-    </article>
-  </div>
+    {#key day.slug}
+      <ArticleToc items={lesson?.metadata.articleHeadings} label="本課目錄" />
+    {/key}
+
+    <div id="article-content" class="longform">
+      {#if Content}
+        <Content />
+      {/if}
+    </div>
+  </article>
 </section>
 
 <style>
@@ -60,13 +61,19 @@
   .handout-layout {
     display: grid;
     grid-template-columns: var(--toc-width) minmax(0, var(--article-width));
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-areas: "toc header" "toc body";
+    column-gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
     justify-content: center;
   }
 
-  .handout-content {
-    max-width: var(--article-width);
+  .handout-intro {
+    grid-area: header;
+  }
+
+  .longform {
+    grid-area: body;
+    min-inline-size: 0;
   }
 
   .back-nav {
@@ -98,8 +105,13 @@
 
   @media (max-width: 1040px) {
     .handout-layout {
-      display: block;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "header" "toc" "body";
       width: min(100% - 2rem, var(--article-width));
+    }
+
+    .article-head {
+      margin-bottom: 1.25rem;
     }
   }
 

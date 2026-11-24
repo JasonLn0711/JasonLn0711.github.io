@@ -7,6 +7,7 @@ import { compile } from "mdsvex";
 import { compile as compileSvelte } from "svelte/compiler";
 import math from "remark-math";
 import { remarkMathRender } from "../scripts/remark-math-render.js";
+import svelteConfig from "../svelte.config.js";
 import { readPublishedPosts } from "../scripts/blog-source.ts";
 import { createBlogPosts, recentPosts, taipeiDate, normalizeDate, seriesPosts, articleConnections, type RawBlogMetadata, type Series } from "../src/lib/content/blog-model.ts";
 
@@ -15,6 +16,18 @@ const series: Series[] = [{slug: "topic", title: "Topic", description: "A larger
 const entry = (slug: string, metadata: RawBlogMetadata = {}) => ({
   modulePath: `src/content/blog/${slug}.mdx`,
   metadata: {title: slug, description: "A concept", pubDate: today, ...metadata}
+});
+
+test("rendered article headings share stable IDs with the static table of contents", async () => {
+  const result = await svelteConfig.preprocess[0].markup({
+    filename: "headings.mdx",
+    content: "## 開始閱讀\n\n### A *small* example\n\n## 開始閱讀\n"
+  });
+  const code = result?.code ?? "";
+  assert.match(code, /"articleHeadings":\[\{"id":"開始閱讀","label":"開始閱讀","level":2\}/);
+  assert.match(code, /"id":"a-small-example","label":"A small example","level":3/);
+  assert.match(code, /"id":"開始閱讀-2","label":"開始閱讀","level":2/);
+  assert.match(code, /<h2 id="開始閱讀-2" tabindex="-1">/);
 });
 
 test("three Taipei calendar days, including every post and excluding tomorrow", () => {

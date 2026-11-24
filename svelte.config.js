@@ -5,6 +5,16 @@ import { remarkMathRender } from "./scripts/remark-math-render.js";
 
 const mdsvexExtensions = [".svx", ".md", ".mdx"];
 
+/**
+ * @typedef {object} MarkdownNode
+ * @property {string} type
+ * @property {number} [depth]
+ * @property {string} [value]
+ * @property {MarkdownNode[]} [children]
+ * @property {{ hProperties?: Record<string, unknown> }} [data]
+ */
+
+/** @param {string} value */
 function slugify(value) {
   return value
     .toLowerCase()
@@ -13,37 +23,45 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
+/** @param {MarkdownNode} node @returns {string} */
 function textFromNode(node) {
-  if (!node) return "";
   if (typeof node.value === "string") return node.value;
   if (Array.isArray(node.children)) return node.children.map(textFromNode).join("");
   return "";
 }
 
 function remarkHeadingIds() {
-  return (tree) => {
+  /**
+   * @param {MarkdownNode} tree
+   * @param {{ data: { fm?: Record<string, unknown> } }} file
+   */
+  function transform(tree, file) {
     const seen = new Map();
+    /** @type {import("./src/lib/content/article-headings.ts").ArticleHeading[]} */
+    const articleHeadings = [];
 
+    /** @param {MarkdownNode} node */
     function visit(node) {
-      if (!node || typeof node !== "object") return;
-
       if (node.type === "heading" && (node.depth === 2 || node.depth === 3)) {
-        const base = slugify(textFromNode(node)) || "section";
+        const label = textFromNode(node).trim();
+        const base = slugify(label) || "section";
         const count = seen.get(base) ?? 0;
         const id = count === 0 ? base : `${base}-${count + 1}`;
 
         seen.set(base, count + 1);
         node.data = node.data ?? {};
-        node.data.hProperties = { ...(node.data.hProperties ?? {}), id };
+        node.data.hProperties = { ...(node.data.hProperties ?? {}), id, tabIndex: -1 };
+        articleHeadings.push({ id, label, level: node.depth });
       }
 
-      if (Array.isArray(node.children)) {
-        node.children.forEach(visit);
-      }
+      node.children?.forEach(visit);
     }
 
     visit(tree);
-  };
+    // mdsvex exposes this data through its compiled metadata export.
+    file.data.fm = { ...file.data.fm, articleHeadings };
+  }
+  return transform;
 }
 
 const config = {
