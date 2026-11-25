@@ -87,27 +87,28 @@
 
 <style>
   .resume-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
+    padding-block: var(--page-pad-block);
   }
 
   .resume-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.7rem 0 0.85rem;
     color: var(--ink-strong);
-    font-size: clamp(2.8rem, 9vw, 5rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.04;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
     text-wrap: balance;
   }
 
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.08rem, 2vw, 1.25rem);
-    line-height: 1.7;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.22rem);
+    line-height: 1.65;
   }
 
   .resume-head p:not(.kicker):not(.lead),
@@ -120,31 +121,48 @@
     margin: 0.45rem 0 0;
   }
 
-  .contact-line,
+  .contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin-top: 1.15rem;
+  }
+
+  .contact-line a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: var(--heading-weight);
+  }
+
   .tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem 1rem;
-    margin-top: 1.4rem;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
   }
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(1.9rem, 5vw, 3rem);
+    padding-block: clamp(1.65rem, 4vw, 2.5rem);
   }
 
   h2 {
-    margin: 0 0 1.2rem;
+    margin: 0 0 1.1rem;
     color: var(--ink-strong);
-    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
     line-height: 1.2;
   }
 
-  .row-list,
+  .row-list {
+    display: grid;
+    gap: 1.1rem;
+  }
+
   .link-list {
     display: grid;
-    gap: 0.85rem;
+    gap: 0.15rem;
   }
 
   .resume-row {
@@ -157,7 +175,18 @@
     margin: 0;
     color: var(--ink-strong);
     font-size: 1.05rem;
-    line-height: 1.35;
+    line-height: 1.38;
+  }
+
+  h3 a {
+    color: var(--ink-strong);
+    text-decoration-color: var(--control-line);
+    text-underline-offset: 0.19em;
+  }
+
+  h3 a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   .resume-row p {
@@ -166,21 +195,33 @@
 
   time {
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
-  .link-list a,
-  .tag-list span {
-    color: var(--muted);
-    line-height: 1.6;
+  .link-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.35rem 0;
+    color: var(--ink-strong);
+    text-decoration-color: var(--control-line);
+    text-underline-offset: 0.19em;
+    line-height: 1.45;
+  }
+
+  .link-list a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   .tag-list span {
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 0.24rem 0.46rem;
+    padding: 0.25rem 0.55rem;
+    color: var(--ink);
     background: var(--surface-strong);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
   }
 
   @media (max-width: 700px) {

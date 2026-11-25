@@ -4,17 +4,24 @@
   import { getTeachingDay } from "#lib/content/teaching.ts";
   import { site, teachingAccelerators } from "#lib/content/site.ts";
 
+  type Accelerator = (typeof teachingAccelerators)[number];
+  type CourseDay = Accelerator["days"][number];
+
   let { data } = $props<{
     data: {
-      accelerator: (typeof teachingAccelerators)[number];
-      day: (typeof teachingAccelerators)[number]["days"][number];
+      accelerator: Accelerator;
+      day: CourseDay;
     };
   }>();
 
-  let accelerator = $derived(data.accelerator);
-  let day = $derived(data.day);
+  let accelerator = $derived<Accelerator>(data.accelerator);
+  let day = $derived<CourseDay>(data.day);
   let lesson = $derived(getTeachingDay(day.slug));
   let Content = $derived(lesson?.default);
+  let publishedDays = $derived(accelerator.days.filter((item: CourseDay) => item.published));
+  let dayIndex = $derived(publishedDays.findIndex((item: CourseDay) => item.slug === day.slug));
+  let prevDay = $derived(dayIndex > 0 ? publishedDays[dayIndex - 1] : undefined);
+  let nextDay = $derived(dayIndex >= 0 && dayIndex < publishedDays.length - 1 ? publishedDays[dayIndex + 1] : undefined);
 </script>
 
 <PageMeta
@@ -26,9 +33,9 @@
 
 <section class="handout-page">
   <article class="page-shell handout-layout" lang="zh-Hant">
-    <div class="handout-intro">
+    <div class="handout-intro" lang="en">
       <nav class="back-nav" aria-label="Back navigation">
-        <a href={`/teaching/${accelerator.slug}/`}>{accelerator.title}</a>
+        <a href={`/teaching/${accelerator.slug}/`}><span aria-hidden="true">←</span> {accelerator.title}</a>
       </nav>
 
       <header class="article-head">
@@ -50,18 +57,36 @@
         <Content />
       {/if}
     </div>
+
+    <nav class="day-pager" aria-label="Course day navigation" lang="en">
+      {#if prevDay}
+        <a class="pager-link" rel="prev" href={prevDay.href}>
+          <span>← Previous · {prevDay.day}</span>
+          <strong>{prevDay.title}</strong>
+        </a>
+      {/if}
+      {#if nextDay}
+        <a class="pager-link next" rel="next" href={nextDay.href}>
+          <span>Next · {nextDay.day} →</span>
+          <strong>{nextDay.title}</strong>
+        </a>
+      {/if}
+    </nav>
   </article>
 </section>
 
 <style>
   .handout-page {
-    padding-block: clamp(3rem, 8vw, 5.5rem);
+    padding-block: var(--page-pad-block);
   }
 
   .handout-layout {
     display: grid;
     grid-template-columns: var(--toc-width) minmax(0, var(--article-width));
-    grid-template-areas: "toc header" "toc body";
+    grid-template-areas:
+      "toc header"
+      "toc body"
+      "toc pager";
     column-gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
     justify-content: center;
@@ -76,35 +101,83 @@
     min-inline-size: 0;
   }
 
-  .back-nav {
-    margin-bottom: 1.5rem;
-    font-size: 0.78rem;
-  }
-
   .article-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.8rem, 4.5vw, 2.75rem);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.75rem 0 0.9rem;
     color: var(--ink-strong);
-    font-size: clamp(2.5rem, 8vw, 4.6rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .lead {
-    margin: 0 0 1rem;
+    margin: 0 0 0.9rem;
+    color: var(--muted);
+    font-size: clamp(1.04rem, 0.98rem + 0.4vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  .day-pager {
+    grid-area: pager;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.9rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .pager-link {
+    display: grid;
+    gap: 0.25rem;
+    min-height: 44px;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    text-decoration: none;
+    transition:
+      border-color 160ms var(--ease),
+      background 160ms var(--ease);
+  }
+
+  .pager-link:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .pager-link span {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .pager-link strong {
     color: var(--ink-strong);
-    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-    line-height: 1.72;
+    font-size: 0.96rem;
+    font-weight: var(--heading-weight);
+    line-height: 1.35;
+  }
+
+  .pager-link:hover strong {
+    color: var(--accent);
+  }
+
+  .pager-link.next {
+    text-align: right;
   }
 
   @media (max-width: 1040px) {
     .handout-layout {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "header" "toc" "body";
+      grid-template-areas: "header" "toc" "body" "pager";
       width: min(100% - 2rem, var(--article-width));
     }
 
@@ -118,8 +191,8 @@
       width: min(100% - 1.35rem, var(--article-width));
     }
 
-    h1 {
-      font-size: clamp(2.3rem, 13vw, 3.3rem);
+    .pager-link.next {
+      text-align: left;
     }
   }
 </style>

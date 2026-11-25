@@ -12,6 +12,7 @@
 <section class="index-page">
   <div class="content-shell">
     <header class="index-head">
+      <p class="kicker">Projects</p>
       <h1>Projects and prototypes</h1>
       <p>Explore work on clinical workflows, real-time voice, speech evidence and cybersecurity.</p>
     </header>
@@ -35,19 +36,20 @@
 
 <style>
   .index-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
+    padding-block: var(--page-pad-block);
   }
 
   .index-head {
-    margin-bottom: clamp(2.4rem, 7vw, 4rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   h1 {
-    margin: 1rem 0 0.85rem;
+    margin: 0.7rem 0 0.85rem;
     color: var(--ink-strong);
-    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
   }
 
@@ -75,14 +77,30 @@
     gap: 0.35rem;
     align-content: start;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+  }
+
+  .system-meta span:first-child {
+    color: var(--ink-strong);
+    font-weight: var(--heading-weight);
   }
 
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-size: clamp(1.2rem, 1.08rem + 0.65vw, 1.55rem);
     line-height: 1.3;
+  }
+
+  h2 a {
+    color: var(--ink-strong);
+    text-decoration-color: var(--control-line);
+    text-underline-offset: 0.19em;
+  }
+
+  h2 a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   p {
@@ -92,7 +110,7 @@
   @media (max-width: 760px) {
     .system-row {
       grid-template-columns: 1fr;
-      gap: 0.7rem;
+      gap: 0.55rem;
     }
   }
 </style>

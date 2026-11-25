@@ -132,16 +132,39 @@
     }
 
     summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       min-height: 44px;
-      padding: 0.65rem 0.9rem;
+      padding: 0.65rem 0.95rem;
+      list-style: none;
       cursor: pointer;
       color: var(--ink-strong);
       font-size: 0.95rem;
       font-weight: var(--heading-weight);
     }
 
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .mobile-contents[open] summary::after {
+      content: "−";
+    }
+
+    .mobile-contents[open] summary {
+      border-bottom: 1px solid var(--line);
+    }
+
     .mobile-contents nav {
-      padding: 0 0.75rem 0.65rem;
+      padding: 0.4rem 0.75rem 0.65rem;
     }
 
     .mobile-contents a {

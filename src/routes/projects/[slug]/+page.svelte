@@ -16,7 +16,7 @@
 <section class="detail-page">
   <div class="content-shell">
     <nav class="back-nav" aria-label="Back navigation">
-      <a href="/projects/">Projects</a>
+      <a href="/projects/"><span aria-hidden="true">←</span> Projects</a>
     </nav>
     <article>
       <header class="detail-head">
@@ -59,45 +59,42 @@
 
 <style>
   .detail-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
-  }
-
-  .back-nav {
-    margin-bottom: 1.5rem;
-    font-size: 0.78rem;
+    padding-block: var(--page-pad-block);
   }
 
   .detail-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.8rem, 4.5vw, 2.75rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-    line-height: 1.72;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.24rem);
+    line-height: 1.7;
   }
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(1.8rem, 5vw, 3rem);
+    padding-block: clamp(1.6rem, 4vw, 2.5rem);
   }
 
   h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 0.9rem;
     color: var(--ink-strong);
-    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.2;
+    line-height: 1.22;
   }
 
   p,
@@ -120,15 +117,15 @@
   .tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.5rem;
   }
 
   .tag-list span {
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 0.24rem 0.46rem;
-    color: var(--muted);
+    padding: 0.25rem 0.55rem;
+    color: var(--ink);
     background: var(--surface-strong);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
   }
 </style>

@@ -22,7 +22,7 @@
         研究觀點、技術評論與工作進展；研究成果、專案及教學另有各自的頁面。
       </p>
     </header>
-    <p><a href="/research/">Research／研究</a> · <a href="/projects/">Projects／專案</a> · <a href="/teaching/">Teaching／教學</a> · <a href="/event-notes/">Talks &amp; Workshops／演講與工作坊</a></p>
+    <p class="section-rail"><a href="/research/">Research／研究</a> · <a href="/projects/">Projects／專案</a> · <a href="/teaching/">Teaching／教學</a> · <a href="/event-notes/">Talks &amp; Workshops／演講與工作坊</a></p>
 
     <nav class="filters" aria-label="Article type">
       <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
@@ -30,7 +30,7 @@
         <button type="button" aria-pressed={filter === value} onclick={() => filter = value}>{label}</button>
       {/each}
       <button type="button" aria-pressed={filter === "daily-learning"} onclick={() => filter = "daily-learning"}>Daily learning／每日學習</button>
-      <a href="/professional/series/">Reading series／系列閱讀 →</a>
+      <a class="series-cta" href="/professional/series/">Reading series／系列閱讀 →</a>
     </nav>
     <noscript><p>目前列出所有文章；啟用 JavaScript 可切換文章類型。</p></noscript>
     <div class="series-links">
@@ -55,37 +55,107 @@
 </section>
 
 <style>
-  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
-  .filters button { font: inherit; cursor: pointer; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: transparent; color: var(--ink); }
-  .filters button[aria-pressed="true"] { background: var(--ink-strong); color: var(--bg); }
-  .series-links { display: grid; gap: 0.5rem; margin-bottom: 2rem; }
+  .section-rail {
+    margin: 0 0 1.25rem;
+    padding-block: 0.75rem;
+    border-block: 1px solid var(--line);
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .filters button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink-strong);
+    transition:
+      border-color 160ms var(--ease),
+      background 160ms var(--ease),
+      color 160ms var(--ease);
+  }
+
+  .filters button:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .filters button[aria-pressed="true"] {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: var(--on-accent);
+  }
+
+  .filters .series-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: var(--heading-weight);
+  }
+
+  .series-links {
+    display: grid;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+    padding: 0.55rem 0.9rem;
+    border-left: 2px solid var(--accent);
+    background: var(--surface-strong);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .series-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.94rem;
+    font-weight: var(--heading-weight);
+  }
 
   .blog-index {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
+    padding-block: var(--page-pad-block);
   }
 
   .index-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
   }
 
   h1 {
-    margin: 1rem 0 0.85rem;
+    margin: 0.7rem 0 0.8rem;
     color: var(--ink-strong);
-    font-size: clamp(2.7rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    text-wrap: balance;
   }
 
   .index-head p:last-child {
     margin: 0;
     color: var(--muted);
-    font-size: 1.12rem;
-    line-height: 1.75;
+    font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.14rem);
+    line-height: 1.7;
   }
 
   .post-list {
     display: grid;
-    gap: 1.6rem;
+    gap: 1.5rem;
   }
 
   .post-row {
@@ -99,14 +169,26 @@
   time,
   span {
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.45rem);
     line-height: 1.32;
+    text-wrap: pretty;
+  }
+
+  h2 a {
+    color: var(--ink-strong);
+    text-decoration-color: var(--control-line);
+    text-underline-offset: 0.19em;
+  }
+
+  h2 a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   p {
@@ -118,7 +200,7 @@
   @media (max-width: 700px) {
     .post-row {
       grid-template-columns: 1fr;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
   }
 </style>

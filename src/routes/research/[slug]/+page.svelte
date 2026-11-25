@@ -15,7 +15,7 @@
 <section class="detail-page">
   <div class="content-shell">
     <nav class="back-nav" aria-label="Back navigation">
-      <a href="/research/">Research</a>
+      <a href="/research/"><span aria-hidden="true">←</span> Research</a>
     </nav>
     <article>
       <header class="detail-head">
@@ -68,24 +68,20 @@
 
 <style>
   .detail-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
-  }
-
-  .back-nav {
-    margin-bottom: 1.5rem;
-    font-size: 0.78rem;
+    padding-block: var(--page-pad-block);
   }
 
   .detail-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.8rem, 4.5vw, 2.75rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
     overflow-wrap: anywhere;
   }
@@ -93,13 +89,13 @@
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-    line-height: 1.72;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.24rem);
+    line-height: 1.7;
   }
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(1.8rem, 5vw, 3rem);
+    padding-block: clamp(1.6rem, 4vw, 2.5rem);
   }
 
   .evidence-link {
@@ -107,7 +103,7 @@
     gap: 0.4rem;
     align-items: center;
     min-height: 44px;
-    margin-top: 0.9rem;
+    margin-top: 0.85rem;
     font-weight: var(--heading-weight);
   }
 
@@ -116,15 +112,21 @@
   }
 
   .evidence-scope {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
+    padding: 0.85rem 1.05rem;
+    border-left: 2px solid var(--amber);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--surface-strong);
+    color: var(--ink);
+    font-size: 0.95rem;
   }
 
   h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 0.9rem;
     color: var(--ink-strong);
-    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.2;
+    line-height: 1.22;
   }
 
   p,

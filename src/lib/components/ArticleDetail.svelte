@@ -88,22 +88,26 @@
   }
 
   h1 {
-    margin: 0.9rem 0 1rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(2.25rem, 1.3rem + 3.9vw, 4.5rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.25;
+    line-height: 1.15;
     letter-spacing: -0.025em;
     text-wrap: balance;
     overflow-wrap: anywhere;
   }
 
-  h1:lang(zh-Hant) { letter-spacing: -0.015em; }
+  h1:lang(zh-Hant) {
+    font-size: var(--page-title-zh-size);
+    letter-spacing: -0.015em;
+    line-height: 1.22;
+  }
 
   .article-header p:not(.kicker) {
     margin: 0 0 1.1rem;
     color: var(--muted);
-    font-size: clamp(1.08rem, 2.4vw, 1.25rem);
+    font-size: clamp(1.04rem, 0.98rem + 0.4vw, 1.2rem);
     line-height: 1.7;
   }
 
@@ -112,6 +116,13 @@
     border-top: 1px solid var(--line);
     margin-top: 3rem;
     padding-top: 1.2rem;
+  }
+
+  .article-footer > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: var(--heading-weight);
   }
 
   @media (max-width: 1040px) {

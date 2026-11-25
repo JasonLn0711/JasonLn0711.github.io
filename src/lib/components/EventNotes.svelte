@@ -47,7 +47,7 @@
   {#if entry && copy}
     <article class="entry-grid" data-event-note>
       <header class="entry-header" id="note-top">
-        <a href={base}>← {heading}</a>
+        <a class="back-link" href={base}>← {heading}</a>
         <p class="kicker">{copy.type} · {copy.format} · <time datetime={entry.date}>{entry.date}</time> (Asia/Taipei)</p>
         <h1>{copy.title}</h1>
         <p class="lead">{copy.summary}</p>
@@ -111,7 +111,7 @@
         <ul>{#each resources as resource}<li><a href={resource.source}>{resource.sourceLabel}</a></li>{/each}</ul>
         <a href="#tool-comparison">{zh ? "回看 p5.js／GSAP／Three.js 分工" : "See the p5.js / GSAP / Three.js comparison"}</a>
       </section>
-      <a href={base}>← {heading}</a>
+      <a class="back-link" href={base}>← {heading}</a>
       </div>
       <!-- svelte-ignore a11y_no_noninteractive_tabindex (The scrollable metadata region needs a keyboard entry point for arrow-key scrolling.) -->
       <div class="event-sidebar" id="event-metadata" role="region" aria-labelledby="metadata-heading" tabindex="0">
@@ -134,7 +134,7 @@
     <header><p class="kicker">{zh ? "參與紀錄" : "Attendance notes"}</p><h1>{heading}</h1><p class="lead">{zh ? "把演講與工作坊中的知識、疑問和後續思考，依日期整理在這裡。" : "Knowledge, questions and subsequent reflections from talks and workshops, organized by date."}</p></header>
     <label for="notes-search">{zh ? "搜尋筆記（活動、日期或關鍵字）" : "Search notes (event, date or keyword)"}</label>
     <input id="notes-search" type="search" bind:value={query} placeholder={zh ? "例如：p5.js、2026-10-24" : "For example: p5.js, 2026-10-24"} />
-    <p role="status">{filtered.length} {zh ? "篇筆記" : "notes"}</p>
+    <p class="result-count" role="status">{filtered.length} {zh ? "篇筆記" : filtered.length === 1 ? "note" : "notes"}</p>
     <noscript><p>{zh ? "已列出所有筆記；搜尋需要 JavaScript。" : "All notes are listed; search requires JavaScript."}</p></noscript>
     {#each filtered as note}
       {@const item = note[zh ? "zh" : "en"]}
@@ -151,10 +151,13 @@
   .metadata { display: grid; grid-template-columns: 9rem minmax(0, 1fr); border-top: 1px solid var(--line); }
   dt, dd { margin: 0; padding: .8rem .5rem; border-bottom: 1px solid var(--line); line-height: 1.7; overflow-wrap: anywhere; }
   dt { color: var(--muted); }
-  .notes { padding-block: clamp(3rem, 8vw, 6rem); max-width: 56rem; }
-  header { margin-block: 1.5rem 2rem; }
-  h1 { color: var(--ink-strong); font-weight: var(--heading-weight); font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.15; text-wrap: balance; }
-  h2 { color: var(--ink-strong); font-weight: var(--heading-weight); font-size: 1.8rem; }
+  .notes { padding-block: var(--page-pad-block); max-width: 56rem; }
+  header { margin-block: 0 2rem; }
+  .back-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.9rem; font-weight: var(--heading-weight); text-decoration: none; }
+  .back-link:hover { text-decoration: underline; }
+  h1 { margin: 0.7rem 0 0.85rem; color: var(--ink-strong); font-weight: var(--heading-weight); font-size: var(--page-title-size); letter-spacing: -0.025em; line-height: 1.15; text-wrap: balance; }
+  h1:lang(zh-Hant) { font-size: var(--page-title-zh-size); letter-spacing: -0.015em; line-height: 1.22; }
+  h2 { color: var(--ink-strong); font-weight: var(--heading-weight); font-size: var(--section-title-size); line-height: 1.25; }
   h3 { margin-top: 1.8rem; color: var(--ink-strong); }
   h3[id] { scroll-margin-top: 6rem; }
   blockquote { margin: 1rem 0; padding: 1rem 1.5rem; border-left: 2px solid var(--accent); line-height: 1.9; color: var(--ink); background: var(--accent-soft); }
@@ -200,11 +203,17 @@
     .entry-grid { display: block; }
     .event-sidebar { position: static; max-height: none; overflow: visible; }
   }
-  aside { padding: 1rem; border-left: 2px solid var(--accent); background: var(--accent-soft); }
-  summary { cursor: pointer; padding-block: .75rem; color: var(--accent); }
-  input { display: block; width: 100%; box-sizing: border-box; margin-top: .6rem; padding: .8rem; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); }
+  aside { padding: 1rem 1.15rem; border-left: 2px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; padding-block: .45rem; color: var(--accent); }
+  label[for="notes-search"] { display: block; color: var(--ink-strong); font-size: 0.92rem; font-weight: var(--heading-weight); }
+  input { display: block; width: min(100%, 30rem); min-height: 44px; box-sizing: border-box; margin-top: .5rem; padding: .6rem .85rem; font: inherit; color: var(--ink-strong); background: var(--surface); border: 1px solid var(--control-line); border-radius: var(--radius-sm); transition: border-color 160ms var(--ease); }
+  input::placeholder { color: var(--muted); }
+  input:hover { border-color: var(--accent); }
+  .result-count { margin: 0.65rem 0 1.25rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
   .note-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; border-top: 1px solid var(--line); padding-block: 1.5rem; }
-  time { color: var(--muted); font-variant-numeric: tabular-nums; }
-  .note-row h2 { margin-top: .5rem; }
+  time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.85rem; }
+  .note-row h2 { margin-top: .35rem; font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.5rem); }
+  .note-row h2 a { color: var(--ink-strong); text-decoration-color: var(--control-line); text-underline-offset: 0.19em; }
+  .note-row h2 a:hover { color: var(--accent); text-decoration-color: currentColor; }
   @media (max-width: 600px) { .flow { grid-template-columns: 1fr; } .flow li:not(:last-child)::after { content: " ↓"; } .metadata { grid-template-columns: 1fr; } dt { border-bottom: 0; padding-bottom: 0; } .note-row { grid-template-columns: 1fr; gap: .5rem; } }
 </style>

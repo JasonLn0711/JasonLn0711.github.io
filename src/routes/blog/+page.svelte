@@ -54,37 +54,72 @@
 </section>
 
 <style>
-  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
-  .filters button { font: inherit; cursor: pointer; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: transparent; color: var(--ink); }
-  .filters button[aria-pressed="true"] { background: var(--ink-strong); color: var(--bg); }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
 
+  .filters button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink-strong);
+    transition:
+      border-color 160ms var(--ease),
+      background 160ms var(--ease),
+      color 160ms var(--ease);
+  }
+
+  .filters button:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .filters button[aria-pressed="true"] {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: var(--on-accent);
+  }
 
   .blog-index {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
+    padding-block: var(--page-pad-block);
   }
 
   .index-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.75rem, 4.5vw, 2.5rem);
   }
 
   h1 {
-    margin: 1rem 0 0.85rem;
+    margin: 0.7rem 0 0.8rem;
     color: var(--ink-strong);
-    font-size: clamp(2.7rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    text-wrap: balance;
   }
 
   .index-head p:last-child {
     margin: 0;
     color: var(--muted);
-    font-size: 1.12rem;
-    line-height: 1.75;
+    font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.14rem);
+    line-height: 1.7;
   }
 
   .post-list {
     display: grid;
-    gap: 1.6rem;
+    gap: 1.5rem;
   }
 
   .post-row {
@@ -98,14 +133,25 @@
   time,
   .post-meta {
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.45rem);
     line-height: 1.32;
+  }
+
+  h2 a {
+    color: var(--ink-strong);
+    text-decoration-color: var(--control-line);
+    text-underline-offset: 0.19em;
+  }
+
+  h2 a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   p {
@@ -115,13 +161,22 @@
   }
 
   .professional-link {
-    margin-top: 1.25rem;
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .professional-link a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: var(--heading-weight);
   }
 
   @media (max-width: 700px) {
     .post-row {
       grid-template-columns: 1fr;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
   }
 </style>

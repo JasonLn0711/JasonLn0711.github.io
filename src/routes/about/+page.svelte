@@ -55,27 +55,28 @@
 
 <style>
   .about-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
+    padding-block: var(--page-pad-block);
   }
 
   .about-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.7rem 0 0.9rem;
     color: var(--ink-strong);
-    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
   }
 
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-    line-height: 1.72;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.24rem);
+    line-height: 1.7;
   }
 
   .about-head p:not(.kicker):not(.lead),
@@ -90,15 +91,15 @@
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(2rem, 6vw, 3.2rem);
+    padding-block: clamp(1.8rem, 4.5vw, 2.8rem);
   }
 
   h2 {
-    margin: 0 0 1.35rem;
+    margin: 0 0 1.2rem;
     color: var(--ink-strong);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.18;
+    line-height: 1.2;
   }
 
   .principle-list {

@@ -36,7 +36,7 @@
 
 <style>
   .audience-page {
-    padding-top: 11rem;
+    padding-block: var(--page-pad-block);
   }
 
   .route-stack {
@@ -49,35 +49,35 @@
     grid-template-columns: auto 1fr;
     gap: 1rem;
     padding: 1.2rem;
+    text-decoration: none;
     transition:
-      transform 520ms var(--ease),
-      border-color 520ms var(--ease);
+      transform 180ms var(--ease),
+      border-color 180ms var(--ease),
+      background 180ms var(--ease);
   }
 
   .audience-card:hover {
-    transform: translateX(6px);
+    transform: translateY(-1px);
     border-color: var(--accent);
+    background: var(--surface-strong);
   }
 
   h2 {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    margin: 0 0 0.45rem;
+    color: var(--ink-strong);
+    font-size: clamp(1.2rem, 1.08rem + 0.65vw, 1.55rem);
+    line-height: 1.3;
   }
 
   p {
-    margin: 0 0 0.7rem;
+    margin: 0 0 0.65rem;
     color: var(--muted);
     line-height: 1.65;
   }
 
   small {
     color: var(--accent);
+    font-size: 0.9rem;
     line-height: 1.5;
-  }
-
-  @media (max-width: 900px) {
-    .audience-page {
-      padding-top: 8rem;
-    }
   }
 </style>

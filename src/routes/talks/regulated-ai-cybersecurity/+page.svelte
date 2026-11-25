@@ -36,7 +36,7 @@
 <section class="detail-page">
   <div class="content-shell">
     <nav class="back-nav" aria-label="Back navigation">
-      <a href="/talks/">Talks</a>
+      <a href="/talks/"><span aria-hidden="true">←</span> Talks</a>
     </nav>
     <article>
       <header class="detail-head">
@@ -58,52 +58,48 @@
 
 <style>
   .detail-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
-  }
-
-  .back-nav {
-    margin-bottom: 1.5rem;
-    font-size: 0.78rem;
+    padding-block: var(--page-pad-block);
   }
 
   .detail-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.8rem, 4.5vw, 2.75rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.08;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
   }
 
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.1rem, 2vw, 1.28rem);
-    line-height: 1.72;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.24rem);
+    line-height: 1.7;
   }
 
   .talk-meta {
     margin: 1rem 0 0;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     line-height: 1.6;
   }
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(1.8rem, 5vw, 3rem);
+    padding-block: clamp(1.6rem, 4vw, 2.5rem);
   }
 
   h2 {
-    margin: 0 0 1rem;
+    margin: 0 0 0.9rem;
     color: var(--ink-strong);
-    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.2;
+    line-height: 1.22;
   }
 
   p {

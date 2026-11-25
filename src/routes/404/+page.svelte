@@ -25,13 +25,12 @@
 
 <style>
   .not-found {
-    min-height: 100dvh;
-    display: grid;
-    align-items: center;
-    padding-top: 8rem;
+    padding-block: clamp(3rem, 8vw, 5.5rem);
   }
 
   .panel {
-    padding: clamp(1.5rem, 5vw, 4rem);
+    display: grid;
+    gap: 1.15rem;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
   }
 </style>

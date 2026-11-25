@@ -15,7 +15,7 @@
 <section class="detail-page">
   <div class="content-shell">
     <nav class="back-nav" aria-label="Back navigation">
-      <a href="/teaching/">Teaching</a>
+      <a href="/teaching/"><span aria-hidden="true">←</span> Teaching</a>
     </nav>
 
     <article>
@@ -71,51 +71,47 @@
 
 <style>
   .detail-page {
-    padding-block: clamp(3.5rem, 9vw, 6rem);
-  }
-
-  .back-nav {
-    margin-bottom: 1.5rem;
-    font-size: 0.78rem;
+    padding-block: var(--page-pad-block);
   }
 
   .detail-head {
-    margin-bottom: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1.8rem, 4.5vw, 2.75rem);
   }
 
   h1 {
-    margin: 1rem 0 1rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(2.6rem, 8vw, 4.8rem);
+    font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.06;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     text-wrap: balance;
   }
 
   .lead {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-    line-height: 1.72;
+    font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.24rem);
+    line-height: 1.7;
   }
 
   .plain-section {
     border-top: 1px solid var(--line);
-    padding-block: clamp(1.8rem, 5vw, 3rem);
+    padding-block: clamp(1.6rem, 4vw, 2.5rem);
   }
 
   h2 {
     margin: 0 0 1rem;
     color: var(--ink-strong);
-    font-size: clamp(1.45rem, 3.4vw, 2rem);
+    font-size: var(--section-title-size);
     font-weight: var(--heading-weight);
-    line-height: 1.2;
+    line-height: 1.22;
   }
 
   h3 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.1rem, 2.2vw, 1.34rem);
+    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.26rem);
     line-height: 1.35;
   }
 
@@ -131,7 +127,7 @@
 
   .day-list {
     display: grid;
-    gap: 1rem;
+    gap: 0.35rem;
   }
 
   .day-row {
@@ -139,15 +135,22 @@
     grid-template-columns: 5rem minmax(0, 1fr);
     gap: 1rem;
     align-items: start;
+    min-height: 44px;
     border-top: 1px solid var(--line);
-    padding-top: 1rem;
+    padding: 0.9rem 0.65rem;
+    margin-inline: -0.65rem;
+    border-radius: var(--radius-sm);
     color: inherit;
     text-decoration: none;
+    transition: background 160ms var(--ease);
   }
 
   .day-row:first-child {
     border-top: 0;
-    padding-top: 0;
+  }
+
+  a.day-row:hover {
+    background: var(--bg-soft);
   }
 
   .day-row:hover h3 {

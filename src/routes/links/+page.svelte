@@ -31,32 +31,44 @@
 
 <style>
   .links-page {
-    min-height: 100dvh;
-    display: grid;
-    align-items: center;
-    padding-top: 8rem;
+    padding-block: var(--page-pad-block);
   }
 
   .links-grid {
     display: grid;
-    grid-template-columns: 0.75fr 1fr;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
     align-items: start;
+  }
+
+  .links-grid > div:first-child {
+    display: grid;
+    gap: 0.9rem;
   }
 
   .links-list {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .links-list a {
-    padding: 1rem;
-    color: var(--ink);
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.85rem 1rem;
+    color: var(--ink-strong);
+    font-weight: var(--heading-weight);
+    text-decoration: none;
+    transition:
+      border-color 160ms var(--ease),
+      background 160ms var(--ease),
+      color 160ms var(--ease);
   }
 
   .links-list a:hover {
     color: var(--accent);
-    border-color: var(--line-strong);
+    border-color: var(--accent);
+    background: var(--accent-soft);
   }
 
   @media (max-width: 900px) {
