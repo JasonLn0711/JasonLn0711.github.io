@@ -171,8 +171,8 @@
   .contents { grid-area: toc; font-size: .86rem; }
   .contents, .event-sidebar { position: sticky; top: 5.5rem; max-height: calc(100dvh - 7rem); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; padding: .35rem .5rem .8rem; }
   .contents summary { color: var(--ink); font-weight: var(--strong-weight); }
-  .toc-links { display: grid; gap: .18rem; border-left: 1px solid var(--line); }
-  .toc-links a { display: block; border-left: 2px solid transparent; margin-left: -1px; padding: .34rem .35rem .34rem .85rem; color: var(--muted); line-height: 1.4; overflow-wrap: anywhere; }
+  .toc-links { display: grid; gap: .22rem; border-left: 1px solid var(--line); }
+  .toc-links a { display: block; border-left: 2px solid transparent; margin-left: -1px; padding: .38rem .35rem .38rem .85rem; color: var(--muted); line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
   .toc-links a:hover, .toc-links a:focus-visible { color: var(--accent); border-left-color: var(--accent); }
   .toc-links .chapter-link { padding-left: 1.3rem; font-size: .82rem; }
   .chapter-link span { color: var(--accent); font-variant-numeric: tabular-nums; }
@@ -210,10 +210,10 @@
   input::placeholder { color: var(--muted); }
   input:hover { border-color: var(--accent); }
   .result-count { margin: 0.65rem 0 1.25rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .note-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; border-top: 1px solid var(--line); padding-block: 1.5rem; }
-  time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.85rem; }
-  .note-row h2 { margin-top: .35rem; font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.5rem); }
-  .note-row h2 a { color: var(--ink-strong); text-decoration-color: var(--control-line); text-underline-offset: 0.19em; }
-  .note-row h2 a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  .note-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.75rem; border-top: 1px solid var(--line); padding-block: 1.75rem; }
+  time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.84rem; }
+  .note-row h2 { margin-top: .35rem; font-size: clamp(1.2rem, 1.08rem + 0.55vw, 1.45rem); line-height: 1.4; }
+  .note-row h2 a { color: var(--ink-strong); text-decoration: none; }
+  .note-row h2 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.22em; }
   @media (max-width: 600px) { .flow { grid-template-columns: 1fr; } .flow li:not(:last-child)::after { content: " ↓"; } .metadata { grid-template-columns: 1fr; } dt { border-bottom: 0; padding-bottom: 0; } .note-row { grid-template-columns: 1fr; gap: .5rem; } }
 </style>

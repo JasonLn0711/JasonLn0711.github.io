@@ -20,8 +20,8 @@
   .series-index { padding-block: var(--page-pad-block); }
   h1 { margin: 0.7rem 0 0.8rem; color: var(--ink-strong); font-size: var(--page-title-size); font-weight: var(--heading-weight); letter-spacing: -0.025em; line-height: 1.15; text-wrap: balance; }
   h2 { font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem); line-height: 1.35; }
-  h2 a { color: var(--ink-strong); text-decoration-color: var(--control-line); text-underline-offset: 0.19em; }
-  h2 a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  h2 a { color: var(--ink-strong); text-decoration: none; }
+  h2 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.22em; }
   p { line-height: 1.75; color: var(--muted); }
   article { border-top: 1px solid var(--line); margin-block: 1.8rem; padding-top: 1.2rem; }
   .back-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: var(--heading-weight); }

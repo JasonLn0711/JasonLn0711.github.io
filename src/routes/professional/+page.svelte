@@ -22,20 +22,21 @@
         研究觀點、技術評論與工作進展；研究成果、專案及教學另有各自的頁面。
       </p>
     </header>
-    <p class="section-rail"><a href="/research/">Research／研究</a> · <a href="/projects/">Projects／專案</a> · <a href="/teaching/">Teaching／教學</a> · <a href="/event-notes/">Talks &amp; Workshops／演講與工作坊</a></p>
 
     <nav class="filters" aria-label="Article type">
-      <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部文章</button>
-      {#each [["essay", "Essays／專業論述"], ["research-note", "Research notes／研究筆記"], ["update", "Work updates／工作進展"]] as [value, label]}
+      <button type="button" aria-pressed={filter === "all"} onclick={() => filter = "all"}>All posts／全部</button>
+      {#each [["essay", "Essays／論述"], ["research-note", "Research notes／研究筆記"], ["update", "Updates／進展"]] as [value, label]}
         <button type="button" aria-pressed={filter === value} onclick={() => filter = value}>{label}</button>
       {/each}
       <button type="button" aria-pressed={filter === "daily-learning"} onclick={() => filter = "daily-learning"}>Daily learning／每日學習</button>
-      <a class="series-cta" href="/professional/series/">Reading series／系列閱讀 →</a>
     </nav>
     <noscript><p>目前列出所有文章；啟用 JavaScript 可切換文章類型。</p></noscript>
-    <div class="series-links">
-      {#each professionalSeries as series}<a href={`/professional/series/${series.slug}/`}>{series.title} →</a>{/each}
-    </div>
+    {#if professionalSeries.length > 0}
+      <div class="series-links">
+        <span class="series-label">Series／系列閱讀</span>
+        {#each professionalSeries as series}<a href={`/professional/series/${series.slug}/`}>{series.title} →</a>{/each}
+      </div>
+    {/if}
     <div class="post-list" aria-live="polite">
       {#if posts.length === 0}<p>No articles in this category yet. 此分類尚無已發布文章。</p>{/if}
       {#each posts as post}
@@ -55,94 +56,21 @@
 </section>
 
 <style>
-  .section-rail {
-    margin: 0 0 1.25rem;
-    padding-block: 0.75rem;
-    border-block: 1px solid var(--line);
-    font-size: 0.92rem;
-    line-height: 1.8;
-  }
-
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.15rem;
-  }
-
-  .filters button {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font: inherit;
-    font-size: 0.92rem;
-    cursor: pointer;
-    padding: 0.45rem 0.85rem;
-    border: 1px solid var(--control-line);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    color: var(--ink-strong);
-    transition:
-      border-color 160ms var(--ease),
-      background 160ms var(--ease),
-      color 160ms var(--ease);
-  }
-
-  .filters button:hover {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--accent);
-  }
-
-  .filters button[aria-pressed="true"] {
-    background: var(--accent-strong);
-    border-color: var(--accent-strong);
-    color: var(--on-accent);
-  }
-
-  .filters .series-cta {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding-inline: 0.35rem;
-    font-size: 0.92rem;
-    font-weight: var(--heading-weight);
-  }
-
-  .series-links {
-    display: grid;
-    gap: 0.25rem;
-    margin-bottom: 2rem;
-    padding: 0.55rem 0.9rem;
-    border-left: 2px solid var(--accent);
-    background: var(--surface-strong);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  }
-
-  .series-links a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 0.94rem;
-    font-weight: var(--heading-weight);
-  }
-
   .blog-index {
     padding-block: var(--page-pad-block);
   }
 
   .index-head {
-    margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   h1 {
-    margin: 0.7rem 0 0.8rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
     font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
     letter-spacing: -0.025em;
-    line-height: 1.12;
+    line-height: 1.15;
     text-wrap: balance;
   }
 
@@ -150,57 +78,137 @@
     margin: 0;
     color: var(--muted);
     font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.14rem);
-    line-height: 1.7;
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 1rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.25rem;
+  }
+
+  .filters button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: inherit;
+    font-size: 0.86rem;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: var(--muted);
+    transition:
+      border-color 160ms var(--ease),
+      color 160ms var(--ease);
+  }
+
+  .filters button:hover {
+    color: var(--ink-strong);
+  }
+
+  .filters button[aria-pressed="true"] {
+    color: var(--ink-strong);
+    font-weight: var(--heading-weight);
+    border-bottom-color: var(--accent);
+  }
+
+  .series-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .series-label {
+    color: var(--muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+
+  .series-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.92rem;
+    text-decoration: none;
+  }
+
+  .series-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   .post-list {
     display: grid;
-    gap: 1.5rem;
   }
 
   .post-row {
     display: grid;
     grid-template-columns: 8.5rem minmax(0, 1fr);
-    gap: 1.5rem;
+    gap: 1.75rem;
     border-top: 1px solid var(--line);
-    padding-top: 1.4rem;
+    padding-block: 1.75rem;
+  }
+
+  .post-row:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
   }
 
   time,
   span {
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  time {
+    padding-top: 0.2rem;
   }
 
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.45rem);
-    line-height: 1.32;
-    text-wrap: pretty;
+    font-size: clamp(1.2rem, 1.08rem + 0.55vw, 1.42rem);
+    line-height: 1.4;
+    text-wrap: balance;
   }
 
   h2 a {
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
+    text-decoration: none;
   }
 
   h2 a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   p {
-    margin: 0.45rem 0 0.55rem;
+    margin: 0.6rem 0 0.7rem;
     color: var(--muted);
-    line-height: 1.72;
+    line-height: 1.82;
+    text-wrap: pretty;
   }
 
   @media (max-width: 700px) {
     .post-row {
       grid-template-columns: 1fr;
       gap: 0.35rem;
+      padding-block: 1.5rem;
+    }
+
+    time {
+      padding-top: 0;
     }
   }
 </style>

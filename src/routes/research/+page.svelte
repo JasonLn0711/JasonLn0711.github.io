@@ -64,15 +64,14 @@
 
   .program-list {
     display: grid;
-    gap: 1.7rem;
   }
 
   .program-row {
     display: grid;
     grid-template-columns: 9.5rem minmax(0, 1fr);
-    gap: 1.6rem;
+    gap: 1.75rem;
     border-top: 1px solid var(--line);
-    padding-top: 1.5rem;
+    padding-block: 1.75rem;
   }
 
   .program-meta {
@@ -80,7 +79,8 @@
     gap: 0.35rem;
     align-content: start;
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
   }
 
   .program-meta span:first-child {
@@ -91,23 +91,25 @@
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.2rem, 1.08rem + 0.65vw, 1.55rem);
-    line-height: 1.3;
+    font-size: clamp(1.2rem, 1.08rem + 0.55vw, 1.48rem);
+    line-height: 1.38;
   }
 
   h2 a {
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
+    text-decoration: none;
   }
 
   h2 a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   p {
-    margin: 0.5rem 0 0;
+    margin: 0.6rem 0 0;
+    line-height: 1.82;
+    text-wrap: pretty;
   }
 
   @media (max-width: 760px) {

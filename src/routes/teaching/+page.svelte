@@ -128,13 +128,13 @@
 
   h3 a {
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
+    text-decoration: none;
   }
 
   h3 a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   p {

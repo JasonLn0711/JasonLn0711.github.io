@@ -87,9 +87,10 @@
     display: block;
     border-inline-start: 2px solid transparent;
     margin-inline-start: -1px;
-    padding: 0.34rem 0.25rem 0.34rem 0.8rem;
+    padding: 0.4rem 0.25rem 0.4rem 0.85rem;
     color: var(--muted);
-    line-height: 1.35;
+    line-height: 1.5;
+    text-decoration: none;
     overflow-wrap: anywhere;
   }
 

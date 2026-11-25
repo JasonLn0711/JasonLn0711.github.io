@@ -180,38 +180,38 @@
 
   h3 a {
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
+    text-decoration: none;
   }
 
   h3 a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   .resume-row p {
-    margin: 0.3rem 0 0;
+    margin: 0.35rem 0 0;
   }
 
   time {
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
   .link-list a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    padding: 0.35rem 0;
+    padding: 0.4rem 0;
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
-    line-height: 1.45;
+    text-decoration: none;
+    line-height: 1.5;
   }
 
   .link-list a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   .tag-list span {

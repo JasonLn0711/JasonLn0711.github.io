@@ -54,59 +54,21 @@
 </section>
 
 <style>
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .filters button {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font: inherit;
-    font-size: 0.92rem;
-    cursor: pointer;
-    padding: 0.45rem 0.85rem;
-    border: 1px solid var(--control-line);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    color: var(--ink-strong);
-    transition:
-      border-color 160ms var(--ease),
-      background 160ms var(--ease),
-      color 160ms var(--ease);
-  }
-
-  .filters button:hover {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--accent);
-  }
-
-  .filters button[aria-pressed="true"] {
-    background: var(--accent-strong);
-    border-color: var(--accent-strong);
-    color: var(--on-accent);
-  }
-
   .blog-index {
     padding-block: var(--page-pad-block);
   }
 
   .index-head {
-    margin-bottom: clamp(1.75rem, 4.5vw, 2.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   h1 {
-    margin: 0.7rem 0 0.8rem;
+    margin: 0.75rem 0 1rem;
     color: var(--ink-strong);
     font-size: var(--page-title-size);
     font-weight: var(--heading-weight);
     letter-spacing: -0.025em;
-    line-height: 1.12;
+    line-height: 1.15;
     text-wrap: balance;
   }
 
@@ -114,55 +76,99 @@
     margin: 0;
     color: var(--muted);
     font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.14rem);
-    line-height: 1.7;
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 1rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 2rem;
+  }
+
+  .filters button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: inherit;
+    font-size: 0.86rem;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: var(--muted);
+    transition:
+      border-color 160ms var(--ease),
+      color 160ms var(--ease);
+  }
+
+  .filters button:hover {
+    color: var(--ink-strong);
+  }
+
+  .filters button[aria-pressed="true"] {
+    color: var(--ink-strong);
+    font-weight: var(--heading-weight);
+    border-bottom-color: var(--accent);
   }
 
   .post-list {
     display: grid;
-    gap: 1.5rem;
   }
 
   .post-row {
     display: grid;
     grid-template-columns: 8.5rem minmax(0, 1fr);
-    gap: 1.5rem;
+    gap: 1.75rem;
     border-top: 1px solid var(--line);
-    padding-top: 1.4rem;
+    padding-block: 1.75rem;
+  }
+
+  .post-row:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
   }
 
   time,
   .post-meta {
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
   h2 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(1.2rem, 1.08rem + 0.6vw, 1.45rem);
-    line-height: 1.32;
+    font-size: clamp(1.2rem, 1.08rem + 0.55vw, 1.42rem);
+    line-height: 1.4;
   }
 
   h2 a {
     color: var(--ink-strong);
-    text-decoration-color: var(--control-line);
-    text-underline-offset: 0.19em;
+    text-decoration: none;
   }
 
   h2 a:hover {
     color: var(--accent);
-    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   p {
-    margin: 0.45rem 0 0.55rem;
+    margin: 0.6rem 0 0.7rem;
     color: var(--muted);
-    line-height: 1.72;
+    line-height: 1.82;
+    text-wrap: pretty;
   }
 
   .professional-link {
-    margin-top: 1.75rem;
-    padding-top: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
     border-top: 1px solid var(--line);
   }
 
@@ -170,13 +176,19 @@
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font-weight: var(--heading-weight);
+    text-decoration: none;
+  }
+
+  .professional-link a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   @media (max-width: 700px) {
     .post-row {
       grid-template-columns: 1fr;
       gap: 0.35rem;
+      padding-block: 1.5rem;
     }
   }
 </style>

@@ -47,12 +47,16 @@
 </section>
 
 <style>
-  .connections { margin-bottom: 2rem; }
-  h2 { margin: 0 0 1rem; font-size: 1.65rem; font-weight: var(--heading-weight); }
-  h3 { margin: 0.35rem 0; font-size: 1rem; line-height: 1.5; }
-  p { color: var(--muted); margin: 0.4rem 0; line-height: 1.7; }
-  span { color: var(--muted); font-size: 0.78rem; }
-  .sequence { display: grid; gap: 0.8rem; margin: 1.2rem 0; }
-  .connection { padding: 1rem 0; border-bottom: 1px solid var(--line); }
-  .incoming-title { margin-top: 1.5rem; }
+  .connections { margin-bottom: 2.25rem; }
+  h2 { margin: 0 0 1.1rem; color: var(--ink-strong); font-size: 1.4rem; font-weight: var(--heading-weight); }
+  h3 { margin: 0.4rem 0; font-size: 1.04rem; line-height: 1.45; }
+  h3 a { color: var(--ink-strong); text-decoration: none; }
+  h3 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.22em; }
+  p { color: var(--muted); margin: 0.45rem 0; line-height: 1.8; }
+  span { color: var(--muted); font-size: 0.8rem; }
+  .sequence { display: grid; gap: 0.5rem; margin: 1.25rem 0; }
+  .sequence a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+  .sequence a:hover { text-decoration: underline; text-underline-offset: 0.22em; }
+  .connection { padding: 1.15rem 0; border-bottom: 1px solid var(--line); }
+  .incoming-title { margin-top: 1.75rem; color: var(--ink-strong); }
 </style>
