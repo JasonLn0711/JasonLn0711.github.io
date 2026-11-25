@@ -30,9 +30,9 @@
     <img
       src="/images/headshot-160.webp"
       srcset="/images/headshot-160.webp 160w, /images/headshot-256.webp 256w, /images/headshot-384.webp 384w"
-      sizes="(max-width: 40em) 84px, 112px"
+      sizes="(max-width: 42em) 88px, 112px"
       width="112"
-      height="112"
+      height="144"
       alt={site.name}
     />
     <div class="scholar-copy">
@@ -109,10 +109,13 @@
   .scholar-head img {
     inline-size: 7rem;
     height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 7 / 9;
     object-fit: cover;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
+    object-position: center top;
+    padding: 3px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
     margin-block-start: 0.2rem;
   }
 
@@ -282,7 +285,7 @@
     }
 
     .scholar-head img {
-      inline-size: 5.25rem;
+      inline-size: 5.5rem;
     }
 
     .work-list li {
