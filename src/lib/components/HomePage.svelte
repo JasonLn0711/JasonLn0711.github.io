@@ -148,8 +148,9 @@
     padding-block: 0.5rem;
   }
 
-  .profile img { inline-size: 5rem; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-sm); }
-  .profile a { font-weight: 680; color: var(--ink-strong); overflow-wrap: anywhere; }
+  .profile img { inline-size: 5rem; height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+  .profile a { font-weight: 680; color: var(--ink-strong); overflow-wrap: anywhere; text-decoration-color: var(--control-line); }
+  .profile a:hover { color: var(--accent); text-decoration-color: currentColor; }
   .profile p { color: var(--muted); margin: 0.2rem 0 0; font-size: 0.88rem; line-height: 1.5; }
 
   .section-index {

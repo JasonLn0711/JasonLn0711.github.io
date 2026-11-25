@@ -67,6 +67,7 @@
     block-size: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    border: 1px solid var(--line);
     border-radius: var(--radius-sm);
   }
 
@@ -76,7 +77,7 @@
   }
 
   .featured.with-cover {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.22fr);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1.12fr);
     align-content: start;
   }
 

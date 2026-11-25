@@ -22,11 +22,16 @@
   --page-width: 74rem;
   --article-width: 46rem;
   --toc-width: 13.5rem;
+  --page-pad-block: clamp(2.4rem, 5.5vw, 4.25rem);
+  --page-title-size: clamp(2.1rem, 1.45rem + 2.15vw, 3.35rem);
+  --page-title-zh-size: clamp(1.95rem, 1.35rem + 2vw, 3.05rem);
+  --section-title-size: clamp(1.4rem, 1.15rem + 0.9vw, 1.95rem);
   --radius-sm: 0.25rem;
   --radius-md: 0.4rem;
   --radius-lg: 0.55rem;
   --radius-xl: 0.7rem;
   --font-family: "Inter Variable", "Noto Sans TC Variable", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Noto Sans TC Variable", monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
