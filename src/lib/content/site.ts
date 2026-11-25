@@ -46,7 +46,7 @@ export const workTracks = [
   {
     title: "Systems and prototypes",
     summary:
-      "Explore previsit intake, a triage kiosk demo, real-time voice interaction, and local meeting reports.",
+      "Explore previsit intake, a triage kiosk demo, real-time voice interaction, and local shared-session speech and recording workflows.",
     href: "/projects/"
   },
   {
@@ -332,19 +332,124 @@ export const projects = [
   {
     slug: "project-aura",
     title: "Project AURA",
-    category: "Local meeting-summary trust",
-    readiness: "Local desktop workflow",
+    category: "Evidence-first speech & audio system",
+    readiness: "Local desktop & CLI service (v1.18)",
+    repoUrl: "https://github.com/JasonLn0711/project_aura",
+    repoLabel: "GitHub: JasonLn0711/project_aura",
     summary:
-      "A local-first meeting-summary workflow that turns corrected transcripts into structured reports while making runtime model readiness and error states visible.",
+      "A local shared-session audio and GPU speech recognition system that preserves durable recording evidence while connecting desktop, CLI, and SSH workflows for live capture, streaming speaker diarization, transcript correction, and rebuildable local search.",
+    summaryZh:
+      "以「原音證據優先」為核心的本機共享 Session 錄音與 GPU 語音辨識系統，串聯桌面（PyQt6）、互動式 CLI 與 SSH 工作流程，整合耐久化音訊擷取、即時語者分離、雙層繁中標點與領域詞彙校正，以及可隨時重建的本機檢索。",
     humanPain:
-      "Meeting summaries are useful only if the user can trust the input, model runtime, field structure, and failure behavior instead of receiving a fluent but uninspectable digest.",
+      "In long meetings, lectures, and research interviews, a speech tool fails its user if a UI crash drops the recording, if silent CPU fallback stalls live transcription, or if fluent post-processing overwrites what was actually said without a recoverable path back to the original audio and speaker turns.",
     systemResponse:
-      "A local Ollama model extracts information from a corrected transcript, then the app formats it as a structured Markdown report.",
-    evidence: [
-      "Structured reports with consistent fields.",
-      "Local model availability and processing errors are visible in the app."
+      "AURA separates an account-scoped background session service and single CUDA inference worker from detachable PyQt6 desktop, interactive CLI, and SSH clients. Live capture writes append-only PCM journals before running GPU-only Breeze ASR 25 (or optional English Parakeet v2) alongside an isolated Nemotron 3 streaming diarization subprocess, then applies non-destructive Traditional Chinese punctuation and conservative RapidFuzz glossary correction over a single meeting_id artifact contract.",
+    latestDesign: [
+      {
+        title: "1. Shared GUI, CLI, and SSH Session Service (session_core & AuraClient SDK)",
+        detail:
+          "One background service per OS account owns recording state, persisted audio-source preferences (system monitor, microphone, or RMS-balanced mixed capture), scheduled start/stop deadlines, and a serial GPU inference queue. Desktop (aura gui), interactive terminal (aura with slash commands and contextual Tab completion), and SSH clients attach to or detach from the same live session.",
+        detailZh:
+          "單一背景共享服務與多端點解耦：每個系統帳號由單一背景服務統一管理錄音狀態、音源偏好（系統音訊、麥克風或自動平衡混音）、定時排程與單一 GPU 推論佇列；PyQt6 桌面介面、互動式終端機（支援 / 指令與情境式 Tab 補全）及 SSH 皆透過同一套 SDK 共享同一個 Session。"
+      },
+      {
+        title: "2. Append-Only PCM Capture Journal, Live Speech Guard (speech-guard-v1), and Validated M4A Retention",
+        detail:
+          "Live 30 ms frames flush and fsync to an append-only .capture/ PCM journal with atomic session.json crash-recovery checkpoints and a 20-minute continuous no-voice auto-stop failsafe. During streaming, speech-guard-v1 protects audio frames, resets stuck states, and bounds live repair retries. On Stop, AURA validates full AAC decode, duration, and channel layout to retain a compact mixed M4A while releasing temporary WAV/PCM working tracks.",
+        detailZh:
+          "Append-only 原音日誌、即時語音保護（speech-guard-v1）與驗證後 M4A 留存：擷取迴圈將 30 ms 音框寫入 append-only PCM journal 並搭配原子化 session.json 崩潰恢復邊界與 20 分鐘無語音自動停錄保護；串流期間由 speech-guard-v1 保護音框並限制即時修補次數，停止錄音後經完整解碼與時長驗證只保留混音 M4A，自動釋放暫存 WAV／PCM。"
+      },
+      {
+        title: "3. Fail-Closed GPU-Only ASR & Explicit Model Lifecycle (Breeze-ASR-25 & Parakeet-TDT-0.6B-v2)",
+        detail:
+          "Transcription runs strictly on activated NVIDIA RTX/CUDA (faster-whisper Breeze-ASR-25 in int8 by default for Taiwan Mandarin and mixed speech; optional Parakeet-TDT-0.6B-v2 in FP32 for English). Operators can inspect, preload, switch, or unload models explicitly (/model load, /model unload), and retry saved segment gaps once per request (/recover) without overwriting manual edits.",
+        detailZh:
+          "GPU-Only Fail-Closed 語音辨識與顯式模型生命週期：嚴格要求於已啟用的 NVIDIA RTX／CUDA 執行（預設以 Breeze-ASR-25 int8 處理臺灣華語與中英夾雜，另支援選配英文 Parakeet-TDT-0.6B-v2），支援 /model load 與 /model unload 主動載入或釋放顯示卡記憶體，並可透過 /recover 針對缺漏區段單次重試而不覆寫人工修訂。"
+      },
+      {
+        title: "4. Isolated Default-On Streaming Speaker Diarization (Nemotron-3-Diarization)",
+        detail:
+          "Runs nvidia/Nemotron-3-Diarization (up to 8 speakers, 1.04 s low-latency input buffer) in an isolated Python 3.12 CUDA subprocess. The diarization worker consumes continuous durable PCM independently of the ASR queue and reconciles speaker turns with transcript segments by timestamp overlap.",
+        detailZh:
+          "獨立子行程預設開啟之 Nemotron 即時語者分離：於獨立的 Python 3.12 CUDA 子行程執行 nvidia/Nemotron-3-Diarization（最高 8 位講者），直接讀取耐久化 PCM 音訊而不必等待 ASR 斷句完成，再透過時間戳重疊（timestamp overlap）將語者標籤對齊逐字稿段落。"
+      },
+      {
+        title: "5. Adaptive Live Segmentation & Two-Layer Non-Destructive Post-Processing",
+        detail:
+          "Live endpointing requires an 800 ms pause during the first 10 seconds, linearly tightens to 400 ms between 10 and 20 seconds, and forces a frame-aligned boundary at 20 seconds. Post-ASR processing separates Traditional Chinese punctuation restoration (with a non-blocking deterministic save fallback) from conservative RapidFuzz domain-glossary correction, preserving raw ASR text alongside corrected text and a structured change log.",
+        detailZh:
+          "自適應即時斷句與雙層非破壞式後處理：前 10 秒採用 800 ms 停頓斷句、10 至 20 秒線性收斂至 400 ms 並於 20 秒強制對齊音框切分；後處理分為繁體中文標點還原（存檔時具備不阻塞 UI 的規則備援）與保守的 RapidFuzz 領域詞彙校正，分層保存原始辨識稿、校正稿與修訂紀錄。"
+      },
+      {
+        title: "6. Single-Identity Evidence Contract & Rebuildable Read-Only SQLite FTS5 Search",
+        detail:
+          "Every recording or media import uses one meeting_id manifest (session.json) linking audio, provisional/final/edited transcript layers, and content-free hash-chained local audit events. The aura-evidence rebuild command compiles canonical session files into an atomic, read-only SQLite FTS5 index for local cross-meeting and segment retrieval.",
+        detailZh:
+          "單一 Session 證據契約與可重建的唯讀 SQLite FTS5 檢索：每場錄音或匯入皆以唯一 meeting_id 與 session.json 串聯音檔、逐字稿版本與去內容化（content-free）雜湊鏈本機稽核事件；aura-evidence rebuild 可隨時由原始檔案原子重建唯讀的 SQLite FTS5 全文檢索索引。"
+      }
     ],
-    stack: ["Python", "PyQt", "Ollama", "Local LLM", "Structured extraction"],
+    designRationale: [
+      {
+        title: "Why decouple the session service from GUI and CLI views? · 為什麼將錄音服務與 GUI／CLI 介面徹底解耦？",
+        why:
+          "Recording continuity is the most fragile resource in live capture. By moving session ownership into a background service, closing a terminal window or restarting the desktop UI merely detaches the client while capture continues uninterrupted. Keeping all non-widget logic outside src/aura/ui/ also lets scheduling, audio durability, and recovery rules run under 445 fast standard-library regression tests without launching Qt.",
+        whyZh:
+          "設計巧思：現場會議或課堂中最昂貴的失敗是「介面關閉或閃退導致錄音中斷」。將 Session 生命週期收斂至背景服務後，關閉終端機或桌面視窗僅是「脫離檢視（detach）」，底層錄音與轉錄完全不受影響；同時遵循「不需啟動 Qt 就能測試的邏輯一律放在 UI 層之外」的原則，讓排程、音訊耐久化與恢復機制能以 445 項高速標準庫回歸測試獨立驗證。"
+      },
+      {
+        title: "Why separate Stop from full-file Refine and retain only decode-verified M4A? · 為什麼把「按下停止（Stop）」與「全文精修（Refine）」拆開，並在驗證後只留 M4A？",
+        why:
+          "When a meeting or lecture ends, the operator needs the session finalized immediately—not an automatic multi-minute full-file GPU re-transcription job that freezes the workstation. Pressing Stop saves the live transcript and validates full AAC decode, duration, and channel layout of the mixed M4A before releasing raw WAV/PCM working tracks (reclaiming 9.60 GB across 47 legacy and service sessions while automatically retaining raw inputs whenever an ASR error or recovery state remains unresolved). Full-file refinement runs only when explicitly requested.",
+        whyZh:
+          "設計巧思：會議或課堂結束按下 Stop 的瞬間，使用者最需要的是「立刻存妥原音與即時逐字稿」，而不是自動觸發動輒數分鐘的整場音檔重跑 ASR 導致工作站卡住。因此 AURA 將「停止即封存」與「按需精修（Refine）」拆開；且必須先通過 M4A 完整解碼、時長與聲道驗證後才釋放暫存 WAV／PCM（在已驗證批次中釋放達 9.60 GB 空間），一旦有未解決的辨識錯誤或待恢復狀態則自動保留原始音軌，兼顧磁碟空間治理與證據零遺失。"
+      },
+      {
+        title: "Why enforce a fail-closed GPU-only ASR contract instead of silent CPU fallback? · 為什麼堅持 GPU-Only Fail-Closed 契約，拒絕靜默退回 CPU？",
+        why:
+          "In real-time speech pipelines, a silent fallback to CPU makes the software appear to work while inference latency quietly balloons and live queues fall minutes behind speech. Failing closed at an explicit readiness gate (aura doctor and runtime reports) turns hidden degradation into an actionable diagnostic, while explicit /model load and /model unload commands prevent idle VRAM hoarding on a shared RTX workstation.",
+        whyZh:
+          "設計巧思：在即時語音系統中，「靜默退回 CPU 執行」會製造功能正常的假象，實際上卻讓推論延遲暴增、即時佇列嚴重落後並污染效能評估。採取 Fail-Closed 契約能在 CUDA 或驅動未就緒時立即於啟動閘門給出明確診斷；搭配 /model load 與 /model unload 顯式控制，讓研究者在同一張 RTX 工作站顯示卡上靈活切換 ASR、語音增強與本機 LLM，不會在閒置時佔用 VRAM。"
+      },
+      {
+        title: "Why isolate Nemotron diarization in its own subprocess with a bounded GPU window? · 為什麼將 Nemotron 語者分離放在獨立子行程，並以滑動視窗限制記憶體？",
+        why:
+          "Running diarization in an isolated Python 3.12 CUDA subprocess prevents dependency collisions with the main ASR environment and guarantees fault isolation: even if diarization lags or fails during capture, raw audio recording and Breeze ASR remain available. Because the GPU worker keeps only a bounded audio window and speaker cache while journaling historical turns on the service CPU, model VRAM never grows with recording duration.",
+        whyZh:
+          "設計巧思：將語者分離放進獨立的 Python 3.12 CUDA 子行程同時解決兩大難題：一是隔離套件相依性衝突，二是確保故障隔離——即使語者分離延遲或異常，也絕不會拖垮主行程的錄音與 ASR。此外，GPU worker 只保留有界音訊視窗與說話者快取，歷史語者區間則寫入服務端 CPU 索引並略過已指派段落，使 GPU 記憶體不會隨錄音時間拉長而線性膨脹。"
+      },
+      {
+        title: "Why use a 10 s → 20 s tightening pause curve and non-LLM RapidFuzz glossary correction? · 為什麼採用 10→20 秒漸進式斷句曲線，以及不靠 LLM 改寫的 RapidFuzz 詞彙校正？",
+        why:
+          "Flickering partial tokens fatigue human attention during live note-taking, whereas fixed 12-second cuts slice clauses in half. Requiring an 800 ms pause early and linearly tightening to 400 ms after 10 seconds waits for natural phrasing while capping segment wait at 20 seconds. Post-ASR, separating raw recognition output (_raw.txt) from punctuation restoration and conservative RapidFuzz glossary replacement (_corrected.txt, _correction_log.json) fixes Taiwan Mandarin domain terms without allowing an LLM to paraphrase or hallucinate what the speaker said.",
+        whyZh:
+          "設計巧思：即時畫面若不斷閃爍跳動半句話會極度消耗注意力，但固定 12 秒硬切又常把完整句子腰斬；「前 10 秒等待 800 ms 停頓、10 至 20 秒線性收斂至 400 ms」的漸進曲線能優先捕捉自然語氣停頓，同時守住 20 秒上限。而在後處理階段，堅持不使用 LLM 自由改寫句子，而是將原始辨識稿、繁中標點還原與保守閾值的 RapidFuzz 領域詞彙校正分層保存並留下修訂 log，既能修正常見臺灣專業術語，又不會竄改講者原意。"
+      },
+      {
+        title: "Why treat session files as the source of truth and SQLite FTS5 as a disposable read-only derivative? · 為什麼以檔案目錄作為唯一真實來源，並將 SQLite FTS5 設計為可拋棄式唯讀索引？",
+        why:
+          "Monolithic databases can become opaque failure points when schemas evolve or disk writes are interrupted. By writing transcripts, manifests, and review logs via temp-file + flush + fsync + os.replace inside each session folder, human-readable files remain the permanent source of truth. The SQLite FTS5 database is opened strictly read-only for queries and can be atomically rebuilt from disk at any time after schema and transcript-hash verification.",
+        whyZh:
+          "設計巧思：若將單一資料庫當成唯一儲存層，一旦寫入中斷或結構升級就容易形成難以救援的黑盒子。AURA 讓所有逐字稿、manifest 與審閱紀錄皆以 temp file → flush → fsync → os.replace 原子寫入檔案系統作為唯一真實來源（Source of Truth）；SQLite FTS5 則設計為純唯讀查詢的衍生索引，隨時可由磁碟檔案驗證雜湊後原子重建，確保長期保存的可讀性與可稽核性。"
+      }
+    ],
+    evidence: [
+      "445 passing standard-library regression tests across shared session management, adaptive segmentation, crash-recovery journals, and CLI/GUI parity.",
+      "9.60 GB of working WAV/PCM storage reclaimed across 47 decode-verified legacy and service sessions via mixed M4A retention while protecting active and recoverable work.",
+      "Availability validation for CUDA Breeze-ASR-25 (int8), optional Parakeet-TDT-0.6B-v2 (FP32), isolated Nemotron-3 streaming diarization (82.94-minute replay p95 update latency 1.252 s), and speech-guard-v1 bounded live speech repair.",
+      "Single-identity session artifacts preserving raw ASR text, punctuation and RapidFuzz correction logs, content-free hash-chained audit events, and rebuildable read-only SQLite FTS5 search."
+    ],
+    boundary:
+      "Public repository artifacts document software regression checks, decode-verified retention receipts, and controlled runtime availability; private recordings remain in owner-local custody, and live ASR accuracy or end-to-end display latency across arbitrary physical rooms remain separately gated evaluations.",
+    stack: [
+      "Python 3.10–3.12",
+      "PyQt6 & Interactive CLI",
+      "Shared Session SDK",
+      "Breeze-ASR-25 & Parakeet v2 (CUDA)",
+      "Nemotron-3 Diarization",
+      "Append-only PCM & M4A Retention",
+      "RapidFuzz Glossary",
+      "SQLite FTS5"
+    ],
     cover: "/og/default.png"
   },
   {
@@ -982,7 +1087,7 @@ export const homeWork = [
     title: homeProject.title, titleZh: homeProject.title,
     href: `/projects/${homeProject.slug}/`, kind: "System", kindZh: "系統",
     summary: homeProject.summary, status: homeProject.readiness,
-    summaryZh: "從校正後逐字稿產生結構化會議報告，並呈現本機模型的執行狀態與錯誤。", statusZh: "本機桌面工作流程"
+    summaryZh: "保留原音證據的本機錄音與 GPU 語音辨識系統，整合桌面與 CLI 共享工作流程、即時講者辨識、逐字稿校正與本機檢索，並呈現模型執行狀態與錯誤。", statusZh: "本機桌面與 CLI 共享系統"
   },
   {
     title: homeTeaching.title, titleZh: "企業語音 AI 系統：七日入門教材",
