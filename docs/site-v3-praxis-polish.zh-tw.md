@@ -19,3 +19,11 @@
 - **互動與無 JS 驗證（17 項行為斷言通過）**：包含繁中首頁字型子集（`202.6 KB`，保留 `noto-sans-tc-home.woff2` 與 `350`/`500` 字重）、語系切換保留 `#research-and-practice` 錨點、`/professional/` 類型篩選 `aria-pressed`、`/event-notes/` 搜尋與空結果狀態、`/zh-tw/contact/` 無 JS 原生展開手風琴、教學日無 JS 手機目錄與 Day 1 → Day 2 換課、`prefers-reduced-motion: reduce`（`1e-06s`）、手機選單 `Escape` 焦點還原至 `summary`，以及 `390px` 視窗 200% 根字級無水平溢出（`0px`）。
 
 發布回執與跨 repo 定位見 [11/25 Praxis 精修發布紀錄](releases/2026-11-25-praxis-polish.md)。
+
+## 續修｜極簡學者單欄與行距降噪（選項 A）
+
+依 Jason 指定以簡約美學與 [Dawn Song 首頁](https://dawnsong.io/) 為參考，並結合 Google `modern-web-guidance`（`content-first-noise-reduction`、`improve-text-layout-and-legibility`）進行減法重整：
+
+- **首頁單欄化與移除「主題索引」**：收斂首頁為 `48rem` 單欄學者流，移除「主題索引」、「本頁目錄」橫條、首頁大標語與封面圖，上方改為頭像、`Jason Chia-Sheng Lin`、陽明交大研究身分與快速連結，下方接精選專業文章、近期專業文章與研究及實作三組條列。
+- **全站視覺降噪與行距放寬**：全站正文行距調為 `1.82`、長文 `.longform` 調為 `1.88`（`66ch` 欄寬），取消列表標題與目錄常駐底線（hover/focus 顯現），`/professional/` 與 `/blog/` 篩選列改為單排無框底線分頁，頂欄加入 `@container scroll-state` 下滑自動收合。
+- **驗收紀錄**：見 [11/25 極簡學者單欄發布紀錄](releases/2026-11-25-minimalist-scholar-home.md)。

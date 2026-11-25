@@ -24,8 +24,9 @@ The personal site lives at [cs-kairos.com](https://cs-kairos.com/). The
 [editorial index and typography record](docs/site-v3-editorial-index.zh-tw.md)
 describes the bilingual homepage, topic index and article reading experience, and
 the [Praxis Design System polish record](docs/site-v3-praxis-polish.zh-tw.md)
-documents the inner-page typographic scale, 44px touch targets, and no-JS
-contact/reading refinements.
+documents the inner-page typographic scale, 44px touch targets, no-JS
+contact/reading refinements, and the
+[single-column scholar home release](docs/releases/2026-11-25-minimalist-scholar-home.md).
 The [October domain and course rollout record](docs/phase-0-3-implementation.zh-tw.md)
 documents the separate [Kairos Learning site](https://learn.cs-kairos.com/).
 
