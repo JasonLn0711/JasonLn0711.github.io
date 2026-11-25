@@ -32,16 +32,17 @@
 </footer>
 
 <style>
-  footer { border-top: 1px solid var(--line-strong); background: var(--surface-strong); }
-  .footer-shell { width: min(100% - 2.5rem, 64rem); margin-inline: auto; padding-block: 2.5rem 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; }
-  h2 { font-size: 1.25rem; font-weight: var(--heading-weight); margin: 0; }
-  p { margin: 0.5rem 0; color: var(--muted); }
-  .footer-intro a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
-  nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; }
-  nav h3 { margin: 0 0 0.3rem; font-size: 0.975rem; line-height: 1.4; }
+  footer { border-top: 1px solid var(--line); background: var(--surface-strong); }
+  .footer-shell { width: min(100% - 2.5rem, var(--home-width)); margin-inline: auto; padding-block: clamp(3rem, 6vw, 4.25rem) 2rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem 4rem; }
+  h2 { font-size: 1.15rem; font-weight: var(--heading-weight); color: var(--ink-strong); margin: 0; }
+  p { margin: 0.6rem 0; color: var(--muted); line-height: 1.75; }
+  .footer-intro a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; text-decoration: none; }
+  .footer-intro a:hover { text-decoration: underline; }
+  nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 3rem; }
+  nav h3 { margin: 0 0 0.5rem; color: var(--ink-strong); font-size: 0.9rem; line-height: 1.4; }
   nav ul { margin: 0; padding: 0; list-style: none; }
-  nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-size: 0.925rem; text-decoration: none; overflow-wrap: anywhere; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 0.92rem; text-decoration: none; overflow-wrap: anywhere; }
   nav a:hover { color: var(--accent); text-decoration: underline; }
-  .signature { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.875rem; }
-  @media (max-width: 650px) { .footer-shell { grid-template-columns: 1fr; gap: 1rem; } nav { grid-template-columns: repeat(auto-fit, minmax(min(100%, 8em), 1fr)); } .signature span { display: block; } }
+  .signature { grid-column: 1 / -1; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; }
+  @media (max-width: 650px) { .footer-shell { grid-template-columns: 1fr; gap: 1.5rem; } nav { grid-template-columns: repeat(auto-fit, minmax(min(100%, 8em), 1fr)); } .signature span { display: block; } }
 </style>

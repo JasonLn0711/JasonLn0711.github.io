@@ -5,6 +5,7 @@
 }
 
 html {
+  container-type: scroll-state;
   color: var(--ink);
   background: var(--bg);
   font-family: var(--font-family);
@@ -27,7 +28,7 @@ body {
   color: var(--ink);
   background: var(--bg);
   font-size: 1.0625rem;
-  line-height: 1.75;
+  line-height: 1.82;
   text-rendering: optimizeLegibility;
 }
 
@@ -313,12 +314,12 @@ button {
 
 .longform {
   color: var(--ink);
-  font-size: clamp(1.02rem, 1.6vw, 1.1rem);
-  line-height: 1.8;
+  font-size: clamp(1.03rem, 0.98rem + 0.25vw, 1.1rem);
+  line-height: 1.88;
 }
 
 .longform > * + * {
-  margin-top: 1.15rem;
+  margin-top: 1.35rem;
 }
 
 .longform h2,
@@ -326,30 +327,34 @@ button {
   scroll-margin-top: 5.5rem;
   color: var(--ink-strong);
   font-weight: var(--heading-weight);
-  line-height: 1.22;
+  line-height: 1.28;
+  text-wrap: balance;
 }
 
 .longform h2 {
-  margin-top: 2.6rem;
-  font-size: clamp(1.65rem, 4vw, 2.2rem);
+  margin-top: 3rem;
+  font-size: clamp(1.55rem, 1.25rem + 1.1vw, 2.05rem);
 }
 
 .longform h3 {
-  margin-top: 2.1rem;
-  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  margin-top: 2.35rem;
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.48rem);
 }
 
 .longform p,
 .longform li {
-  max-width: var(--article-width);
+  max-width: min(var(--article-width), 66ch);
+  text-wrap: pretty;
 }
 
 .longform blockquote {
-  margin: 2rem 0;
-  border-left: 3px solid var(--accent);
-  padding: 0.1rem 0 0.1rem 1rem;
+  margin: 2.25rem 0;
+  border-left: 2px solid var(--accent);
+  padding: 0.2rem 0 0.2rem 1.25rem;
   color: var(--muted);
-  font-size: 1.12em;
+  font-size: 1.08em;
+  line-height: 1.85;
+  text-wrap: pretty;
 }
 
 .longform code {
