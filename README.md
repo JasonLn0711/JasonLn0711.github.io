@@ -22,7 +22,10 @@ I build evidence-aware AI systems for high-stakes work. My work brings together 
 
 The personal site lives at [cs-kairos.com](https://cs-kairos.com/). The
 [editorial index and typography record](docs/site-v3-editorial-index.zh-tw.md)
-describes the bilingual homepage, topic index and article reading experience.
+describes the bilingual homepage, topic index and article reading experience, and
+the [Praxis Design System polish record](docs/site-v3-praxis-polish.zh-tw.md)
+documents the inner-page typographic scale, 44px touch targets, and no-JS
+contact/reading refinements.
 The [October domain and course rollout record](docs/phase-0-3-implementation.zh-tw.md)
 documents the separate [Kairos Learning site](https://learn.cs-kairos.com/).
 
