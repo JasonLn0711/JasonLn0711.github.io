@@ -36,27 +36,24 @@
 
 <style>
   .contact-page {
-    min-height: 100dvh;
-    display: grid;
-    align-items: center;
-    padding-top: 8rem;
+    padding-block: clamp(2.6rem, 6vw, 4.75rem);
   }
 
   .contact-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
-    gap: clamp(1.5rem, 5vw, 5rem);
-    align-items: center;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
   }
 
   .contact-copy {
     display: grid;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   ul {
     display: grid;
-    gap: 0.8rem;
+    gap: 0.7rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -65,16 +62,16 @@
 
   li {
     position: relative;
-    padding-left: 1.4rem;
-    line-height: 1.6;
+    padding-left: 1.35rem;
+    line-height: 1.65;
   }
 
   li::before {
     position: absolute;
     top: 0.65rem;
     left: 0;
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.48rem;
+    height: 0.48rem;
     border-radius: 999px;
     background: var(--accent);
     content: "";

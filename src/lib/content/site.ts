@@ -779,6 +779,29 @@ export const contactIntents = [
   }
 ] as const;
 
+export const contactIntentsZh = [
+  {
+    title: "研究合作",
+    summary: "交流共同研究、資料集、評測基準、投稿手稿，或值得深入探討的可信任 AI 問題。",
+    prompt: "歡迎附上研究問題、目前證據、預期時程，以及希望怎麼合作最有幫助。"
+  },
+  {
+    title: "臨床流程或受規範 AI 實作",
+    summary: "討論合成資料流程、臨床人員審閱支援工具、資安證據盤點，或部署治理相關問題。",
+    prompt: "請說明使用情境、決策壓力、主要利害關係人，以及哪些資訊需要保密。"
+  },
+  {
+    title: "教學、演講或工作坊",
+    summary: "邀請分享或共同規劃 AI 系統工程、語音 AI、資訊安全或 Agent 治理的課程與教材。",
+    prompt: "可提供聽眾背景、活動形式、時間區間、語言，以及希望帶走的學習成果。"
+  },
+  {
+    title: "早期想法或初步草稿",
+    summary: "分享仍在醞釀的想法、粗略規劃或未成形的草稿，一起釐清範圍、證據與下一步。",
+    prompt: "直接寄出粗略版本、覺得卡關的地方，以及目前最需要確認的小問題即可。"
+  }
+] as const;
+
 export const audienceRoutes = [
   {
     slug: "new-visitor",
