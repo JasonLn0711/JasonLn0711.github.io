@@ -4,7 +4,7 @@
   import HomeArticle from "./HomeArticle.svelte";
   import { professionalPosts } from "#lib/content/blog.ts";
   import { featuredWriting, latestWriting } from "#lib/content/home.ts";
-  import { homeCopy, homeFeaturedArtwork, homeFeaturedSlugs, homeTopics, homeWork, site } from "#lib/content/site.ts";
+  import { homeCopy, homeFeaturedSlugs, homeWork, site } from "#lib/content/site.ts";
 
   let { locale = "en" }: { locale?: "en" | "zh-Hant" } = $props();
   let zh = $derived(locale === "zh-Hant");
@@ -25,199 +25,276 @@
   <link rel="alternate" hreflang="x-default" href={`${site.url}/`} />
 </svelte:head>
 
-<div class="home page-shell" lang={locale}>
-  <header class="intro">
-    <div class="intro-copy">
-      <h1><span>{copy.headline[0]}</span> <span>{copy.headline[1]}</span></h1>
-      <p>{copy.intro}</p>
-    </div>
-    <div class="profile">
-      <img
-        src="/images/headshot-160.webp"
-        srcset="/images/headshot-160.webp 160w, /images/headshot-256.webp 256w, /images/headshot-384.webp 384w"
-        sizes="(max-width: 42em) 64px, 80px"
-        width="80"
-        height="80"
-        alt=""
-      />
-      <div>
-        <a href="/about/">{site.name}</a>
-        <p>{copy.role}</p>
-      </div>
+<div class="home" lang={locale}>
+  <header class="scholar-head">
+    <img
+      src="/images/headshot-160.webp"
+      srcset="/images/headshot-160.webp 160w, /images/headshot-256.webp 256w, /images/headshot-384.webp 384w"
+      sizes="(max-width: 40em) 84px, 112px"
+      width="112"
+      height="112"
+      alt={site.name}
+    />
+    <div class="scholar-copy">
+      <h1 lang="en">{site.name}</h1>
+      <p class="role">{copy.role}</p>
+      <p class="bio">{copy.intro}</p>
+      <nav class="scholar-links" aria-label={zh ? "個人連結" : "Profile links"}>
+        <a href="/about/">{zh ? "關於我" : "Bio"}</a>
+        <a href="/resume/">{copy.cv}</a>
+        <a href={zh ? "/zh-tw/contact/" : "/contact/"}>{copy.contact}</a>
+        <a href={site.github} rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
+        <a href={site.linkedin} rel="noreferrer" target="_blank">LinkedIn <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
   </header>
 
-  <nav class="section-index" aria-label={copy.contents}>
-    <p aria-hidden="true">{copy.contents}</p>
-    <ul>
-      <li><a href="#selected-writing">{copy.featured}</a></li>
-      <li><a href="#latest-writing">{copy.latest}</a></li>
-      <li><a href="#research-and-practice">{copy.work}</a></li>
-      <li><a href="#topic-index">{copy.topics}</a></li>
-    </ul>
-  </nav>
+  <section class="home-section" id="selected-writing" aria-labelledby="selected-title" tabindex="-1">
+    <h2 id="selected-title">{copy.featured}</h2>
+    {#if featured.length > 0}
+      <div class="entry-list">
+        {#each featured as post (post.slug)}
+          <HomeArticle {post} {locale} />
+        {/each}
+      </div>
+    {:else}
+      <p>{copy.empty} <a href="/teaching/">{copy.emptyLink} →</a></p>
+    {/if}
+  </section>
 
-  <div class="directory">
-    <section class="selected" id="selected-writing" aria-labelledby="selected-title" tabindex="-1">
-      <h2 id="selected-title">{copy.featured}</h2>
-      {#each featured as post, index (post.slug)}
-        <HomeArticle {post} {locale} featured={index === 0} cover={homeFeaturedArtwork[post.slug] ?? post.cover} />
-      {:else}
-        <p>{copy.empty} <a href="/teaching/">{copy.emptyLink} →</a></p>
-      {/each}
-    </section>
+  <section class="home-section" id="latest-writing" aria-labelledby="latest-title" tabindex="-1">
+    <h2 id="latest-title">{copy.latest}</h2>
+    <RecentWriting posts={latest} {locale} />
+  </section>
 
-    <section class="latest" id="latest-writing" aria-labelledby="latest-title" tabindex="-1">
-      <h2 id="latest-title">{copy.latest}</h2>
-      <RecentWriting posts={latest} {locale} />
-    </section>
-
-    <section class="research" id="research-and-practice" aria-labelledby="work-title" tabindex="-1">
-      <h2 id="work-title">{copy.work}</h2>
-      <ul class="work-list">
-        {#each homeWork as item (item.href)}
-          <li>
-            <p class="work-meta">{zh ? item.kindZh : item.kind} · {zh ? item.statusZh : item.status}</p>
-            <h3><a href={item.href}>{zh ? item.titleZh : item.title} <span aria-hidden="true">↗</span></a></h3>
+  <section class="home-section" id="research-and-practice" aria-labelledby="work-title" tabindex="-1">
+    <h2 id="work-title">{copy.work}</h2>
+    <ul class="work-list">
+      {#each homeWork as item (item.href)}
+        <li>
+          <div class="work-meta">
+            <span>{zh ? item.kindZh : item.kind}</span>
+            <span>{zh ? item.statusZh : item.status}</span>
+          </div>
+          <div class="work-body">
+            <h3><a href={item.href}>{zh ? item.titleZh : item.title}</a></h3>
             <p>{zh ? item.summaryZh : item.summary}</p>
-          </li>
-        {/each}
-      </ul>
-    </section>
-
-    <section class="topics" id="topic-index" aria-labelledby="topics-title" tabindex="-1">
-      <h2 id="topics-title">{copy.topics}</h2>
-      <ul>
-        {#each homeTopics as topic (topic.href)}
-          <li>
-            <a href={topic.href}>{zh ? topic.zh : topic.en} <span aria-hidden="true">↗</span></a>
-            <p>{zh ? topic.typeZh : topic.type}</p>
-          </li>
-        {/each}
-      </ul>
-    </section>
-  </div>
-
-  <p class="personal-link" id="personal-title">
-    <a href="/blog/">{copy.personal} <span aria-hidden="true">→</span></a>
-  </p>
+          </div>
+        </li>
+      {/each}
+    </ul>
+    <div class="section-links">
+      <a href="/research/">{zh ? "研究" : "Research"} <span aria-hidden="true">→</span></a>
+      <a href="/projects/">{zh ? "作品" : "Projects"} <span aria-hidden="true">→</span></a>
+      <a href="/teaching/">{zh ? "教學" : "Teaching"} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
 </div>
 
 <style>
-  .home { line-height: 1.7; }
+  .home {
+    width: min(100% - 2.5rem, 48rem);
+    margin-inline: auto;
+    padding-block: clamp(2.75rem, 6vw, 4.75rem) clamp(3.5rem, 7vw, 5.5rem);
+  }
 
-  .intro {
+  .scholar-head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
-    gap: 1.5rem clamp(1.5rem, 5vw, 4rem);
-    align-items: end;
-    padding-block: clamp(2.7rem, 6vw, 5.5rem) clamp(1.75rem, 4vw, 3rem);
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1.5rem clamp(1.5rem, 4vw, 2.5rem);
+    align-items: start;
+    padding-block-end: clamp(2.25rem, 5vw, 3.25rem);
+  }
+
+  .scholar-head img {
+    inline-size: 7rem;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    margin-block-start: 0.2rem;
+  }
+
+  .scholar-copy {
+    min-inline-size: 0;
   }
 
   h1 {
     margin: 0;
     color: var(--ink-strong);
-    font-size: clamp(2.45rem, 1.75rem + 3.1vw, 4.9rem);
+    font-size: clamp(1.75rem, 1.35rem + 1.15vw, 2.35rem);
     font-weight: var(--heading-weight);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     line-height: 1.25;
-    overflow-wrap: anywhere;
-    text-wrap: balance;
   }
 
-  h1 span { display: inline-block; }
-  h1:lang(zh-Hant) { font-size: clamp(2.15rem, 1.4rem + 3.1vw, 4.15rem); letter-spacing: -0.015em; line-height: 1.18; }
-
-  .intro-copy p {
-    max-inline-size: 55ch;
-    margin: 0.9rem 0 0;
+  .role {
+    margin: 0.35rem 0 0;
     color: var(--muted);
-    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
-    line-height: 1.6;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .bio {
+    margin: 0.85rem 0 0;
+    max-inline-size: 58ch;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.82;
     text-wrap: pretty;
   }
 
-  .intro-copy p:lang(zh-Hant) { text-wrap: balance; }
-
-  .profile {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 0.9rem;
-    min-inline-size: 0;
-    padding-block: 0.5rem;
-  }
-
-  .profile img { inline-size: 5rem; height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line); border-radius: var(--radius-sm); }
-  .profile a { font-weight: 680; color: var(--ink-strong); overflow-wrap: anywhere; text-decoration-color: var(--control-line); }
-  .profile a:hover { color: var(--accent); text-decoration-color: currentColor; }
-  .profile p { color: var(--muted); margin: 0.2rem 0 0; font-size: 0.88rem; line-height: 1.5; }
-
-  .section-index {
+  .scholar-links {
     display: flex;
-    align-items: baseline;
     flex-wrap: wrap;
-    gap: 0 1.35rem;
-    padding-block: 0.45rem;
-    border-block: 1px solid var(--line-strong);
-    font-size: 0.94rem;
+    gap: 0 1.25rem;
+    margin-block-start: 0.65rem;
   }
 
-  .section-index p { margin: 0; color: var(--ink-strong); font-weight: var(--strong-weight); }
-  ul { padding: 0; margin: 0; list-style: none; }
-  .section-index ul { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 1.35rem; }
-  .section-index a { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
-
-  .directory {
-    display: grid;
-    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
-    padding-block: clamp(1.7rem, 4vw, 2.6rem) clamp(2.25rem, 5vw, 3.5rem);
+  .scholar-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    min-height: 44px;
+    font-size: 0.92rem;
+    text-decoration: none;
   }
 
-  .directory section { min-inline-size: 0; scroll-margin-block-start: 5.25rem; }
-  .directory section:focus-visible { outline-offset: 0.35rem; }
+  .scholar-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+
+  .home-section {
+    border-block-start: 1px solid var(--line);
+    padding-block: clamp(2.25rem, 4.5vw, 3.25rem);
+    scroll-margin-block-start: 5rem;
+  }
+
+  .home-section:focus-visible {
+    outline-offset: 0.35rem;
+  }
 
   h2 {
-    margin: 0;
-    padding-block-end: 0.7rem;
-    border-block-end: 1px solid var(--line-strong);
+    margin: 0 0 1.5rem;
     color: var(--ink-strong);
-    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.15rem);
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
+    font-size: 1.08rem;
+    font-weight: var(--heading-weight);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
   }
 
-  .latest {
-    padding: clamp(0.9rem, 2vw, 1.5rem);
-    border-block-start: 2px solid var(--accent);
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-    background: var(--surface-strong);
+  h2:lang(zh-Hant) {
+    letter-spacing: 0.02em;
   }
 
-  .latest h2 { margin-block-end: 1rem; }
-  .latest h2, .topics h2 { font-size: clamp(1.45rem, 1.2rem + 0.6vw, 1.85rem); }
-  .work-list li, .topics li { padding-block: 0.85rem; border-block-end: 1px solid var(--line); }
-  .work-list h3 { margin: 0.2rem 0; color: var(--ink-strong); font-size: 1.18rem; line-height: 1.4; }
-  .work-list p, .topics p { margin: 0; color: var(--muted); font-size: 0.94rem; }
-  .work-list .work-meta { font-size: 0.79rem; }
-  .topics a { font-weight: var(--heading-weight); }
-  .topics span, .work-list h3 span { font-size: 0.8em; white-space: nowrap; }
+  .entry-list,
+  .work-list {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-  .personal-link { margin: 0; padding-block: 0.75rem 1.4rem; border-block-start: 1px solid var(--line); }
-  .personal-link a { display: inline-flex; gap: 0.35em; align-items: center; min-block-size: 2.75rem; }
+  .work-list li {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 0.35rem 1.75rem;
+    align-items: start;
+  }
 
-  @media (max-width: 59em) {
-    .directory { grid-template-columns: minmax(0, 1fr); }
+  .work-meta {
+    display: grid;
+    gap: 0.2rem;
+    padding-block-start: 0.2rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .work-meta span:first-child {
+    color: var(--ink);
+    font-weight: var(--heading-weight);
+  }
+
+  .work-body {
+    min-inline-size: 0;
+  }
+
+  .work-body h3 {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 1.06rem;
+    font-weight: var(--heading-weight);
+    line-height: 1.48;
+  }
+
+  .work-body h3 a {
+    color: var(--ink-strong);
+    text-decoration: none;
+  }
+
+  .work-body h3 a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+
+  .work-body p {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .section-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.75rem;
+    margin-block-start: 1.5rem;
+  }
+
+  .section-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    min-height: 44px;
+    font-size: 0.92rem;
+    text-decoration: none;
+  }
+
+  .section-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
   }
 
   @media (max-width: 42em) {
-    .intro { grid-template-columns: minmax(0, 1fr); align-items: start; }
-    .profile { border-block-start: 1px solid var(--line); padding-block-start: 0.95rem; }
-    .profile img { inline-size: 4rem; }
-    .section-index { display: grid; gap: 0.15rem; padding-block-start: 0.7rem; }
-    .section-index ul { gap: 0 1rem; }
+    .home {
+      width: min(100% - 1.5rem, 48rem);
+    }
+
+    .scholar-head {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.15rem;
+    }
+
+    .scholar-head img {
+      inline-size: 5.25rem;
+    }
+
+    .work-list li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.3rem;
+    }
+
+    .work-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 0.65rem;
+      padding-block-start: 0;
+    }
   }
 </style>
