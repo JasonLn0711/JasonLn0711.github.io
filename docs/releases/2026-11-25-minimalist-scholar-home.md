@@ -8,6 +8,8 @@
 - 首頁純單欄學者版（選項 A）：`src/lib/components/HomePage.svelte`、`src/lib/components/HomeArticle.svelte`、`src/lib/components/RecentWriting.svelte`（移除「主題索引」、「本頁目錄」橫條、首頁封面圖與雙欄卡片，改為 `48rem` 單欄學者自介＋三大乾淨條列區）。
 - 全站列表降噪與單排無框篩選：`ArticleConnections.svelte`、`ArticleToc.svelte`、`EventNotes.svelte` 與 `/professional/`、`/blog/`、`/research/`、`/projects/`、`/teaching/`、`/talks/`、`/resume/`、`/now/`、`/professional/series/` 共 13 個檔案（取消常駐標題底線改為 hover/focus 顯現，`/professional/` 與 `/blog/` 篩選列改為單排無框分頁）。
 - 設計與發布文件：`README.md`、`docs/site-v3-praxis-polish.zh-tw.md`、`docs/releases/2026-11-25-minimalist-scholar-home.md`。
+- 續修｜首頁 2 寸大頭照比例與相框（`2045841`）：重新由 `public/images/headshot.jpg` 裁切 `7:9` 比例之 `public/images/headshot-{160,256,384}.webp`，並於 `src/lib/components/HomePage.svelte` 設定 `3px` 暖白內框與細邊框（桌機 `112×144`、手機 `88×113`）。
+- 續修｜Project AURA 最新架構設計與設計巧思：`src/lib/content/site.ts` 與 `src/routes/projects/[slug]/+page.svelte`（更新首頁 `homeWork`、`/projects/` 與 `/projects/project-aura/` 詳頁，補齊 v1.18 單一背景共享 Session 服務、Append-only PCM 原音日誌與 `speech-guard-v1` 即時保護加驗證後 M4A 留存、GPU-Only Fail-Closed 語音辨識與顯式模型生命週期、獨立子行程預設開啟之 Nemotron 3 即時語者分離、10→20 秒自適應斷句與繁中標點／RapidFuzz 雙層非破壞式後處理、以及檔案系統真實來源搭配可重建唯讀 SQLite FTS5 索引等六大最新架構與「為什麼這樣設計的巧思」中英雙語說明；繁中首頁字型維持 `202.6 KB` 子集零額外下載）。
 
 ## 本機驗證
 

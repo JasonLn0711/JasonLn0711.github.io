@@ -26,4 +26,5 @@
 
 - **首頁單欄化與移除「主題索引」**：收斂首頁為 `48rem` 單欄學者流，移除「主題索引」、「本頁目錄」橫條、首頁大標語與封面圖，上方改為頭像、`Jason Chia-Sheng Lin`、陽明交大研究身分與快速連結，下方接精選專業文章、近期專業文章與研究及實作三組條列。
 - **全站視覺降噪與行距放寬**：全站正文行距調為 `1.82`、長文 `.longform` 調為 `1.88`（`66ch` 欄寬），取消列表標題與目錄常駐底線（hover/focus 顯現），`/professional/` 與 `/blog/` 篩選列改為單排無框底線分頁，頂欄加入 `@container scroll-state` 下滑自動收合。
+- **首頁 2 寸大頭照比例與 Project AURA 最新架構／設計巧思**：首頁頭像改為 `7:9` 兩寸證件照取景與 `3px` 暖白內框；`/projects/project-aura/` 與首頁代表作品更新至 Project AURA v1.18 最新共享 Session 架構，並新增「最新系統架構設計（Latest architecture）」與「為什麼這樣設計的巧思（Design rationale）」六大第一性原理設計決策與證據邊界。
 - **驗收紀錄**：見 [11/25 極簡學者單欄發布紀錄](releases/2026-11-25-minimalist-scholar-home.md)。
