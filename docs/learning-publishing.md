@@ -52,7 +52,7 @@ practical acceptance keep their own records.
    publication date and copy the reviewed file to `src/content/professional/`.
    `learningDate` remains the date of the actual learning, even when published
    later. Check related-article links and the series position.
-7. Run `npm test`, `npm run check`, `npm run build`; review the production
+7. Run `pnpm test`, `pnpm run check`, `pnpm run build`; review the production
    preview at desktop and phone widths. Publish the scoped change to `main`
    through the existing Pages workflow, following session Git authorization.
 8. Verify the Pages run and the public article URL, both language sections,
@@ -165,7 +165,7 @@ relationships, builds and publication evidence. Subject repos own original
 answers, confidence, retests, raw learning sources and practical evidence.
 Planning owns capacity, status and locators.
 
-`npm test` protects date boundaries, metadata validation, draft exclusion,
+`pnpm test` protects date boundaries, metadata validation, draft exclusion,
 series order, reverse links, bilingual shape and math compilation. CI runs
 these tests plus Svelte checks and a static build before deployment.
 Use actual rendered-page inspection for language anchors, table of contents,

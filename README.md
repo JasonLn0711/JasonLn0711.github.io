@@ -236,15 +236,16 @@ Earlier v2.0 records remain useful as historical design context:
 
 ## Commands
 
-Use Node.js 22.18 or newer. GitHub Pages CI uses Node 24.
+Use Node.js 22.18 or newer and Corepack; the project pins pnpm 12.23.0. GitHub Pages CI uses Node 24. The previous npm manifests are retained in [the release archive](docs/releases/npm-before-pnpm-2026-11-27/).
 
 ```bash
-npm run check
-npm run build
-npm run preview
+pnpm install --frozen-lockfile
+pnpm run check
+pnpm run build
+pnpm run preview
 ```
 
-`npm run check` runs SvelteKit sync plus `svelte-check`. `npm run build` writes the static site to `build/`.
+`pnpm run check` runs SvelteKit sync plus `svelte-check`. `pnpm run build` writes the static site to `build/`.
 
 ## Daily Learning Blog
 
@@ -258,7 +259,7 @@ homepage presents selected articles and the most recent additional writing.
 - [Instagram one-concept template](templates/instagram-one-concept.md)
 - [Reading series](https://cs-kairos.com/professional/series/)
 
-`npm test` checks publishing rules and mathematics. Drafts stay in ignored
+`pnpm test` checks publishing rules and mathematics. Drafts stay in ignored
 `.local/drafts/`. Confirmed personal writing lives in `src/content/blog/`.
 Confirmed research perspectives, technical essays and learning articles live
 in `src/content/professional/`. Existing writing URLs have compatibility routes.
@@ -301,6 +302,6 @@ For a future Day 2 or Day 3:
 
 Last verified after adding the teaching accelerator routes:
 
-- `npm run check`
-- `npm run build`
+- `pnpm run check`
+- `pnpm run build`
 - Production preview smoke checks for `/teaching/`, `/teaching/enterprise-ai-architecture-sprint/`, `/teaching/enterprise-ai-architecture-sprint/day-01-ai-gateway/`, and `/sitemap.xml`.

@@ -3,10 +3,13 @@
 The existing Cloudflare Git integration builds `npm run build` and deploys with
 `npx wrangler deploy`. `wrangler.jsonc` explicitly uploads only `build/`; it keeps
 SvelteKit's static adapter. No runtime secrets or protected API bindings are needed.
+The project pins pnpm in `package.json` and uses `pnpm-lock.yaml` for dependency
+installation. Verify the Cloudflare build after publishing this toolchain change;
+the existing remote build and deploy command settings are recorded above.
 
 1. Open a PR. Run tests, Svelte checks, build, `node scripts/check-release.mjs` and
    inspect the static preview at mobile and desktop sizes. Cloudflare preview or
-   `npx wrangler dev --port 4175` supplies the actual static-asset routing behavior.
+   `pnpm exec wrangler dev --port 4175` supplies the actual static-asset routing behavior.
 2. Record the current successful production deployment ID and Git commit before
    merging. Keep the previous build available. Merge only the reviewed head.
 3. Check the Cloudflare build result. Verify root, Chinese home, deep article,
@@ -21,7 +24,7 @@ SvelteKit's static adapter. No runtime secrets or protected API bindings are nee
 ## Recovery
 
 In Worker Deployments, choose the recorded previous successful version and roll
-back; alternatively use `npx wrangler rollback <version-id>` under the already
+back; alternatively use `pnpm exec wrangler rollback <version-id>` under the already
 authorized Cloudflare identity. This operation restores a known deployment,
 not a source-history rewrite. Recheck HTTPS, deep pages, assets and 404 afterward.
 If a build setting caused failure, restore the recorded setting and redeploy the
